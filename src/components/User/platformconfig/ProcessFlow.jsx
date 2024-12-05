@@ -183,6 +183,7 @@
 // export default ProcessFlowChart;
 
 
+
 import React, { useEffect, useState } from "react";
 import ReactFlow, {
   addEdge,
@@ -217,36 +218,66 @@ const createNodes = (boundary, startIndex) => {
     });
 };
 
+// const renderNodeLabel = (node) => {
+//   if (node.data.fieldName === "name" && node.data.scopeDetails.length > 0) {
+//     const scopeDetails = node.data.scopeDetails.map((scope, index) => (
+//       <div key={index}>
+//         <strong>Category:</strong> {scope.category}
+//         <br />
+//         <strong>Scope Type:</strong> {scope.scopeType}
+//         <br />
+//         <strong>Subcategory:</strong> {scope.subCategory}
+//         <br />
+//         <strong>Emission Factor:</strong> {scope.emissionFactor}
+//         <br />
+//         <strong>Units:</strong> {scope.units}
+//         <br />
+//         <strong>Comments:</strong> {scope.comments}
+//         <hr />
+//       </div>
+//     ));
+
+//     return (
+//       <Tooltip
+//         title={<div style={{ maxWidth: 300 }}>{scopeDetails}</div>}
+//         arrow
+//       >
+//         <span style={{ cursor: "pointer" }}>{node.data.label}</span>
+//       </Tooltip>
+//     );
+//   }
+
+//   return <span>{node.data.label}</span>; 
+// };
+
 const renderNodeLabel = (node) => {
   if (node.data.fieldName === "name" && node.data.scopeDetails.length > 0) {
     const scopeDetails = node.data.scopeDetails.map((scope, index) => (
       <div key={index}>
-        <strong>Category:</strong> {scope.category}
+        <strong>Category:</strong> {scope.category || "N/A"}
         <br />
-        <strong>Scope Type:</strong> {scope.scopeType}
+        <strong>Scope Type:</strong> {scope.scopeType || "N/A"}
         <br />
-        <strong>Subcategory:</strong> {scope.subCategory}
+        <strong>Subcategory:</strong> {scope.subCategory || "N/A"}
         <br />
-        <strong>Emission Factor:</strong> {scope.emissionFactor}
+        <strong>Emission Factor:</strong> {scope.emissionFactor || "N/A"}
         <br />
-        <strong>Units:</strong> {scope.units}
+        <strong>Units:</strong> {scope.units || "N/A"}
         <br />
-        <strong>Comments:</strong> {scope.comments}
+        <strong>Comments:</strong> {scope.comments || "N/A"}
         <hr />
       </div>
     ));
 
     return (
-      <Tooltip
-        title={<div style={{ maxWidth: 300 }}>{scopeDetails}</div>}
-        arrow
-      >
+      <Tooltip title={<div style={{ maxWidth: 300 }}>{scopeDetails}</div>} arrow>
         <span style={{ cursor: "pointer" }}>{node.data.label}</span>
       </Tooltip>
     );
   }
 
-  return <span>{node.data.label}</span>; 
+  // Ensure label is string or fallback
+  return <span>{node.data.label || "Default Label"}</span>;
 };
 
 
@@ -303,6 +334,24 @@ const ProcessFlowChart = () => {
   const onConnect = (params) => setEdges((eds) => addEdge(params, eds));
 
   
+  // const saveFlowChart = () => {
+  //   const processFlowData = {
+  //     processName: "My Process Flow",
+  //     nodes: nodes.map((node) => ({
+  //       ...node,
+  //       data: {
+  //         ...node.data,
+  //         label: typeof node.data.label === "string"
+  //           ? node.data.label
+  //           : node.data.label.props.children, 
+  //       },
+  //     })),
+  //     edges,
+  //   };
+  //   dispatch(saveProcessFlow(processFlowData));
+  //   dispatch(fetchProcessFlows());
+  // };
+  
   const saveFlowChart = () => {
     const processFlowData = {
       processName: "My Process Flow",
@@ -312,13 +361,14 @@ const ProcessFlowChart = () => {
           ...node.data,
           label: typeof node.data.label === "string"
             ? node.data.label
-            : node.data.label.props.children, 
+            : React.isValidElement(node.data.label) && node.data.label.props.children
+            ? node.data.label.props.children.toString()
+            : "N/A", // Fallback if it's neither string nor JSX
         },
       })),
       edges,
     };
     dispatch(saveProcessFlow(processFlowData));
-    dispatch(fetchProcessFlows());
   };
   
   

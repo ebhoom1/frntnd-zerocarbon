@@ -198,7 +198,7 @@ console.log("userType:",userType);
       ? [
           { id: "dashboard", label: "Dashboard", icon: <DashboardIcon /> },
           { id: "leads", label: "Leads", icon: <PersonIcon /> },
-          { id: "hierarchychart", label: "Hierarchy Chart", icon: <MultilineChartIcon />,path: "/flowchart" },
+          { id: "hierarchychart", label: "Hierarchy Chart", icon: <MultilineChartIcon />,path: "/sample-flowchart" },
           { id: "settings", label: "Settings", icon: <SettingsIcon /> },
           { id: "feedback", label: "Feedback", icon: <FeedbackIcon /> },
           { id: "report", label: "Report", icon: <ReportIcon /> },

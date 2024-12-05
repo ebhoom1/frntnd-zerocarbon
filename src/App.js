@@ -11,7 +11,7 @@ import ProtectedRoute from './components/Protectedroute/ProtectedRoute';
 import Formdetails from './components/Admin/Formdetails';
 import PlatformConfig from './pages/User/PlatformConfig';
 import UserDashboard from './pages/User/UserDashboard';
-
+import SampleFlowchart from './pages/Admin/sampleFlowchart/sampleFlowchart';
 const App = () => {
   const user = JSON.parse(localStorage.getItem('user'));
   const token = localStorage.getItem('token');
@@ -50,6 +50,7 @@ const App = () => {
         <Route element={<ProtectedRoute allowedRoles={['admin','superAdmin']} />}>
           <Route path="/admin" element={<AdminDashboard />} />
          <Route path="/flowchart" element={<PlatformConfig />} />
+         <Route path="/sample-flowchart" element={< SampleFlowchart/>} />
          < Route  path='/formdetails/:formId' element={<Formdetails/>}/> 
 
         </Route>

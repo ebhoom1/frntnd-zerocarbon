@@ -7,6 +7,7 @@ import categories from "../../../assets/data/categories.json";
 import subCategories from "../../../assets/data/subCategories.json";
 
 const BoundaryScopeForm = () => {
+
   const [isSubmitting, setIsSubmitting] = useState(false);
   const dispatch = useDispatch();
 
@@ -69,7 +70,6 @@ const BoundaryScopeForm = () => {
       width: '300px', 
       height: '100vh', 
       backgroundColor: '#fff', 
-      
       padding: '16px',  
       boxShadow: 3,  
       borderRadius: '8px',  
@@ -211,6 +211,7 @@ const BoundaryScopeForm = () => {
       >
         {isSubmitting ? "Submitting..." : "Submit"}
       </Button>
+      
     </form>
     </Box>
   );
