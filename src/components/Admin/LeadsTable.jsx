@@ -1,5 +1,3 @@
-
-
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "../../api/axios";
@@ -28,8 +26,7 @@ const Dashboard = () => {
   const [forms, setForms] = useState([]); // Stores forms to display (filtered or all)
   const [filters, setFilters] = useState({
     companyName: "",
-    industrySector: "Industry Sector",
-    submissionDate: "",
+    status:"",
   });
 
   // Fetch all forms on component mount
@@ -64,6 +61,23 @@ const Dashboard = () => {
     }
   };
 
+  // Handle status update
+  const handleStatusChange = async (id, newStatus) => {
+    try {
+      const response = await axios.patch(`/api/admin/forms/status/${id}`, {
+        status: newStatus,
+      });
+      setForms((prevForms) =>
+        prevForms.map((form) =>
+          form._id === id ? { ...form, status: response.data.status } : form
+        )
+      );
+      console.log("status submitted");
+    } catch (error) {
+      console.error("Error updating status:", error);
+    }
+  };
+
   // Handle table row click
   const handleRowClick = (formId) => {
     navigate(`/formdetails/${formId}`);
@@ -84,44 +98,27 @@ const Dashboard = () => {
           onChange={handleInputChange}
           style={{ marginRight: "8px" }}
         />
-        
         {/* Industry Sector Dropdown */}
         <FormControl style={{ marginRight: "8px", minWidth: "200px" }}>
-         
           <Select
-           name="industrySector"
-           value={filters.industrySector}
-           onChange={handleInputChange}
-           displayEmpty      
-          >
+            name="status"
+            value={filters.status}
+            onChange={handleInputChange}
+            displayEmpty
+            renderValue={(selected) => {
+              return selected ? selected : "Status"; // Show "Status" as a placeholder
+            }}
+          >            
             <MenuItem value="">
-      <em>None</em>
-    </MenuItem>
-          <MenuItem value="Industry Sector" disabled>
-          Industry Sector
-        </MenuItem>
-            {industryOptions.map((category, index) => [
-              <ListSubheader key={`${index}-header`}>{category.category}</ListSubheader>,
-              ...category.options.map((option, i) => (
-                <MenuItem key={`${index}-${i}`} value={option}>
-                  {option}
-                </MenuItem>
-              )),
-            ])}
+              <em>None</em>
+            </MenuItem>
+            <MenuItem value="Not started">Not started</MenuItem>
+            <MenuItem value="Off track">Off track</MenuItem>
+            <MenuItem value="At risk">At risk</MenuItem>
+            <MenuItem value="Completed">Completed</MenuItem>
+            <MenuItem value="Canceled">Canceled</MenuItem>
           </Select>
         </FormControl>
-        
-
-        <TextField
-          label="Submission Date"
-          name="submissionDate"
-          type="date"
-          InputLabelProps={{ shrink: true }}
-          value={filters.submissionDate}
-          onChange={handleInputChange}
-          style={{ marginRight: "8px" }}
-        />
-        
         <Button variant="contained" onClick={fetchFilteredForms}>
           Filter
         </Button>
@@ -135,6 +132,7 @@ const Dashboard = () => {
               <TableCell>Name</TableCell>
               <TableCell>Email</TableCell>
               <TableCell>Phone</TableCell>
+              <TableCell>Status</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -151,6 +149,22 @@ const Dashboard = () => {
                   <TableCell>{form.primaryContact.name}</TableCell>
                   <TableCell>{form.primaryContact.email}</TableCell>
                   <TableCell>{form.primaryContact.phone}</TableCell>
+                  <TableCell onClick={(e) => e.stopPropagation()}>
+                    <FormControl fullWidth>
+                      <Select
+                        value={form.status || "Not started"}
+                        onChange={(e) =>
+                          handleStatusChange(form._id, e.target.value)
+                        }
+                      >
+                        <MenuItem value="Not started">Not started</MenuItem>
+                        <MenuItem value="Off track">Off track</MenuItem>
+                        <MenuItem value="At risk">At risk</MenuItem>
+                        <MenuItem value="Completed">Completed</MenuItem>
+                        <MenuItem value="Canceled">Canceled</MenuItem>
+                      </Select>
+                    </FormControl>
+                  </TableCell>{" "}
                 </TableRow>
               ))
             ) : (
@@ -168,5 +182,3 @@ const Dashboard = () => {
 };
 
 export default Dashboard;
-
-

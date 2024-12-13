@@ -151,11 +151,11 @@ const Login = () => {
               },
             }}
           />
-          <FormControlLabel
+          {/* <FormControlLabel
             control={<Checkbox sx={{ color: "var(--primary-text)" }} />}
             label="Remember me"
             sx={{ alignSelf: "start", mt: 1, color: "var(--primary-text)" }}
-          />
+          /> */}
           <Button
             type="submit"
             variant="contained"

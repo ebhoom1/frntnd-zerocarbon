@@ -17,7 +17,6 @@ export const createUser = createAsyncThunk('user/create', async ({ formData, use
 
 
 
-
 // User slice
 const userSlice = createSlice({
   name: 'user',

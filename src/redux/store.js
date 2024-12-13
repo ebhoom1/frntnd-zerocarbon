@@ -3,8 +3,8 @@ import authReducer from './features/auth/authSlice';
 import userReducer from './features/user/UserSlice'; 
 import sidebarReducer from "./features/sidebar/SidebarSlice";
 import dashboardReducer from './features/dashboard/DashboardSlice';
-import boundaryReducer from './features/boundarySlice/BoundarySlice';
-import processFlowReducer from './features/boundarySlice/ProcessFlowSlice';
+import flowchartReducer from "./features/flowchart/flowchartSlice";
+import userGetReducer from './features/user/userGetReducer';
 
 export const store = configureStore({
   reducer: {
@@ -12,8 +12,9 @@ export const store = configureStore({
     user: userReducer, 
     sidebar: sidebarReducer,
     dashboard: dashboardReducer,
-    boundaries:boundaryReducer,
-    processFlow: processFlowReducer, 
+    flowchart: flowchartReducer,
+    userFetch: userGetReducer
+
   },
 });
 

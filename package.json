@@ -9,10 +9,12 @@
     "@mui/lab": "^6.0.0-beta.17",
     "@mui/material": "^6.1.8",
     "@mui/x-charts": "^7.22.3",
+    "@mui/x-data-grid": "^7.23.1",
     "@reduxjs/toolkit": "^2.3.0",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
+    "antd": "^5.22.3",
     "axios": "^1.7.7",
     "html2canvas": "^1.4.1",
     "html2pdf.js": "^0.10.2",
@@ -25,6 +27,7 @@
     "react-scripts": "5.0.1",
     "recharts": "^2.13.3",
     "redux": "^5.0.1",
+    "sweetalert2": "^11.14.5",
     "web-vitals": "^2.1.4"
   },
   "scripts": {

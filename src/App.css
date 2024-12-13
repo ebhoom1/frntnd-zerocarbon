@@ -9,11 +9,18 @@
   height: 100vh;
 }
 body{
-  font-family: 'Poppins';
+  /* font-family: 'Poppins'; */
   background-color: #F6F6F6;
 }
 
-  
+* {
+  font-family: "Open Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  font-variation-settings:
+    "wdth" 100;
+}  
 
 /* Primary Colors */
 :root {
@@ -29,3 +36,27 @@ body{
 }
 
 
+/* Apply styles for Webkit browsers */
+::-webkit-scrollbar {
+  width: 8px; /* Scrollbar width */
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1; /* Track color */
+  border-radius: 4px; /* Rounded corners */
+}
+
+::-webkit-scrollbar-thumb {
+  background: #4CAF50; /* Scrollbar thumb color */
+  border-radius: 4px; /* Rounded corners */
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #45a049; /* Hover color */
+}
+
+/* Apply fallback for non-Webkit browsers */
+html {
+  scrollbar-color: #4CAF50 #f1f1f1; /* Thumb and track colors */
+  scrollbar-width: thin; /* Scrollbar width */
+}
