@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import axios from '../api/axios';
+import axios from "../api/axios";
+import Alert from "../components/Alert/Alert";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { loginUser } from "../redux/features/auth/authSlice";
 import {
-  Alert,
   Box,
   TextField,
   Button,
@@ -18,7 +18,7 @@ import {
   DialogContentText,
   DialogTitle,
 } from "@mui/material";
-import image from '../../src/assets/images/bg.svg'; 
+import image from "../../src/assets/images/bg.svg";
 
 const Login = () => {
   const [alertType, setAlertType] = useState("success");
@@ -35,18 +35,36 @@ const Login = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Dispatch login action  
+    // Dispatch login action
     dispatch(loginUser({ email, password })).then((response) => {
       console.log("Response:", response);
       if (response.type === "auth/login/fulfilled") {
         console.log("User Type:", response.payload.user.userType);
         const userType = response.payload.user.userType; // Assuming usertype is returned from backend
+
+        // Navigate immediately and pass alert details as state
+        const alertState = {
+          message: "Login successful!",
+          type: "success",
+        };
+
         if (userType === "user") {
-          navigate("/user"); // Redirect to user form
-        } else if (userType === "admin" || userType==="superAdmin") {  
-          navigate("/admin"); // Redirect to admin dashboard
+          navigate("/user", { state: alertState }); // Redirect to user form
+        } else if (userType === "admin" || userType === "superAdmin") {
+          navigate("/admin", { state: alertState }); // Redirect to admin dashboard
         }
       }
+      else if (response.type === "auth/login/rejected") {
+        // Handle error case
+        setAlertMessage("Login failed. Please check your credentials.");
+        setAlertType("error");
+        setAlert(true);
+        setTimeout(() => {
+          setAlert(false);
+        }, 4000); // Hide alert after 4 seconds
+      }
+
+      
     });
   };
 
@@ -60,10 +78,9 @@ const Login = () => {
 
   const handleForgotPassword = async () => {
     try {
-      const response = await axios.post(
-       "/api/auth/forgotpassword",
-        { email: forgotPasswordEmail }
-      );
+      const response = await axios.post("/api/auth/forgotpassword", {
+        email: forgotPasswordEmail,
+      });
       if (response.data.success) {
         console.log(response.data);
         setAlertMessage(response.data.message);
@@ -85,7 +102,6 @@ const Login = () => {
     }
   };
 
-
   return (
     <Box
       sx={{
@@ -94,8 +110,8 @@ const Login = () => {
         justifyContent: "center",
         height: "100vh",
         backgroundImage: `url(${image})`,
-        backgroundSize: "cover", 
-        backgroundRepeat: "no-repeat", 
+        backgroundSize: "cover",
+        backgroundRepeat: "no-repeat",
         backgroundPosition: "center",
       }}
     >
@@ -222,10 +238,10 @@ const Login = () => {
               </DialogActions>
             </Dialog>
             {alert && (
-        <div className="addsecalert">
-          <Alert severity={alertType}>{alertMessage}</Alert>
-        </div>
-      )}
+              <div className="addsecalert">
+                <Alert severity={alertType}>{alertMessage}</Alert>
+              </div>
+            )}
           </Box>
         </form>
       </Box>

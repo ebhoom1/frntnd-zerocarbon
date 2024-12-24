@@ -1,0 +1,59 @@
+{
+    "Company A": [
+      { "month": "Jan", "scope1": 10, "scope2": 15, "scope3": 5 },
+      { "month": "Feb", "scope1": 20, "scope2": 10, "scope3": 8 },
+      { "month": "Mar", "scope1": 30, "scope2": 20, "scope3": 15 },
+      { "month": "Apr", "scope1": 40, "scope2": 30, "scope3": 25 },
+      { "month": "May", "scope1": 50, "scope2": 40, "scope3": 30 },
+      { "month": "Jun", "scope1": 60, "scope2": 50, "scope3": 40 },
+      { "month": "Jul", "scope1": 70, "scope2": 60, "scope3": 50 },
+      { "month": "Aug", "scope1": 80, "scope2": 70, "scope3": 60 },
+      { "month": "Sep", "scope1": 90, "scope2": 80, "scope3": 70 },
+      { "month": "Oct", "scope1": 100, "scope2": 90, "scope3": 80 },
+      { "month": "Nov", "scope1": 110, "scope2": 100, "scope3": 90 },
+      { "month": "Dec", "scope1": 120, "scope2": 110, "scope3": 100 }
+    ],
+    "Company B": [
+      { "month": "Jan", "scope1": 8, "scope2": 7, "scope3": 6 },
+      { "month": "Feb", "scope1": 10, "scope2": 8, "scope3": 7 },
+      { "month": "Mar", "scope1": 12, "scope2": 10, "scope3": 9 },
+      { "month": "Apr", "scope1": 15, "scope2": 12, "scope3": 10 },
+      { "month": "May", "scope1": 18, "scope2": 15, "scope3": 12 },
+      { "month": "Jun", "scope1": 20, "scope2": 18, "scope3": 15 },
+      { "month": "Jul", "scope1": 25, "scope2": 20, "scope3": 18 },
+      { "month": "Aug", "scope1": 30, "scope2": 25, "scope3": 20 },
+      { "month": "Sep", "scope1": 35, "scope2": 30, "scope3": 25 },
+      { "month": "Oct", "scope1": 40, "scope2": 35, "scope3": 30 },
+      { "month": "Nov", "scope1": 45, "scope2": 40, "scope3": 35 },
+      { "month": "Dec", "scope1": 50, "scope2": 45, "scope3": 40 }
+    ],
+    "Company C": [
+      { "month": "Jan", "scope1": 5, "scope2": 3, "scope3": 2 },
+      { "month": "Feb", "scope1": 7, "scope2": 5, "scope3": 3 },
+      { "month": "Mar", "scope1": 9, "scope2": 7, "scope3": 5 },
+      { "month": "Apr", "scope1": 10, "scope2": 8, "scope3": 6 },
+      { "month": "May", "scope1": 12, "scope2": 10, "scope3": 8 },
+      { "month": "Jun", "scope1": 15, "scope2": 12, "scope3": 10 },
+      { "month": "Jul", "scope1": 18, "scope2": 15, "scope3": 12 },
+      { "month": "Aug", "scope1": 20, "scope2": 18, "scope3": 15 },
+      { "month": "Sep", "scope1": 25, "scope2": 20, "scope3": 18 },
+      { "month": "Oct", "scope1": 30, "scope2": 25, "scope3": 20 },
+      { "month": "Nov", "scope1": 35, "scope2": 30, "scope3": 25 },
+      { "month": "Dec", "scope1": 40, "scope2": 35, "scope3": 30 }
+    ],
+    "All Companies": [
+      { "month": "Jan", "scope1": 23, "scope2": 25, "scope3": 13 },
+      { "month": "Feb", "scope1": 37, "scope2": 23, "scope3": 18 },
+      { "month": "Mar", "scope1": 51, "scope2": 37, "scope3": 29 },
+      { "month": "Apr", "scope1": 65, "scope2": 50, "scope3": 41 },
+      { "month": "May", "scope1": 80, "scope2": 65, "scope3": 50 },
+      { "month": "Jun", "scope1": 95, "scope2": 80, "scope3": 65 },
+      { "month": "Jul", "scope1": 113, "scope2": 95, "scope3": 80 },
+      { "month": "Aug", "scope1": 130, "scope2": 113, "scope3": 95 },
+      { "month": "Sep", "scope1": 150, "scope2": 130, "scope3": 113 },
+      { "month": "Oct", "scope1": 170, "scope2": 150, "scope3": 130 },
+      { "month": "Nov", "scope1": 190, "scope2": 170, "scope3": 150 },
+      { "month": "Dec", "scope1": 210, "scope2": 190, "scope3": 170 }
+    ]
+  }
+  

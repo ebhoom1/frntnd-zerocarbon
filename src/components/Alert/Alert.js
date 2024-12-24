@@ -1,33 +1,3 @@
-// // src/components/Alert.js
-// import React, { useEffect, useState } from 'react';
-// import { Snackbar, Alert as MuiAlert } from '@mui/material';
-
-// // Reusable Alert component
-// const Alert = ({ message, severity }) => {
-//   const [open, setOpen] = useState(true);
-
-//   useEffect(() => {
-//     const timer = setTimeout(() => {
-//       setOpen(false);
-//     }, 10000); 
-//     return () => clearTimeout(timer); // Cleanup timeout on unmount
-//   }, []); // Empty dependency array ensures the effect runs only once after initial render
-
-//   return (
-//     <Snackbar
-//       open={open}
-//       autoHideDuration={10000}
-//       anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
-//     >
-//       <MuiAlert severity={severity} sx={{ width: '100%' }}>
-//         {message}
-//       </MuiAlert>
-//     </Snackbar>
-//   );
-// };
-
-// export default Alert;
-
 
 import React, { useEffect, useState } from 'react';
 import { Snackbar, Alert as MuiAlert } from '@mui/material';
@@ -39,7 +9,7 @@ const Alert = ({ message, severity }) => {
   useEffect(() => {
     const timer = setTimeout(() => {
       setOpen(false);
-    }, 10000); 
+    }, 5000); 
     return () => clearTimeout(timer); // Cleanup timeout on unmount
   }, []); 
 
@@ -58,12 +28,21 @@ const Alert = ({ message, severity }) => {
     <Snackbar
       open={open}
       autoHideDuration={10000}
-      anchorOrigin={{ vertical: 'top', horizontal: 'left' }}
+      anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+     
     >
       <MuiAlert
         severity={severity}
-        sx={{ width: '100%', ...getAlertStyles(severity) }}
-      >
+        sx={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+          padding: "16px", // Add padding for a modern look
+          borderRadius: "8px", // Rounded corners
+          boxShadow: "0px 4px 12px rgba(0, 0, 0, 0.2)", // Subtle shadow for depth
+          width: "100%",
+          ...getAlertStyles(severity),
+        }}      >
         {message}
       </MuiAlert>
     </Snackbar>
@@ -71,3 +50,4 @@ const Alert = ({ message, severity }) => {
 };
 
 export default Alert;
+

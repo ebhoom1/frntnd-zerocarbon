@@ -716,7 +716,7 @@ const SampleFlowchart = () => {
 
               <Button
                 onClick={() => handleRemoveScopeDetail(index)}
-                color="secondary"
+                color="primary"
               >
                 Remove Scope
               </Button>

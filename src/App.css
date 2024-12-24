@@ -36,27 +36,3 @@ body{
 }
 
 
-/* Apply styles for Webkit browsers */
-::-webkit-scrollbar {
-  width: 8px; /* Scrollbar width */
-}
-
-::-webkit-scrollbar-track {
-  background: #f1f1f1; /* Track color */
-  border-radius: 4px; /* Rounded corners */
-}
-
-::-webkit-scrollbar-thumb {
-  background: #4CAF50; /* Scrollbar thumb color */
-  border-radius: 4px; /* Rounded corners */
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: #45a049; /* Hover color */
-}
-
-/* Apply fallback for non-Webkit browsers */
-html {
-  scrollbar-color: #4CAF50 #f1f1f1; /* Thumb and track colors */
-  scrollbar-width: thin; /* Scrollbar width */
-}

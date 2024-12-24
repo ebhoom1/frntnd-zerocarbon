@@ -115,6 +115,24 @@ const theme = createTheme({
         },
       },
     },
+    MuiDataGrid: {
+      styleOverrides: {
+        root: {
+          // backgroundColor: '#E8F5E9', // Light green background for the entire table
+        },
+        cell: {
+          color: '#333333', // Green text for table cells
+        },
+        columnHeaders: {
+          backgroundColor: '#A5D6A7', // Light green background for headers
+          color: '#388E3C', // Dark green text for headers
+        },
+        footerContainer: {
+          backgroundColor: '#E8F5E9', // Light green background for footer
+          color: '#388E3C', // Green text for footer
+        },
+      },
+    },
   },
 });
 

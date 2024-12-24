@@ -8,6 +8,7 @@ import {
   TextField,
   Typography,
   Box,
+  MenuItem,
 } from "@mui/material";
 import axios from "../../api/axios";
 
@@ -27,14 +28,15 @@ const EditCategoryDialog = ({ open, onClose, category, onCategoryEdited }) => {
                 kgCO2: "",
                 kgCH4: "",
                 kgN2O: "",
-                kgHFC: "",
-                kgPFC: "",
-                kgSF6: "",
-                kgNF3: "",
+                // kgHFC: "",
+                // kgPFC: "",
+                // kgSF6: "",
+                // kgNF3: "",
               },
             ],
-            reference: "",
-            source: "",
+            reference: "DEFRA",
+            source:
+              "https://www.gov.uk/government/publications/greenhouse-gas-reporting-conversion-factors-2024",
           },
         ],
       },
@@ -65,7 +67,8 @@ const EditCategoryDialog = ({ open, onClose, category, onCategoryEdited }) => {
       name: "",
       units: [],
       reference: "",
-      source: "",
+      source:
+        "",
     });
     setFormData(updatedForm);
   };
@@ -78,21 +81,85 @@ const EditCategoryDialog = ({ open, onClose, category, onCategoryEdited }) => {
       kgCO2: "",
       kgCH4: "",
       kgN2O: "",
-      kgHFC: "",
-      kgPFC: "",
-      kgSF6: "",
-      kgNF3: "",
+      // kgHFC: "",
+      // kgPFC: "",
+      // kgSF6: "",
+      // kgNF3: "",
     });
     setFormData(updatedForm);
   };
 
+  // const handleSave = async () => {
+  //   try {
+  //     await axios.patch(`/api/categories/${category._id}`, formData);
+  //     alert("Activity added successfully!");
+  //     onCategoryEdited();
+  //   } catch (error) {
+  //     console.error("Error updating category:", error);
+  //   }
+  // };
+
   const handleSave = async () => {
+    // Deep copy formData to avoid mutating the original state
+    const cleanedFormData = JSON.parse(JSON.stringify(formData));
+
+    // Validation and Cleanup
+    let hasEmptyFields = false; // To track incomplete inputs
+
+    cleanedFormData.activities.forEach((activity, activityIndex) => {
+      // Check for empty fuels
+      activity.fuels = activity.fuels.filter((fuel, fuelIndex) => {
+        const isValidFuel = fuel.name && fuel.name.trim(); // Validate fuel name
+        if (!isValidFuel) {
+          hasEmptyFields = true; // Track empty fields
+        }
+
+        // Check for empty units
+        fuel.units = fuel.units.filter((unit, unitIndex) => {
+          const isValidUnit =
+            unit.type &&
+            unit.type.trim() &&
+            unit.kgCO2e &&
+            unit.kgCO2e.toString().trim();
+          if (!isValidUnit) {
+            hasEmptyFields = true; // Track empty fields
+          }
+          return isValidUnit; // Keep valid units
+        });
+
+        return isValidFuel; // Keep valid fuels
+      });
+
+      activity.fuels.forEach((fuel) => {
+        // Ensure reference and source are populated
+        if (!fuel.reference) {
+          fuel.reference = "DEFRA"; // Default value if missing
+        }
+        if (!fuel.source) {
+          fuel.source =
+            "https://www.gov.uk/government/publications/greenhouse-gas-reporting-conversion-factors-2024"; // Default value if missing
+        }
+      });
+    });
+
+    // Alert if there are empty fields
+    if (hasEmptyFields) {
+      const proceed = window.confirm(
+        "Some fuels or units are incomplete or missing. Do you want to proceed with saving?"
+      );
+      if (!proceed) {
+        return; // Stop saving if the user cancels
+      }
+    }
+
+    // Proceed with saving cleaned data
     try {
-      await axios.patch(`/api/categories/${category._id}`, formData);
-      alert("Activity added successfully!");
-      onCategoryEdited();
+      await axios.patch(`/api/categories/${category._id}`, cleanedFormData);
+      alert("Category updated successfully!");
+      onCategoryEdited(); // Callback to refresh the parent view
     } catch (error) {
       console.error("Error updating category:", error);
+      alert("An error occurred while updating the category.");
     }
   };
 
@@ -144,7 +211,7 @@ const EditCategoryDialog = ({ open, onClose, category, onCategoryEdited }) => {
                     }
                     margin="normal"
                   />
-                  <TextField
+                  {/* <TextField
                     fullWidth
                     label="Fuel Reference"
                     value={fuel.reference}
@@ -167,7 +234,35 @@ const EditCategoryDialog = ({ open, onClose, category, onCategoryEdited }) => {
                       )
                     }
                     margin="normal"
+                  /> */}
+                  <TextField
+                    fullWidth
+                    label="Fuel Reference"
+                    value={fuel.reference || "DEFRA"} // Display "DEFRA" if value is empty
+                    onChange={(e) =>
+                      handleChange(
+                        e,
+                        `activities.${activityIndex}.fuels.${fuelIndex}.reference`
+                      )
+                    }
+                    margin="normal"
                   />
+                  <TextField
+                    fullWidth
+                    label="Fuel Source"
+                    value={
+                      fuel.source ||
+                      "https://www.gov.uk/government/publications/greenhouse-gas-reporting-conversion-factors-2024"
+                    } // Display default value if empty
+                    onChange={(e) =>
+                      handleChange(
+                        e,
+                        `activities.${activityIndex}.fuels.${fuelIndex}.source`
+                      )
+                    }
+                    margin="normal"
+                  />
+
                   {fuel.units.map((unit, unitIndex) => (
                     <Box
                       key={unitIndex}
@@ -176,7 +271,7 @@ const EditCategoryDialog = ({ open, onClose, category, onCategoryEdited }) => {
                       <Typography variant="body1">
                         Unit {unitIndex + 1}
                       </Typography>
-                      <TextField
+                      {/* <TextField
                         fullWidth
                         label="Unit Type"
                         value={unit.type}
@@ -187,7 +282,28 @@ const EditCategoryDialog = ({ open, onClose, category, onCategoryEdited }) => {
                           )
                         }
                         margin="normal"
-                      />
+                      /> */}
+
+                      <TextField
+                        select
+                        fullWidth
+                        label="Unit Type"
+                        value={unit.type}
+                        onChange={(e) =>
+                          handleChange(
+                            e,
+                            `activities.${activityIndex}.fuels.${fuelIndex}.units.${unitIndex}.type`
+                          )
+                        }
+                        sx={{ mb: 2 }}
+                      >
+                        <MenuItem value="tonnes">tonnes</MenuItem>
+                        <MenuItem value="litres">litres</MenuItem>
+                        <MenuItem value="kWh (Net CV)">kWh (Net CV)</MenuItem>
+                        <MenuItem value="kWh (Gross CV)">
+                          kWh (Gross CV)
+                        </MenuItem>
+                      </TextField>
                       <TextField
                         fullWidth
                         label="kgCO2e"
@@ -236,7 +352,7 @@ const EditCategoryDialog = ({ open, onClose, category, onCategoryEdited }) => {
                         }
                         margin="normal"
                       />
-                      <TextField
+                      {/* <TextField
                         fullWidth
                         label="kgHFC"
                         value={unit.kgHFC}
@@ -283,7 +399,7 @@ const EditCategoryDialog = ({ open, onClose, category, onCategoryEdited }) => {
                           )
                         }
                         margin="normal"
-                      />
+                      /> */}
                     </Box>
                   ))}
                   <Button

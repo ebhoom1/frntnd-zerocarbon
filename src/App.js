@@ -8,8 +8,14 @@ import ProtectedRoute from "./components/Protectedroute/ProtectedRoute";
 import Formdetails from "./components/Admin/Formdetails";
 import UserDashboard from "./pages/User/UserDashboard";
 import SampleFlowchart from "./pages/Admin/sampleFlowchart/sampleFlowchart";
-import GetEmissionFactorTable from './components/EmssionFactor/GetEmissionFactorTable';
+import GetEmissionFactorTable from "./components/EmssionFactor/GetEmissionFactorTable";
 import EmissionFactorTable from "./components/EmssionFactor/EmissionFactorTable";
+import EmissionFactor from "./pages/Emissionfactor/EmissionFactor";
+import GWP from "./pages/GWP/GWP";
+import LeadsTable from "./components/Admin/LeadsTable";
+import ActiveUsers from "./pages/Admin/StatusCompletedUser/ActiveUsers";
+import FuelCombustion from "./pages/FuelCombustion/FuelCombustion";
+import CountryEmissionFactor from "./pages/CountryEmissionFactor/CountryEmissionFactor";
 const App = () => {
   const user = JSON.parse(localStorage.getItem("user"));
   const token = localStorage.getItem("token");
@@ -40,8 +46,10 @@ const App = () => {
         {/* Protected Routes */}
         <Route element={<ProtectedRoute allowedRoles={["user"]} />}>
           <Route path="/user" element={<UserDashboard />} />
-          <Route path="/emissionfactor-table" element={<EmissionFactorTable />} />
-
+          <Route
+            path="/emissionfactor-table"
+            element={<EmissionFactorTable />}
+          />
         </Route>
         <Route
           element={<ProtectedRoute allowedRoles={["admin", "superAdmin"]} />}
@@ -49,7 +57,19 @@ const App = () => {
           <Route path="/admin" element={<AdminDashboard />} />
           <Route path="flowchart/:userId" element={<SampleFlowchart />} />
           <Route path="/formdetails/:formId" element={<Formdetails />} />
-          <Route path="/adminemissionfactor-table" element={<GetEmissionFactorTable />} />
+          <Route
+            path="/adminemissionfactor-table"
+            element={<GetEmissionFactorTable />}
+          />
+          <Route path="/adminemissionfactor" element={<EmissionFactor />} />
+          <Route path="/gwp-table" element={<GWP />} />
+          <Route path="/fuelcombustion" element={<FuelCombustion />} />
+          <Route
+            path="/electricityemissionfactor"
+            element={<CountryEmissionFactor />}
+          />
+          <Route path="/registeredusers" element={<LeadsTable />} />
+          <Route path="/activeusers" element={<ActiveUsers />} />
         </Route>
 
         {/* Catch-All Route */}
