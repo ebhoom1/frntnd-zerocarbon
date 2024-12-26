@@ -1,178 +1,4 @@
-// import React, { useState } from "react";
-// import {
-//   Dialog,
-//   DialogActions,
-//   DialogContent,
-//   DialogTitle,
-//   TextField,
-//   Button,
-//   Box,
-//   Typography,
-// } from "@mui/material";
-// import axios from "../../api/axios";
 
-// const AddActivityDialog = ({ open, onClose, categoryId, onActivityAdded }) => {
-//   const [newActivity, setNewActivity] = useState({
-//     name: "",
-//     fuels: [
-//       {
-//         name: "",
-//         units: [
-//           {
-//             type: "",
-//             kgCO2e: "",
-//             kgCO2: "",
-//             kgCH4: "",
-//             kgN2O: "",
-//             kgHFC: "",
-//             kgPFC: "",
-//             kgSF6: "",
-//             kgNF3: "",
-//           },
-//         ],
-//         reference: "",
-//         source: "",
-//       },
-//     ],
-//   });
-
-//   const handleAddFuel = () => {
-//     setNewActivity((prev) => ({
-//       ...prev,
-//       fuels: [
-//         ...prev.fuels,
-//         {
-//           name: "",
-//           units: [
-//             {
-//               type: "",
-//               kgCO2e: "",
-//               kgCO2: "",
-//               kgCH4: "",
-//               kgN2O: "",
-//               kgHFC: "",
-//               kgPFC: "",
-//               kgSF6: "",
-//               kgNF3: "",
-//             },
-//           ],
-//           reference: "",
-//           source: "",
-//         },
-//       ],
-//     }));
-//   };
-
-//   const handleAddUnit = (fuelIndex) => {
-//     setNewActivity((prev) => {
-//       const updatedFuels = [...prev.fuels];
-//       updatedFuels[fuelIndex].units.push({
-//         type: "",
-//         kgCO2e: "",
-//         kgCO2: "",
-//         kgCH4: "",
-//         kgN2O: "",
-//         kgHFC: "",
-//         kgPFC: "",
-//         kgSF6: "",
-//         kgNF3: "",
-//       });
-//       return { ...prev, fuels: updatedFuels };
-//     });
-//   };
-
-//   const handleChange = (e, path) => {
-//     const keys = path.split(".");
-//     const lastKey = keys.pop();
-
-//     const updatedActivity = { ...newActivity };
-//     let temp = updatedActivity;
-//     keys.forEach((key) => (temp = temp[key]));
-//     temp[lastKey] = e.target.value;
-
-//     setNewActivity(updatedActivity);
-//   };
-
-//   const handleSubmit = async () => {
-//     try {
-//       await axios.post("/api/categories/activity", {
-//         categoryId,
-//         activity: newActivity,
-//       });
-//       alert("Activity added successfully!");
-//       onActivityAdded();
-//       onClose();
-//     } catch (error) {
-//       console.error("Error adding activity:", error);
-//       alert("Failed to add activity.");
-//     }
-//   };
-
-//   return (
-//     <Dialog open={open} onClose={onClose} maxWidth="md">
-//       <DialogTitle>Add New Activity</DialogTitle>
-//       <DialogContent>
-//         <TextField
-//           fullWidth
-//           margin="normal"
-//           label="Activity Name"
-//           value={newActivity.name}
-//           onChange={(e) => setNewActivity({ ...newActivity, name: e.target.value })}
-//         />
-//         {newActivity.fuels.map((fuel, fuelIndex) => (
-//           <Box key={fuelIndex} sx={{ mt: 2 }}>
-//             <Typography variant="subtitle1">Fuel {fuelIndex + 1}</Typography>
-//             <TextField
-//               fullWidth
-//               margin="normal"
-//               label="Fuel Name"
-//               value={fuel.name}
-//               onChange={(e) =>
-//                 handleChange(e, `fuels.${fuelIndex}.name`)
-//               }
-//             />
-//             <TextField
-//               fullWidth
-//               margin="normal"
-//               label="Reference"
-//               value={fuel.reference}
-//               onChange={(e) =>
-//                 handleChange(e, `fuels.${fuelIndex}.reference`)
-//               }
-//             />
-//             <TextField
-//               fullWidth
-//               margin="normal"
-//               label="Source"
-//               value={fuel.source}
-//               onChange={(e) =>
-//                 handleChange(e, `fuels.${fuelIndex}.source`)
-//               }
-//             />
-//             <Button
-//               variant="outlined"
-//               onClick={() => handleAddUnit(fuelIndex)}
-//               sx={{ mt: 1 }}
-//             >
-//               Add Unit
-//             </Button>
-//           </Box>
-//         ))}
-//         <Button variant="outlined" onClick={handleAddFuel} sx={{ mt: 2 }}>
-//           Add Fuel
-//         </Button>
-//       </DialogContent>
-//       <DialogActions>
-//         <Button onClick={onClose}>Cancel</Button>
-//         <Button onClick={handleSubmit} variant="contained" color="primary">
-//           Add Activity
-//         </Button>
-//       </DialogActions>
-//     </Dialog>
-//   );
-// };
-
-// export default AddActivityDialog;
 
 import React, { useState } from "react";
 import axios from '../../api/axios';
@@ -203,14 +29,14 @@ const ActivityFormDialog = ({ open, onClose, categoryId, onActivityAdded }) => {
                 kgCO2: "",
                 kgCH4: "",
                 kgN2O: "",
-                kgHFC: "",
-                kgPFC: "",
-                kgSF6: "",
-                kgNF3: "",
+                // kgHFC: "",
+                // kgPFC: "",
+                // kgSF6: "",
+                // kgNF3: "",
               },
             ],
-            reference: "",
-            source: "",
+            reference: "DEFRA",
+            source: "https://www.gov.uk/government/publications/greenhouse-gas-reporting-conversion-factors-2024",
           },
         ],
       },
@@ -234,8 +60,8 @@ const ActivityFormDialog = ({ open, onClose, categoryId, onActivityAdded }) => {
     updatedForm.activities[activityIndex].fuels.push({
       name: "",
       units: [],
-      reference: "",
-      source: "",
+      reference: "DEFRA",
+      source: "https://www.gov.uk/government/publications/greenhouse-gas-reporting-conversion-factors-2024",
     });
     setFormData(updatedForm);
   };
@@ -248,10 +74,10 @@ const ActivityFormDialog = ({ open, onClose, categoryId, onActivityAdded }) => {
       kgCO2: "",
       kgCH4: "",
       kgN2O: "",
-      kgHFC: "",
-      kgPFC: "",
-      kgSF6: "",
-      kgNF3: "",
+      // kgHFC: "",
+      // kgPFC: "",
+      // kgSF6: "",
+      // kgNF3: "",
     });
     setFormData(updatedForm);
   };
@@ -409,7 +235,7 @@ const ActivityFormDialog = ({ open, onClose, categoryId, onActivityAdded }) => {
                             )
                           }
                         />
-                        <TextField
+                        {/* <TextField
                           fullWidth
                           label="kgHFC"
                           value={unit.kgHFC}
@@ -452,7 +278,7 @@ const ActivityFormDialog = ({ open, onClose, categoryId, onActivityAdded }) => {
                               `activities.${activityIndex}.fuels.${fuelIndex}.units.${unitIndex}.kgNF3`
                             )
                           }
-                        />
+                        /> */}
                       </Box>
                     ))}
 

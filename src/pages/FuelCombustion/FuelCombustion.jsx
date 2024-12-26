@@ -38,7 +38,7 @@ const FuelCombustion = () => {
     CH4AssessmentType: "",
     N2OAssessmentType: "",
     source: "",
-    reference: "",
+    reference: "IPCC",
   });
 
   const [fuelCombustionData, setFuelCombustionData] = useState([]);
@@ -74,7 +74,7 @@ const FuelCombustion = () => {
         CH4AssessmentType: "",
         N2OAssessmentType: "",
         source: "",
-        reference: "",
+        reference: "IPCC",
       }); // Reset form
     } catch (error) {
       alert("Error: " + error.response.data.message);
@@ -326,7 +326,10 @@ const FuelCombustion = () => {
               <TableCell>CO2</TableCell>
               <TableCell>CH4</TableCell>
               <TableCell>N2O</TableCell>
-              <TableCell>CO2e</TableCell>
+              <TableCell>CO2_KgT</TableCell>
+              <TableCell>CH4_KgT</TableCell>
+              <TableCell>N2O_KgT</TableCell>
+              <TableCell>CO2e_KgT</TableCell>
               <TableCell>Fuel Density (Kg/L)</TableCell>
               <TableCell>Fuel Density (Kg/m³)</TableCell>
               <TableCell>CO2_KgL</TableCell>
@@ -354,6 +357,9 @@ const FuelCombustion = () => {
                 <TableCell>{row.CO2}</TableCell>
                 <TableCell>{row.CH4}</TableCell>
                 <TableCell>{row.N2O}</TableCell>
+                <TableCell>{row.CO2_KgT || "N/A"}</TableCell>
+                <TableCell>{row.CH4_KgT || "N/A"}</TableCell>
+                <TableCell>{row.N2O_KgT || "N/A"}</TableCell>
                 <TableCell>{row.CO2e || "N/A"}</TableCell>
                 <TableCell>{row.fuelDensityLiter || "N/A"}</TableCell>
                 <TableCell>{row.fuelDensityM3 || "N/A"}</TableCell>

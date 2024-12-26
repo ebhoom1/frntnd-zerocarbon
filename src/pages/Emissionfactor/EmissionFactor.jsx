@@ -90,8 +90,8 @@ const EmissionFactorForm = () => {
     updatedForm.activities[activityIndex].fuels.push({
       name: "",
       units: [],
-      reference: "",
-      source: "",
+      reference: "DEFRA",
+      source: "https://www.gov.uk/government/publications/greenhouse-gas-reporting-conversion-factors-2024",
     });
     setFormData(updatedForm);
   };
