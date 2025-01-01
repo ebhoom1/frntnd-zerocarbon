@@ -81,7 +81,7 @@ const EmissionFactors = () => {
   return (
     <Container>
       <Typography variant="h5" gutterBottom>
-        Country Emission Factors
+        Electricity Emission Factor
       </Typography>
       <Box component="form" onSubmit={handleSubmit} sx={{ mb: 4 }}>
         <TextField
