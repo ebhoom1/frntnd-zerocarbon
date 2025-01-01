@@ -12,6 +12,7 @@ import {
   Typography,
   Box,
   Grid,
+  MenuItem,
 } from "@mui/material";
 
 const ActivityFormDialog = ({ open, onClose, categoryId, onActivityAdded }) => {
@@ -180,7 +181,7 @@ const ActivityFormDialog = ({ open, onClose, categoryId, onActivityAdded }) => {
                         <Typography variant="body1">
                           Unit {unitIndex + 1}
                         </Typography>
-                        <TextField
+                        {/* <TextField
                           fullWidth
                           label="Unit Type"
                           value={unit.type}
@@ -190,7 +191,27 @@ const ActivityFormDialog = ({ open, onClose, categoryId, onActivityAdded }) => {
                               `activities.${activityIndex}.fuels.${fuelIndex}.units.${unitIndex}.type`
                             )
                           }
-                        />
+                        /> */}
+                        <TextField
+                        select
+                        fullWidth
+                        label="Unit Type"
+                        value={unit.type}
+                        onChange={(e) =>
+                          handleChange(
+                            e,
+                            `activities.${activityIndex}.fuels.${fuelIndex}.units.${unitIndex}.type`
+                          )
+                        }
+                        sx={{ mb: 2 }}
+                      >
+                        <MenuItem value="tonnes">tonnes</MenuItem>
+                        <MenuItem value="litres">litres</MenuItem>
+                        <MenuItem value="kWh (Net CV)">kWh (Net CV)</MenuItem>
+                        <MenuItem value="kWh (Gross CV)">
+                          kWh (Gross CV)
+                        </MenuItem>
+                      </TextField>
                         <TextField
                           fullWidth
                           label="kgCO2e"
