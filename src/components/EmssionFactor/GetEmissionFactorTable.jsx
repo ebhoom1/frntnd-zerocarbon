@@ -258,7 +258,7 @@ const EmissionFactorTable = () => {
                                 >
                                   Edit
                                 </Button>
-                                <Button
+                                {/* <Button
                                   variant="outlined"
                                   size="small"
                                   color="error"
@@ -267,8 +267,8 @@ const EmissionFactorTable = () => {
                                   }
                                 >
                                   Delete
-                                </Button>
-                              </Box>
+                                </Button> */}
+                              </Box> 
                             </TableCell>
                           )}
                         </TableRow>
