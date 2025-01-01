@@ -1,0 +1,59 @@
+{
+    "Scope 1": [
+      { "month": "Jan", "FuelCombustion": 20, "MobileSources": 15, "StationarySources": 10, "reduction": 5 },
+      { "month": "Feb", "FuelCombustion": 18, "MobileSources": 12, "StationarySources": 10, "reduction": 4 },
+      { "month": "Mar", "FuelCombustion": 22, "MobileSources": 15, "StationarySources": 13, "reduction": 6 },
+      { "month": "Apr", "FuelCombustion": 25, "MobileSources": 18, "StationarySources": 15, "reduction": 7 },
+      { "month": "May", "FuelCombustion": 30, "MobileSources": 20, "StationarySources": 20, "reduction": 8 },
+      { "month": "Jun", "FuelCombustion": 35, "MobileSources": 25, "StationarySources": 20, "reduction": 10 },
+      { "month": "Jul", "FuelCombustion": 40, "MobileSources": 30, "StationarySources": 25, "reduction": 12 },
+      { "month": "Aug", "FuelCombustion": 45, "MobileSources": 35, "StationarySources": 30, "reduction": 13 },
+      { "month": "Sep", "FuelCombustion": 50, "MobileSources": 40, "StationarySources": 30, "reduction": 15 },
+      { "month": "Oct", "FuelCombustion": 55, "MobileSources": 45, "StationarySources": 35, "reduction": 16 },
+      { "month": "Nov", "FuelCombustion": 60, "MobileSources": 50, "StationarySources": 40, "reduction": 18 },
+      { "month": "Dec", "FuelCombustion": 65, "MobileSources": 55, "StationarySources": 45, "reduction": 20 }
+    ],
+    "Scope 2": [
+      { "month": "Jan", "PurchasedElectricity": 50, "HeatAndSteam": 20, "CoolingSources": 10, "reduction": 10 },
+      { "month": "Feb", "PurchasedElectricity": 48, "HeatAndSteam": 18, "CoolingSources": 10, "reduction": 9 },
+      { "month": "Mar", "PurchasedElectricity": 55, "HeatAndSteam": 25, "CoolingSources": 15, "reduction": 12 },
+      { "month": "Apr", "PurchasedElectricity": 60, "HeatAndSteam": 30, "CoolingSources": 20, "reduction": 15 },
+      { "month": "May", "PurchasedElectricity": 65, "HeatAndSteam": 35, "CoolingSources": 25, "reduction": 18 },
+      { "month": "Jun", "PurchasedElectricity": 70, "HeatAndSteam": 40, "CoolingSources": 30, "reduction": 20 },
+      { "month": "Jul", "PurchasedElectricity": 75, "HeatAndSteam": 45, "CoolingSources": 35, "reduction": 22 },
+      { "month": "Aug", "PurchasedElectricity": 80, "HeatAndSteam": 50, "CoolingSources": 40, "reduction": 25 },
+      { "month": "Sep", "PurchasedElectricity": 85, "HeatAndSteam": 55, "CoolingSources": 45, "reduction": 28 },
+      { "month": "Oct", "PurchasedElectricity": 90, "HeatAndSteam": 60, "CoolingSources": 50, "reduction": 30 },
+      { "month": "Nov", "PurchasedElectricity": 95, "HeatAndSteam": 65, "CoolingSources": 55, "reduction": 32 },
+      { "month": "Dec", "PurchasedElectricity": 100, "HeatAndSteam": 70, "CoolingSources": 60, "reduction": 35 }
+    ],
+    "Scope 3": [
+      { "month": "Jan", "UpstreamActivities": 20, "DownstreamActivities": 15, "EmployeeCommute": 10, "reduction": 5 },
+      { "month": "Feb", "UpstreamActivities": 18, "DownstreamActivities": 12, "EmployeeCommute": 8, "reduction": 4 },
+      { "month": "Mar", "UpstreamActivities": 22, "DownstreamActivities": 15, "EmployeeCommute": 12, "reduction": 6 },
+      { "month": "Apr", "UpstreamActivities": 25, "DownstreamActivities": 18, "EmployeeCommute": 15, "reduction": 7 },
+      { "month": "May", "UpstreamActivities": 30, "DownstreamActivities": 20, "EmployeeCommute": 18, "reduction": 8 },
+      { "month": "Jun", "UpstreamActivities": 35, "DownstreamActivities": 25, "EmployeeCommute": 20, "reduction": 10 },
+      { "month": "Jul", "UpstreamActivities": 40, "DownstreamActivities": 30, "EmployeeCommute": 25, "reduction": 12 },
+      { "month": "Aug", "UpstreamActivities": 45, "DownstreamActivities": 35, "EmployeeCommute": 30, "reduction": 13 },
+      { "month": "Sep", "UpstreamActivities": 50, "DownstreamActivities": 40, "EmployeeCommute": 35, "reduction": 15 },
+      { "month": "Oct", "UpstreamActivities": 55, "DownstreamActivities": 45, "EmployeeCommute": 40, "reduction": 16 },
+      { "month": "Nov", "UpstreamActivities": 60, "DownstreamActivities": 50, "EmployeeCommute": 45, "reduction": 18 },
+      { "month": "Dec", "UpstreamActivities": 65, "DownstreamActivities": 55, "EmployeeCommute": 50, "reduction": 20 }
+    ],
+    "All Scopes": [
+      { "month": "Jan", "FuelCombustion": 20, "MobileSources": 15, "StationarySources": 10, "PurchasedElectricity": 50, "HeatAndSteam": 20, "CoolingSources": 10, "UpstreamActivities": 20, "DownstreamActivities": 15, "EmployeeCommute": 10, "reduction": 20 },
+      { "month": "Feb", "FuelCombustion": 18, "MobileSources": 12, "StationarySources": 10, "PurchasedElectricity": 48, "HeatAndSteam": 18, "CoolingSources": 10, "UpstreamActivities": 18, "DownstreamActivities": 12, "EmployeeCommute": 8, "reduction": 17 },
+      { "month": "Mar", "FuelCombustion": 22, "MobileSources": 15, "StationarySources": 13, "PurchasedElectricity": 55, "HeatAndSteam": 25, "CoolingSources": 15, "UpstreamActivities": 22, "DownstreamActivities": 15, "EmployeeCommute": 12, "reduction": 23 },
+      { "month": "Apr", "FuelCombustion": 25, "MobileSources": 18, "StationarySources": 15, "PurchasedElectricity": 60, "HeatAndSteam": 30, "CoolingSources": 20, "UpstreamActivities": 25, "DownstreamActivities": 18, "EmployeeCommute": 15, "reduction": 25 },
+      { "month": "May", "FuelCombustion": 30, "MobileSources": 20, "StationarySources": 20, "PurchasedElectricity": 65, "HeatAndSteam": 35, "CoolingSources": 25, "UpstreamActivities": 30, "DownstreamActivities": 20, "EmployeeCommute": 18, "reduction": 30 },
+      { "month": "Jun", "FuelCombustion": 35, "MobileSources": 25, "StationarySources": 20, "PurchasedElectricity": 70, "HeatAndSteam": 40, "CoolingSources": 30, "UpstreamActivities": 35, "DownstreamActivities": 25, "EmployeeCommute": 20, "reduction": 33 },
+      { "month": "Jul", "FuelCombustion": 40, "MobileSources": 30, "StationarySources": 25, "PurchasedElectricity": 75, "HeatAndSteam": 45, "CoolingSources": 35, "UpstreamActivities": 40, "DownstreamActivities": 30, "EmployeeCommute": 25, "reduction": 36 },
+      { "month": "Aug", "FuelCombustion": 45, "MobileSources": 35, "StationarySources": 30, "PurchasedElectricity": 80, "HeatAndSteam": 50, "CoolingSources": 40, "UpstreamActivities": 45, "DownstreamActivities": 35, "EmployeeCommute": 30, "reduction": 40 },
+      { "month": "Sep", "FuelCombustion": 50, "MobileSources": 40, "StationarySources": 30, "PurchasedElectricity": 85, "HeatAndSteam": 55, "CoolingSources": 45, "UpstreamActivities": 50, "DownstreamActivities": 40, "EmployeeCommute": 35, "reduction": 42 },
+      { "month": "Oct", "FuelCombustion": 55, "MobileSources": 45, "StationarySources": 35, "PurchasedElectricity": 90, "HeatAndSteam": 60, "CoolingSources": 50, "UpstreamActivities": 55, "DownstreamActivities": 45, "EmployeeCommute": 40, "reduction": 45 },
+      { "month": "Nov", "FuelCombustion": 60, "MobileSources": 50, "StationarySources": 40, "PurchasedElectricity": 95, "HeatAndSteam": 65, "CoolingSources": 55, "UpstreamActivities": 60, "DownstreamActivities": 50, "EmployeeCommute": 45, "reduction": 50 },
+      { "month": "Dec", "FuelCombustion": 65, "MobileSources": 55, "StationarySources": 45, "PurchasedElectricity": 100, "HeatAndSteam": 70, "CoolingSources": 60, "UpstreamActivities": 65, "DownstreamActivities": 55, "EmployeeCommute": 50, "reduction": 55 }
+    ]
+  }
+  

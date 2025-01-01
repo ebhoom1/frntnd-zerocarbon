@@ -483,8 +483,8 @@ import ActiveClients from "../../../src/assets/images/businessman.svg";
 import pendingsubmissions from "../../../src/assets/images/clock.svg";
 import validatedemissions from "../../../src/assets/images/check.svg";
 import threshold from "../../../src/assets/images/threshold.svg";
-import TrendingDownIcon from '@mui/icons-material/TrendingDown';
-import TrendingUpIcon from '@mui/icons-material/TrendingUp';
+import TrendingDownIcon from "@mui/icons-material/TrendingDown";
+import TrendingUpIcon from "@mui/icons-material/TrendingUp";
 
 const Dashboard = () => {
   const dispatch = useDispatch();
@@ -504,50 +504,72 @@ const Dashboard = () => {
   return (
     <Box
       sx={{
-        backgroundColor: "#f4f6f9",
+        // backgroundColor: "#f4f6f9",
         minHeight: "100vh",
-        width: "100vw",
-        // overflow:"scroll",
+        width: "100vw",     
         display: "flex",
         flexDirection: "column",
+        
       }}
     >
-      <Grid container spacing={2}>
+      <Grid container spacing={1.5}>
         {/* Four Boxes Section */}
         {[
           {
             title: "Active Clients",
             value: keyMetrics?.totalActiveClients || 0,
             color: "#81C784",
-            
-            // icon: <PeopleIcon sx={{ fontSize: "20px" }} />, // Green
-            icon:<img src={ActiveClients} alt="Active Clients" style={{ width: "100%" }} />
 
+            // icon: <PeopleIcon sx={{ fontSize: "20px" }} />, // Green
+            icon: (
+              <img
+                src={ActiveClients}
+                alt="Active Clients"
+                style={{ width: "100%" }}
+              />
+            ),
           },
           {
             title: "Pending Submissions",
             value: keyMetrics?.pendingSubmissions || 0,
             color: "#81C784",
-           
-            icon: <img src={pendingsubmissions} alt="Active Clients" style={{ width: "100%" }} />
+
+            icon: (
+              <img
+                src={pendingsubmissions}
+                alt="Active Clients"
+                style={{ width: "100%" }}
+              />
+            ),
           },
           {
             title: "Validated Emissions",
             value: keyMetrics?.validatedReports || 0,
             color: "#81C784",
-          
+
             // icon: <MonetizationOnIcon sx={{ fontSize: "20px" }} />, // Blue
-            icon: <img src={validatedemissions} alt="Active Clients" style={{ width: "100%" }} />
+            icon: (
+              <img
+                src={validatedemissions}
+                alt="Active Clients"
+                style={{ width: "100%" }}
+              />
+            ),
           },
           {
             title: "Threshold Breaches",
             value: keyMetrics?.thresholdBreaches || 0,
             color: "#81C784",
-            
+
             // icon: <WorkIcon sx={{ fontSize: "20px" }} />, // Red
-            icon: <img src={threshold} alt="Active Clients" style={{ width: "100%" }} />
+            icon: (
+              <img
+                src={threshold}
+                alt="Active Clients"
+                style={{ width: "100%" }}
+              />
+            ),
           },
-         
         ].map((stat, index) => (
           <Grid item xs={12} sm={1.83} key={index}>
             <Paper
@@ -581,7 +603,7 @@ const Dashboard = () => {
                 }}
               >
                 {stat.icon}
-              </Avatar> 
+              </Avatar>
               <Typography
                 variant="subtitle2"
                 sx={{ fontWeight: "bold", color: "#333", fontSize: "14px" }}
@@ -594,207 +616,123 @@ const Dashboard = () => {
               >
                 {stat.value}
               </Typography>
-             
             </Paper>
-            
           </Grid>
         ))}
 
-{/* <Grid item xs={12} sm={2}>
-  <Paper
-    elevation={0}
-    sx={{
-      borderRadius: 2,
-      textAlign: "left",
-      background: "linear-gradient(to right, #66BB6A, #A5D6A7)",
-      transition: "0.3s",
-      height: 100,
-      width: 220,
-      display: "flex",
-      flexDirection: "column",
-      justifyContent: "center",
-      alignItems: "center",
-      "&:hover": {
-        transform: "translateY(-8px)",
-        boxShadow: "0 16px 24px rgba(0,0,0,0.2)",
-      },
-    }}
-  >
-    <Typography
-      variant="subtitle2"
-      sx={{ fontWeight: "bold", color: "#fff", fontSize: "14px" }}
-    >
-      Engagement Rate
-    </Typography>
-    <Typography
-      variant="h5"
-      sx={{ fontWeight: "bold", color: "#fff", fontSize: "18px" }}
-    >
-      80.000
-    </Typography>
-    <Typography
-      variant="body2"
-      sx={{ fontWeight: "bold", color: "#fff", fontSize: "14px" }}
-    >
-      +20%
-    </Typography>
-  </Paper>
-</Grid>
-<Grid item xs={12} sm={2}>
-  <Paper
-    elevation={0}
-    sx={{
-      borderRadius: 2,
-      textAlign: "left",
-      background: "linear-gradient(to right, #66BB6A, #A5D6A7)",
-      transition: "0.3s",
-      height: 100,
-      width: 220,
-      display: "flex",
-      flexDirection: "column",
-      justifyContent: "center",
-      alignItems: "center",
-      "&:hover": {
-        transform: "translateY(-8px)",
-        boxShadow: "0 16px 24px rgba(0,0,0,0.2)",
-      },
-    }}
-  >
-    <Typography
-      variant="subtitle2"
-      sx={{ fontWeight: "bold", color: "#fff", fontSize: "14px" }}
-    >
-      Carbon Credits
-    </Typography>
-    <Typography
-      variant="h5"
-      sx={{ fontWeight: "bold", color: "#fff", fontSize: "18px" }}
-    >
-      40.000
-    </Typography>
-    <Typography
-      variant="body2"
-      sx={{ fontWeight: "bold", color: "#fff", fontSize: "14px" }}
-    >
-      -10%
-    </Typography>
-  </Paper>
-</Grid> */}
+        <Grid item xs={12} sm={2}>
+          <Paper
+            elevation={0}
+            sx={{
+              borderRadius: 2,
+              textAlign: "left",
+              background: "linear-gradient(to right, #66BB6A, #A5D6A7)",
+              transition: "0.3s",
+              height: 100,
+              width: 220,
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "center",
+              alignItems: "center",
+              "&:hover": {
+                transform: "translateY(-8px)",
+                boxShadow: "0 16px 24px rgba(0,0,0,0.2)",
+              },
+            }}
+          >
+            <Typography
+              variant="subtitle2"
+              sx={{ fontWeight: "bold", color: "#fff", fontSize: "14px" }}
+            >
+              Engagement Rate
+            </Typography>
+            <Typography
+              variant="h5"
+              sx={{
+                fontWeight: "bold",
+                color: "#fff",
+                fontSize: "18px",
+                display: "flex",
+                alignItems: "center",
+                gap: "4px",
+              }}
+            >
+              80.000
+            </Typography>
+            <Typography
+              variant="body2"
+              sx={{
+                fontWeight: "bold",
+                color: "#fff",
+                fontSize: "14px",
+                display: "flex",
+                alignItems: "center",
+                gap: "4px",
+              }}
+            >
+              +20%
+              <TrendingUpIcon sx={{ fontSize: "28px", color: "#fff" }} />
+            </Typography>
+          </Paper>
+        </Grid>
 
-<Grid item xs={12} sm={2}>
-  <Paper
-    elevation={0}
-    sx={{
-      borderRadius: 2,
-      textAlign: "left",
-      background: "linear-gradient(to right, #66BB6A, #A5D6A7)",
-      transition: "0.3s",
-      height: 100,
-      width: 220,
-      display: "flex",
-      flexDirection: "column",
-      justifyContent: "center",
-      alignItems: "center",
-      "&:hover": {
-        transform: "translateY(-8px)",
-        boxShadow: "0 16px 24px rgba(0,0,0,0.2)",
-      },
-    }}
-  >
-    <Typography
-      variant="subtitle2"
-      sx={{ fontWeight: "bold", color: "#fff", fontSize: "14px" }}
-    >
-      Engagement Rate
-    </Typography>
-    <Typography
-      variant="h5"
-      sx={{
-        fontWeight: "bold",
-        color: "#fff",
-        fontSize: "18px",
-        display: "flex",
-        alignItems: "center",
-        gap: "4px",
-      }}
-    >
-      80.000
-    </Typography>
-    <Typography
-      variant="body2"
-      sx={{
-        fontWeight: "bold",
-        color: "#fff",
-        fontSize: "14px",
-        display: "flex",
-        alignItems: "center",
-        gap: "4px",
-      }}
-    >
-      +20%
-      <TrendingUpIcon sx={{ fontSize: "28px", color: "#fff" }} />
-    </Typography>
-  </Paper>
-</Grid>
+        <Grid item xs={12} sm={2}>
+          <Paper
+            elevation={0}
+            sx={{
+              borderRadius: 2,
+              textAlign: "left",
+              background: "linear-gradient(to right, #66BB6A, #A5D6A7)",
+              transition: "0.3s",
+              height: 100,
+              width: 220,
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "center",
+              alignItems: "center",
+              "&:hover": {
+                transform: "translateY(-8px)",
+                boxShadow: "0 16px 24px rgba(0,0,0,0.2)",
+              },
+            }}
+          >
+            <Typography
+              variant="subtitle2"
+              sx={{ fontWeight: "bold", color: "#fff", fontSize: "14px" }}
+            >
+              Carbon Credits
+            </Typography>
+            <Typography
+              variant="h5"
+              sx={{
+                fontWeight: "bold",
+                color: "#fff",
+                fontSize: "18px",
+                display: "flex",
+                alignItems: "center",
+                gap: "4px",
+              }}
+            >
+              40.000
+            </Typography>
+            <Typography
+              variant="body2"
+              sx={{
+                fontWeight: "bold",
+                color: "#fff",
+                fontSize: "14px",
+                display: "flex",
+                alignItems: "center",
+                gap: "4px",
+              }}
+            >
+              -10%
+              <TrendingDownIcon sx={{ fontSize: "28px", color: "#fff" }} />
+            </Typography>
+          </Paper>
+        </Grid>
 
-<Grid item xs={12} sm={2}>
-  <Paper
-    elevation={0}
-    sx={{
-      borderRadius: 2,
-      textAlign: "left",
-      background: "linear-gradient(to right, #66BB6A, #A5D6A7)",
-      transition: "0.3s",
-      height: 100,
-      width: 220,
-      display: "flex",
-      flexDirection: "column",
-      justifyContent: "center",
-      alignItems: "center",
-      "&:hover": {
-        transform: "translateY(-8px)",
-        boxShadow: "0 16px 24px rgba(0,0,0,0.2)",
-      },
-    }}
-  >
-    <Typography
-      variant="subtitle2"
-      sx={{ fontWeight: "bold", color: "#fff", fontSize: "14px" }}
-    >
-      Carbon Credits
-    </Typography>
-    <Typography
-      variant="h5"
-      sx={{
-        fontWeight: "bold",
-        color: "#fff",
-        fontSize: "18px",
-        display: "flex",
-        alignItems: "center",
-        gap: "4px",
-      }}
-    >
-      40.000
-    </Typography>
-    <Typography
-      variant="body2"
-      sx={{
-        fontWeight: "bold",
-        color: "#fff",
-        fontSize: "14px",
-        display: "flex",
-        alignItems: "center",
-        gap: "4px",
-      }}
-    >
-      -10%
-      <TrendingDownIcon sx={{ fontSize: "28px", color: "#fff" }} />
-    </Typography>
-  </Paper>
-</Grid>
-
-  
-        <Grid container item xs={12} spacing={2} alignItems="stretch">
+        <Grid container item xs={12} spacing={1.5} alignItems="stretch">
           {/* Pie Chart Scope Company Section */}
           <Grid item xs={12} md={9.3}>
             <Box
@@ -825,7 +763,7 @@ const Dashboard = () => {
         </Grid>
 
         {/* Reduction Pie Chart Section */}
-        <Grid container item xs={12} spacing={2}>
+        <Grid container item xs={12} spacing={1.5}>
           <Grid item xs={12} md={9.3}>
             <ReductionPieChart />
           </Grid>
@@ -834,9 +772,9 @@ const Dashboard = () => {
             <MapComponent />
           </Grid>
         </Grid>
-         {/* Latest Submissions Table Section */}
-         <Grid container item xs={12} spacing={2}>
-          <Grid item xs={12}>
+        {/* Latest Submissions Table Section */}
+        <Grid container item xs={12} spacing={2}>
+          <Grid item xs={12} md={11.8}> 
             <TableComponent />
           </Grid>
         </Grid>
@@ -845,4 +783,4 @@ const Dashboard = () => {
   );
 };
 
-export default Dashboard;
+export default Dashboard; 

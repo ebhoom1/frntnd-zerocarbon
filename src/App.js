@@ -13,7 +13,7 @@ import EmissionFactorTable from "./components/EmssionFactor/EmissionFactorTable"
 import EmissionFactor from "./pages/Emissionfactor/EmissionFactor";
 import GWP from "./pages/GWP/GWP";
 import LeadsTable from "./components/Admin/LeadsTable";
-import ActiveUsers from "./pages/Admin/StatusCompletedUser/ActiveUsers";
+import ActiveUsers from "./pages/RegisteredClients/ActiveUsers";
 import FuelCombustion from "./pages/FuelCombustion/FuelCombustion";
 import CountryEmissionFactor from "./pages/CountryEmissionFactor/CountryEmissionFactor";
 const App = () => {

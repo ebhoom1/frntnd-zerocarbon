@@ -61,12 +61,12 @@ import axios from '../../api/axios';
 const CompletedUsersTable = () => {
   const [rows, setRows] = useState([]);
   const [loading, setLoading] = useState(true);
-
+console.log(rows);
   useEffect(() => {
     // Fetch data from the API
     const fetchCompletedForms = async () => {
       try {
-        const response = await axios.get('/api/admin/completed'); // Adjust the endpoint as per your backend
+        const response = await axios.get('/api/admin/completed'); 
         const formattedData = response.data.map((form, index) => ({
           id: index + 1,
           name: form.primaryContact.name,
@@ -75,6 +75,7 @@ const CompletedUsersTable = () => {
           companyName: form.companyName,
           consultant: '', // Default value for the consultant column
         }));
+        console.log("formateddata:",formattedData)
         setRows(formattedData);
       } catch (error) {
         console.error('Error fetching completed forms:', error);

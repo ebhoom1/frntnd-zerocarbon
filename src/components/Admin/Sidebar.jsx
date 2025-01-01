@@ -328,7 +328,7 @@ const Sidebar = () => {
   return (
     <Box
       sx={{
-        width: collapsed ? 80 : 280,
+        width: collapsed ? 60 : 280,
         transition: "width 0.3s ease",
         background: "#fff",
         boxShadow: "2px 0 5px rgba(0, 0, 0, 0.1)",

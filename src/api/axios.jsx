@@ -14,7 +14,7 @@
 import axios from "axios";
 
 // export const BASE_URL = "http://localhost:5000";
-export const BASE_URL = "http://13.234.75.172:5000";
+export const BASE_URL = "https://api.zerohero.ebhoom.com/";
 
 // Get the token from localStorage
 const token = localStorage.getItem("token");

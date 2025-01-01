@@ -53,7 +53,7 @@ const ReductionPieChart = () => {
     >
       <Grid container>
         {/* Pie Charts and Bar Chart in the Same Row */}
-        <Grid container spacing={2}>
+        <Grid container spacing={1.5}>
           {/* Company Reduction Pie Chart */}
           <Grid item xs={12} md={3}>
             <Paper

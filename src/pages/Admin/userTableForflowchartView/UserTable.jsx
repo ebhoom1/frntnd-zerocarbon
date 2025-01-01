@@ -30,7 +30,7 @@ const UserTable = () => {
 
   return (
     <div>
-      <h1>User Table</h1>
+     
       <Table rows={rows} columns={columns} loading={loading} error={error} />
     </div>
   );
