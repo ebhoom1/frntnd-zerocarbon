@@ -22,6 +22,9 @@ const MonthlyEmissionsBarChart = ({ data, companyName }) => {
         boxShadow: "0 8px 20px rgba(0,0,0,0.1)",
         backgroundColor: "#fff",
         width: "100%",
+        // maxWidth: "420px", // Constrain maximum width
+        // margin: "0 auto",  // Center the chart
+       
       }}
     >
       <Typography
@@ -33,13 +36,13 @@ const MonthlyEmissionsBarChart = ({ data, companyName }) => {
       </Typography>
       
       <Typography variant="body2" color="textSecondary" align="center">
-                {companyName?`${companyName}`:"All Companies"}
-              </Typography>
-      <ResponsiveContainer width="100%" height={260}>
+      {companyName?`${companyName}`:"All Companies"}
+      </Typography>
+      <ResponsiveContainer width="100%"  height={260}>
         <BarChart
           data={data}
           margin={{ top: 10, right: 30, left: 10, bottom: 10 }}
-          barCategoryGap="30%"
+          barCategoryGap="25%"
           barGap={5}
         >
           <CartesianGrid strokeDasharray="3 3" />

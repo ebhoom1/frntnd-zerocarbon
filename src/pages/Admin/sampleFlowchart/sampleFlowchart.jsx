@@ -160,6 +160,7 @@ const SampleFlowchart = () => {
         const response = await axios.get(`/api/flowchart/get/${userId}`);
         setNodes(response.data.nodes);
         setEdges(response.data.edges);
+       
       } catch (error) {
         console.error("Error fetching flowchart:", error);
       }
@@ -376,7 +377,9 @@ const SampleFlowchart = () => {
     handleCloseContextMenu(); // Close the context menu
   };
   
-
+  console.log("nodes:",nodes);
+  console.log("edges:",edges);
+  console.log("userId:",userId);
   return (
     <div
       style={{ height: "90vh", width: "100%" }}

@@ -173,6 +173,9 @@ const EmissionFactorTable = () => {
                 <strong>kg N2O</strong>
               </TableCell>
               <TableCell>
+                <strong>Created At</strong>
+              </TableCell>
+              <TableCell>
                 <strong>Actions</strong>
               </TableCell>
             </TableRow>
@@ -239,6 +242,7 @@ const EmissionFactorTable = () => {
                           <TableCell>{unit.kgCO2}</TableCell>
                           <TableCell>{unit.kgCH4}</TableCell>
                           <TableCell>{unit.kgN2O}</TableCell>
+                          <TableCell>{new Date(category.createdAt).toLocaleString()}</TableCell>
 
                           {/* Actions Only Once Per Fuel */}
                           {unitIndex === 0 && (

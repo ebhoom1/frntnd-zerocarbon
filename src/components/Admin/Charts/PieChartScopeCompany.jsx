@@ -69,9 +69,9 @@ const PieChartScopeCompany = () => {
     >
       <Grid container>
         {/* Pie Charts and Bar Chart in the Same Row */}
-        <Grid container spacing={1.5}>
+        <Grid container spacing={1.5}  alignItems="stretch">
           {/* Company Pie Chart */}
-          <Grid item xs={12} md={3}>
+          <Grid item xs={12} md={3} >
             <Paper
               elevation={3}
               sx={{
@@ -145,7 +145,7 @@ const PieChartScopeCompany = () => {
           </Grid>
 
           {/* Scope Pie Chart */}
-          <Grid item xs={12} md={3}>
+          <Grid item xs={12} md={3} >
             <Paper
               elevation={3}
               sx={{
@@ -153,7 +153,9 @@ const PieChartScopeCompany = () => {
                 padding: 2,
                 backgroundColor: "#fff",
                 height: 350,
+                width:"100%",
                 boxShadow: "0 8px 20px rgba(0, 0, 0, 0.1)",
+                
               }}
             >
               <Typography variant="h6" fontWeight="bold" align="center">
@@ -232,7 +234,7 @@ const PieChartScopeCompany = () => {
           </Grid>
 
           {/* Monthly Emissions Bar Chart */}
-          <Grid item xs={12} md={6}>
+          <Grid item xs={12} md={6} >
             <MonthlyEmissionsBarChart
               data={companyEmissionsData[selectedCompany || "All Companies"]}
               companyName={selectedCompany || "All Companies"}

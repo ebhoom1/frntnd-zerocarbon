@@ -17,11 +17,13 @@ import {
 import axios from "../../api/axios";
 import UpdateFuelCombustionDialog from "./UpdateFuelCombustionDialog";
 import FilterFuelCombustion from "./FilterFuelCombustion";
+import ActivityInput from "./ActivityInput";
+import FuelInput from "./FuelInput"; // For the Fuel dropdown/input
 
 
 const FuelCombustion = () => {
   const [formData, setFormData] = useState({
-    category: "",
+    category: "1.A - Fuel Combustion Activities",
     activity: "",
     fuel: "",
     NCV: "",
@@ -49,17 +51,22 @@ const FuelCombustion = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
+  // const handleChange = (name, value) => {
+  //   setFormData((prevState) => ({ ...prevState, [name]: value }));
+  // };
+
   // Submit form data
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      console.log("fuelcombustion FormData:",formData);
       const response = await axios.post("/api/fuelCombustion/add", formData); // Replace with your API endpoint
       alert(response.data.message);
       fetchFuelCombustionData(); // Fetch updated data after submission
       setFormData({
-        category: "",
+        category: "1.A - Fuel Combustion Activities",
         activity: "",
-        fuel: "",
+        fuel: formData.fuel,
         NCV: "",
         CO2: "",
         CH4: "",
@@ -86,7 +93,7 @@ const FuelCombustion = () => {
     try {
       const response = await axios.get("/api/fuelCombustion/all"); // Replace with your API endpoint
       setFuelCombustionData(response.data.data);
-      console.log(response.data.data);
+      console.log("fuelcombustion data:",response.data.data);
     } catch (error) {
       console.error("Error fetching data:", error);
     }
@@ -95,6 +102,7 @@ const FuelCombustion = () => {
   const handleUpdate = async (updatedData) => {
     try {
       await axios.put(`/api/fuelCombustion/update/${updatedData._id}`, updatedData); // Update endpoint
+      console.log("updated data:",updatedData);
       fetchFuelCombustionData(); // Refresh data
       alert("Fuel Combustion data updated successfully!");
     } catch (error) {
@@ -160,19 +168,31 @@ const FuelCombustion = () => {
             onChange={handleChange}
             required
           />
-          <TextField
+          {/* <TextField
             label="Activity"
             name="activity"
             value={formData.activity}
             onChange={handleChange}
             required
-          />
-          <TextField
+          /> */}
+
+          <ActivityInput
+          name="activity"
+          value={formData.activity}
+          // onChange={(value) => handleChange("activity", value)}
+          onChange={handleChange}
+        />
+          {/* <TextField
             label="Fuel"
             name="fuel"
             value={formData.fuel}
             onChange={handleChange}
             required
+          /> */}
+          <FuelInput
+            name="fuel"
+            value={formData.fuel}
+            onChange={handleChange}
           />
           <TextField
             label="NCV"

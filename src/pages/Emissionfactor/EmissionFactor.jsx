@@ -303,6 +303,9 @@ const EmissionFactorForm = () => {
                         <MenuItem value="kWh (Gross CV)">
                           kWh (Gross CV)
                         </MenuItem>
+                        <MenuItem value="cubic metres">
+                        cubic metres
+                        </MenuItem>
                       </TextField>
 
                       <TextField

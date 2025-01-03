@@ -864,6 +864,7 @@ const GWPTable = () => {
               {uniqueAssessments.map((key, index) => (
                 <TableCell key={index}>{key}</TableCell>
               ))}
+              <TableCell>Created At</TableCell>
               <TableCell>Actions</TableCell>
             </TableRow>
           </TableHead>
@@ -872,6 +873,7 @@ const GWPTable = () => {
               <TableRow key={data._id}>
                 <TableCell>{data.chemicalName}</TableCell>
                 <TableCell>{data.chemicalFormula}</TableCell>
+                <TableCell>{new Date(data.createdAt).toLocaleString()}</TableCell>
                 {uniqueAssessments.map((key, index) => (
                   <TableCell key={index}>
                     {data.assessments[key] || "-"}

@@ -303,6 +303,9 @@ const EditCategoryDialog = ({ open, onClose, category, onCategoryEdited }) => {
                         <MenuItem value="kWh (Gross CV)">
                           kWh (Gross CV)
                         </MenuItem>
+                        <MenuItem value="cubic metres">
+                        cubic metres
+                        </MenuItem>
                       </TextField>
                       <TextField
                         fullWidth

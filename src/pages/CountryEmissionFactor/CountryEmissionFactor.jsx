@@ -161,6 +161,7 @@ const EmissionFactors = () => {
               <TableCell>Emission Factor</TableCell>
               <TableCell>Reference</TableCell>
               <TableCell>Yearly Values</TableCell>
+              <TableCell>Created At</TableCell>
               <TableCell>Actions</TableCell>
             </TableRow>
           </TableHead>
@@ -176,6 +177,7 @@ const EmissionFactors = () => {
                     <div key={year.year}>{`${year.year}: ${year.value}`}</div>
                   ))}
                 </TableCell>
+                <TableCell>{new Date(factor.createdAt).toLocaleString()}</TableCell>
                 <TableCell>
                   <Button
                     variant="outlined"                   
