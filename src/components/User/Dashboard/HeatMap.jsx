@@ -229,34 +229,79 @@
 
 
 //testing
-import React from 'react';
-import HeatMap from 'react-heatmap-grid';
+import React from "react";
+import { Paper } from "@mui/material";
+import ReactApexChart from "react-apexcharts";
 
-const MyHeatmap = () => {
-  const xLabels = ['Jan', 'Feb', 'Mar', 'Apr', 'May'];
-  const yLabels = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'];
+const HeatmapChart = () => {
   const data = [
-    [10, 20, 30, 40, 50],
-    [5, 10, 15, 20, 25],
-    [2, 4, 6, 8, 10],
-    [1, 2, 3, 4, 5],
-    [0, 0, 0, 0, 0],
+    { name: "Delhi (HQ)", data: [120, 300, 500] },
+    { name: "Mumbai", data: [200, 400, 600] },
+    { name: "Bangalore", data: [180, 350, 450] },
+    { name: "Chennai", data: [150, 320, 400] },
+    { name: "Hyderabad", data: [100, 280, 350] },
+    { name: "Pune", data: [90, 260, 300] },
+    { name: "Kolkata", data: [110, 300, 400] },
   ];
 
+  const options = {
+    chart: {
+      type: "heatmap",
+      height: 400,
+      toolbar: {
+        show: false,
+      },
+      
+    },
+    plotOptions: {
+      heatmap: {
+        shadeIntensity: 0.5,
+        colorScale: {
+          ranges: [
+            { from: 0, to: 200, name: "Low", color: "#80AF81" },
+            { from: 201, to: 400, name: "Medium", color: "#508D4E" },
+            { from: 401, to: 600, name: "High", color: "#1A5319" },
+          ],
+        },
+      },
+    },
+    dataLabels: {
+      enabled: true,
+    },
+    xaxis: {
+      categories: ["Scope 1 (tCO2e)", "Scope 2 (tCO2e)", "Scope 3 (tCO2e)"],
+    },
+    title: {
+      text: "GHG Emissions by Source and Location (tCO2e)",
+      style: {
+        fontSize: "16px",
+        fontWeight: "bold",
+      },
+    },
+  };
+
   return (
-    <div>
-      <HeatMap
-        xLabels={xLabels}
-        yLabels={yLabels}
-        data={data}
-        cellStyle={(background, value, min, max, data, x, y) => ({
-          background: `rgba(255, 0, 0, ${value / max})`,
-        })}
-        cellRender={(value) => value}
+    <Paper
+      elevation={3}
+      sx={{
+        borderRadius: 2,
+        padding: 1,
+        boxShadow: "0 8px 20px rgba(0,0,0,0.1)",
+        backgroundColor: "#fff",
+        width: "100%",
+        maxWidth:"480px"
+      }}
+    >
+      <ReactApexChart
+        options={options}
+        series={data}
+        type="heatmap"
+        height={350}
+        width={480}
       />
-    </div>
+      
+    </Paper>
   );
 };
 
-export default MyHeatmap;
-
+export default HeatmapChart;

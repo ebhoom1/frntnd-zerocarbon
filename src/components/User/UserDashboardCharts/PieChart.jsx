@@ -11,15 +11,21 @@ import {
   XAxis,
   YAxis,
   CartesianGrid,
+  ScatterChart, Scatter,
 } from "recharts";
 import companyEmissionsData from "./companyEmissionData.json";
 
 const SCOPE_COLORS = ["#66BB6A", "#81C784", "#A5D6A7"];
 
+// const scopeData = [
+//   { name: "Scope 1", value: 200 },
+//   { name: "Scope 2", value: 300 },
+//   { name: "Scope 3", value: 100 },
+// ];
 const scopeData = [
-  { name: "Scope 1", value: 200 },
-  { name: "Scope 2", value: 300 },
-  { name: "Scope 3", value: 100 },
+  { name: 'Scope 1', value: 2400, cx: 100, cy: 100 },
+  { name: 'Scope 2', value: 1500, cx: 140, cy: 120 },
+  { name: 'Scope 3', value: 800, cx: 120, cy: 160 },
 ];
 
 const MonthlyEmissionsBarChart = ({ data, companyName }) => {
@@ -144,7 +150,7 @@ const PieChartScopeCompany = () => {
     >
       <Grid container spacing={3}>
         {/* Scope Pie Chart */}
-        <Grid item xs={12} md={3}>
+        {/* <Grid item xs={12} md={3}>
           <Paper elevation={3} sx={{ padding: 1, borderRadius: 2 }}>
             <Typography variant="h6" align="center" fontWeight="bold">
               Scopes
@@ -172,7 +178,41 @@ const PieChartScopeCompany = () => {
               </PieChart>
             </ResponsiveContainer>
           </Paper>
-        </Grid>
+        </Grid> */}
+
+<Grid item xs={12} md={3}>
+  <Paper elevation={3} sx={{ padding: 1, borderRadius: 2 }}>
+    <Typography variant="h6" align="center" fontWeight="bold">
+      Scopes
+    </Typography>
+    <Typography variant="body2" color="textSecondary" align="center">
+      Click a scope to view emission source details
+    </Typography>
+    <ResponsiveContainer width="100%" height={230}>
+      <ScatterChart>
+        <Tooltip />
+        <Scatter
+          data={scopeData}
+          fill="#8884d8"
+          onClick={(entry) => setSelectedScope(entry.name)}
+        >
+          {scopeData.map((entry, index) => (
+            <circle
+              key={index}
+              cx={entry.cx}
+              cy={entry.cy}
+              r={entry.value / 100} // Adjust the bubble size by dividing by a factor
+              fill={SCOPE_COLORS[index]}
+              style={{ cursor: 'pointer', opacity: 0.8 }}
+              onClick={() => setSelectedScope(entry.name)}
+            />
+          ))}
+        </Scatter>
+      </ScatterChart>
+    </ResponsiveContainer>
+  </Paper>
+</Grid>
+
 
         {/* Emission Source Bar Chart */}
         <Grid item xs={12} md={4}>

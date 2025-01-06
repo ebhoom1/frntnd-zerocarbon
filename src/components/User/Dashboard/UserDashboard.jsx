@@ -4,8 +4,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchDashboardMetrics } from "../../../redux/features/dashboard/DashboardSlice";
 import PieChart from "../UserDashboardCharts/PieChart";
 import ReductionPieChart from "../UserDashboardCharts/ReductionPieChart";
-import LatestNotifications from "../../Admin/Charts/LatestNotifications";
-import MapComponent from "../../Admin/Charts/MapComponent";
+import LatestNotifications from "../UserDashboardCharts/LatestNotificationUser";
+import MapComponent from "../UserDashboardCharts/MapComponentUser";
 import TableComponent from "../../Admin/Charts/TableComponent";
 import ActiveClients from "../../../assets/images/businessman.svg";
 import pendingsubmissions from "../../../assets/images/clock.svg";
@@ -13,7 +13,7 @@ import validatedemissions from "../../../assets/images/check.svg";
 import threshold from "../../../assets/images/threshold.svg";
 import TrendingDownIcon from "@mui/icons-material/TrendingDown";
 import TrendingUpIcon from "@mui/icons-material/TrendingUp";
-import HeatMap from './HeatMap';
+import HeatMap from "./HeatMap";
 
 const Dashboard = () => {
   const dispatch = useDispatch();
@@ -249,11 +249,23 @@ const Dashboard = () => {
           </Grid>
 
           {/* Latest Notifications Section */}
+          <Grid item xs={12} md={2.2}>
+            <Box
+              sx={{
+                height: "100%",
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "center",
+              }}
+            >
+              <LatestNotifications notifications={notifications} />
+            </Box>
+          </Grid>
         </Grid>
 
         {/* Reduction Pie Chart Section */}
+        <Grid container item xs={12} spacing={1.5}>
         <Grid container item xs={12} md={9.3}>
-          
           <Box
             sx={{
               height: "100%",
@@ -265,10 +277,15 @@ const Dashboard = () => {
             <ReductionPieChart />
           </Box>
         </Grid>
+        {/* Map Component */}
+        <Grid item xs={12} md={2.5}>
+            <MapComponent />
+          </Grid>
+        </Grid>
         {/* Latest Submissions Table Section */}
         <Grid container item xs={12} spacing={2}>
-          <Grid item xs={12} md={6}> 
- <HeatMap /> 
+          <Grid item xs={12} md={6}>
+            <HeatMap />
           </Grid>
         </Grid>
       </Grid>
