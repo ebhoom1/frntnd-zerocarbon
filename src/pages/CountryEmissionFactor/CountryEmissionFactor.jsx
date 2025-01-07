@@ -1,3 +1,6 @@
+
+
+
 import React, { useState, useEffect } from 'react';
 import {
   Box,
@@ -11,8 +14,9 @@ import {
   TableRow,
   TextField,
   Typography,
-  Paper
+  Paper,
 } from '@mui/material';
+
 import axios from '../../api/axios';
 import UpdateDialog from './UpdateDialog';
 
@@ -24,10 +28,11 @@ const EmissionFactors = () => {
     reference: '',
     yearlyValues: [
       {
-        year: '',
-        value: ''
-      }
-    ]
+        from: '',
+        to: '',
+        value: '',
+      },
+    ],
   });
   const [emissionFactors, setEmissionFactors] = useState([]);
   const [editData, setEditData] = useState(null);
@@ -47,7 +52,13 @@ const EmissionFactors = () => {
     try {
       const response = await axios.post('/api/country-emission-factors/add', formData); // Update with your API endpoint
       alert('Emission factor added successfully!');
-      setFormData({ country: '', regionGrid: '', emissionFactor: '', reference: '', yearlyValues: [{ year: '', value: '' }] });
+      setFormData({
+        country: '',
+        regionGrid: '',
+        emissionFactor: '',
+        reference: '',
+        yearlyValues: [{ from: '', to: '', value: '' }],
+      });
       fetchEmissionFactors();
     } catch (error) {
       console.error('Error adding emission factor:', error);
@@ -118,11 +129,21 @@ const EmissionFactors = () => {
         {formData.yearlyValues.map((yearlyValue, index) => (
           <Box key={index} sx={{ display: 'flex', gap: 2, alignItems: 'center', mb: 2 }}>
             <TextField
-              label="Year"
-              value={yearlyValue.year}
+              label="From (dd/mm/yyyy)"
+              value={yearlyValue.from}
               onChange={(e) => {
                 const updatedYearlyValues = [...formData.yearlyValues];
-                updatedYearlyValues[index].year = e.target.value;
+                updatedYearlyValues[index].from = e.target.value;
+                setFormData({ ...formData, yearlyValues: updatedYearlyValues });
+              }}
+              required
+            />
+            <TextField
+              label="To (dd/mm/yyyy)"
+              value={yearlyValue.to}
+              onChange={(e) => {
+                const updatedYearlyValues = [...formData.yearlyValues];
+                updatedYearlyValues[index].to = e.target.value;
                 setFormData({ ...formData, yearlyValues: updatedYearlyValues });
               }}
               required
@@ -140,14 +161,21 @@ const EmissionFactors = () => {
             />
           </Box>
         ))}
-        <Button variant="outlined" onClick={() => {
-          setFormData({
-            ...formData,
-            yearlyValues: [...formData.yearlyValues, { year: '', value: '' }]
-          });
-        }}>
+
+
+        <Box sx={{ mb: 2 }}>
+        <Button
+          variant="outlined"
+          onClick={() =>
+            setFormData({
+              ...formData,
+              yearlyValues: [...formData.yearlyValues, { from: '', to: '', value: '' }],
+            })
+          }
+        >
           Add Yearly Value
         </Button>
+        </Box> 
         <Button type="submit" variant="contained" color="primary">
           Submit
         </Button>
@@ -160,7 +188,9 @@ const EmissionFactors = () => {
               <TableCell>Region Grid</TableCell>
               <TableCell>Emission Factor</TableCell>
               <TableCell>Reference</TableCell>
-              <TableCell>Yearly Values</TableCell>
+              <TableCell>Year</TableCell>
+              <TableCell>Values</TableCell>
+              <TableCell>Unit</TableCell>
               <TableCell>Created At</TableCell>
               <TableCell>Actions</TableCell>
             </TableRow>
@@ -172,27 +202,37 @@ const EmissionFactors = () => {
                 <TableCell>{factor.regionGrid}</TableCell>
                 <TableCell>{factor.emissionFactor}</TableCell>
                 <TableCell>{factor.reference}</TableCell>
-                <TableCell>
-                  {factor.yearlyValues.map((year) => (
-                    <div key={year.year}>{`${year.year}: ${year.value}`}</div>
+                <TableCell  sx={{ minWidth: 150 }}>
+                  {factor.yearlyValues.map((year, idx) => (
+                    <div key={idx}>{year.periodLabel}</div>
                   ))}
+                </TableCell>
+                <TableCell>
+                  {factor.yearlyValues.map((year, idx) => (
+                    <div key={idx}>{year.value}</div>
+                  ))}
+                </TableCell>
+                <TableCell>
+                  {factor.unit}
                 </TableCell>
                 <TableCell>{new Date(factor.createdAt).toLocaleString()}</TableCell>
                 <TableCell>
+                <Box sx={{ display: 'flex', gap: 1 }}>
                   <Button
-                    variant="outlined"                   
+                    variant="outlined"
                     onClick={() => openEditDialog(factor)}
                     sx={{ mr: 1 }}
                   >
                     Update
                   </Button>
                   <Button
-                     variant="outlined"
+                    variant="outlined"
                     color="error"
                     onClick={() => handleDelete(factor._id)}
                   >
                     Delete
                   </Button>
+                  </Box>
                 </TableCell>
               </TableRow>
             ))}
