@@ -872,13 +872,13 @@ const GWPTable = () => {
             {gwpData.map((data) => (
               <TableRow key={data._id}>
                 <TableCell>{data.chemicalName}</TableCell>
-                <TableCell>{data.chemicalFormula}</TableCell>
-                <TableCell>{new Date(data.createdAt).toLocaleString()}</TableCell>
+                <TableCell>{data.chemicalFormula}</TableCell>               
                 {uniqueAssessments.map((key, index) => (
                   <TableCell key={index}>
                     {data.assessments[key] || "-"}
                   </TableCell>
                 ))}
+                <TableCell>{new Date(data.createdAt).toLocaleString()}</TableCell>
                 <TableCell>
                   <IconButton
                     onClick={() => handleUpdate(data._id)}

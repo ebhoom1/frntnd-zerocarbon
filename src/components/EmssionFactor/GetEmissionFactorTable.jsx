@@ -13,6 +13,7 @@ import {
   Box,
   IconButton,
   Button,
+  Link,
 } from "@mui/material";
 import { KeyboardArrowDown, KeyboardArrowUp } from "@mui/icons-material";
 import axios from "../../api/axios";
@@ -231,7 +232,15 @@ const EmissionFactorTable = () => {
                                 {fuel.reference}
                               </TableCell>
                               <TableCell rowSpan={fuel.units.length}>
-                                {fuel.source}
+                              <Link
+                                  href={fuel.source}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  underline="hover"
+                                  color="primary"
+                                >
+                                  {fuel.source}
+                                </Link>
                               </TableCell>
                             </>
                           )}

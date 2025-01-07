@@ -474,7 +474,7 @@ const FuelCombustion = () => {
     reference: "IPCC",
   });
 
-  const [assessmentType, setAssessmentType] = useState("AR5");
+  const [assessmentType, setAssessmentType] = useState("AR6");
   const [fuelCombustionData, setFuelCombustionData] = useState([]);
   const [updateDialogOpen, setUpdateDialogOpen] = useState(false);
   const [selectedData, setSelectedData] = useState(null);
@@ -859,7 +859,8 @@ const FuelCombustion = () => {
                 <TableCell>
                   {row.selectedAssessment?.CO2e_Kgm3 || "N/A"}
                 </TableCell>
-                <TableCell>{row.source}</TableCell>
+                {/* <TableCell>{row.source}</TableCell> */}
+                <TableCell sx={{ minWidth: 250 }}>{row.source}</TableCell>
                 <TableCell>{row.reference}</TableCell>
                 <TableCell>{assessmentType}</TableCell>
                 <TableCell>
