@@ -129,7 +129,12 @@ const EmissionFactors = () => {
         {formData.yearlyValues.map((yearlyValue, index) => (
           <Box key={index} sx={{ display: 'flex', gap: 2, alignItems: 'center', mb: 2 }}>
             <TextField
-              label="From (dd/mm/yyyy)"
+            type='date'
+              label="From"
+              InputLabelProps={{
+                shrink: true, // Keeps the label at the top
+              }}
+              placeholder="" // Removes the placeholder
               value={yearlyValue.from}
               onChange={(e) => {
                 const updatedYearlyValues = [...formData.yearlyValues];
@@ -139,7 +144,12 @@ const EmissionFactors = () => {
               required
             />
             <TextField
-              label="To (dd/mm/yyyy)"
+            type='date'
+              label="To"
+              InputLabelProps={{
+                shrink: true, // Keeps the label at the top
+              }}
+              placeholder="" // Removes the placeholder
               value={yearlyValue.to}
               onChange={(e) => {
                 const updatedYearlyValues = [...formData.yearlyValues];

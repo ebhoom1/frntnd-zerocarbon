@@ -53,7 +53,7 @@ const ReductionBarChart = ({ data, scopeName }) => {
             dataKey="name"
             type="category"
             tick={{ fontSize: 12 }}
-            width={150}
+            width={100}
           />
           <XAxis type="number" />
           <Tooltip />
@@ -70,14 +70,14 @@ const ReductionBarChart = ({ data, scopeName }) => {
 };
 
 const ScopePieChart = ({ setSelectedScope }) => (
-  <Paper elevation={3} sx={{ padding: 1, borderRadius: 2 }}>
+  <Paper elevation={3} sx={{ padding: 1, borderRadius: 2 }} >
     <Typography variant="h6" align="center" fontWeight="bold">
       Scopes
     </Typography>
     <Typography variant="body2" color="textSecondary" align="center">
       Click a scope to view reduction details
     </Typography>
-    <ResponsiveContainer width="100%" height={250}>
+    <ResponsiveContainer width="100%" height={230}>
       <PieChart>
         <Pie
           data={scopeData}
@@ -122,7 +122,7 @@ const MonthlyReductionBarChart = ({ data, scopeName }) => {
       <Typography variant="body2" color="textSecondary" align="center">
         {scopeName || "All Scopes"}
       </Typography>
-      <ResponsiveContainer width="100%" height={300}>
+      <ResponsiveContainer width="100%" height={250}>
         <BarChart
           data={formattedData}
           margin={{ top: 10, right: 30, left: 10, bottom: 10 }}
@@ -170,7 +170,7 @@ const ReductionPieChart = () => {
         justifyContent: "center",
       }}
     >
-      <Grid container spacing={3}>
+      <Grid container spacing={2}>
         <Grid item xs={12} md={3}>
           <ScopePieChart setSelectedScope={setSelectedScope} />
         </Grid>

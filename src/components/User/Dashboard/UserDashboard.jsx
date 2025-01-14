@@ -14,6 +14,7 @@ import threshold from "../../../assets/images/threshold.svg";
 import TrendingDownIcon from "@mui/icons-material/TrendingDown";
 import TrendingUpIcon from "@mui/icons-material/TrendingUp";
 import HeatMap from "./HeatMap";
+// import TotalEmission from './TotalEmission';
 
 const Dashboard = () => {
   const dispatch = useDispatch();
@@ -40,7 +41,7 @@ const Dashboard = () => {
         flexDirection: "column",
       }}
     >
-      <Grid container spacing={3}>
+      <Grid container spacing={2}>
         {/* Four Boxes Section */}
         {[
           {
@@ -265,27 +266,24 @@ const Dashboard = () => {
 
         {/* Reduction Pie Chart Section */}
         <Grid container item xs={12} spacing={1.5}>
-        <Grid container item xs={12} md={9.3}>
-          <Box
-            sx={{
-              height: "100%",
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "center",
-            }}
-          >
-            <ReductionPieChart />
-          </Box>
-        </Grid>
-        {/* Map Component */}
-        <Grid item xs={12} md={2.5}>
+          <Grid item xs={12} md={9.3}>
+            
+              <ReductionPieChart />
+          </Grid>
+          {/* Map Component */}
+          <Grid item xs={12} md={2.5}>
             <MapComponent />
           </Grid>
         </Grid>
-        {/* Latest Submissions Table Section */}
+        {/* heat map Section */}
         <Grid container item xs={12} spacing={2}>
           <Grid item xs={12} md={6}>
             <HeatMap />
+          </Grid>
+        </Grid>
+        <Grid container item xs={12} spacing={2}>
+          <Grid item xs={12} md={6}>
+            {/* <TotalEmission /> */}
           </Grid>
         </Grid>
       </Grid>

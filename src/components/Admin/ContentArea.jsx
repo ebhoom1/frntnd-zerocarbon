@@ -303,12 +303,12 @@ import UserTable from "../../pages/Admin/userTableForflowchartView/UserTable";
 import FlowchartUser from "../../components/User/flowchart/FlowchartUser.jsx";
 import EmissionFactorHomePage from "../../pages/Emissionfactor/EmissionFactorHomePage.jsx";
 import UserForm from "../../pages/User/UserForm";
-import EmissionFactor from "../../pages/Emissionfactor/EmissionFactor.jsx";
 import ActiveUsers from "../../pages/RegisteredClients/ActiveUsers.jsx";
 import RegisteredClients from "../../pages/RegisteredClients/RegisteredClientsTable.jsx";
 import { setSelectedItem } from "../../redux/features/sidebar/SidebarSlice";
-import MapComponent from "./Charts/MapComponent.jsx";
-import HeatMap from "../../components/User/Dashboard/HeatMap.jsx";
+import CalculationDataOfEmissionC02e from '../../pages/User/CalculationData/CalculationDataOfEmissionC02e.jsx'
+import CalculateEmissionCO2e from '../../pages/User/CalculationData/CalculateEmissionCO2e.jsx';
+import NodeListpage from '../../pages/User/CalculationData/NodeListPage.jsx';
 
 const ContentArea = () => {
   const selectedItem = useSelector((state) => state.sidebar.selectedItem);
@@ -358,7 +358,7 @@ const ContentArea = () => {
           return <EmissionFactorHomePage />;
         case "registeredClients":
           return <RegisteredClients />;
-        case "activeClients":
+        case "activeClients": 
           return <ActiveUsers />;
         default:
           return <Dashboard />;
@@ -371,8 +371,10 @@ const ContentArea = () => {
           return <FlowchartUser />;
         case "form":
           return <UserForm />;
-        case "support":
-          return;
+        case "submissions":
+          return <NodeListpage/>;
+        case "report":
+          return ;  
         case "settings":
           return;
         default:

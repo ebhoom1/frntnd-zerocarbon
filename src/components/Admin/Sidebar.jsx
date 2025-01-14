@@ -307,7 +307,12 @@ const Sidebar = () => {
             label: "Data Submissions",
             icon: <GroupOutlinedIcon />,
           },
-          { id: "support", label: "Report", icon: <SummarizeIcon /> },
+          {
+            id: "submissions",
+            label: "Submissions",
+            icon: <GroupOutlinedIcon />,
+          },
+          { id: "report", label: "Report", icon: <SummarizeIcon /> },
           {
             id: "settings",
             label: "Team Management",

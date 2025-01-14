@@ -19,8 +19,11 @@ import axios from "../../../api/axios";
 import categories from "../../../assets/data/categories.json";
 import subCategories from "../../../assets/data/subCategories.json";
 import DetailsDialog from "./DetailsDialog";
+import { ObjectId } from "bson"; // Import ObjectId for generating valid MongoDB-like IDs
 import { useParams } from "react-router-dom";
-const SampleFlowchart = () => {
+
+const SampleFlowchart = () => {  
+  const [isDataPosted, setIsDataPosted] = useState(false); // Tracks if data has been posted
   const { userId } = useParams();
   const [nodes, setNodes, onNodesChange] = useNodesState([]);
   const [edges, setEdges, onEdgesChange] = useEdgesState([]);
@@ -40,6 +43,10 @@ const SampleFlowchart = () => {
         subCategory: "",
         units: "",
         emissionFactor: "",
+        fuel: "", // Added field
+        activity: "", // Added field
+        source: "", // Added field
+        reference: "", // Added field
         scopeComments: "",
       },
     ],
@@ -113,6 +120,10 @@ const SampleFlowchart = () => {
           subCategory: "",
           units: "",
           emissionFactor: "",
+           fuel: "", // Added field
+          activity: "", // Added field
+          source: "", // Added field
+          reference: "", // Added field
           scopeComments: "",
         },
       ],
@@ -146,6 +157,10 @@ const SampleFlowchart = () => {
           subCategory: "",
           units: "",
           emissionFactor: "",
+          fuel: "", // Added field
+          activity: "", // Added field
+          source: "", // Added field
+          reference: "", // Added field
           scopeComments: "",
         },
       ],
@@ -180,6 +195,10 @@ const SampleFlowchart = () => {
           subCategory: "",
           units: "",
           emissionFactor: "",
+           fuel: "", // Added field
+          activity: "", // Added field
+          source: "", // Added field
+          reference: "", // Added field
           scopeComments: "",
         },
       ],
@@ -210,8 +229,12 @@ const SampleFlowchart = () => {
   };
 
   const handleAddNode = () => {
+    setIsDataPosted(false);
+    // **Change 1**: Generate a valid MongoDB ObjectId for the new node
+    const newNodeId = new ObjectId().toString(); // Use ObjectId from `bson` library
     const newNode = {
-      id: `node-${nodes.length + 1}`,
+      // id: `node-${nodes.length + 1}`,
+      id:newNodeId,// Use generated ObjectId as node ID
       data: {
         label: formData.label,
         details: {
@@ -249,6 +272,10 @@ const SampleFlowchart = () => {
           subCategory: "",
           units: "",
           emissionFactor: "",
+          fuel: "", // Added field
+          activity: "", // Added field
+          source: "", // Added field
+          reference: "", // Added field
           scopeComments: "",
         },
       ],
@@ -281,6 +308,8 @@ const SampleFlowchart = () => {
     }
   };
 
+  
+  
   //update
   const handleUpdateNode = async () => {
     if (!clickedNode) return;
@@ -341,6 +370,10 @@ const SampleFlowchart = () => {
           subCategory: "",
           units: "",
           emissionFactor: "",
+          fuel: "", // Added field
+          activity: "", // Added field
+          source: "", // Added field
+          reference: "", // Added field
           scopeComments: "",
         },
       ],
@@ -377,9 +410,7 @@ const SampleFlowchart = () => {
     handleCloseContextMenu(); // Close the context menu
   };
   
-  console.log("nodes:",nodes);
-  console.log("edges:",edges);
-  console.log("userId:",userId);
+ 
   return (
     <div
       style={{ height: "90vh", width: "100%" }}
@@ -646,6 +677,7 @@ const SampleFlowchart = () => {
                 <MenuItem value="tons">Tons</MenuItem>
                 <MenuItem value="cubic meters">Cubic Meters</MenuItem>
                 <MenuItem value="kWh">kWh</MenuItem>
+                <MenuItem value="kWh">Kg/TJ</MenuItem>
               </TextField>
 
               <TextField
@@ -703,7 +735,43 @@ const SampleFlowchart = () => {
                   margin="normal"
                 />
               )}
-
+   {/* New Fields */}
+   <TextField
+                label="Fuel"
+                value={scope.fuel}
+                onChange={(e) =>
+                  handleScopeInputChange(index, "fuel", e.target.value)
+                }
+                fullWidth
+                margin="normal"
+              />
+              <TextField
+                label="Activity"
+                value={scope.activity}
+                onChange={(e) =>
+                  handleScopeInputChange(index, "activity", e.target.value)
+                }
+                fullWidth
+                margin="normal"
+              />
+              <TextField
+                label="Source"
+                value={scope.source}
+                onChange={(e) =>
+                  handleScopeInputChange(index, "source", e.target.value)
+                }
+                fullWidth
+                margin="normal"
+              />
+              <TextField
+                label="Reference"
+                value={scope.reference}
+                onChange={(e) =>
+                  handleScopeInputChange(index, "reference", e.target.value)
+                }
+                fullWidth
+                margin="normal"
+              />
               <TextField
                 label="Scope Comments"
                 name="scopeComments"
