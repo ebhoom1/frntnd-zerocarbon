@@ -1,9 +1,7 @@
 
-
 import React, { useState, useEffect } from "react";
 import {
   Select,
-  FormControl,
   TextField,
   Button,
   Table,
@@ -26,7 +24,10 @@ import CustomAlert from "../../../src/components/Alert/Sweetalert";
 
 const FuelCombustion = () => {
   const [alert, setAlert] = useState(null);
+  const [updateDialogOpen, setUpdateDialogOpen] = useState(false);
+  const [selectedData, setSelectedData] = useState(null);
 
+  const [assessmentType, setAssessmentType] = useState("AR5");
   const [formData, setFormData] = useState({
     category: "1.A - Fuel Combustion Activities",
     activity: "",
@@ -38,29 +39,65 @@ const FuelCombustion = () => {
     unit: "Kg/TJ",
     fuelDensityLiter: "",
     fuelDensityM3: "",
-    CO2Formula: "CO2",
-    CH4Formula: "CH4",
-    N2OFormula: "N2O",
     source: "",
     reference: "IPCC",
+    assessments: [
+      {
+        assessmentType: "AR5",
+        CO2_KgT: "",
+        CH4_KgT: "",
+        N2O_KgT: "",
+        CO2e: "",
+        CO2_KgL: "",
+        CO2_Kgm3: "",
+        CH4_KgL: "",
+        CH4_Kgm3: "",
+        N2O_KgL: "",
+        N2O_Kgm3: "",
+        CO2e_KgL: "",
+        CO2e_Kgm3: "",
+      },
+    ],
   });
-
-  const [assessmentType, setAssessmentType] = useState("AR6");
   const [fuelCombustionData, setFuelCombustionData] = useState([]);
-  const [updateDialogOpen, setUpdateDialogOpen] = useState(false);
-  const [selectedData, setSelectedData] = useState(null);
-
-  const handleAssessmentTypeChange = (e) => {
-    setAssessmentType(e.target.value);
-    fetchFuelCombustionData();
-  };
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
+  const handleAssessmentChange = (index, e) => {
+    const updatedAssessments = [...formData.assessments];
+    updatedAssessments[index][e.target.name] = e.target.value;
+    setFormData({ ...formData, assessments: updatedAssessments });
+  };
+
+  const handleAddAssessment = () => {
+    setFormData({
+      ...formData,
+      assessments: [
+        ...formData.assessments,
+        {
+          assessmentType: "",
+          CO2_KgT: "",
+          CH4_KgT: "",
+          N2O_KgT: "",
+          CO2e: "",
+          CO2_KgL: "",
+          CO2_Kgm3: "",
+          CH4_KgL: "",
+          CH4_Kgm3: "",
+          N2O_KgL: "",
+          N2O_Kgm3: "",
+          CO2e_KgL: "",
+          CO2e_Kgm3: "",
+        },
+      ],
+    });
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log("formdata:", formData);
     try {
       const response = await axios.post("/api/fuelCombustion/add", formData);
       setAlert({
@@ -70,21 +107,33 @@ const FuelCombustion = () => {
       });
       fetchFuelCombustionData();
       setFormData({
-        category: "1.A - Fuel Combustion Activities",
+        ...formData,
         activity: "",
-        fuel: formData.fuel,
+        fuel: "",
         NCV: "",
         CO2: "",
         CH4: "",
         N2O: "",
-        unit: "Kg/TJ",
         fuelDensityLiter: "",
         fuelDensityM3: "",
-        CO2Formula: "CO2",
-        CH4Formula: "CH4",
-        N2OFormula: "N2O",
         source: "",
-        reference: "IPCC",
+        assessments: [
+          {
+            assessmentType: "AR5",
+            CO2_KgT: "",
+            CH4_KgT: "",
+            N2O_KgT: "",
+            CO2e: "",
+            CO2_KgL: "",
+            CO2_Kgm3: "",
+            CH4_KgL: "",
+            CH4_Kgm3: "",
+            N2O_KgL: "",
+            N2O_Kgm3: "",
+            CO2e_KgL: "",
+            CO2e_Kgm3: "",
+          },
+        ],
       });
     } catch (error) {
       setAlert({
@@ -99,52 +148,14 @@ const FuelCombustion = () => {
     try {
       const response = await axios.get("/api/fuelCombustion/all");
       const filteredData = response.data.data.map((item) => {
-        const assessment = item.assessments.find(
-          (assess) => assess.assessmentType === assessmentType
+        const selectedAssessment = item.assessments.find(
+          (assessment) => assessment.assessmentType === assessmentType
         );
-        return { ...item, selectedAssessment: assessment || {} };
+        return { ...item, selectedAssessment: selectedAssessment || {} };
       });
       setFuelCombustionData(filteredData);
     } catch (error) {
       console.error("Error fetching data:", error);
-    }
-  };
-
-  // const handleUpdate = async (updatedData) => {
-  //   try {
-  //     const response= await axios.put(`/api/fuelCombustion/update/${updatedData._id}`, updatedData);
-  //     console.log("update response:",response.data.error)
-  //     fetchFuelCombustionData();
-  //     alert("Fuel Combustion data updated successfully!");
-  //   } catch (error) {
-  //     alert("Error updating data: " + error.message);
-  //   }
-  // };
-
-  const handleUpdate = async (updatedData) => {
-    try {
-      console.log("Update Payload:", updatedData);
-      const response = await axios.put(
-        `/api/fuelCombustion/update/${updatedData.id}`,
-        updatedData
-      );
-      console.log("Update Response:", response.data.message);
-      fetchFuelCombustionData();
-      setAlert({
-        type: "success",
-        title: "Updated",
-        text: response.data.message,
-      });
-    } catch (error) {
-      console.error(
-        "Error updating data:",
-        error.response?.data || error.message
-      );
-      setAlert({
-        type: "error",
-        title: "Error",
-        text: error.response?.data?.message || "Update failed!",
-      });
     }
   };
 
@@ -175,6 +186,33 @@ const FuelCombustion = () => {
     });
   };
 
+  const handleUpdate = async (updatedData) => {
+    try {
+      console.log("Update Payload:", updatedData);
+      const response = await axios.put(
+        `/api/fuelCombustion/update/${updatedData.id}`,
+        updatedData
+      );
+      console.log("Update Response:", response.data.message);
+      fetchFuelCombustionData();
+      setAlert({
+        type: "success",
+        title: "Updated",
+        text: response.data.message,
+      });
+    } catch (error) {
+      console.error(
+        "Error updating data:",
+        error.response?.data || error.message
+      );
+      setAlert({
+        type: "error",
+        title: "Error",
+        text: error.response?.data?.message || "Update failed!",
+      });
+    }
+  };
+
   const handleOpenUpdateDialog = (data) => {
     setSelectedData(data);
     setUpdateDialogOpen(true);
@@ -187,6 +225,11 @@ const FuelCombustion = () => {
 
   const handleFilter = (filteredData) => {
     setFuelCombustionData(filteredData);
+  };
+
+  const handleAssessmentTypeChange = (e) => {
+    setAssessmentType(e.target.value);
+    fetchFuelCombustionData();
   };
 
   useEffect(() => {
@@ -227,6 +270,7 @@ const FuelCombustion = () => {
             value={formData.fuel}
             onChange={handleChange}
           />
+
           <TextField
             label="NCV"
             name="NCV"
@@ -273,24 +317,7 @@ const FuelCombustion = () => {
             onChange={handleChange}
             type="number"
           />
-          <TextField
-            label="CO2 Formula"
-            name="CO2Formula"
-            value={formData.CO2Formula}
-            onChange={handleChange}
-          />
-          <TextField
-            label="CH4 Formula"
-            name="CH4Formula"
-            value={formData.CH4Formula}
-            onChange={handleChange}
-          />
-          <TextField
-            label="N2O Formula"
-            name="N2OFormula"
-            value={formData.N2OFormula}
-            onChange={handleChange}
-          />
+
           <TextField
             label="Source"
             name="source"
@@ -305,12 +332,138 @@ const FuelCombustion = () => {
             onChange={handleChange}
           />
         </Box>
-        <Button variant="contained" type="submit">
+        <Box sx={{ mb: 2 }}>
+          {formData.assessments.map((assessment, index) => (
+            <Box key={index} sx={{ mb: 4 }}>
+              <Typography variant="h6" sx={{ mb: 2 }}>
+                Assessment {index + 1}
+              </Typography>
+              <Box
+                sx={{
+                  display: "grid",
+                  gridTemplateColumns: "repeat(4, 1fr)",
+                  gap: 2,
+                  mb: 2,
+                }}
+              >
+                {/* Dropdown for Assessment Type */}
+                <Select
+                  label="Assessment Type"
+                  name="assessmentType"
+                  value={assessment.assessmentType}
+                  onChange={(e) => handleAssessmentChange(index, e)}
+                  displayEmpty
+                  required
+                >
+                  <MenuItem value="" disabled>
+                    Select Assessment Type
+                  </MenuItem>
+                  <MenuItem value="AR5">AR5</MenuItem>
+                  <MenuItem value="AR6">AR6</MenuItem>
+                </Select>
+                {/* Text Fields for Assessment Values */}
+                <TextField
+                  label="CO2_KgT"
+                  name="CO2_KgT"
+                  value={assessment.CO2_KgT}
+                  onChange={(e) => handleAssessmentChange(index, e)}
+                  type="number"
+                />
+                <TextField
+                  label="CH4_KgT"
+                  name="CH4_KgT"
+                  value={assessment.CH4_KgT}
+                  onChange={(e) => handleAssessmentChange(index, e)}
+                  type="number"
+                />
+                <TextField
+                  label="N2O_KgT"
+                  name="N2O_KgT"
+                  value={assessment.N2O_KgT}
+                  onChange={(e) => handleAssessmentChange(index, e)}
+                  type="number"
+                />
+                <TextField
+                  label="CO2e_KgT"
+                  name="CO2e"
+                  value={assessment.CO2e}
+                  onChange={(e) => handleAssessmentChange(index, e)}
+                  type="number"
+                />
+                <TextField
+                  label="CO2_KgL"
+                  name="CO2_KgL"
+                  value={assessment.CO2_KgL}
+                  onChange={(e) => handleAssessmentChange(index, e)}
+                  type="number"
+                />
+                <TextField
+                  label="CH4_KgL"
+                  name="CH4_KgL"
+                  value={assessment.CH4_KgL}
+                  onChange={(e) => handleAssessmentChange(index, e)}
+                  type="number"
+                />
+                <TextField
+                  label="N2O_KgL"
+                  name="N2O_KgL"
+                  value={assessment.N2O_KgL}
+                  onChange={(e) => handleAssessmentChange(index, e)}
+                  type="number"
+                />
+                <TextField
+                  label="CO2e_KgL"
+                  name="CO2e_KgL"
+                  value={assessment.CO2e_KgL}
+                  onChange={(e) => handleAssessmentChange(index, e)}
+                  type="number"
+                />
+
+                <TextField
+                  label="CO2_Kgm3"
+                  name="CO2_Kgm3"
+                  value={assessment.CO2_Kgm3}
+                  onChange={(e) => handleAssessmentChange(index, e)}
+                  type="number"
+                />
+                <TextField
+                  label="CH4_Kgm3"
+                  name="CH4_Kgm3"
+                  value={assessment.CH4_Kgm3}
+                  onChange={(e) => handleAssessmentChange(index, e)}
+                  type="number"
+                />
+
+                <TextField
+                  label="N2O_Kgm3"
+                  name="N2O_Kgm3"
+                  value={assessment.N2O_Kgm3}
+                  onChange={(e) => handleAssessmentChange(index, e)}
+                  type="number"
+                />
+
+                <TextField
+                  label="CO2e_Kgm3"
+                  name="CO2e_Kgm3"
+                  value={assessment.CO2e_Kgm3}
+                  onChange={(e) => handleAssessmentChange(index, e)}
+                  type="number"
+                />
+              </Box>
+            </Box>
+          ))}
+        </Box>
+
+        <Button variant="outlined" onClick={handleAddAssessment}>
+          Add Next Assessment Type
+        </Button>
+        <Button variant="contained" type="submit" sx={{ ml: 2 }}>
           Submit
         </Button>
       </Box>
+   <FilterFuelCombustion onFilter={handleFilter} />
 
-      <FilterFuelCombustion onFilter={handleFilter} />
+      {/* Table */}
       <TableContainer component={Paper}>
         <Table>
           <TableHead>
@@ -381,6 +534,7 @@ const FuelCombustion = () => {
               <TableCell>Reference</TableCell>
               <TableCell>Assessment Type</TableCell>
               <TableCell>Created At</TableCell>
+
               <TableCell>Actions</TableCell>
             </TableRow>
           </TableHead>
@@ -394,6 +548,7 @@ const FuelCombustion = () => {
                 <TableCell>{row.CO2}</TableCell>
                 <TableCell>{row.CH4}</TableCell>
                 <TableCell>{row.N2O}</TableCell>
+
                 <TableCell>
                   {row.selectedAssessment?.CO2_KgT || "N/A"}
                 </TableCell>
@@ -435,8 +590,9 @@ const FuelCombustion = () => {
                 <TableCell>{row.reference}</TableCell>
                 <TableCell>{assessmentType}</TableCell>
                 <TableCell>
-                  {new Date(row.createdAt).toLocaleString()}
+                  {new Date(row.updatedAt).toLocaleString()}
                 </TableCell>
+
                 <TableCell>
                   <Box sx={{ display: "flex", gap: 1 }}>
                     <Button

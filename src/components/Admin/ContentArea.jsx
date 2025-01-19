@@ -305,9 +305,8 @@ import EmissionFactorHomePage from "../../pages/Emissionfactor/EmissionFactorHom
 import UserForm from "../../pages/User/UserForm";
 import ActiveUsers from "../../pages/RegisteredClients/ActiveUsers.jsx";
 import RegisteredClients from "../../pages/RegisteredClients/RegisteredClientsTable.jsx";
+import AlertSection from "../../pages/Admin/Alert/AlertSection.jsx";
 import { setSelectedItem } from "../../redux/features/sidebar/SidebarSlice";
-import CalculationDataOfEmissionC02e from '../../pages/User/CalculationData/CalculationDataOfEmissionC02e.jsx'
-import CalculateEmissionCO2e from '../../pages/User/CalculationData/CalculateEmissionCO2e.jsx';
 import NodeListpage from '../../pages/User/CalculationData/NodeListPage.jsx';
 
 const ContentArea = () => {
@@ -360,8 +359,12 @@ const ContentArea = () => {
           return <RegisteredClients />;
         case "activeClients": 
           return <ActiveUsers />;
+        case "alerts": 
+          return <AlertSection/>;
+        case "settings": 
+          return;
         default:
-          return <Dashboard />;
+          return <Dashboard />; 
       }
     } else {
       switch (selectedItem.id) {

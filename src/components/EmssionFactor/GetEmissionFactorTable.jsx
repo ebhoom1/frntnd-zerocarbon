@@ -85,11 +85,11 @@ const EmissionFactorTable = () => {
     setCategories(response.data); // Refresh categories after editing
   };
 
-  const handleDeleteCategory = async (categoryId) => {
-    if (window.confirm("Are you sure you want to delete this category?")) {
+  const handleDeleteCategory = async (fuelId) => {
+    if (window.confirm("Are you sure you want to delete this Fuel?")) {
       try {
-        await axios.delete(`/api/categories/${categoryId}`);
-        alert("Category deleted successfully!");
+        await axios.delete(`/api/categories/${fuelId}`);
+        alert("Fuel deleted successfully!");
         const response = await axios.get("/api/categories");
         setCategories(response.data); // Refresh categories after deletion
       } catch (error) {
@@ -174,7 +174,7 @@ const EmissionFactorTable = () => {
                 <strong>kg N2O</strong>
               </TableCell>
               <TableCell>
-                <strong>Created At</strong>
+                <strong>Updated At</strong>
               </TableCell>
               <TableCell>
                 <strong>Actions</strong>
@@ -251,7 +251,7 @@ const EmissionFactorTable = () => {
                           <TableCell>{unit.kgCO2}</TableCell>
                           <TableCell>{unit.kgCH4}</TableCell>
                           <TableCell>{unit.kgN2O}</TableCell>
-                          <TableCell>{new Date(category.createdAt).toLocaleString()}</TableCell>
+                          <TableCell>{new Date(category.updatedAt).toLocaleString()}</TableCell>
 
                           {/* Actions Only Once Per Fuel */}
                           {unitIndex === 0 && (
@@ -271,16 +271,16 @@ const EmissionFactorTable = () => {
                                 >
                                   Edit
                                 </Button>
-                                {/* <Button
+                                <Button
                                   variant="outlined"
                                   size="small"
                                   color="error"
                                   onClick={() =>
-                                    handleDeleteCategory(category._id)
+                                    handleDeleteCategory(fuel._id)
                                   }
                                 >
-                                  Delete
-                                </Button> */}
+                                  Delete Fuel
+                                </Button>
                               </Box> 
                             </TableCell>
                           )}
