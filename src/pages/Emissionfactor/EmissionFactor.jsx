@@ -36,8 +36,8 @@ const EmissionFactorForm = () => {
                 kgNF3: "",
               },
             ],
-            reference: "DEFRA",
-            source: "https://www.gov.uk/government/publications/greenhouse-gas-reporting-conversion-factors-2024",
+            reference: "",
+            source: "",
           },
         ],
       },
@@ -65,8 +65,8 @@ const EmissionFactorForm = () => {
                 kgNF3: "",
               },
             ],
-            reference: "DEFRA",
-            source: "https://www.gov.uk/government/publications/greenhouse-gas-reporting-conversion-factors-2024",
+            reference: "",
+            source: "",
           },
         ],
       },
@@ -90,8 +90,8 @@ const EmissionFactorForm = () => {
     updatedForm.activities[activityIndex].fuels.push({
       name: "",
       units: [],
-      reference: "DEFRA",
-      source: "https://www.gov.uk/government/publications/greenhouse-gas-reporting-conversion-factors-2024",
+      reference: "",
+      source: "",
     });
     setFormData(updatedForm);
   };

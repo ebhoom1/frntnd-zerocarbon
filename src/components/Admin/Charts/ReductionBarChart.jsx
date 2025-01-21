@@ -31,7 +31,7 @@ const ReductionBarChart = ({ companyName }) => {
         fontWeight="bold"
         sx={{  textAlign: "center" }}
       >
-        Monthly Scope Reduction 
+        Monthly Reduction 
       </Typography>
       <Typography variant="body2" color="textSecondary" align="center">
                 {companyName?`${companyName}`:"All Companies"}

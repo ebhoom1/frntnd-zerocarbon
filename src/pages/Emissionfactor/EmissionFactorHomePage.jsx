@@ -166,7 +166,7 @@ const EmissionFactorHomePage = () => {
           </Box>
 
           {/* GWP */}
-          <Box
+          {/* <Box
             sx={{
               display: 'flex',
               flexDirection: 'column',
@@ -189,7 +189,7 @@ const EmissionFactorHomePage = () => {
             <Typography variant="h7" mt={2}>
               GWP
             </Typography>
-          </Box>
+          </Box> */}
 
           {/* Electricity Emission Factor */}
           <Box

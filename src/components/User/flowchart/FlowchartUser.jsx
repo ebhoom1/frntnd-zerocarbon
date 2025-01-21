@@ -33,20 +33,20 @@ const SampleFlowchart = () => {
       location: "",
       boundaryComments: "",
     },
-    scopeDetails: [
-      {
-        scopeType: "",
-        category: "",
-        subCategory: "",
-        units: "",
-        emissionFactor: "",
-        fuel: "", // Added field
-        activity: "", // Added field
-        source: "", // Added field
-        reference: "", // Added field
-        scopeComments: "",
-      },
-    ],
+    // scopeDetails: [
+    //   {
+    //     scopeType: "",
+    //     category: "",
+    //     subCategory: "",
+    //     units: "",
+    //     emissionFactor: "",
+    //     fuel: "", // Added field
+    //     activity: "", // Added field
+    //     source: "", // Added field
+    //     reference: "", // Added field
+    //     scopeComments: "",
+    //   },
+    // ],
   });
   const [detailsDialog, setDetailsDialog] = useState({
     open: false,
@@ -190,18 +190,7 @@ const SampleFlowchart = () => {
   const handleUpdateNode = async () => {
     if (!clickedNode) return;
   
-    // Map Flowchart fields to CalculationDataOfEmissionC02e fields
-    const mappedData = formData.scopeDetails.map((scope) => ({
-      scopeDetails: scope.scopeType,
-      combustionType: scope.category,
-      standards: scope.emissionFactor,
-      activity: scope.activity,
-      fuel: scope.fuel,
-      unit: scope.units,
-      source: scope.source,
-      reference: scope.reference,
-      userId, // Use the current userId from the Redux store
-    }));
+    
   
     // Update the node locally in the flowchart state
     const updatedNode = {
@@ -236,15 +225,12 @@ const SampleFlowchart = () => {
         updatedData: updatedNode,
       });
   
-      // Update calculation data using PUT to the `/calculation-data/:userId` endpoint
-      for (const data of mappedData) {
-        await axios.put(`/api/calculation-data/${data.userId}`, data);
-      }
+     
   
-      alert("Node updated and calculation data updated successfully!");
+      // alert("Node updated and calculation data updated successfully!");
     } catch (error) {
       console.error("Error updating node or updating calculation data:", error);
-      alert("Failed to update node or calculation data.");
+      // alert("Failed to update node or calculation data.");
     }
   
     // Reset dialog state
@@ -349,7 +335,7 @@ const SampleFlowchart = () => {
                       marginLeft: "5px",
                     }}
                   >
-                    <div
+                    {/* <div
                       style={{
                         width: "10px",
                         height: "10px",
@@ -361,7 +347,7 @@ const SampleFlowchart = () => {
                       onClick={(event) =>
                         handleDetailsClick(event, node, "scopeDetails")
                       }
-                    />
+                    /> */}
                     <div
                       style={{
                         width: "10px",
@@ -522,181 +508,7 @@ const SampleFlowchart = () => {
             margin="normal"
           />
           {/* Scope Details */}
-          <h4>Scope Details</h4>
-          {formData.scopeDetails.map((scope, index) => (
-            <Box key={index}>
-              <TextField
-                select
-                label="Scope Type"
-                value={scope.scopeType}
-                onChange={(e) =>
-                  handleScopeInputChange(index, "scopeType", e.target.value)
-                }
-                fullWidth
-                margin="normal"
-              >
-                {Object.keys(categories).map((scopeType) => (
-                  <MenuItem key={scopeType} value={scopeType}>
-                    {scopeType}
-                  </MenuItem>
-                ))}
-              </TextField>
-              <TextField
-                select
-                label="Category"
-                name="category"
-                value={scope.category}
-                onChange={(e) =>
-                  handleScopeInputChange(index, "category", e.target.value)
-                }
-                fullWidth
-                margin="normal"
-                disabled={!scope.scopeType}
-              >
-                {categories[scope.scopeType]?.map((category) => (
-                  <MenuItem key={category} value={category}>
-                    {category}
-                  </MenuItem>
-                ))}
-              </TextField>
-              <TextField
-                select
-                label="Subcategory"
-                name="subCategory"
-                value={scope.subCategory}
-                onChange={(e) =>
-                  handleScopeInputChange(index, "subCategory", e.target.value)
-                }
-                fullWidth
-                margin="normal"
-                disabled={!scope.category}
-              >
-                {subCategories[scope.category]?.map((subCategory) => (
-                  <MenuItem key={subCategory} value={subCategory}>
-                    {subCategory}
-                  </MenuItem>
-                ))}
-              </TextField>
-              <TextField
-                select
-                label="Units"
-                name="units"
-                value={scope.units}
-                onChange={(e) =>
-                  handleScopeInputChange(index, "units", e.target.value)
-                }
-                fullWidth
-                margin="normal"
-              >
-                <MenuItem value="liters">Liters</MenuItem>
-                <MenuItem value="tons">Tons</MenuItem>
-                <MenuItem value="cubic meters">Cubic Meters</MenuItem>
-                <MenuItem value="kWh">kWh</MenuItem>
-              </TextField>
-              <TextField
-                select
-                label="Emission Factor"
-                name="emissionFactor"
-                value={scope.emissionFactor}
-                onChange={(e) =>
-                  handleScopeInputChange(
-                    index,
-                    "emissionFactor",
-                    e.target.value
-                  )
-                }
-                fullWidth
-                margin="normal"
-              >
-                <MenuItem value="DEFRA">DEFRA</MenuItem>
-                <MenuItem value="IPCC">IPCC</MenuItem>
-                <MenuItem value="kg CO₂e / liter">kg CO₂e / liter</MenuItem>
-                <MenuItem value="kg CO₂e / tonne">kg CO₂e / tonne</MenuItem>
-              </TextField>
-              {["kg CO₂e / liter", "kg CO₂e / tonne"].some((unit) =>
-                scope.emissionFactor.includes(unit)
-              ) && (
-                <TextField
-                  label={`Enter Value (${scope.emissionFactor
-                    .replace(/^\d+/, "")
-                    .trim()})`}
-                  value={scope.emissionFactor.match(/^\d+/)?.[0] || ""}
-                  onChange={(e) => {
-                    const numericValue = e.target.value.replace(/[^\d]/g, ""); // Numeric value
-                    const unit = scope.emissionFactor
-                      .replace(/^\d*/, "")
-                      .trim();
-                    handleScopeInputChange(
-                      index,
-                      "emissionFactor",
-                      `${numericValue}${unit}`
-                    );
-                  }}
-                  type="number"
-                  fullWidth
-                  margin="normal"
-                />
-              )}
-              {/* Added fields start */}
-              <TextField
-                label="Fuel" // Added field
-                value={scope.fuel}
-                onChange={(e) =>
-                  handleScopeInputChange(index, "fuel", e.target.value)
-                }
-                fullWidth
-                margin="normal"
-              />
-              <TextField
-                label="Activity" // Added field
-                value={scope.activity}
-                onChange={(e) =>
-                  handleScopeInputChange(index, "activity", e.target.value)
-                }
-                fullWidth
-                margin="normal"
-              />
-              <TextField
-                label="Source" // Added field
-                value={scope.source}
-                onChange={(e) =>
-                  handleScopeInputChange(index, "source", e.target.value)
-                }
-                fullWidth
-                margin="normal"
-              />
-              <TextField
-                label="Reference" // Added field
-                value={scope.reference}
-                onChange={(e) =>
-                  handleScopeInputChange(index, "reference", e.target.value)
-                }
-                fullWidth
-                margin="normal"
-              />
-              {/* Added fields end */}
-
-              <TextField
-                label="Scope Comments"
-                name="scopeComments"
-                value={scope.scopeComments}
-                onChange={(e) =>
-                  handleScopeInputChange(index, "scopeComments", e.target.value)
-                }
-                multiline
-                rows={3}
-                fullWidth
-                margin="normal"
-              />
-              <Button
-                onClick={() => handleRemoveScopeDetail(index)}
-                color="primary"
-              >
-                Remove Scope
-              </Button>
-            </Box>
-          ))}
-          <Button onClick={handleAddScopeDetail}>Add Scope</Button>
+       
           <Button onClick={handleUpdateNode} color="primary">
             Save changes
           </Button>

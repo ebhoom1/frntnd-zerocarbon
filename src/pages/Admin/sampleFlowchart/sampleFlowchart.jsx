@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import ReactFlow, {
   Background,
@@ -22,7 +21,7 @@ import DetailsDialog from "./DetailsDialog";
 import { ObjectId } from "bson"; // Import ObjectId for generating valid MongoDB-like IDs
 import { useParams } from "react-router-dom";
 
-const SampleFlowchart = () => {  
+const SampleFlowchart = () => {
   const [isDataPosted, setIsDataPosted] = useState(false); // Tracks if data has been posted
   const { userId } = useParams();
   const [nodes, setNodes, onNodesChange] = useNodesState([]);
@@ -36,22 +35,22 @@ const SampleFlowchart = () => {
       location: "",
       boundaryComments: "",
     },
-    scopeDetails: [
-      {
-        scopeType: "",
-        category: "",
-        subCategory: "",
-        units: "",
-        emissionFactor: "",
-        fuel: "", // Added field
-        activity: "", // Added field
-        source: "", // Added field
-        reference: "", // Added field
-        scopeComments: "",
-      },
-    ],
+    // scopeDetails: [
+    //   {
+    //     scopeType: "",
+    //     category: "",
+    //     subCategory: "",
+    //     units: "",
+    //     emissionFactor: "",
+    //     fuel: "", // Added field
+    //     activity: "", // Added field
+    //     source: "", // Added field
+    //     reference: "", // Added field
+    //     scopeComments: "",
+    //   },
+    // ],
   });
-  const [nodeToConnect, setNodeToConnect] = useState(null); 
+  const [nodeToConnect, setNodeToConnect] = useState(null);
   const [clickedNode, setClickedNode] = useState(null);
   const [hoveredNode, setHoveredNode] = useState(null);
   const [detailsDialog, setDetailsDialog] = useState({
@@ -120,7 +119,7 @@ const SampleFlowchart = () => {
           subCategory: "",
           units: "",
           emissionFactor: "",
-           fuel: "", // Added field
+          fuel: "", // Added field
           activity: "", // Added field
           source: "", // Added field
           reference: "", // Added field
@@ -141,7 +140,7 @@ const SampleFlowchart = () => {
   const handleNodeClick = (event, node) => {
     event.stopPropagation(); // Prevent event bubbling
     setNodeToConnect(node.id); // Set nodeToConnect for adding connections
-    setClickedNode(null);     
+    setClickedNode(null);
     setFormData({
       label: "",
       boundaryDetails: {
@@ -175,7 +174,6 @@ const SampleFlowchart = () => {
         const response = await axios.get(`/api/flowchart/get/${userId}`);
         setNodes(response.data.nodes);
         setEdges(response.data.edges);
-       
       } catch (error) {
         console.error("Error fetching flowchart:", error);
       }
@@ -195,7 +193,7 @@ const SampleFlowchart = () => {
           subCategory: "",
           units: "",
           emissionFactor: "",
-           fuel: "", // Added field
+          fuel: "", // Added field
           activity: "", // Added field
           source: "", // Added field
           reference: "", // Added field
@@ -234,7 +232,7 @@ const SampleFlowchart = () => {
     const newNodeId = new ObjectId().toString(); // Use ObjectId from `bson` library
     const newNode = {
       // id: `node-${nodes.length + 1}`,
-      id:newNodeId,// Use generated ObjectId as node ID
+      id: newNodeId, // Use generated ObjectId as node ID
       data: {
         label: formData.label,
         details: {
@@ -247,7 +245,8 @@ const SampleFlowchart = () => {
 
     setNodes((nds) => [...nds, newNode]);
 
-    if (nodeToConnect) {//automatically connect edge
+    if (nodeToConnect) {
+      //automatically connect edge
       const newEdge = {
         id: `edge-${edges.length + 1}`,
         source: nodeToConnect,
@@ -308,8 +307,6 @@ const SampleFlowchart = () => {
     }
   };
 
-  
-  
   //update
   const handleUpdateNode = async () => {
     if (!clickedNode) return;
@@ -347,10 +344,10 @@ const SampleFlowchart = () => {
         nodeId: clickedNode,
         updatedData: updatedNode,
       });
-      alert("Node updated successfully!");
+      // alert("Node updated successfully!");
     } catch (error) {
       console.error("Error updating node:", error);
-      alert("Failed to update node.");
+      // alert("Failed to update node.");
     }
 
     // Reset dialog state
@@ -381,18 +378,17 @@ const SampleFlowchart = () => {
     setClickedNode(null);
   };
 
-
   const handleDeleteNode = async () => {
     if (!contextMenu.node) return;
-  
+
     const nodeId = contextMenu.node.id; // Get the ID of the node to delete
-  
+
     try {
       // Send a request to the backend to delete the node and its edges
       await axios.delete("/api/flowchart/admin/delete", {
         data: { userId, nodeId },
       });
-  
+
       // Remove the node and associated edges from the state
       setNodes((prevNodes) => prevNodes.filter((node) => node.id !== nodeId));
       setEdges((prevEdges) =>
@@ -400,17 +396,16 @@ const SampleFlowchart = () => {
           (edge) => edge.source !== nodeId && edge.target !== nodeId
         )
       );
-  
+
       alert("Node and associated edges deleted successfully!");
     } catch (error) {
       console.error("Error deleting node:", error);
       alert("Failed to delete node.");
     }
-  
+
     handleCloseContextMenu(); // Close the context menu
   };
-  
- 
+
   return (
     <div
       style={{ height: "90vh", width: "100%" }}
@@ -443,7 +438,7 @@ const SampleFlowchart = () => {
                       marginLeft: "5px",
                     }}
                   >
-                    <div
+                    {/* <div
                       style={{
                         width: "10px",
                         height: "10px",
@@ -455,7 +450,7 @@ const SampleFlowchart = () => {
                       onClick={(event) =>
                         handleDetailsClick(event, node, "scopeDetails")
                       }
-                    />
+                    /> */}
                     <div
                       style={{
                         width: "10px",
@@ -607,194 +602,8 @@ const SampleFlowchart = () => {
             fullWidth
             margin="normal"
           />
-          <h4>Scope Details</h4>
-          {formData.scopeDetails.map((scope, index) => (
-            <Box key={index}>
-              <TextField
-                select
-                label="Scope Type"
-                value={scope.scopeType}
-                onChange={(e) =>
-                  handleScopeInputChange(index, "scopeType", e.target.value)
-                }
-                fullWidth
-                margin="normal"
-              >
-                {Object.keys(categories).map((scope) => (
-                  <MenuItem key={scope} value={scope}>
-                    {scope}
-                  </MenuItem>
-                ))}
-              </TextField>
-              <TextField
-                select
-                label="Category"
-                name="category"
-                value={scope.category}
-                onChange={(e) =>
-                  handleScopeInputChange(index, "category", e.target.value)
-                }
-                fullWidth
-                margin="normal"
-                disabled={!scope.scopeType}
-              >
-                {categories[scope.scopeType]?.map((category) => (
-                  <MenuItem key={category} value={category}>
-                    {category}
-                  </MenuItem>
-                ))}
-              </TextField>
-              <TextField
-                select
-                label="Subcategory"
-                name="subCategory"
-                value={scope.subCategory}
-                onChange={(e) =>
-                  handleScopeInputChange(index, "subCategory", e.target.value)
-                }
-                fullWidth
-                margin="normal"
-                disabled={!scope.category}
-              >
-                {subCategories[scope.category]?.map((subCategory) => (
-                  <MenuItem key={subCategory} value={subCategory}>
-                    {subCategory}
-                  </MenuItem>
-                ))}
-              </TextField>
-              <TextField
-                select
-                label="Units"
-                name="units"
-                value={scope.units}
-                onChange={(e) =>
-                  handleScopeInputChange(index, "units", e.target.value)
-                }
-                fullWidth
-                margin="normal"
-              >
-                <MenuItem value="liters">Liters</MenuItem>
-                <MenuItem value="tons">Tons</MenuItem>
-                <MenuItem value="cubic meters">Cubic Meters</MenuItem>
-                <MenuItem value="kWh">kWh</MenuItem>
-                <MenuItem value="kWh">Kg/TJ</MenuItem>
-              </TextField>
-
-              <TextField
-                select
-                label="Emission Factor"
-                name="emissionFactor"
-                value={scope.emissionFactor}
-                onChange={(e) => {
-                  const value = e.target.value;
-                  if (
-                    value === "kg CO₂e / liter" ||
-                    value === "kg CO₂e / tonne"
-                  ) {
-                    handleScopeInputChange(
-                      index,
-                      "emissionFactor",
-                      `0${value}`
-                    ); // Default numeric value
-                  } else {
-                    handleScopeInputChange(index, "emissionFactor", value);
-                  }
-                }}
-                fullWidth
-                margin="normal"
-              >
-                <MenuItem value="DEFRA">DEFRA</MenuItem>
-                <MenuItem value="IPCC">IPCC</MenuItem>
-                <ListSubheader>Custom</ListSubheader>
-                <MenuItem value="kg CO₂e / liter">kg CO₂e / liter</MenuItem>
-                <MenuItem value="kg CO₂e / tonne">kg CO₂e / tonne</MenuItem>
-              </TextField>
-
-              {/* Conditionally render numeric input for custom emission factors */}
-              {["kg CO₂e / liter", "kg CO₂e / tonne"].some((unit) =>
-                scope.emissionFactor.includes(unit)
-              ) && (
-                <TextField
-                  label={`Enter Value (${scope.emissionFactor
-                    .replace(/^\d+/, "")
-                    .trim()})`}
-                  value={scope.emissionFactor.match(/^\d+/)?.[0] || ""}
-                  onChange={(e) => {
-                    const numericValue = e.target.value.replace(/[^\d]/g, ""); // Ensure numeric value
-                    const unit = scope.emissionFactor
-                      .replace(/^\d*/, "")
-                      .trim();
-                    handleScopeInputChange(
-                      index,
-                      "emissionFactor",
-                      `${numericValue}${unit}`
-                    );
-                  }}
-                  type="number"
-                  fullWidth
-                  margin="normal"
-                />
-              )}
-   {/* New Fields */}
-   <TextField
-                label="Fuel"
-                value={scope.fuel}
-                onChange={(e) =>
-                  handleScopeInputChange(index, "fuel", e.target.value)
-                }
-                fullWidth
-                margin="normal"
-              />
-              <TextField
-                label="Activity"
-                value={scope.activity}
-                onChange={(e) =>
-                  handleScopeInputChange(index, "activity", e.target.value)
-                }
-                fullWidth
-                margin="normal"
-              />
-              <TextField
-                label="Source"
-                value={scope.source}
-                onChange={(e) =>
-                  handleScopeInputChange(index, "source", e.target.value)
-                }
-                fullWidth
-                margin="normal"
-              />
-              <TextField
-                label="Reference"
-                value={scope.reference}
-                onChange={(e) =>
-                  handleScopeInputChange(index, "reference", e.target.value)
-                }
-                fullWidth
-                margin="normal"
-              />
-              <TextField
-                label="Scope Comments"
-                name="scopeComments"
-                value={scope.scopeComments}
-                onChange={(e) =>
-                  handleScopeInputChange(index, "scopeComments", e.target.value)
-                }
-                multiline
-                rows={3}
-                fullWidth
-                margin="normal"
-              />
-
-              <Button
-                onClick={() => handleRemoveScopeDetail(index)}
-                color="primary"
-              >
-                Remove Scope
-              </Button>
-            </Box>
-          ))}
-          <Button onClick={handleAddScopeDetail}>Add Scope</Button>
         </DialogContent>
+
         <Button
           onClick={clickedNode ? handleUpdateNode : handleAddNode}
           color="primary"

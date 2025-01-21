@@ -34,9 +34,9 @@ const EditCategoryDialog = ({ open, onClose, category, onCategoryEdited }) => {
                 // kgNF3: "",
               },
             ],
-            reference: "DEFRA",
+            reference: "",
             source:
-              "https://www.gov.uk/government/publications/greenhouse-gas-reporting-conversion-factors-2024",
+              "",
           },
         ],
       },
@@ -137,7 +137,7 @@ const EditCategoryDialog = ({ open, onClose, category, onCategoryEdited }) => {
         }
         if (!fuel.source) {
           fuel.source =
-            "https://www.gov.uk/government/publications/greenhouse-gas-reporting-conversion-factors-2024"; // Default value if missing
+            ""; // Default value if missing
         }
       });
     });
@@ -251,8 +251,7 @@ const EditCategoryDialog = ({ open, onClose, category, onCategoryEdited }) => {
                     fullWidth
                     label="Fuel Source"
                     value={
-                      fuel.source ||
-                      "https://www.gov.uk/government/publications/greenhouse-gas-reporting-conversion-factors-2024"
+                      fuel.source 
                     } // Display default value if empty
                     onChange={(e) =>
                       handleChange(

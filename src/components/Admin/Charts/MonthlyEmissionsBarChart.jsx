@@ -32,7 +32,7 @@ const MonthlyEmissionsBarChart = ({ data, companyName }) => {
         fontWeight="bold"
         sx={{  textAlign: "center" }}
       >
-        Monthly Emissions Trends
+        Monthly Trends
       </Typography>
       
       <Typography variant="body2" color="textSecondary" align="center">

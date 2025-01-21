@@ -332,14 +332,14 @@ const UpdateFuelCombustionDialog = ({
 
         {/* Assessments Section */}
         <Box>
-          <Typography variant="h6" sx={{ mb: 2 }}>
+          {/* <Typography variant="h6" sx={{ mb: 2 }}>
             Assessments
-          </Typography>
+          </Typography> */}
           {formData.assessments?.map((assessment, index) => (
             <Box key={index} sx={{ mb: 4 }}>
-              <Typography variant="subtitle1">
+              {/* <Typography variant="subtitle1">
                 Assessment {index + 1}
-              </Typography>
+              </Typography> */}
               <Box
                 sx={{
                   display: "grid",
@@ -347,7 +347,7 @@ const UpdateFuelCombustionDialog = ({
                   gap: 2,
                 }}
               >
-                <Select
+                {/* <Select
                   value={assessment.assessmentType}
                   name="assessmentType"
                   onChange={(e) => handleAssessmentChange(index, e)}
@@ -359,7 +359,7 @@ const UpdateFuelCombustionDialog = ({
                   </MenuItem>
                   <MenuItem value="AR5">AR5</MenuItem>
                   <MenuItem value="AR6">AR6</MenuItem>
-                </Select>
+                </Select> */}
                 <TextField
                   label="CO2_KgT"
                   name="CO2_KgT"
@@ -447,9 +447,9 @@ const UpdateFuelCombustionDialog = ({
               </Box>
             </Box>
           ))}
-          <Button variant="outlined" onClick={handleAddAssessment}>
+          {/* <Button variant="outlined" onClick={handleAddAssessment}>
             Add Next Assessment Type
-          </Button>
+          </Button> */}
         </Box>
       </DialogContent>
       <DialogActions>

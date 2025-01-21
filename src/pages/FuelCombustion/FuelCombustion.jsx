@@ -119,7 +119,7 @@ const FuelCombustion = () => {
         source: "",
         assessments: [
           {
-            assessmentType: "AR5",
+            assessmentType: "",
             CO2_KgT: "",
             CH4_KgT: "",
             N2O_KgT: "",
@@ -335,9 +335,9 @@ const FuelCombustion = () => {
         <Box sx={{ mb: 2 }}>
           {formData.assessments.map((assessment, index) => (
             <Box key={index} sx={{ mb: 4 }}>
-              <Typography variant="h6" sx={{ mb: 2 }}>
+              {/* <Typography variant="h6" sx={{ mb: 2 }}>
                 Assessment {index + 1}
-              </Typography>
+              </Typography> */}
               <Box
                 sx={{
                   display: "grid",
@@ -347,7 +347,7 @@ const FuelCombustion = () => {
                 }}
               >
                 {/* Dropdown for Assessment Type */}
-                <Select
+                {/* <Select
                   label="Assessment Type"
                   name="assessmentType"
                   value={assessment.assessmentType}
@@ -360,7 +360,7 @@ const FuelCombustion = () => {
                   </MenuItem>
                   <MenuItem value="AR5">AR5</MenuItem>
                   <MenuItem value="AR6">AR6</MenuItem>
-                </Select>
+                </Select> */}
                 {/* Text Fields for Assessment Values */}
                 <TextField
                   label="CO2_KgT"
@@ -454,9 +454,9 @@ const FuelCombustion = () => {
           ))}
         </Box>
 
-        <Button variant="outlined" onClick={handleAddAssessment}>
+        {/* <Button variant="outlined" onClick={handleAddAssessment}>
           Add Next Assessment Type
-        </Button>
+        </Button> */}
         <Button variant="contained" type="submit" sx={{ ml: 2 }}>
           Submit
         </Button>
@@ -467,7 +467,7 @@ const FuelCombustion = () => {
       <TableContainer component={Paper}>
         <Table>
           <TableHead>
-            <TableRow
+            {/* <TableRow
               sx={{
                 "&:not(:last-child) td, &:not(:last-child) th": { border: 0 },
                 height: "10px", // Set the height of the row
@@ -500,7 +500,7 @@ const FuelCombustion = () => {
                 </Box>
               </TableCell>
               <TableCell colSpan={22}></TableCell>
-            </TableRow>
+            </TableRow> */}
             <TableRow
               sx={{
                 "& td, & th": {
@@ -532,8 +532,8 @@ const FuelCombustion = () => {
               <TableCell>CO2e_Kgm3</TableCell>
               <TableCell>Source</TableCell>
               <TableCell>Reference</TableCell>
-              <TableCell>Assessment Type</TableCell>
-              <TableCell>Created At</TableCell>
+              {/* <TableCell>Assessment Type</TableCell> */}
+              <TableCell>Updated At</TableCell>
 
               <TableCell>Actions</TableCell>
             </TableRow>
@@ -588,7 +588,7 @@ const FuelCombustion = () => {
                 {/* <TableCell>{row.source}</TableCell> */}
                 <TableCell sx={{ minWidth: 250 }}>{row.source}</TableCell>
                 <TableCell>{row.reference}</TableCell>
-                <TableCell>{assessmentType}</TableCell>
+                {/* <TableCell>{assessmentType}</TableCell> */}
                 <TableCell>
                   {new Date(row.updatedAt).toLocaleString()}
                 </TableCell>
