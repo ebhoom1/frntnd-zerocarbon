@@ -16,6 +16,12 @@ import LeadsTable from "./components/Admin/LeadsTable";
 import ActiveUsers from "./pages/RegisteredClients/ActiveUsers";
 import FuelCombustion from "./pages/FuelCombustion/FuelCombustion";
 import CountryEmissionFactor from "./pages/CountryEmissionFactor/CountryEmissionFactor";
+import MobileCombustion from './pages/MobileCombustion/MobileCombustion';
+import IndustralProcesses from './pages/IndustryProcess/IndustrialProcesses';
+import FugitiveEmissions from './pages/FugitiveEmissions/FugitiveEmissions';
+import PurchasedGoodsServices from './pages/purchasedGoogsServices/PurchasedGoodsServices';
+import EndofLifeTreatment from './pages/EndofLifeTreatment/EndofLifeTreatment';
+import UseSoldProducts from "./pages/UseSoldProducts/UseSoldProducts";
 const App = () => {
   const user = JSON.parse(localStorage.getItem("user"));
   const token = localStorage.getItem("token");
@@ -62,12 +68,18 @@ const App = () => {
             element={<GetEmissionFactorTable />}
           />
           <Route path="/adminemissionfactor" element={<EmissionFactor />} />
-          <Route path="/gwp-table" element={<GWP />} />
-          <Route path="/fuelcombustion" element={<FuelCombustion />} />
+          {/* <Route path="/gwp-table" element={<GWP />} /> */}
+          {/* <Route path="/fuelcombustion" element={<FuelCombustion />} /> */}
           <Route
             path="/electricityemissionfactor"
             element={<CountryEmissionFactor />}
           />
+          <Route path='/mobilecombustion' element={<MobileCombustion/>} />
+          <Route path="/industrialprocesses" element={<IndustralProcesses/>} />
+          <Route path="/fugitiveemissions" element={<FugitiveEmissions/>}/>
+          <Route path="/purchasedgoods-services" element={<PurchasedGoodsServices/>}/>
+          <Route path="/endoflifetreatment" element={<EndofLifeTreatment/>}/> 
+          <Route path="/usesoldproducts" element={<UseSoldProducts/>}/> 
           <Route path="/registeredusers" element={<LeadsTable />} />
           <Route path="/activeusers" element={<ActiveUsers />} />
         </Route>

@@ -1,0 +1,64 @@
+ [
+        {
+            "appliedForESGAwards": "Has the property previously applied for any ESG awards or certifications?"
+          },
+          {
+            "existingPolicies": "Are there any existing policies related to environmental, social, or governance practices (e.g., waste, energy, DEI)?"
+          },
+          {
+            "responsibleProcurement": "Are procurement practices aligned with responsible sourcing principles (e.g., certified products, local sourcing)?"
+          },
+          {
+            "certifiedSuppliers": "Are suppliers certified under recognized standards (e.g., FSC for sourcing)?"
+          },
+          {
+            "automatedMonitoringSystems": "Are tools like automated monitoring systems used for real-time data collection?"
+          },
+          {
+            "dataCollectionVerification": "Are systems in place to collect, verify, and store ESG-related data?"
+          },
+          {
+            "periodicDataReview": "Is data reviewed periodically to assess progress?"
+          },
+          {
+            "kpiTracking": "Are key performance indicators (KPIs) identified for tracking ESG progress?"
+          },
+          {
+            "stakeholderEngagement": "Are key stakeholders (e.g., employees, guests, suppliers) identified for ESG engagement?"
+          },
+          {
+            "validCertifications": "Are environmental or social certifications current and valid?"
+          },
+          {
+            "alignedWithSDGs": "Are sustainability efforts aligned with the UN Sustainable Development Goals (SDGs)?"
+          },
+          {
+            "esgReportingPlan": "Is there a plan to produce ESG reports aligned with industry standards (e.g., GRI, SASB, BRSR)?"
+          },
+          {
+            "supportingDocumentsCompiled": "Are supporting documents (e.g., policies, case studies, data records) compiled for award submission?"
+          },
+          {
+            "ecoFriendlyEventPractices": "Does the hotel encourage eco-friendly event practices?"
+          },
+          {
+            "energyEfficientEventSpaces": "Are energy-efficient lighting and HVAC systems used in event spaces?"
+          },
+          {
+            "eventCarbonFootprintMeasurement": "Is there a system to measure the carbon footprint of hosted events?"
+          },
+          {
+            "wasteSegregationForEvents": "Are waste bins segregated and clearly labeled for event attendees?"
+          },
+          {
+            "sustainabilityReportsForEvents": "Are sustainability reports or summaries offered to event organizers post-event (e.g., energy saved, waste diverted)?"
+          },
+          {
+            "esgLeadershipRecognition": "For awards like Hotelier India ESG Excellence Awards: Is there a clear demonstration of leadership in integrating ESG in operations?"
+          },
+          {
+            "greenHotelierMetricsDocumented": "For Green Hotelier Awards: Are environmental performance metrics (e.g., carbon footprint, energy intensity) documented?"
+          }
+    ]
+  
+  
