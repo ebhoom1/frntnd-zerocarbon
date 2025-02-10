@@ -9,6 +9,7 @@ const AdminDashboard = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const [alert, setAlert] = useState(location.state || null);
+  const [mobileOpen, setMobileOpen] = useState(false);
 
   useEffect(() => {
     // Clear location state after rendering the alert
@@ -18,11 +19,17 @@ const AdminDashboard = () => {
       return () => clearTimeout(timer); // Cleanup timer on unmount
     }
   }, [alert, location.pathname, navigate]);
+
+  // Function to toggle sidebar visibility
+  const toggleSidebar = () => {
+    setMobileOpen((prev) => !prev);
+  };
+
   return (
     <Box sx={{ height: "100vh", display: "flex", backgroundColor: "#F5F5F5" }}>
       {alert && <Alert message={alert.message} severity={alert.type} />}
-      <Sidebar />
-      <ContentArea />
+      <Sidebar mobileOpen={mobileOpen} setMobileOpen={setMobileOpen} toggleSidebar={toggleSidebar}/>
+      <ContentArea toggleSidebar={toggleSidebar}/>
     </Box>
   );
 };

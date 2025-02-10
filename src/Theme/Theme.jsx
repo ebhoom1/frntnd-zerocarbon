@@ -1,31 +1,4 @@
-// // theme.js
-// import { createTheme } from '@mui/material/styles';
 
-// const theme = createTheme({
-//   palette: {
-//     primary: {
-//       main: '#4CAF50', // Light green
-//       contrastText: '#FFFFFF', // White text for buttons, etc.
-//     },
-//     secondary: {
-//       main: '#FFFFFF', // White for secondary components
-//       contrastText: '#4CAF50', // Green text for secondary buttons, etc.
-//     },
-//     background: {
-//       default: '#F0FFF0', // A very light green background
-//       paper: '#FFFFFF', // White for card-like components
-//     },
-//     text: {
-//       primary: '#4CAF50', // Green text for primary content
-//       secondary: '#8BC34A', // A lighter green for secondary content
-//     },
-//   },
-//   typography: {
-//     fontFamily: `'Roboto', 'Arial', sans-serif`, // Optional font choice
-//   },
-// });
-
-// export default theme;
 
 
 

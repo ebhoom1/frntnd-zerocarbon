@@ -1,0 +1,20 @@
+svg path[fill="#2a56c6"] {
+    fill: #2E7D32 !important; /* Dark green */
+  }
+
+  svg text[fill="#5e97f6"] {
+    fill: #1B5E20 !important; /* Dark green */
+  }
+
+  /* Target all Gantt chart bars */
+svg rect[fill="#5e97f6"] {
+    fill: #56b65a !important; 
+  }
+
+  svg path[fill="#2a56c6"]:hover {
+    fill: #2E7D32 !important; /* Dark green */
+  }
+  
+  svg rect[fill="#5e97f6"]:hover {
+    fill: #56b65a !important; 
+  }

@@ -1,0 +1,338 @@
+{
+  "Scope 1: Direct Emissions": {
+    "Mobile Combustion": [
+      { "id": "Q1", "question": "Number of company-owned vehicles?", "type": "number" },
+      { "id": "Q2", "question": "Type of vehicles? (Passenger cars, trucks, buses, motorcycles, etc.)", "type": "text" },
+      { "id": "Q3", "question": "Fuel type per vehicle? (Petrol, Diesel, LPG, CNG, Electric)", "type": "text" },
+      { "id": "Q4", "question": "Fuel consumption per vehicle? (Liters/gallons or kWh per year)", "type": "number" },
+      { "id": "Q5", "question": "Distance traveled per vehicle annually? (km/miles)", "type": "number" }
+    ],
+    "Stationary Combustion": [
+      { "id": "Q6", "question": "Does your company use fossil fuels for heating or electricity generation?", "type": "boolean" },
+      { "id": "Q7", "question": "Type of fuel used? (Coal, Natural Gas, Diesel, LPG, Biomass, etc.)", "type": "text" },
+      { "id": "Q8", "question": "Annual fuel consumption? (Liters/tons/cubic meters)", "type": "number" }
+    ],
+    "Industrial Processes": [
+      { "id": "Q9", "question": "Does your company have industrial processes that emit greenhouse gases?", "type": "boolean" },
+      { "id": "Q10", "question": "Type of industrial process? (Cement, Steel, Lime, Aluminum, Glass, Nitric Acid, etc.)", "type": "text" },
+      { "id": "Q11", "question": "Annual production quantity? (Tons, units, etc.)", "type": "number" },
+      { "id": "Q12", "question": "Associated emissions? (CO₂, CH₄, N₂O, PFCs)", "type": "text" }
+    ],
+    "Fugitive Emissions": [
+      { "id": "Q13", "question": "Does your company use refrigerants, air conditioning, or fire suppression systems?", "type": "boolean" },
+      { "id": "Q14", "question": "Type and quantity of refrigerants used? (HFC-134a, SF₆, etc.)", "type": "text" },
+      { "id": "Q15", "question": "Any fugitive emissions from gas pipelines or equipment?", "type": "boolean" }
+    ]
+  },
+  "Scope 2: Indirect Emissions": {
+    "Purchased Electricity": [
+      { "id": "Q16", "question": "Total annual electricity consumption? (kWh)", "type": "number" },
+      { "id": "Q17", "question": "Grid electricity or renewable sources?", "type": "text" },
+      { "id": "Q18", "question": "If grid electricity, emission factor used? (kg CO₂e/kWh)", "type": "number" },
+      { "id": "Q19", "question": "If renewable, specify source? (Solar, Wind, Hydropower)", "type": "text" }
+    ],
+    "Purchased Steam, Heat, or Cooling": [
+      { "id": "Q20", "question": "Total purchased steam/heat consumption? (GJ or MWh)", "type": "number" },
+      { "id": "Q21", "question": "Emission factor used? (kg CO₂e/GJ or MWh)", "type": "number" },
+      { "id": "Q22", "question": "Transmission and distribution losses considered?", "type": "boolean" }
+    ]
+  },
+  "Scope 3: Value Chain Emissions": {
+    "Purchased Goods & Services": [
+      { "id": "Q23", "question": "What are the major materials or goods purchased annually?", "type": "text" },
+      { "id": "Q24", "question": "Total quantity purchased? (Tons or units)", "type": "number" },
+      { "id": "Q25", "question": "Emission factors used for purchased goods? (kg CO₂e/unit)", "type": "number" }
+    ],
+    "Fuel & Energy-Related Emissions (Upstream)": [
+      { "id": "Q26", "question": "Any upstream fuel emissions considered? (Fuel extraction, refining, transportation)", "type": "boolean" },
+      { "id": "Q27", "question": "Transmission losses for purchased electricity accounted for?", "type": "boolean" }
+    ],
+    "Transportation & Distribution": [
+      { "id": "Q28", "question": "Does your company transport raw materials, products, or employees?", "type": "boolean" },
+      { "id": "Q29", "question": "Total distance covered by company transport annually? (km/miles)", "type": "number" },
+      { "id": "Q30", "question": "Transport mode? (Truck, Rail, Ship, Air)", "type": "text" },
+      { "id": "Q31", "question": "Fuel type and consumption per transport mode?", "type": "text" },
+      { "id": "Q32", "question": "Emissions from third-party logistics?", "type": "boolean" }
+    ],
+    "Waste Generation": [
+      { "id": "Q33", "question": "Annual waste generated? (Tons)", "type": "number" },
+      { "id": "Q34", "question": "Breakdown by disposal method? (Landfill, Incineration, Recycling, Composting)", "type": "text" },
+      { "id": "Q35", "question": "Emission factors for waste disposal used?", "type": "text" }
+    ],
+    "Business Travel": [
+      { "id": "Q36", "question": "How many business trips occurred in the reporting year?", "type": "number" },
+      { "id": "Q37", "question": "Transport mode used for business travel? (Air, Train, Car, Bus)", "type": "text" },
+      { "id": "Q38", "question": "Total distance traveled by employees for business purposes? (km/miles)", "type": "number" },
+      { "id": "Q39", "question": "Accommodation nights stayed?", "type": "number" }
+    ],
+    "Employee Commuting": [
+      { "id": "Q40", "question": "Number of employees commuting daily?", "type": "number" },
+      { "id": "Q41", "question": "Primary transport modes used by employees?", "type": "text" },
+      { "id": "Q42", "question": "Average commuting distance per employee? (km/miles per day)", "type": "number" },
+      { "id": "Q43", "question": "Fuel consumption or emission factor used per commute mode?", "type": "text" }
+    ],
+    "Use of Sold Products": [
+      { "id": "Q44", "question": "Do your products require energy consumption in their lifetime?", "type": "boolean" },
+      { "id": "Q45", "question": "Estimated energy use per product sold? (kWh/year)", "type": "number" },
+      { "id": "Q46", "question": "Expected lifetime of the product? (Years)", "type": "number" }
+    ],
+    "End-of-Life Treatment of Sold Products": [
+      { "id": "Q47", "question": "How are your products disposed of at the end of their life? (Landfill, Recycling, Incineration)", "type": "text" },
+      { "id": "Q48", "question": "Estimated quantity of products disposed annually? (Tons or units)", "type": "number" },
+      { "id": "Q49", "question": "Emission factors used for end-of-life treatment?", "type": "text" }
+    ],
+    "Leased Assets, Franchises, and Investments": [
+      { "id": "Q50", "question": "Do you lease assets or facilities?", "type": "boolean" },
+      { "id": "Q51", "question": "Do you have franchises that contribute to emissions?", "type": "boolean" },
+      { "id": "Q52", "question": "Do you invest in projects with carbon emissions?", "type": "boolean" }
+    ]
+  },
+  "Additional Data for Carbon Accounting": {
+    "Water Use & Wastewater Treatment": [
+      { "id": "Q53", "question": "Total water consumption annually? (Liters/m³)", "type": "number" },
+      { "id": "Q54", "question": "How is wastewater treated? (Aerobic, Anaerobic, Untreated)", "type": "text" },
+      { "id": "Q55", "question": "What is the BOD and COD of wastewater?", "type": "text" },
+      { "id": "Q56", "question": "Methane Correction Factor (MCF) for wastewater treatment used?", "type": "text" },
+      { "id": "Q57", "question": "Nitrogen content in wastewater? (mg/L)", "type": "number" }
+    ],
+    "Carbon Offset & Renewable Energy Purchases": [
+      { "id": "Q58", "question": "Do you purchase carbon credits or offsets?", "type": "boolean" },
+      { "id": "Q59", "question": "Amount of CO₂ offset annually? (Tons)", "type": "number" },
+      { "id": "Q60", "question": "Do you have on-site renewable energy installations?", "type": "boolean" },
+      { "id": "Q61", "question": "Capacity of installed renewable energy? (MW/kWh)", "type": "number" }
+    ]
+  },
+  "Social": {
+    "Workforce Composition & Diversity(Management & HR Data)": [
+      
+        { "id": "Q1", "question": "Total number of employees?", "type": "number" },
+        { "id": "Q2", "question": "Breakdown of employees by gender?", "type": "text" },
+        { "id": "Q3", "question": "Breakdown of employees by employment type?", "type": "text" },
+        { "id": "Q4", "question": "Diversity ratio in leadership positions?", "type": "number" },
+        { "id": "Q5", "question": "Does the company have a diversity & inclusion policy?", "type": "boolean" },
+        { "id": "Q6", "question": "Percentage of employees from minority or underrepresented communities?", "type": "number" },
+        { "id": "Q7", "question": "Does the company have equal opportunity hiring practices?", "type": "boolean" },
+        { "id": "Q8", "question": "Is there an anti-discrimination and harassment policy?", "type": "boolean" },
+        { "id": "Q9", "question": "Have there been any reported cases of workplace discrimination or harassment in the last year?", "type": "boolean" }
+      ],
+    
+    "Employee Well-being & Benefits(Employee Survey via GoodFoot)": [
+      
+        { "id": "Q10", "question": "How satisfied are you with your work-life balance?", "type": "number" },
+        { "id": "Q11", "question": "Do you receive paid leave, maternity/paternity leave, and sick leave?", "type": "boolean" },
+        { "id": "Q12", "question": "Does the company offer health insurance benefits?", "type": "boolean" },
+        { "id": "Q13", "question": "Do you feel that your workplace provides mental health support?", "type": "boolean" },
+        { "id": "Q14", "question": "Does your company offer employee assistance programs (EAPs)?", "type": "boolean" },
+        { "id": "Q15", "question": "Does your workplace support flexible work arrangements (remote/hybrid)?", "type": "boolean" },
+        { "id": "Q16", "question": "Does your company have safety policies and training in place?", "type": "boolean" }
+      ],
+    
+    "Training & Career Development(HR & Employee Survey via GoodFoot)": [
+     
+        { "id": "Q17", "question": "How many hours of training does each employee receive annually?", "type": "number" },
+        { "id": "Q18", "question": "Does the company have a structured career development plan?", "type": "boolean" },
+        { "id": "Q19", "question": "Does the company offer mentorship programs?", "type": "boolean" },
+        { "id": "Q20", "question": "How often do employees receive performance evaluations?", "type": "text" },
+        { "id": "Q21", "question": "Do employees receive support for further education/certifications?", "type": "boolean" }
+      ],
+
+   
+      "Employee Health & Safety (Management & Compliance Data)": [
+        { "id": "Q22", "question": "Has the company reported any workplace injuries or fatalities in the last year?", "type": "boolean" },
+        { "id": "Q23", "question": "Does the company conduct regular health and safety audits?", "type": "boolean" },
+        { "id": "Q24", "question": "Are there first-aid facilities available on-site?", "type": "boolean" },
+        { "id": "Q25", "question": "Does the company have a disaster preparedness plan?", "type": "boolean" },
+        { "id": "Q26", "question": "What is the frequency of fire and emergency drills?", "type": "text" },
+        { "id": "Q27", "question": "Does the company provide Personal Protective Equipment (PPE) to employees?", "type": "boolean" }
+      ],
+
+  
+      "Human Rights & Fair Wages (Management & HR Data)": [
+        { "id": "Q28", "question": "Does the company ensure no child labor or forced labor in operations?", "type": "boolean" },
+        { "id": "Q29", "question": "What is the minimum wage for employees?", "type": "number" },
+        { "id": "Q30", "question": "Does the company ensure gender pay equity?", "type": "boolean" },
+        { "id": "Q31", "question": "Are third-party suppliers audited for ethical labor practices?", "type": "boolean" },
+        { "id": "Q32", "question": "Does the company support freedom of association and unionization?", "type": "boolean" }
+      ],
+    
+
+      "Community Development & CSR (Management Data)": [
+        { "id": "Q33", "question": "Does the company have a Corporate Social Responsibility (CSR) policy?", "type": "boolean" },
+        { "id": "Q34", "question": "How much did the company spend on CSR initiatives in the last financial year?", "type": "number" },
+        { "id": "Q35", "question": "What are the key focus areas of CSR?", "type": "text" },
+        { "id": "Q36", "question": "How many people were directly impacted by CSR programs?", "type": "number" }
+      ],
+    
+  
+      "Ethical Supply Chain & Procurement (Management & Vendor Data)": [
+        { "id": "Q37", "question": "Does the company have a sustainable procurement policy?", "type": "boolean" },
+        { "id": "Q38", "question": "What percentage of suppliers comply with ethical labor and environmental standards?", "type": "number" },
+        { "id": "Q39", "question": "Are suppliers audited for human rights compliance?", "type": "boolean" },
+        { "id": "Q40", "question": "Are procurement decisions influenced by social and environmental considerations?", "type": "boolean" }
+      ],
+ 
+   
+      "Customer Responsibility & Data Privacy (Management & IT Data)": [
+        { "id": "Q41", "question": "Does the company have a data protection and privacy policy?", "type": "boolean" },
+        { "id": "Q42", "question": "Has there been any data breach incident in the last year?", "type": "boolean" },
+        { "id": "Q43", "question": "Does the company provide clear product labeling and ethical advertising?", "type": "boolean" },
+        { "id": "Q44", "question": "Does the company have customer grievance redressal mechanisms?", "type": "boolean" },
+        { "id": "Q45", "question": "What is the company’s Net Promoter Score (NPS) for customer satisfaction?", "type": "number" }
+      ],
+
+   
+      "Employee Engagement & Workplace Culture (Employee Survey via GoodFoot)": [
+        { "id": "Q46", "question": "Do you feel valued at work?", "type": "boolean" },
+        { "id": "Q47", "question": "Does your company encourage employee volunteering?", "type": "boolean" },
+        { "id": "Q48", "question": "How often does the company conduct employee engagement activities?", "type": "text" },
+        { "id": "Q49", "question": "Would you recommend your company as a great place to work?", "type": "boolean" }
+      ],
+
+
+      "ESG & Climate Awareness (Employee Survey via GoodFoot & Management)": [
+        { "id": "Q50", "question": "Does the company provide training on sustainability and ESG goals?", "type": "boolean" },
+        { "id": "Q51", "question": "Are employees aware of their role in reducing the company’s carbon footprint?", "type": "boolean" },
+        { "id": "Q52", "question": "Does the company encourage green commuting (carpooling, EVs, biking)?", "type": "boolean" }
+      ]
+    },
+    "Governance": {
+      "Board Structure & Leadership": [
+        { "id": "Q1", "question": "Total number of board members?", "type": "number" },
+        { "id": "Q2", "question": "Number of Independent Directors?", "type": "number" },
+        { "id": "Q3", "question": "Number of Women Directors on the board?", "type": "number" },
+        { "id": "Q4", "question": "Average age of board members?", "type": "number" },
+        { "id": "Q5", "question": "Does the board include members from diverse backgrounds (industry expertise, gender, ethnicity, etc.)?", "type": "boolean" },
+        { "id": "Q6", "question": "Does the company have a Board Diversity Policy?", "type": "boolean" },
+        { "id": "Q7", "question": "How often does the board meet annually?", "type": "number" },
+        { "id": "Q8", "question": "Is the board remuneration linked to ESG performance?", "type": "boolean" }
+      ],
+      "Board Committees & Responsibilities": [
+        { "id": "Q9", "question": "Does the company have the following mandatory committees? (Audit, Nomination & Remuneration, CSR, Stakeholder Relationship, Risk Management)", "type": "boolean" },
+        { "id": "Q10", "question": "Does the company have a separate ESG Committee?", "type": "boolean" },
+        { "id": "Q11", "question": "How frequently do these committees meet?", "type": "text" },
+        { "id": "Q12", "question": "Are the meeting minutes publicly disclosed?", "type": "boolean" }
+      ],
+      "Business Ethics & Anti-Corruption": [
+        { "id": "Q13", "question": "Does the company have a Code of Conduct for employees and directors?", "type": "boolean" },
+        { "id": "Q14", "question": "Has the company adopted an Anti-Bribery and Anti-Corruption Policy?", "type": "boolean" },
+        { "id": "Q15", "question": "Has the company conducted any anti-corruption training in the last year?", "type": "boolean" },
+        { "id": "Q16", "question": "Have there been any reported cases of bribery, fraud, or corruption?", "type": "boolean" },
+        { "id": "Q17", "question": "What percentage of employees have signed the Code of Conduct?", "type": "number" },
+        { "id": "Q18", "question": "Are there whistleblower mechanisms in place?", "type": "boolean" },
+        { "id": "Q19", "question": "How many whistleblower complaints were received in the last year?", "type": "number" }
+      ],
+      "Risk Management & Compliance": [
+        { "id": "Q20", "question": "Does the company have a formal Enterprise Risk Management (ERM) framework?", "type": "boolean" },
+        { "id": "Q21", "question": "Does the company conduct regular risk assessments?", "type": "boolean" },
+        { "id": "Q22", "question": "What are the top 5 material risks identified by the company?", "type": "text" },
+        { "id": "Q23", "question": "Are climate-related risks integrated into risk management?", "type": "boolean" },
+        { "id": "Q24", "question": "Does the company have a Business Continuity Plan (BCP)?", "type": "boolean" },
+        { "id": "Q25", "question": "Has the company faced any regulatory non-compliance issues in the last 3 years?", "type": "boolean" }
+      ],
+      "Data Protection & Cybersecurity": [
+        { "id": "Q26", "question": "Does the company have a formal Data Privacy Policy?", "type": "boolean" },
+        { "id": "Q27", "question": "Has the company implemented GDPR or India’s Digital Personal Data Protection Act (DPDPA)?", "type": "boolean" },
+        { "id": "Q28", "question": "Does the company conduct cybersecurity audits?", "type": "boolean" },
+        { "id": "Q29", "question": "Has the company experienced any data breaches in the past 3 years?", "type": "boolean" },
+        { "id": "Q30", "question": "How frequently are employees trained on data protection?", "type": "text" }
+      ],
+      "Corporate Social Responsibility (CSR) Governance": [
+        { "id": "Q31", "question": "Has the company allocated 2% of its net profits to CSR as per the Companies Act 2013?", "type": "boolean" },
+        { "id": "Q32", "question": "What are the key focus areas of CSR spending?", "type": "text" },
+        { "id": "Q33", "question": "How many CSR projects were completed in the last year?", "type": "number" },
+        { "id": "Q34", "question": "Does the company disclose CSR impact metrics?", "type": "boolean" },
+        { "id": "Q35", "question": "Are CSR reports externally audited?", "type": "boolean" }
+      ],
+      "Stakeholder Engagement & Transparency": [
+        { "id": "Q36", "question": "Does the company regularly engage with stakeholders (employees, customers, investors, suppliers, regulators, communities)?", "type": "boolean" },
+        { "id": "Q37", "question": "What are the key channels for stakeholder communication? (AGM, ESG Reports, Investor Calls, Website Disclosures, Surveys & Feedback)", "type": "text" },
+        { "id": "Q38", "question": "Does the company disclose its political contributions?", "type": "boolean" },
+        { "id": "Q39", "question": "Does the company conduct materiality assessments for sustainability reporting?", "type": "boolean" }
+      ],
+      "Tax Transparency & Financial Integrity": [
+        { "id": "Q40", "question": "Does the company disclose its tax payments by country?", "type": "boolean" },
+        { "id": "Q41", "question": "Has the company faced any tax disputes in the last 5 years?", "type": "boolean" },
+        { "id": "Q42", "question": "Does the company engage in aggressive tax planning or tax avoidance schemes?", "type": "boolean" },
+        { "id": "Q43", "question": "Does the company provide Country-by-Country Reporting (CbCR)?", "type": "boolean" }
+      ],
+      "ESG Reporting & Assurance": [
+        { "id": "Q44", "question": "Does the company publish an annual ESG or Sustainability Report?", "type": "boolean" },
+        { "id": "Q45", "question": "Is the ESG report externally assured?", "type": "boolean" },
+        { "id": "Q46", "question": "What ESG reporting frameworks does the company follow? (GRI, SASB, TCFD, IR, Others)", "type": "text" },
+        { "id": "Q47", "question": "Does the company disclose its Scope 1, 2, and 3 emissions?", "type": "boolean" }
+      ],
+      "Governance of Sustainable Development Goals (SDGs)": [
+        { "id": "Q48", "question": "Does the company align its business strategy with United Nations Sustainable Development Goals (SDGs)?", "type": "boolean" },
+        { "id": "Q49", "question": "Which SDGs are actively tracked by the company?", "type": "text" },
+        { "id": "Q50", "question": "Are SDG commitments reflected in executive KPIs and incentives?", "type": "boolean" }
+      ]
+    },
+    "Assets": {
+      "Biological Carbon Sinks": [
+        { "id": "Q1", "question": "What is the name or unique identifier of the project?", "type": "text" },
+        { "id": "Q2", "question": "What is the project location (country, region, GPS coordinates)?", "type": "text" },
+        { "id": "Q3", "question": "What is the total area (in hectares or acres) allocated for the project?", "type": "number" },
+        { "id": "Q4", "question": "Is the project focused on afforestation (new tree planting) or reforestation (restoring existing forests)?", "type": "text" },
+        { "id": "Q5", "question": "Which tree species or mix of species are being planted?", "type": "text" },
+        { "id": "Q6", "question": "What is the planting density (trees per hectare/acre)?", "type": "number" },
+        { "id": "Q7", "question": "What is the estimated annual carbon absorption (in tons CO₂/year)?", "type": "number" },
+        { "id": "Q8", "question": "What are the underlying assumptions (growth rate, survival rate, etc.) used in the carbon calculation?", "type": "text" },
+        { "id": "Q9", "question": "What is the project start date and expected time to maturity or full carbon sequestration potential?", "type": "text" },
+        { "id": "Q10", "question": "Is the project certified by any recognized carbon standard (e.g., Verified Carbon Standard, Gold Standard)?", "type": "boolean" }
+      ],
+      "Agricultural & Soil Carbon Sequestration Initiatives": [
+        { "id": "Q11", "question": "Which agricultural practices are being implemented (e.g., no-till farming, cover cropping, agroforestry, biochar application)?", "type": "text" },
+        { "id": "Q12", "question": "What is the total area (hectares/acres) under these practices?", "type": "number" },
+        { "id": "Q13", "question": "What are the baseline soil carbon levels, and what are the targeted increases over time?", "type": "text" },
+        { "id": "Q14", "question": "What monitoring methods or technologies are used to measure changes in soil carbon content?", "type": "text" },
+        { "id": "Q15", "question": "What is the estimated annual increase in soil carbon sequestration (tons CO₂/year)?", "type": "number" }
+      ],
+      "Blue Carbon Assets": [
+        { "id": "Q16", "question": "What type of blue carbon asset is being managed (e.g., mangroves, salt marshes, seagrass beds)?", "type": "text" },
+        { "id": "Q17", "question": "What is the geographic location and total area (hectares/acres) of the ecosystem?", "type": "text" },
+        { "id": "Q18", "question": "Is the asset under a restoration, conservation, or management program?", "type": "boolean" },
+        { "id": "Q19", "question": "What specific actions are being taken (e.g., replanting, hydrological restoration, invasive species control)?", "type": "text" },
+        { "id": "Q20", "question": "What is the estimated carbon absorption rate (tons CO₂/year)?", "type": "number" }
+      ],
+      "Technological Carbon Capture Assets": [
+        { "id": "Q21", "question": "What is the technology type or model of the Direct Air Capture (DAC) system?", "type": "text" },
+        { "id": "Q22", "question": "Who is the manufacturer or technology provider?", "type": "text" },
+        { "id": "Q23", "question": "What is the current CO₂ capture capacity (tons CO₂/year)?", "type": "number" },
+        { "id": "Q24", "question": "What energy source(s) does the system use (renewable, grid, hybrid)?", "type": "text" },
+        { "id": "Q25", "question": "What are the key performance indicators and monitoring procedures?", "type": "text" },
+        { "id": "Q26", "question": "What type of Carbon Capture and Storage (CCS) / Carbon Capture, Utilization, and Storage (CCUS) technology is implemented?", "type": "text" },
+        { "id": "Q27", "question": "What is the source of CO₂ being captured (industrial point source, power plant, etc.)?", "type": "text" },
+        { "id": "Q28", "question": "What are the storage or utilization plans for the captured CO₂?", "type": "text" },
+        { "id": "Q29", "question": "Is the project audited or certified by any standards?", "type": "boolean" }
+      ],
+      "Carbon Credit Portfolios & Offsets": [
+        { "id": "Q30", "question": "What type(s) of carbon credits or offsets does the company hold (e.g., forestry, renewable energy, avoided deforestation)?", "type": "text" },
+        { "id": "Q31", "question": "What is the total volume of carbon credits (in tons CO₂ equivalent)?", "type": "number" },
+        { "id": "Q32", "question": "What projects or initiatives are the credits associated with?", "type": "text" },
+        { "id": "Q33", "question": "Which certification bodies or standards verify these credits?", "type": "text" },
+        { "id": "Q34", "question": "What is the validity period or expiration date of these credits?", "type": "text" },
+        { "id": "Q35", "question": "How are these credits integrated into the company’s overall carbon accounting?", "type": "text" }
+      ],
+      "Emerging Carbon Mineralization and Other Innovative Assets": [
+        { "id": "Q36", "question": "What type of carbon mineralization or innovative CO₂ absorption technology is being used?", "type": "text" },
+        { "id": "Q37", "question": "What is the underlying mechanism for CO₂ conversion or storage?", "type": "text" },
+        { "id": "Q38", "question": "What is the estimated CO₂ capture or sequestration capacity (tons CO₂/year)?", "type": "number" },
+        { "id": "Q39", "question": "What are the energy/resource requirements and associated efficiencies?", "type": "text" },
+        { "id": "Q40", "question": "What methods are used to monitor performance and ensure permanence of carbon storage?", "type": "text" },
+        { "id": "Q41", "question": "Are there any certifications, partnerships, or academic validations supporting the technology?", "type": "boolean" }
+      ],
+      "Additional General Questions (Applicable Across Asset Types)": [
+        { "id": "Q1", "question": "What is the baseline measurement for carbon absorption or sequestration?", "type": "text" },
+        { "id": "Q2", "question": "How frequently is performance data collected and verified (internally or by third parties)?", "type": "text" },
+        { "id": "Q3", "question": "What are the key risks associated with the asset (e.g., climate variability, technological obsolescence)?", "type": "text" },
+        { "id": "Q4", "question": "What contingency or risk mitigation measures are in place?", "type": "text" },
+        { "id": "Q5", "question": "What is the capital investment for the asset?", "type": "number" },
+        { "id": "Q6", "question": "What are the operational costs and expected financial returns (if any) related to carbon absorption?", "type": "text" },
+        { "id": "Q7", "question": "How is the asset’s performance reported (e.g., annual sustainability report, ESG dashboard)?", "type": "text" },
+        { "id": "Q8", "question": "Who are the stakeholders or partners involved in the project?", "type": "text" }
+      ]
+      
+    }
+  
+
+}

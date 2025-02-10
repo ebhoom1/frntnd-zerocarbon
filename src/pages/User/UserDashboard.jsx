@@ -9,6 +9,7 @@ import { Box } from "@mui/material";
 const UserDashboard = () => {
   const navigate = useNavigate();
   const location = useLocation();
+  const [mobileOpen, setMobileOpen] = useState(false);
   const [alert, setAlert] = useState(location.state || null);
 
   useEffect(() => {
@@ -19,11 +20,16 @@ const UserDashboard = () => {
       return () => clearTimeout(timer); // Cleanup timer on unmount
     }
   }, [alert, location.pathname, navigate]);
+
+   // Function to toggle sidebar visibility
+   const toggleSidebar = () => {
+    setMobileOpen((prev) => !prev);
+  };
   return (
     <Box sx={{ height: "100vh", display: "flex", backgroundColor: "#F5F5F5" }}>
       {alert && <Alert message={alert.message} severity={alert.type} />}
-      <Sidebar />
-      <ContentArea />
+      <Sidebar mobileOpen={mobileOpen} setMobileOpen={setMobileOpen} toggleSidebar={toggleSidebar}/>
+      <ContentArea toggleSidebar={toggleSidebar}/>
     </Box>
   );
 };

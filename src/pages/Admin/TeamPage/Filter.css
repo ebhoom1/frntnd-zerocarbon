@@ -1,0 +1,14 @@
+
+.slick-prev::before,
+.slick-next::before {
+  color: #66CC66 !important; /* Ensure color is visible */
+  font-size: 20px !important; /* Ensure they are appropriately sized */
+  opacity: 1 !important; /* Make sure they are fully visible */
+}
+
+.slick-next.slick-disabled,
+.slick-prev.slick-disabled {
+  color: gray !important; /* Change arrow color */
+  pointer-events: none; /* Prevent click events */
+  opacity: 0.5; /* Optional: Reduce opacity */
+}

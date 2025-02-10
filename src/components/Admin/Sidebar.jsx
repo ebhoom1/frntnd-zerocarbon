@@ -1,234 +1,3 @@
-// import React from "react";
-// import { useSelector } from "react-redux";
-// import { useDispatch } from "react-redux";
-// import { useNavigate } from "react-router-dom";
-// import DashboardIcon from "@mui/icons-material/Dashboard";
-// import PersonIcon from "@mui/icons-material/Person";
-// import SettingsIcon from "@mui/icons-material/Settings";
-// import ExitToAppIcon from "@mui/icons-material/ExitToApp";
-// import FormatAlignCenterIcon from "@mui/icons-material/FormatAlignCenter";
-// import MultilineChartIcon from "@mui/icons-material/MultilineChart";
-// import SummarizeIcon from '@mui/icons-material/Summarize';
-// import FeedbackIcon from "@mui/icons-material/Feedback";
-// import BarChartIcon from "@mui/icons-material/BarChart";
-// import SupportIcon from "@mui/icons-material/Support";
-// import TableViewIcon from '@mui/icons-material/TableView';
-// import GroupIcon from '@mui/icons-material/Group';
-// import Groups2Icon from '@mui/icons-material/Groups2';
-// import NotificationsIcon from '@mui/icons-material/Notifications';
-// import { setSelectedItem } from "../../redux/features/sidebar/SidebarSlice";
-// import { logout } from "../../redux/features/auth/authSlice";
-// import {
-//   ListItemIcon,
-//   Box,
-//   List,
-//   ListItem,
-//   ListItemButton,
-//   ListItemText,
-//   Divider,
-//   Typography,
-//   Button,
-// } from "@mui/material";
-// import logo from "../../assets/images/logo1.svg";
-
-// const Sidebar = () => {
-//   const userType = useSelector((state) => state.auth.userType);
-//   console.log("userType:", userType);
-//   const dispatch = useDispatch();
-//   const navigate = useNavigate();
-
-//   const sidebarItems =
-//     userType === "admin" || userType === "superAdmin"
-//       ? [
-//           { id: "dashboard", label: "Dashboard", icon: <DashboardIcon /> },
-//           { id: "leads", label: "Clients", icon: <GroupIcon /> },
-//           { id: "submissions", label: "Submissions", icon: <GroupIcon /> },
-//           {
-//             id: "hierarchychart",
-//             label: "Boundaries and Scopes",
-//             icon: <MultilineChartIcon />,
-//           },
-//           {
-//             id: "emissionfactormanagement",
-//             label: "Emission Factors",
-//             icon: <TableViewIcon />,
-//           },
-//           { id: "settings", label: "Settings", icon: <SettingsIcon /> },
-//           { id: "alerts", label: "Alerts", icon: <FeedbackIcon /> },
-//           { id: "reports", label: "Reports", icon: <SummarizeIcon/> },
-//         ]
-//       : [
-//           { id: "dashboard", label: "Dashboard", icon: <DashboardIcon /> },
-//           {
-//             id: "hierarchychartuser",
-//             label: "Boundaries and Scopes",
-//             icon: <MultilineChartIcon />,
-//           },
-//           { id: "form", label: "Data Submissions", icon: <FormatAlignCenterIcon /> },
-//           {
-//             id: "emissionfactor",
-//             label: "Emission Sources",
-//             icon: <TableViewIcon />,
-//             path:"/emissionfactor-table"
-//           },
-//           { id: "support", label: "Report", icon: <SummarizeIcon /> },
-//           { id: "settings", label: "Team Management", icon: <Groups2Icon /> },
-//           { id: "settings", label: "Alerts & Notifications", icon: <NotificationsIcon /> },
-//         ];
-
-//   const handleLogout = () => {
-//     dispatch(logout());
-//     navigate("/login");
-//   };
-
-//   return (
-//     <Box
-//       elevation={3}
-//       sx={{
-//         width: 280,
-//         background: "#fff",
-//         boxShadow: "2px 0 5px rgba(0, 0, 0, 0.1)",
-//         // borderRadius: 5,
-//         // m: 2,
-//         pt: 3,
-//         color: "#272727",
-//         display: "flex",
-//         flexDirection: "column",
-//         // overflow: "hidden",
-//       }}
-//     >
-//       {/* Logo Section */}
-//       <Box
-
-//         sx={{
-//           display: "flex",
-//           alignItems: "center",
-//           mb: 2,
-//           ml: 2,
-//           position: "sticky", // Keeps the logo section at the top
-//           top: 0,
-//           background: "#fff", // Background color to prevent content bleed
-//           zIndex: 10, // Ensure it stays on top of scrolling content
-//           // padding: "10px 0", // Add padding for spacing
-//         }}
-//       >
-//         <img
-//           src={`${logo}`}
-//           alt="Zero Carbon Logo"
-//           style={{ width: 50, height: 50, borderRadius: "50%" }}
-//         />
-//         <Typography variant="h6" fontWeight="bold" sx={{ ml: 1 }}>
-//           Zero Carbon
-//         </Typography>
-//       </Box>
-
-//       {/*Sidebar Items*/}
-//       <Box
-//       //  sx={{
-//       //   flex: 1, // Makes the list area scrollable
-//       //   overflowY: "auto", // Enable vertical scrolling
-//       // }}
-//       >
-//       <List>
-//         {sidebarItems.map((item) => (
-//           <ListItem key={item.id} disablePadding>
-//             <Button
-//               onClick={() => {
-//                 dispatch(setSelectedItem({ id: item.id, label: item.label })); // Update selected item
-//                 if (item.path) navigate(item.path); // Navigate to the path
-//                 if (item.path === "/emissionfactor-table") {
-//                   dispatch(setSelectedItem(null)); // Clear state for separate page
-//                 }
-//               }}
-//               sx={{
-//                 // marginLeft:2,
-//                 width: "90%", // Adjust the width to your desired size
-//                 borderRadius: 4,
-//                 backgroundColor: "transparent",
-//                 textTransform: "none",
-//                 color: "#000",
-//                 fontWeight: "bold",
-//                 display: "flex",
-//                 alignItems: "center",
-//                 justifyContent: "flex-start",
-//                 padding: "15px 25px",
-//                 "&:hover": {
-//                   backgroundColor: "#4CAF50",
-//                   color: "#fff",
-//                 },
-//                 transition: "background-color 0.3s ease",
-//               }}
-//             >
-//               <Box
-//                 sx={{
-//                   display: "flex",
-//                   alignItems: "center",
-//                 }}
-//               >
-//                 <ListItemIcon
-//                   sx={{
-//                     color: "inherit",
-//                     minWidth: "30px",
-//                   }}
-//                 >
-//                   {item.icon}
-//                 </ListItemIcon>
-//                 <Typography variant="body1">{item.label}</Typography>
-//               </Box>
-//             </Button>
-//           </ListItem>
-//         ))}
-
-//         {/* Logout Item */}
-//         {/* Logout Item */}
-//         <ListItem disablePadding>
-//           <Button
-//             onClick={handleLogout}
-//             sx={{
-//               // marginLeft: 2,
-//               width: "90%",
-//               borderRadius: 4,
-//               backgroundColor: "transparent",
-//               textTransform: "none",
-//               color: "#000",
-//               fontWeight: "bold",
-//               display: "flex",
-//               alignItems: "center",
-//               justifyContent: "flex-start",
-//               padding: "15px 25px",
-//               "&:hover": {
-//                 backgroundColor: "#4CAF50",
-//                 color: "#fff",
-//               },
-//               transition: "background-color 0.3s ease",
-//             }}
-//           >
-//             <Box
-//               sx={{
-//                 display: "flex",
-//                 alignItems: "center",
-//               }}
-//             >
-//               <ListItemIcon
-//                 sx={{
-//                   color: "inherit", // Match text color
-//                   minWidth: "30px",
-//                 }}
-//               >
-//               <ExitToAppIcon />
-//               </ListItemIcon>
-//               <Typography variant="body1">Logout</Typography>
-//             </Box>
-//           </Button>
-//         </ListItem>
-//       </List>
-
-//       </Box>
-//     </Box>
-//   );
-// };
-
-// export default Sidebar;
 
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
@@ -256,8 +25,10 @@ import {
   Tooltip,
 } from "@mui/material";
 import logo from "../../assets/images/logo1.svg";
+import useMediaQuery from "@mui/material/useMediaQuery";
 
-const Sidebar = () => {
+const Sidebar = ({ mobileOpen,setMobileOpen, toggleSidebar }) => {
+const isLargeScreen = useMediaQuery("(min-width: 1024px)"); // Adjust breakpoint as needed
   const [collapsed, setCollapsed] = useState(false);
   const userType = useSelector((state) => state.auth.userType);
   const dispatch = useDispatch();
@@ -272,11 +43,7 @@ const Sidebar = () => {
             icon: <DashboardOutlinedIcon />,
           },
           { id: "leads", label: "Clients", icon: <GroupOutlinedIcon /> },
-          {
-            id: "submissions",
-            label: "Submissions",
-            icon: <GroupOutlinedIcon />,
-          },
+          
           {
             id: "hierarchychart",
             label: "Boundaries and Scopes",
@@ -287,6 +54,7 @@ const Sidebar = () => {
             label: "Emission Factors",
             icon: <TableViewIcon />,
           },
+          { id: "team", label: "Team", icon: <GroupOutlinedIcon /> ,path:"/team"},
           { id: "settings", label: "Settings", icon: <SettingsOutlinedIcon /> },
           { id: "alerts", label: "Alerts", icon: <AnnouncementOutlinedIcon /> },
           { id: "reports", label: "Reports", icon: <SummarizeIcon /> },
@@ -312,6 +80,12 @@ const Sidebar = () => {
             label: "Submissions",
             icon: <GroupOutlinedIcon />,
           },
+          {
+            id: "decarbonization",
+            label: "Decarbonization",
+            icon: <GroupOutlinedIcon />,
+            path:'/decarbonization'
+          },
           { id: "report", label: "Report", icon: <SummarizeIcon /> },
           {
             id: "settings",
@@ -330,20 +104,35 @@ const Sidebar = () => {
     navigate("/login");
   };
 
+
+
   return (
+    // <Box
+    //   sx={{
+    //     width: collapsed ? 60 : 280,
+    //     transition: "width 0.3s ease",
+    //     background: "#fff",
+    //     boxShadow: "2px 0 5px rgba(0, 0, 0, 0.1)",
+    //     color: "#272727",
+    //     display: "flex",
+    //     flexDirection: "column",
+    //     overflow: "hidden",
+    //     height: "100vh",
+    //   }}
+    // >
     <Box
-      sx={{
-        width: collapsed ? 60 : 280,
-        transition: "width 0.3s ease",
-        background: "#fff",
-        boxShadow: "2px 0 5px rgba(0, 0, 0, 0.1)",
-        color: "#272727",
-        display: "flex",
-        flexDirection: "column",
-        overflow: "hidden",
-        height: "100vh",
-      }}
-    >
+  sx={{
+    width: collapsed ? 60 : 280, // Keep collapse feature for large screens
+    position: isLargeScreen ? "static" : "fixed",
+    left: isLargeScreen ? "unset" : mobileOpen ? 0 : "-280px",
+    transition: "left 0.3s ease",
+    transition: "width 0.3s ease",
+    height: "100vh",
+    zIndex: isLargeScreen ? "auto" : 1200, // Ensure overlay for small screens
+    background: "#fff",
+    boxShadow: isLargeScreen ? "2px 0 5px rgba(0, 0, 0, 0.1)" : "0px 4px 10px rgba(0, 0, 0, 0.2)",
+  }}
+> 
       {/* Logo and Collapse Button */}
       <Box
         sx={{
@@ -366,9 +155,9 @@ const Sidebar = () => {
             </Typography>
           </Box>
         )}
-        <IconButton onClick={() => setCollapsed(!collapsed)}>
-          <MenuIcon />
-        </IconButton>
+       <IconButton onClick={mobileOpen ? toggleSidebar : () => setCollapsed(!collapsed)}>
+  <MenuIcon />
+</IconButton>
       </Box>
 
       {/* Sidebar Items */}
@@ -378,8 +167,12 @@ const Sidebar = () => {
             <Tooltip title={collapsed ? item.label : ""} placement="right">
               <Button
                 onClick={() => {
+                  if (item.path){
+
+                    navigate(item.path);
+                  }
                   dispatch(setSelectedItem({ id: item.id, label: item.label }));
-                  if (item.path) navigate(item.path);
+                  setMobileOpen(!mobileOpen)
                 }}
                 sx={{
                   width: "100%",
@@ -476,3 +269,4 @@ const Sidebar = () => {
 };
 
 export default Sidebar;
+
