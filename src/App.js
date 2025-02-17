@@ -24,6 +24,7 @@ import EndofLifeTreatment from './pages/EndofLifeTreatment/EndofLifeTreatment';
 import UseSoldProducts from "./pages/UseSoldProducts/UseSoldProducts";
 import TeamPage from './pages/Admin/TeamPage/TeamPage';
 import DecarbonizationPage from './pages/Decarbonization/DecarbonisationPage';
+import DecarbonizationBackground from "./pages/Decarbonization/DecarbonizationBackground";
 const App = () => {
   const user = JSON.parse(localStorage.getItem("user"));
   const token = localStorage.getItem("token");
@@ -62,6 +63,8 @@ const App = () => {
             path="/decarbonization"
             element={<DecarbonizationPage />}
           />
+      <Route path="/team" element={<TeamPage />} />
+
         </Route>
         <Route
           element={<ProtectedRoute allowedRoles={["admin", "superAdmin"]} />}
@@ -88,7 +91,6 @@ const App = () => {
           <Route path="/usesoldproducts" element={<UseSoldProducts/>}/> 
           <Route path="/registeredusers" element={<LeadsTable />} />
           <Route path="/activeusers" element={<ActiveUsers />} />
-          <Route path="/team" element={<TeamPage />} />
         </Route>
 
         {/* Catch-All Route */}

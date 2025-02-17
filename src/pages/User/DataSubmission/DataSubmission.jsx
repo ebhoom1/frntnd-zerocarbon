@@ -5,6 +5,7 @@ import Section from "../../../components/User/DataSubmission/Section";
 import CustomAlert from "../../../components/Alert/Sweetalert";
 import questionsData from "../../../assets/data/DataSubmission/questions.json";
 import { useSelector } from "react-redux";
+import RenewableProject from '../../../components/User/DataSubmission/RenewableProjectForm';
 
 const DataSubmission = () => {
   const userId = useSelector((state) => state.auth.user?.id);
@@ -14,7 +15,7 @@ const DataSubmission = () => {
   const [formKey, setFormKey] = useState(0); // 👈 Forces re-render after submission
 
   const handleInputChange = (id, value) => {
-    setResponses({ ...responses, [id]: value });
+    setResponses((prev) => ({ ...prev, [id]: value }));
   };
 
   const handleSubmit = async () => {
@@ -62,11 +63,6 @@ const DataSubmission = () => {
   return (
     <Container maxWidth="md" style={{ padding: "20px" }}>
       <CustomAlert alert={alert} setAlert={setAlert} />
-
-      {/* <Typography variant="h4" align="center" gutterBottom>
-        Data Submission
-      </Typography> */}
-
       {/* Force re-render after submission by changing formKey */}
       <div key={formKey}>
         {Object.entries(questionsData).map(([sectionName, subcategories]) => (
@@ -87,7 +83,7 @@ const DataSubmission = () => {
           </div>
         ))}
       </div>
-
+<RenewableProject/>
       <Button
         variant="contained"
         color="primary"

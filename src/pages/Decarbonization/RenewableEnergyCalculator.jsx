@@ -1,19 +1,72 @@
 import React, { useState } from "react";
-import { Container, Typography, TextField, Button, Box, Paper, Grid } from "@mui/material";
+import {
+  Container,
+  Typography,
+  TextField,
+  Button,
+  Box,
+  Paper,
+  Grid,
+  CircularProgress,
+} from "@mui/material";
+import axios from "../../api/axios";
 
 const RenewableEnergyCalculator = () => {
-  const [energyConsumption, setEnergyConsumption] = useState(50000); // in kWh
-  const [renewablePercentage, setRenewablePercentage] = useState(40); // default %
+  const [energyConsumption, setEnergyConsumption] = useState("");
+  const [renewablePercentage, setRenewablePercentage] = useState("");
+  const [solarFeasibility, setSolarFeasibility] = useState("");
+  const [gridMix, setGridMix] = useState("");
+  const [investmentBudget, setInvestmentBudget] = useState("");
+  const [govIncentives, setGovIncentives] = useState("");
+  const [batteryStorage, setBatteryStorage] = useState("");
+  const [siteConstraints, setSiteConstraints] = useState("");
   const [results, setResults] = useState(null);
+  const [loading, setLoading] = useState(false);
 
-  const sampleOutput = {
-    scope2Reduction: (energyConsumption * (renewablePercentage / 100) * 0.000233).toFixed(2), // CO2e reduction in tonnes
-    costSavings: ((energyConsumption * (renewablePercentage / 100)) * 0.12).toFixed(2), // Sample cost savings
-    paybackPeriod: (5 - renewablePercentage * 0.05).toFixed(1), // Estimated payback period in years
-  };
+  console.log("response:", results);
+  const calculateImpact = async () => {
+    if (
+      !energyConsumption ||
+      !renewablePercentage ||
+      !solarFeasibility ||
+      !gridMix ||
+      !investmentBudget ||
+      !govIncentives ||
+      !batteryStorage ||
+      !siteConstraints
+    ) {
+      alert("Please fill in all fields before calculating.");
+      return;
+    }
 
-  const calculateImpact = () => {
-    setResults(sampleOutput);
+    setLoading(true);
+    try {
+      const response = await axios.post("/api/renewable-energy/calculate", {
+        energyConsumption,
+        renewablePercentage,
+        solarFeasibility,
+        gridMix,
+        investmentBudget,
+        govIncentives,
+        batteryStorage,
+        siteConstraints,
+      });
+
+      setResults(response.data);
+      // ✅ Empty all input fields after successful API response
+      // setEnergyConsumption("");
+      // setRenewablePercentage("");
+      // setSolarFeasibility("");
+      // setGridMix("");
+      // setInvestmentBudget("");
+      // setGovIncentives("");
+      // setBatteryStorage("");
+      // setSiteConstraints("");
+    } catch (error) {
+      console.error("Error calculating renewable impact:", error);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -26,58 +79,114 @@ const RenewableEnergyCalculator = () => {
         p: 4,
       }}
     >
-      <Container maxWidth="md">
+      <Container maxWidth="lg">
         <Paper
           elevation={6}
           sx={{
             p: 4,
             textAlign: "center",
-            backgroundColor: "#FFFFFF",
             borderRadius: "16px",
             boxShadow: "0px 4px 20px rgba(0, 0, 0, 0.1)",
           }}
         >
-          <Typography sx={{ fontSize: "2.2rem", fontWeight: "bold", color: "#2E7D32" }}>
+          <Typography
+            sx={{ fontSize: "2rem", fontWeight: "bold", color: "#2E7D32" }}
+          >
             Renewable Energy Calculator
           </Typography>
           <Typography sx={{ fontSize: "1rem", color: "#666", mt: 1 }}>
-            Estimate your Scope 2 emission reductions and financial impact by adopting renewable energy.
+            Estimate Scope 2 emission reductions and financial impact from
+            renewable energy adoption.
           </Typography>
         </Paper>
 
-        <Grid container spacing={4} sx={{ mt: 1 }}>
+        <Grid container spacing={3} sx={{ mt: 1 }}>
           {/* Left Side - Inputs */}
           <Grid item xs={12} md={6}>
             <Paper
               elevation={6}
               sx={{
                 p: 4,
-                backgroundColor: "#FFFFFF",
                 borderRadius: "16px",
                 boxShadow: "0px 4px 16px rgba(0, 0, 0, 0.1)",
               }}
             >
-              <Typography sx={{ fontSize: "1.6rem", color: "#2E7D32", mb: 2, fontWeight: "bold" }}>
+              <Typography
+                sx={{
+                  fontSize: "1.6rem",
+                  color: "#2E7D32",
+                  mb: 2,
+                  fontWeight: "bold",
+                }}
+              >
                 Enter Energy Data
               </Typography>
+
               <TextField
-                label="Current Energy Consumption (kWh)"
-                variant="outlined"
-                fullWidth
+                label="Energy Consumption (kWh)"
                 type="number"
+                fullWidth
                 value={energyConsumption}
                 onChange={(e) => setEnergyConsumption(e.target.value)}
-                sx={{ mb: 3 }}
+                sx={{ mb: 2 }}
               />
               <TextField
                 label="Renewable Energy Adoption (%)"
-                variant="outlined"
-                fullWidth
                 type="number"
+                fullWidth
                 value={renewablePercentage}
                 onChange={(e) => setRenewablePercentage(e.target.value)}
+                sx={{ mb: 2 }}
+              />
+              <TextField
+                label="Solar/Wind Feasibility"
+                type="text"
+                fullWidth
+                value={solarFeasibility}
+                onChange={(e) => setSolarFeasibility(e.target.value)}
+                sx={{ mb: 2 }}
+              />
+              <TextField
+                label="Grid Energy Mix (Renewables %)"
+                type="number"
+                fullWidth
+                value={gridMix}
+                onChange={(e) => setGridMix(e.target.value)}
+                sx={{ mb: 2 }}
+              />
+              <TextField
+                label="Investment Budget (INR/USD)"
+                type="number"
+                fullWidth
+                value={investmentBudget}
+                onChange={(e) => setInvestmentBudget(e.target.value)}
+                sx={{ mb: 2 }}
+              />
+              <TextField
+                label="Expected Government Incentives"
+                type="text"
+                fullWidth
+                value={govIncentives}
+                onChange={(e) => setGovIncentives(e.target.value)}
+                sx={{ mb: 2 }}
+              />
+              <TextField
+                label="Battery Storage Plans (%)"
+                type="number"
+                fullWidth
+                value={batteryStorage}
+                onChange={(e) => setBatteryStorage(e.target.value)}
+                sx={{ mb: 2 }}
+              />
+              <TextField
+                label="Site Constraints (Land/Roof Availability)"
+                type="text"
+                fullWidth
+                value={siteConstraints}
+                onChange={(e) => setSiteConstraints(e.target.value)}
                 sx={{ mb: 3 }}
               />
+
               <Button
                 variant="contained"
                 sx={{
@@ -92,37 +201,72 @@ const RenewableEnergyCalculator = () => {
                   transition: "0.3s",
                 }}
                 onClick={calculateImpact}
+                disabled={loading}
               >
-                Calculate Impact
+                {loading ? (
+                  <CircularProgress size={24} sx={{ color: "white" }} />
+                ) : (
+                  "Calculate Impact"
+                )}
               </Button>
             </Paper>
           </Grid>
 
           {/* Right Side - Results */}
           <Grid item xs={12} md={6}>
-            {results && (
-              <Paper
-                elevation={6}
-                sx={{
-                  p: 4,
-                  backgroundColor: "#FFFFFF",
-                  borderRadius: "16px",
-                  boxShadow: "0px 4px 16px rgba(0, 0, 0, 0.1)",
-                }}
+          {results && results.analysedData ? (
+            <Paper
+              elevation={6}
+              sx={{
+                p: 4,
+                borderRadius: "16px",
+                boxShadow: "0px 4px 16px rgba(0, 0, 0, 0.1)",
+                textAlign: "center",
+              }}
+            >
+             
+                <>
+                  <Typography
+                    sx={{
+                      fontSize: "1.6rem",
+                      color: "#2E7D32",
+                      mb: 2,
+                      fontWeight: "bold",
+                    }}
+                  >
+                    Estimated Impact
+                  </Typography>
+
+                  <Typography sx={{ fontSize: "1rem", color: "#444", mb: 2 }}>
+                    🌿 <strong>Impact on Scope 2 Emissions:</strong>{" "}
+                    {results.analysedData.scope2Impact}
+                  </Typography>
+
+                  <Typography sx={{ fontSize: "1rem", color: "#444", mb: 2 }}>
+                    🌞 <strong>Local Renewable Options:</strong>{" "}
+                    {results.analysedData.renewableOptions}
+                  </Typography>
+
+                  <Typography sx={{ fontSize: "1rem", color: "#444", mb: 2 }}>
+                    ⏳ <strong>Payback Period:</strong>{" "}
+                    {results.analysedData.paybackPeriod}
+                  </Typography>
+                </>
+              
+            </Paper>
+            ) : (
+              // Default message when no results
+              <Typography
+              sx={{
+                fontSize: "1rem",
+                fontWeight: "bold",
+                color: "#777",
+                mt: 3,
+              }}
               >
-                <Typography sx={{ fontSize: "1.6rem", color: "#2E7D32", mb: 2, fontWeight: "bold" }}>
-                  Estimated Impact
-                </Typography>
-                <Typography sx={{ fontSize: "1rem", color: "#444", mb: 2 }}>
-                  🌿 <strong>Scope 2 Emission Reduction:</strong> {results.scope2Reduction} tonnes CO2e
-                </Typography>
-                <Typography sx={{ fontSize: "1rem", color: "#444", mb: 2 }}>
-                  💰 <strong>Estimated Cost Savings:</strong> ${results.costSavings}
-                </Typography>
-                <Typography sx={{ fontSize: "1rem", color: "#444" }}>
-                  ⏳ <strong>Payback Period:</strong> {results.paybackPeriod} years
-                </Typography>
-              </Paper>
+                ⚡ Calculate your renewable energy potential and make
+                data-driven decisions.{" "}
+              </Typography>
             )}
           </Grid>
         </Grid>

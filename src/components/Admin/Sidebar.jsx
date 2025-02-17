@@ -13,6 +13,8 @@ import Groups2Icon from "@mui/icons-material/Groups2";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import ExitToAppIcon from "@mui/icons-material/ExitToApp";
 import MenuIcon from "@mui/icons-material/Menu";
+import ForestOutlinedIcon from "@mui/icons-material/ForestOutlined";
+import DescriptionOutlinedIcon from "@mui/icons-material/DescriptionOutlined";
 import { setSelectedItem } from "../../redux/features/sidebar/SidebarSlice";
 import { logout } from "../../redux/features/auth/authSlice";
 import {
@@ -78,19 +80,20 @@ const isLargeScreen = useMediaQuery("(min-width: 1024px)"); // Adjust breakpoint
           {
             id: "submissions",
             label: "Submissions",
-            icon: <GroupOutlinedIcon />,
+            icon: <DescriptionOutlinedIcon />,
           },
           {
             id: "decarbonization",
             label: "Decarbonization",
-            icon: <GroupOutlinedIcon />,
+            icon: <ForestOutlinedIcon/>,
             path:'/decarbonization'
           },
           { id: "report", label: "Report", icon: <SummarizeIcon /> },
           {
-            id: "settings",
-            label: "Team Management",
-            icon: <SettingsOutlinedIcon />,
+            id: "team",
+            label: "Team",
+            icon: <GroupOutlinedIcon />,
+            path:"/team"
           },
           {
             id: "alerts",

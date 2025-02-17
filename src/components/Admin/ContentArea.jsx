@@ -97,7 +97,7 @@ const ContentArea = ({ toggleSidebar }) => {
         case "settings":
           return;
         default:
-          return;
+          return <UserDashboard />;
       }
     }
   };
@@ -132,7 +132,7 @@ const ContentArea = ({ toggleSidebar }) => {
         )}
         <Typography variant="h5" fontWeight="bold">
           {/* {selectedItem?.label || "Dashboard"} */}
-          {selectedItem?.id === "team" ? "Dashboard" : selectedItem?.label || "Dashboard"}
+          {selectedItem?.id === "team" || selectedItem?.id === "decarbonization" ? "Dashboard" : selectedItem?.label || "Dashboard"}
         </Typography>
         <Box display="flex" alignItems="flex-start" gap={2}>
           <IconButton>
