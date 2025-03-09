@@ -16,10 +16,15 @@ import EmissionFactorHomePage from "../../pages/Emissionfactor/EmissionFactorHom
 import UserForm from "../../pages/User/UserForm";
 import ActiveUsers from "../../pages/RegisteredClients/ActiveUsers.jsx";
 import RegisteredClients from "../../pages/RegisteredClients/RegisteredClientsTable.jsx";
+import UserList from "../../pages/Decarbonization/AdminPage/UserList.jsx";
 import AlertSection from "../../pages/Admin/Alert/AlertSection.jsx";
 import DataSubmissions from '../../pages/User/DataSubmission/DataSubmission.jsx'
+import Environment from '../../pages/User/DataSubmission/EnvironmentPage.jsx'
+import Social from '../../pages/User/DataSubmission/SocialPage.jsx'
+import Governance from '../../pages/User/DataSubmission/GovernancePage.jsx';
+import AssetsRenewableProject from '../../pages/User/DataSubmission/Assets&renewablePage.jsx';
+import DownloadReportButton from "../../pages/Report/BRSRreport/DownloadReportButton.jsx";
 import { setSelectedItem } from "../../redux/features/sidebar/SidebarSlice";
-import Sidebar from "./Sidebar"; // Import Sidebar
 import useMediaQuery from "@mui/material/useMediaQuery";
 import MenuIcon from "@mui/icons-material/Menu";
 
@@ -33,16 +38,33 @@ const ContentArea = ({ toggleSidebar }) => {
   const contentRef = useRef(null); // Reference to the scrollable container
   const [scrollOffset, setScrollOffset] = useState(0); // Track horizontal scroll
 
+  // useEffect(() => {
+  //   const handleScroll = () => {
+  //     setScrollOffset(contentRef.current?.scrollLeft || 0); 
+  //   };
+
+  //   const container = contentRef.current;
+  //   container?.addEventListener("scroll", handleScroll);
+
+  //   return () => container?.removeEventListener("scroll", handleScroll);
+  // }, []);
+
   useEffect(() => {
     const handleScroll = () => {
-      setScrollOffset(contentRef.current?.scrollLeft || 0); // Update scroll offset
+      if (isLargeScreen) {
+        // Only update scroll offset if on a large screen
+        setScrollOffset(contentRef.current?.scrollLeft || 0);
+      } else {
+        // For smaller screens, no horizontal scroll effect is needed
+        setScrollOffset(0);
+      }
     };
 
     const container = contentRef.current;
     container?.addEventListener("scroll", handleScroll);
 
     return () => container?.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [isLargeScreen]); // Modified: added isLargeScreen dependency to conditionally update scroll
 
   useEffect(() => {
     if (!selectedItem && location.pathname !== "/emissionfactor-table" ) {
@@ -77,8 +99,8 @@ const ContentArea = ({ toggleSidebar }) => {
           return <ActiveUsers />;
         case "alerts": 
           return <AlertSection/>;
-        case "settings": 
-          return;
+        case "decarbonisation": 
+          return <UserList/>;
         default:
           return <Dashboard />; 
       }
@@ -94,8 +116,14 @@ const ContentArea = ({ toggleSidebar }) => {
           return <DataSubmissions/>;
         case "report":
           return ;  
-        case "settings":
-          return;
+        case "environment":
+          return <Environment/>;
+        case "social":
+          return <Social/>;
+        case "governance":
+          return <Governance/>;
+        case "assetsrenewableproject":
+          return <AssetsRenewableProject/>;
         default:
           return <UserDashboard />;
       }
@@ -105,7 +133,8 @@ const ContentArea = ({ toggleSidebar }) => {
   return (
     <div
       ref={contentRef}
-      style={{ flex: 1, overflow: "auto", backgroundColor: "#f4f6f9" }}
+      style={{ flex: 1, // Modified: Disable horizontal scrolling for non-large screens
+      overflowX: isLargeScreen ? "auto" : "hidden", backgroundColor: "#f4f6f9" }}
     >
       <Box
         sx={{
@@ -121,7 +150,9 @@ const ContentArea = ({ toggleSidebar }) => {
           zIndex: 1, // Ensure header is in the background
           borderBottomLeftRadius: 16,
           borderBottomRightRadius: 16,
-          width: `calc(100% + ${scrollOffset}px)`, // Dynamic width
+          // width: `calc(100% + ${scrollOffset}px)`, // Dynamic width
+           // Modified: Conditionally set width based on screen size
+           width: isLargeScreen ? `calc(100% + ${scrollOffset}px)` : "100%",
           transition: "height 0.3s ease", // Smooth transition for height changes
         }}
       >

@@ -254,7 +254,6 @@ function EndOfLifeTreatment() {
             margin="normal"
             name="CO2"
             label="CO2 (kg/unit)"
-            type="number"
             fullWidth
             value={formData.CO2}
             onChange={handleChange}
@@ -263,7 +262,6 @@ function EndOfLifeTreatment() {
             margin="normal"
             name="CH4"
             label="CH4 (kg/unit)"
-            type="number"
             fullWidth
             value={formData.CH4}
             onChange={handleChange}
@@ -272,7 +270,6 @@ function EndOfLifeTreatment() {
             margin="normal"
             name="N2O"
             label="N2O (kg/unit)"
-            type="number"
             fullWidth
             value={formData.N2O}
             onChange={handleChange}
@@ -281,7 +278,6 @@ function EndOfLifeTreatment() {
             margin="normal"
             name="CO2e"
             label="CO2e (kg/unit)"
-            type="number"
             fullWidth
             value={formData.CO2e}
             onChange={handleChange}

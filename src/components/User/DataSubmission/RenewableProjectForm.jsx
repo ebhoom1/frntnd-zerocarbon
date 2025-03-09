@@ -10,22 +10,22 @@ const jsonData = {
       { "question": "Project Name", "type": "text" },
       { "question": "Project Location", "type": "text" },
       { "question": "Type of Renewable Energy", "type": "text" },
-      { "question": "Installed Capacity (MW)", "type": "number" },
-      { "question": "Annual Energy Generation (MWh/year)", "type": "number" },
+      { "question": "Installed Capacity (MW)", "type": "text" },
+      { "question": "Annual Energy Generation (MWh/year)", "type": "text" },
       { "question": "Operational Status", "type": "text" },
-      { "question": "Commissioning Year", "type": "number" }
+      { "question": "Commissioning Year", "type": "text" }
     ],
     "Environmental & Carbon Impact": [
-      { "question": "Total Carbon Savings (tCO₂e/year)", "type": "number" },
+      { "question": "Total Carbon Savings (tCO₂e/year)", "type": "text" },
       { "question": "Grid-Connected or Off-Grid?", "type": "text" },
       { "question": "Does the project have Renewable Energy Certificates (RECs)?", "type": "boolean" },
-      { "question": "Emission Factor Used (kgCO₂e/kWh)", "type": "number" }
+      { "question": "Emission Factor Used (kgCO₂e/kWh)", "type": "text" }
     ],
     "Financial & Ownership": [
-      { "question": "Investment Cost (INR or USD)", "type": "number" },
+      { "question": "Investment Cost (INR or USD)", "type": "text" },
       { "question": "Funding Type", "type": "text" },
       { "question": "Ownership Model", "type": "text" },
-      { "question": "Expected ROI Period (Years)", "type": "number" }
+      { "question": "Expected ROI Period (Years)", "type": "text" }
     ],
     "Compliance & Certifications": [
       { "question": "Is the project certified under any standards?", "type": "text" },

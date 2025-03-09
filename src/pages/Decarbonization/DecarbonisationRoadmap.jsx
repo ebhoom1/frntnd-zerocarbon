@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import {
   Container,
@@ -18,15 +17,11 @@ import {
 } from "@mui/material";
 import {
   Timeline,
-  TimelineItem,
-  TimelineSeparator,
-  TimelineConnector,
-  TimelineContent,
-  TimelineDot,
 } from "@mui/lab";
 import { Chart } from "react-google-charts";
-import { Flag } from "@mui/icons-material";
 import axios from "../../api/axios";
+import { useSelector } from "react-redux";
+import RoadmapTimelineItem from "./RoadmapTimeline";
 
 const industries = [
   "Manufacturing",
@@ -37,6 +32,7 @@ const industries = [
 ];
 
 const DecarbonisationRoadmap = () => {
+  const userId = useSelector((state) => state.auth.user?.id);
   const isMobile = useMediaQuery((theme) => theme.breakpoints.down("sm"));
 
   const [industry, setIndustry] = useState("");
@@ -48,19 +44,25 @@ const DecarbonisationRoadmap = () => {
   const [operationalChanges, setOperationalChanges] = useState("");
   const [budgetConstraints, setBudgetConstraints] = useState(null);
   const [roadmapData, setRoadmapData] = useState([]);
+  const [savedRoadmaps, setSavedRoadmaps] = useState([]);
+  const [fetching, setFetching] = useState(false);
   const [loading, setLoading] = useState(false);
-
+  const [saving, setSaving] = useState(false);
+  // ✅ ADD: State to track if saved roadmaps should be displayed
+  const [showSavedRoadmaps, setShowSavedRoadmaps] = useState(false);
   console.log("roadmapData:", roadmapData);
 
-  useEffect(() => {
-    const storedData = localStorage.getItem("roadmapData");
-    if (storedData) {
-      setRoadmapData(JSON.parse(storedData));
-    }
-  }, []);
-
   const generateRoadmap = async () => {
-    if (!industry || !targetYear || !emissions || !annualReduction || !energyMix || !technologyAdoption || !operationalChanges || !budgetConstraints) {
+    if (
+      !industry ||
+      !targetYear ||
+      !emissions ||
+      !annualReduction ||
+      !energyMix ||
+      !technologyAdoption ||
+      !operationalChanges ||
+      !budgetConstraints
+    ) {
       alert("Please fill in all fields before generating the roadmap.");
       return;
     }
@@ -74,22 +76,62 @@ const DecarbonisationRoadmap = () => {
         energyMix,
         technologyAdoption,
         operationalChanges,
-        budgetConstraints
+        budgetConstraints,
       });
       console.log("response:", response.data);
-      // Clear previous data before saving new data
-      localStorage.removeItem("roadmapData");
+
       setRoadmapData(response.data.analysedData.milestones);
-      localStorage.setItem(
-        "roadmapData",
-        JSON.stringify(response.data.analysedData.milestones)
-      );
     } catch (error) {
       console.error("Error generating roadmap:", error);
     } finally {
       setLoading(false);
     }
   };
+
+  const saveRoadmap = async () => {
+    if (roadmapData.length === 0) {
+      alert("Generate the roadmap before saving.");
+      return;
+    }
+    setSaving(true);
+    try {
+      await axios.post("/api/analyse-roadmap/save", {
+        userId:userId,
+        industry,
+        targetYear,
+        totalEmissions: emissions,
+        annualReduction,
+        energyMix,
+        technologyAdoption,
+        operationalChanges,
+        budgetConstraints,
+        roadmapData,
+      });
+      alert("Roadmap saved successfully!");
+    } catch (error) {
+      console.error("Error saving roadmap:", error);
+    } finally {
+      setSaving(false);
+    }
+  };
+
+  const fetchSavedRoadmaps = async () => {
+    if (!showSavedRoadmaps) {
+      setFetching(true);
+      try {
+        const response = await axios.get(`/api/analyse-roadmap/get/${userId}`);
+        setRoadmapData([]);
+        setSavedRoadmaps(response.data.roadmaps);
+      } catch (error) {
+        console.error("Error fetching saved roadmaps:", error);
+      } finally {
+        setFetching(false);
+      }
+    }
+    setShowSavedRoadmaps(!showSavedRoadmaps); // Toggle visibility
+  };
+
+ 
 
   const ganttData = [
     [
@@ -167,7 +209,7 @@ const DecarbonisationRoadmap = () => {
         </Grid>
 
         <Grid item xs={12} md={4}>
-          <Card sx={{borderRadius: "16px", boxShadow: 4 }}>
+          <Card sx={{ borderRadius: "16px", boxShadow: 4 }}>
             <CardContent>
               <Typography>Current Emissions (tonnes CO₂e)</Typography>
               <TextField
@@ -184,15 +226,29 @@ const DecarbonisationRoadmap = () => {
           <Card sx={{ borderRadius: "16px", boxShadow: 4 }}>
             <CardContent>
               <Typography>Annual Percentage Reduction Target</Typography>
-              <TextField type="number" value={annualReduction || ""} onChange={(e) => setAnnualReduction(e.target.value)} fullWidth sx={{ mt: 1 }} />
+              <TextField
+                type="number"
+                value={annualReduction || ""}
+                onChange={(e) => setAnnualReduction(e.target.value)}
+                fullWidth
+                sx={{ mt: 1 }}
+              />
             </CardContent>
           </Card>
         </Grid>
         <Grid item xs={12} md={4}>
-          <Card sx={{  borderRadius: "16px", boxShadow: 4 }}>
+          <Card sx={{ borderRadius: "16px", boxShadow: 4 }}>
             <CardContent>
-              <Typography>Current Energy Mix (Fossil vs. Renewables)</Typography>
-              <TextField type="text" value={energyMix || ""} onChange={(e) => setEnergyMix(e.target.value)} fullWidth sx={{ mt: 1 }} />
+              <Typography>
+                Current Energy Mix (Fossil vs. Renewables)
+              </Typography>
+              <TextField
+                type="text"
+                value={energyMix || ""}
+                onChange={(e) => setEnergyMix(e.target.value)}
+                fullWidth
+                sx={{ mt: 1 }}
+              />
             </CardContent>
           </Card>
         </Grid>
@@ -200,7 +256,13 @@ const DecarbonisationRoadmap = () => {
           <Card sx={{ borderRadius: "16px", boxShadow: 4 }}>
             <CardContent>
               <Typography>Planned Technology Adoption</Typography>
-              <TextField type="text" value={technologyAdoption || ""} onChange={(e) => setTechnologyAdoption(e.target.value)} fullWidth sx={{ mt: 1 }} />
+              <TextField
+                type="text"
+                value={technologyAdoption || ""}
+                onChange={(e) => setTechnologyAdoption(e.target.value)}
+                fullWidth
+                sx={{ mt: 1 }}
+              />
             </CardContent>
           </Card>
         </Grid>
@@ -208,15 +270,27 @@ const DecarbonisationRoadmap = () => {
           <Card sx={{ borderRadius: "16px", boxShadow: 4 }}>
             <CardContent>
               <Typography>Operational Changes</Typography>
-              <TextField type="text" value={operationalChanges || ""} onChange={(e) => setOperationalChanges(e.target.value)} fullWidth sx={{ mt: 1 }} />
+              <TextField
+                type="text"
+                value={operationalChanges || ""}
+                onChange={(e) => setOperationalChanges(e.target.value)}
+                fullWidth
+                sx={{ mt: 1 }}
+              />
             </CardContent>
           </Card>
         </Grid>
         <Grid item xs={12} md={4}>
-          <Card sx={{  borderRadius: "16px", boxShadow: 4 }}>
+          <Card sx={{ borderRadius: "16px", boxShadow: 4 }}>
             <CardContent>
               <Typography>Budget Constraints</Typography>
-              <TextField type="number" value={budgetConstraints || ""} onChange={(e) => setBudgetConstraints(e.target.value)} fullWidth sx={{ mt: 1 }} />
+              <TextField
+                type="number"
+                value={budgetConstraints || ""}
+                onChange={(e) => setBudgetConstraints(e.target.value)}
+                fullWidth
+                sx={{ mt: 1 }}
+              />
             </CardContent>
           </Card>
         </Grid>
@@ -226,6 +300,41 @@ const DecarbonisationRoadmap = () => {
               <CircularProgress size={24} sx={{ color: "white" }} />
             ) : (
               "Generate Roadmap"
+            )}
+          </Button>
+        </Grid>
+        {roadmapData.length > 0 && (
+          <Grid
+            item
+            xs={12}
+            display="flex"
+            justifyContent="center"
+            sx={{ mt: 2 }}
+          >
+            <Button variant="contained" color="secondary" onClick={saveRoadmap}>
+              {saving ? (
+                <CircularProgress size={24} sx={{ color: "white" }} />
+              ) : (
+                "Save Roadmap"
+              )}
+            </Button>
+          </Grid>
+        )}
+        {/* ✅ ADD: Toggle Button for Viewing Saved Roadmaps */}
+        <Grid
+          item
+          xs={12}
+          display="flex"
+          justifyContent="center"
+          sx={{ mt: 2 }}
+        >
+          <Button variant="contained" color="info" onClick={fetchSavedRoadmaps}>
+            {fetching ? (
+              <CircularProgress size={24} sx={{ color: "white" }} />
+            ) : showSavedRoadmaps ? (
+              "Hide Saved Roadmaps"
+            ) : (
+              "View Saved Roadmaps"
             )}
           </Button>
         </Grid>
@@ -241,7 +350,7 @@ const DecarbonisationRoadmap = () => {
           mt: 4,
         }}
       >
-        <Timeline position={isMobile ? "right" : "alternate"}>
+        {/* <Timeline position={isMobile ? "right" : "alternate"}>
           {roadmapData.map((milestone, index) => (
             <TimelineItem
               key={index}
@@ -310,7 +419,71 @@ const DecarbonisationRoadmap = () => {
               </TimelineContent>
             </TimelineItem>
           ))}
-        </Timeline>
+        </Timeline> */}
+
+        {/* Generated Roadmap */}
+        {roadmapData.length > 0 && (
+          <Box sx={{ mt: 4 }}>
+            <Typography
+              variant="h5"
+              gutterBottom
+              sx={{ fontWeight: "bold", color: "#333" }}
+            >
+              Generated Roadmap
+            </Typography>
+            <Timeline position={isMobile ? "right" : "alternate"}>
+              {roadmapData.map((milestone, index) => (
+                <RoadmapTimelineItem
+                  key={index}
+                  milestone={milestone}
+                  index={index}
+                  roadmapData={roadmapData}
+                />
+              ))}
+            </Timeline>
+          </Box>
+        )}
+
+        {/* Display Saved Roadmaps */}
+        {showSavedRoadmaps &&  (
+          <Box sx={{ mt: 4 }}>
+            <Typography
+              variant="h5"
+              gutterBottom
+              sx={{ fontWeight: "bold", color: "#333" }}
+            >
+              Saved Roadmaps
+            </Typography>
+            {savedRoadmaps.length > 0 ? (
+            savedRoadmaps.map((roadmap, index) => (
+              <Box key={index} sx={{ mb: 4 }}>
+                <Typography
+                  variant="h6"
+                  sx={{ fontWeight: "bold", color: "#00c853" }}
+                >
+                  {roadmap.industry} - Target Year: {roadmap.targetYear}
+                </Typography>
+                <Timeline position={isMobile ? "right" : "alternate"}>
+                  {roadmap.milestones.map((milestone, i) => (
+                    <RoadmapTimelineItem
+                      key={i}
+                      milestone={milestone}
+                      index={i}
+                      roadmapData={roadmap.milestones}
+                    />
+                  ))}
+                </Timeline>
+              </Box>
+            )) 
+            ):(
+              // ✅ Display a message if no saved roadmaps exist
+            <Typography sx={{ textAlign: "center", color: "#666", fontStyle: "italic", mt: 2 }}>
+            No saved roadmaps available.
+          </Typography>
+            )}
+          </Box>
+        )}
+
         <Typography
           gutterBottom
           sx={{ fontSize: "1.5rem", fontWeight: "bold", color: "#333", mt: 4 }}
@@ -318,21 +491,21 @@ const DecarbonisationRoadmap = () => {
           Emission Reduction Progress
         </Typography>
         {roadmapData && roadmapData.length > 0 ? (
-        <Chart
-          chartType="Gantt"
-          width="100%"
-          height={`${roadmapData.length * 50 + 100}px`}
-          data={ganttData}
-          options={{
-            gantt: {
-              trackHeight: 40,
-              barHeight: 30,
-              percentEnabled: true,
-              criticalPathEnabled: true,
-              criticalPathStyle: { stroke: "#00c853", strokeWidth: 3 },
-            },
-          }}
-        />
+          <Chart
+            chartType="Gantt"
+            width="100%"
+            height={`${roadmapData.length * 50 + 100}px`}
+            data={ganttData}
+            options={{
+              gantt: {
+                trackHeight: 40,
+                barHeight: 30,
+                percentEnabled: true,
+                criticalPathEnabled: true,
+                criticalPathStyle: { stroke: "#00c853", strokeWidth: 3 },
+              },
+            }}
+          />
         ) : (
           <Typography>No data yet. Please generate the roadmap.</Typography>
         )}

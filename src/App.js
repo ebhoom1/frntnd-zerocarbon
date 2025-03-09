@@ -71,7 +71,7 @@ const App = () => {
         >
           <Route path="/admin" element={<AdminDashboard />} />
           <Route path="flowchart/:userId" element={<SampleFlowchart />} />
-          <Route path="/formdetails/:formId" element={<Formdetails />} />
+          <Route path="/formdetails/:userId" element={<Formdetails />} />
           <Route
             path="/adminemissionfactor-table"
             element={<GetEmissionFactorTable />}

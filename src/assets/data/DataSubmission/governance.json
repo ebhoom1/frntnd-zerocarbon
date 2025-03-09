@@ -1,0 +1,74 @@
+{
+    "Governance": {
+        "Board Structure & Leadership": [
+          {"question": "Total number of board members?", "type": "text" },
+          {"question": "Number of Independent Directors?", "type": "text" },
+          {"question": "Number of Women Directors on the board?", "type": "text" },
+          {"question": "Average age of board members?", "type": "text" },
+          {"question": "Does the board include members from diverse backgrounds (industry expertise, gender, ethnicity, etc.)?", "type": "boolean" },
+          {"question": "Does the company have a Board Diversity Policy?", "type": "boolean" },
+          {"question": "How often does the board meet annually?", "type": "text" },
+          {"question": "Is the board remuneration linked to ESG performance?", "type": "boolean" }
+        ],
+        "Board Committees & Responsibilities": [
+          {"question": "Does the company have the following mandatory committees? (Audit, Nomination & Remuneration, CSR, Stakeholder Relationship, Risk Management)", "type": "boolean" },
+          { "question": "Does the company have a separate ESG Committee?", "type": "boolean" },
+          { "question": "How frequently do these committees meet?", "type": "text" },
+          { "question": "Are the meeting minutes publicly disclosed?", "type": "boolean" }
+        ],
+        "Business Ethics & Anti-Corruption": [
+          { "question": "Does the company have a Code of Conduct for employees and directors?", "type": "boolean" },
+          { "question": "Has the company adopted an Anti-Bribery and Anti-Corruption Policy?", "type": "boolean" },
+          { "question": "Has the company conducted any anti-corruption training in the last year?", "type": "boolean" },
+          { "question": "Have there been any reported cases of bribery, fraud, or corruption?", "type": "boolean" },
+          { "question": "What percentage of employees have signed the Code of Conduct?", "type": "text" },
+          { "question": "Are there whistleblower mechanisms in place?", "type": "boolean" },
+          { "question": "How many whistleblower complaints were received in the last year?", "type": "text" }
+        ],
+        "Ris& Compliance": [
+          { "question": "Does the company have a formal Enterprise Risk Management (ERM) framework?", "type": "boolean" },
+          { "question": "Does the company conduct regular risk assessments?", "type": "boolean" },
+          { "question": "What are the top 5 material risks identified by the company?", "type": "text" },
+          { "question": "Are climate-related risks integrated into risk management?", "type": "boolean" },
+          { "question": "Does the company have a Business Continuity Plan (BCP)?", "type": "boolean" },
+          { "question": "Has the company faced any regulatory non-compliance issues in the last 3 years?", "type": "boolean" }
+        ],
+        "Data Protection & Cybersecurity": [
+          { "question": "Does the company have a formal Data Privacy Policy?", "type": "boolean" },
+          { "question": "Has the company implemented GDPR or India’s Digital Personal Data Protection Act (DPDPA)?", "type": "boolean" },
+          { "question": "Does the company conduct cybersecurity audits?", "type": "boolean" },
+          { "question": "Has the company experienced any data breaches in the past 3 years?", "type": "boolean" },
+          { "question": "How frequently are employees trained on data protection?", "type": "text" }
+        ],
+        "Corporate Social Responsibility (CSR) Governance": [
+          { "question": "Has the company allocated 2% of its net profits to CSR as per the Companies Act 2013?", "type": "boolean" },
+          { "question": "What are the key focus areas of CSR spending?", "type": "text" },
+          { "question": "How many CSR projects were completed in the last year?", "type": "text" },
+          { "question": "Does the company disclose CSR impact metrics?", "type": "boolean" },
+          { "question": "Are CSR reports externally audited?", "type": "boolean" }
+        ],
+        "Stakeholder Engagement & Transparency": [
+          { "question": "Does the company regularly engage with stakeholders (employees, customers, investors, suppliers, regulators, communities)?", "type": "boolean" },
+          { "question": "What are the key channels for stakeholder communication? (AGM, ESG Reports, Investor Calls, Website Disclosures, Surveys & Feedback)", "type": "text" },
+          { "question": "Does the company disclose its political contributions?", "type": "boolean" },
+          { "question": "Does the company conduct materiality assessments for sustainability reporting?", "type": "boolean" }
+        ],
+        "Tax Transparency & Financial Integrity": [
+          { "question": "Does the company disclose its tax payments by country?", "type": "boolean" },
+          { "question": "Has the company faced any tax disputes in the last 5 years?", "type": "boolean" },
+          { "question": "Does the company engage in aggressive tax planning or tax avoidance schemes?", "type": "boolean" },
+          { "question": "Does the company provide Country-by-Country Reporting (CbCR)?", "type": "boolean" }
+        ],
+        "ESG Reporting & Assurance": [
+          { "question": "Does the company publish an annual ESG or Sustainability Report?", "type": "boolean" },
+          { "question": "Is the ESG report externally assured?", "type": "boolean" },
+          { "question": "What ESG reporting frameworks does the company follow? (GRI, SASB, TCFD, IR, Others)", "type": "text" },
+          { "question": "Does the company disclose its Scope 1, 2, and 3 emissions?", "type": "boolean" }
+        ],
+        "Governance of Sustainable Development Goals (SDGs)": [
+          { "question": "Does the company align its business strategy with United Nations Sustainable Development Goals (SDGs)?", "type": "boolean" },
+          { "question": "Which SDGs are actively tracked by the company?", "type": "text" },
+          { "question": "Are SDG commitments reflected in executive KPIs and incentives?", "type": "boolean" }
+        ]
+      }
+}

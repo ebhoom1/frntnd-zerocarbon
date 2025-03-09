@@ -3,19 +3,20 @@
     "Mobile Combustion": [
       { "question": "Number of company-owned vehicles?", "type": "number" },
       { "question": "Type of vehicles? (Passenger cars, trucks, buses, motorcycles, etc.)", "type": "text" },
+      { "question": "Vehicle Name?", "type": "text" },
       { "question": "Fuel type per vehicle? (Petrol, Diesel, LPG, CNG, Electric)", "type": "text" },
-      { "question": "Fuel consumption per vehicle? (Liters/gallons or kWh per year)", "type": "number" },
-      { "question": "Distance traveled per vehicle annually? (km/miles)", "type": "number" }
+      { "question": "Fuel consumption per vehicle? (Liters/gallons or kWh per year)", "type": "text" },
+      { "question": "Distance traveled per vehicle annually? (km/miles)", "type": "text" }
     ],
     "Stationary Combustion": [
       { "question": "Does your company use fossil fuels for heating or electricity generation?", "type": "boolean" },
       { "question": "Type of fuel used? (Coal, Natural Gas, Diesel, LPG, Biomass, etc.)", "type": "text" },
-      { "question": "Annual fuel consumption? (Liters/tons/cubic meters)", "type": "number" }
+      { "question": "Annual fuel consumption? (Liters/tons/cubic meters)", "type": "text" }
     ],
     "Industrial Processes": [
       { "question": "Does your company have industrial processes that emit greenhouse gases?", "type": "boolean" },
       {  "question": "Type of industrial process? (Cement, Steel, Lime, Aluminum, Glass, Nitric Acid, etc.)", "type": "text" },
-      {  "question": "Annual production quantity? (Tons, units, etc.)", "type": "number" },
+      {  "question": "Annual production quantity? (Tons, units, etc.)", "type": "text" },
       {  "question": "Associated emissions? (CO₂, CH₄, N₂O, PFCs)", "type": "text" }
     ],
     "Fugitive Emissions": [
@@ -27,21 +28,20 @@
   "Scope 2: Indirect Emissions": {
     "Purchased Electricity": [
       { "question": "Total annual electricity consumption? (kWh)", "type": "number" },
-      { "question": "Grid electricity or renewable sources?", "type": "text" },
-      { "question": "If grid electricity, emission factor used? (kg CO₂e/kWh)", "type": "number" },
-      { "question": "If renewable, specify source? (Solar, Wind, Hydropower)", "type": "text" }
+      { "question": "Grid electricity or renewable sources?", "type": "text" }
+    
     ],
     "Purchased Steam, Heat, or Cooling": [
-      { "question": "Total purchased steam/heat consumption? (GJ or MWh)", "type": "number" },
-      { "question": "Emission factor used? (kg CO₂e/GJ or MWh)", "type": "number" },
+      { "question": "Total purchased steam/heat consumption? (GJ or MWh)", "type": "text" },
+      { "question": "Emission factor used? (kg CO₂e/GJ or MWh)", "type": "text" },
       { "question": "Transmission and distribution losses considered?", "type": "boolean" }
     ]
   },
   "Scope 3: Value Chain Emissions": {
     "Purchased Goods & Services": [
       { "question": "What are the major materials or goods purchased annually?", "type": "text" },
-      { "question": "Total quantity purchased? (Tons or units)", "type": "number" },
-      { "question": "Emission factors used for purchased goods? (kg CO₂e/unit)", "type": "number" }
+      { "question": "Total quantity purchased? (Tons or units)", "type": "text" },
+      { "question": "Emission factors used for purchased goods? (kg CO₂e/unit)", "type": "text" }
     ],
     "Fuel & Energy-Related Emissions (Upstream)": [
       { "question": "Any upstream fuel emissions considered? (Fuel extraction, refining, transportation)", "type": "boolean" },
@@ -49,37 +49,37 @@
     ],
     "Transportation & Distribution": [
       { "question": "Does your company transport raw materials, products, or employees?", "type": "boolean" },
-      { "question": "Total distance covered by company transport annually? (km/miles)", "type": "number" },
+      { "question": "Total distance covered by company transport annually? (km/miles)", "type": "text" },
       { "question": "Transport mode? (Truck, Rail, Ship, Air)", "type": "text" },
       { "question": "Fuel type and consumption per transport mode?", "type": "text" },
       { "question": "Emissions from third-party logistics?", "type": "boolean" }
     ],
     "Waste Generation": [
-      { "question": "Annual waste generated? (Tons)", "type": "number" },
+      { "question": "Annual waste generated? (Tons)", "type": "text" },
       { "question": "Breakdown by disposal method? (Landfill, Incineration, Recycling, Composting)", "type": "text" },
       { "question": "Emission factors for waste disposal used?", "type": "text" }
     ],
     "Business Travel": [
-      { "question": "How many business trips occurred in the reporting year?", "type": "number" },
+      { "question": "How many business trips occurred in the reporting year?", "type": "text" },
       { "question": "Transport mode used for business travel? (Air, Train, Car, Bus)", "type": "text" },
-      { "question": "Total distance traveled by employees for business purposes? (km/miles)", "type": "number" },
+      { "question": "Total distance traveled by employees for business purposes? (km/miles)", "type": "text" },
       { "question": "Accommodation nights stayed?", "type": "number" }
     ],
     "Employee Commuting": [
       { "question": "Number of employees commuting daily?", "type": "number" },
       { "question": "Primary transport modes used by employees?", "type": "text" },
-      { "question": "Average commuting distance per employee? (km/miles per day)", "type": "number" },
+      { "question": "Average commuting distance per employee? (km/miles per day)", "type": "text" },
       { "question": "Fuel consumption or emission factor used per commute mode?", "type": "text" }
     ],
     "Use of Sold Products": [
        {"question":"Product Name (or Product Category)","type":"text"},
       { "question": "Do your products require energy consumption in their lifetime?", "type": "boolean" },
-      { "question": "Estimated energy use per product sold? (kWh/year)", "type": "number" },
-      { "question": "Expected lifetime of the product? (Years)", "type": "number" }
+      { "question": "Estimated energy use per product sold? (kWh/year)", "type": "text" },
+      { "question": "Expected lifetime of the product? (Years)", "type": "text" }
     ],
     "End-of-Life Treatment of Sold Products": [
       { "question": "How are your products disposed of at the end of their life? (Landfill, Recycling, Incineration)", "type": "text" },
-      { "question": "Estimated quantity of products disposed annually? (Tons or units)", "type": "number" },
+      { "question": "Estimated quantity of products disposed annually? (Tons or units)", "type": "text" },
       { "question": "Emission factors used for end-of-life treatment?", "type": "text" }
     ],
     "Leased Assets, Franchises, and Investments": [
@@ -90,17 +90,17 @@
   },
   "Additional Data for Carbon Accounting": {
     "Water Use & Wastewater Treatment": [
-      { "question": "Total water consumption annually? (Liters/m³)", "type": "number" },
+      { "question": "Total water consumption annually? (Liters/m³)", "type": "text" },
       { "question": "How is wastewater treated? (Aerobic, Anaerobic, Untreated)", "type": "text" },
       { "question": "What is the BOD and COD of wastewater?", "type": "text" },
       { "question": "Methane Correction Factor (MCF) for wastewater treatment used?", "type": "text" },
-      { "question": "Nitrogen content in wastewater? (mg/L)", "type": "number" }
+      { "question": "Nitrogen content in wastewater? (mg/L)", "type": "text" }
     ],
     "Carbon Offset & Renewable Energy Purchases": [
       { "question": "Do you purchase carbon credits or offsets?", "type": "boolean" },
-      { "question": "Amount of CO₂ offset annually? (Tons)", "type": "number" },
+      { "question": "Amount of CO₂ offset annually? (Tons)", "type": "text" },
       { "question": "Do you have on-site renewable energy installations?", "type": "boolean" },
-      { "question": "Capacity of installed renewable energy? (MW/kWh)", "type": "number" }
+      { "question": "Capacity of installed renewable energy? (MW/kWh)", "type": "text" }
     ]
   },
   "Social": {
@@ -119,7 +119,7 @@
     
     "Employee Well-being & Benefits(Employee Survey via GoodFoot)": [
       
-        { "question": "How satisfied are you with your work-life balance?", "type": "number" },
+        { "question": "How satisfied are you with your work-life balance?", "type": "text" },
         { "question": "Do you receive paid leave, maternity/paternity leave, and sick leave?", "type": "boolean" },
         { "question": "Does the company offer health insurance benefits?", "type": "boolean" },
         { "question": "Do you feel that your workplace provides mental health support?", "type": "boolean" },
@@ -130,7 +130,7 @@
     
     "Training & Career Development(HR & Employee Survey via GoodFoot)": [
      
-        { "question": "How many hours of training does each employee receive annually?", "type": "number" },
+        { "question": "How many hours of training does each employee receive annually?", "type": "text" },
         { "question": "Does the company have a structured career development plan?", "type": "boolean" },
         { "question": "Does the company offer mentorship programs?", "type": "boolean" },
         { "question": "How often do employees receive performance evaluations?", "type": "text" },
@@ -150,7 +150,7 @@
   
       "Human Rights & Fair Wages (Management & HR Data)": [
         { "question": "Does the company ensure no child labor or forced labor in operations?", "type": "boolean" },
-        { "question": "What is the minimum wage for employees?", "type": "number" },
+        { "question": "What is the minimum wage for employees?", "type": "text" },
         { "question": "Does the company ensure gender pay equity?", "type": "boolean" },
         { "question": "Are third-party suppliers audited for ethical labor practices?", "type": "boolean" },
         { "question": "Does the company support freedom of association and unionization?", "type": "boolean" }
@@ -159,15 +159,15 @@
 
       "Community Development & CSR (Management Data)": [
         { "question": "Does the company have a Corporate Social Responsibility (CSR) policy?", "type": "boolean" },
-        { "question": "How much did the company spend on CSR initiatives in the last financial year?", "type": "number" },
+        { "question": "How much did the company spend on CSR initiatives in the last financial year?", "type": "text" },
         { "question": "What are the key focus areas of CSR?", "type": "text" },
-        { "question": "How many people were directly impacted by CSR programs?", "type": "number" }
+        { "question": "How many people were directly impacted by CSR programs?", "type": "text" }
       ],
     
   
       "Ethical Supply Chain & Procurement (Management & Vendor Data)": [
         { "question": "Does the company have a sustainable procurement policy?", "type": "boolean" },
-        { "question": "What percentage of suppliers comply with ethical labor and environmental standards?", "type": "number" },
+        { "question": "What percentage of suppliers comply with ethical labor and environmental standards?", "type": "text" },
         { "question": "Are suppliers audited for human rights compliance?", "type": "boolean" },
         { "question": "Are procurement decisions influenced by social and environmental considerations?", "type": "boolean" }
       ],
@@ -178,7 +178,7 @@
         { "question": "Has there been any data breach incident in the last year?", "type": "boolean" },
         { "question": "Does the company provide clear product labeling and ethical advertising?", "type": "boolean" },
         { "question": "Does the company have customer grievance redressal mechanisms?", "type": "boolean" },
-        { "question": "What is the company’s Net Promoter Score (NPS) for customer satisfaction?", "type": "number" }
+        { "question": "What is the company’s Net Promoter Score (NPS) for customer satisfaction?", "type": "text" }
       ],
 
    
@@ -198,13 +198,13 @@
     },
     "Governance": {
       "Board Structure & Leadership": [
-        {"question": "Total number of board members?", "type": "number" },
-        {"question": "Number of Independent Directors?", "type": "number" },
-        {"question": "Number of Women Directors on the board?", "type": "number" },
-        {"question": "Average age of board members?", "type": "number" },
+        {"question": "Total number of board members?", "type": "text" },
+        {"question": "Number of Independent Directors?", "type": "text" },
+        {"question": "Number of Women Directors on the board?", "type": "text" },
+        {"question": "Average age of board members?", "type": "text" },
         {"question": "Does the board include members from diverse backgrounds (industry expertise, gender, ethnicity, etc.)?", "type": "boolean" },
         {"question": "Does the company have a Board Diversity Policy?", "type": "boolean" },
-        {"question": "How often does the board meet annually?", "type": "number" },
+        {"question": "How often does the board meet annually?", "type": "text" },
         {"question": "Is the board remuneration linked to ESG performance?", "type": "boolean" }
       ],
       "Board Committees & Responsibilities": [
@@ -218,9 +218,9 @@
         { "question": "Has the company adopted an Anti-Bribery and Anti-Corruption Policy?", "type": "boolean" },
         { "question": "Has the company conducted any anti-corruption training in the last year?", "type": "boolean" },
         { "question": "Have there been any reported cases of bribery, fraud, or corruption?", "type": "boolean" },
-        { "question": "What percentage of employees have signed the Code of Conduct?", "type": "number" },
+        { "question": "What percentage of employees have signed the Code of Conduct?", "type": "text" },
         { "question": "Are there whistleblower mechanisms in place?", "type": "boolean" },
-        { "question": "How many whistleblower complaints were received in the last year?", "type": "number" }
+        { "question": "How many whistleblower complaints were received in the last year?", "type": "text" }
       ],
       "Ris& Compliance": [
         { "question": "Does the company have a formal Enterprise Risk Management (ERM) framework?", "type": "boolean" },
@@ -240,7 +240,7 @@
       "Corporate Social Responsibility (CSR) Governance": [
         { "question": "Has the company allocated 2% of its net profits to CSR as per the Companies Act 2013?", "type": "boolean" },
         { "question": "What are the key focus areas of CSR spending?", "type": "text" },
-        { "question": "How many CSR projects were completed in the last year?", "type": "number" },
+        { "question": "How many CSR projects were completed in the last year?", "type": "text" },
         { "question": "Does the company disclose CSR impact metrics?", "type": "boolean" },
         { "question": "Are CSR reports externally audited?", "type": "boolean" }
       ],
@@ -275,8 +275,8 @@
         {"question": "What is the total area (in hectares or acres) allocated for the project?", "type": "number" },
         {"question": "Is the project focused on afforestation (new tree planting) or reforestation (restoring existing forests)?", "type": "text" },
         {"question": "Which tree species or mix of species are being planted?", "type": "text" },
-        {"question": "What is the planting density (trees per hectare/acre)?", "type": "number" },
-        {"question": "What is the estimated annual carbon absorption (in tons CO₂/year)?", "type": "number" },
+        {"question": "What is the planting density (trees per hectare/acre)?", "type": "text" },
+        {"question": "What is the estimated annual carbon absorption (in tons CO₂/year)?", "type": "text" },
         {"question": "What are the underlying assumptions (growth rate, survival rate, etc.) used in the carbon calculation?", "type": "text" },
         {"question": "What is the project start date and expected time to maturity or full carbon sequestration potential?", "type": "text" },
         { "question": "Is the project certified by any recognized carbon standard (e.g., Verified Carbon Standard, Gold Standard)?", "type": "boolean" }
@@ -286,19 +286,19 @@
         {"question": "What is the total area (hectares/acres) under these practices?", "type": "number" },
         {"question": "What are the baseline soil carbon levels, and what are the targeted increases over time?", "type": "text" },
         {"question": "What monitoring methods or technologies are used to measure changes in soil carbon content?", "type": "text" },
-        {"question": "What is the estimated annual increase in soil carbon sequestration (tons CO₂/year)?", "type": "number" }
+        {"question": "What is the estimated annual increase in soil carbon sequestration (tons CO₂/year)?", "type": "text" }
       ],
       "Blue Carbon Assets": [
         {"question": "What type of blue carbon asset is being managed (e.g., mangroves, salt marshes, seagrass beds)?", "type": "text" },
         {"question": "What is the geographic location and total area (hectares/acres) of the ecosystem?", "type": "text" },
         {"question": "Is the asset under a restoration, conservation, or management program?", "type": "boolean" },
         {"question": "What specific actions are being taken (e.g., replanting, hydrological restoration, invasive species control)?", "type": "text" },
-        {"question": "What is the estimated carbon absorption rate (tons CO₂/year)?", "type": "number" }
+        {"question": "What is the estimated carbon absorption rate (tons CO₂/year)?", "type": "text" }
       ],
       "Technological Carbon Capture Assets": [
         {"question": "What is the technology type or model of the Direct Air Capture (DAC) system?", "type": "text" },
         {"question": "Who is the manufacturer or technology provider?", "type": "text" },
-        {"question": "What is the current CO₂ capture capacity (tons CO₂/year)?", "type": "number" },
+        {"question": "What is the current CO₂ capture capacity (tons CO₂/year)?", "type": "text" },
         {"question": "What energy source(s) does the system use (renewable, grid, hybrid)?", "type": "text" },
         {"question": "What are the key performance indicators and monitoring procedures?", "type": "text" },
         {"question": "What type of Carbon Capture and Storage (CCS) / Carbon Capture, Utilization, and Storage (CCUS) technology is implemented?", "type": "text" },
@@ -308,7 +308,7 @@
       ],
       "Carbon Credit Portfolios & Offsets": [
         { "question": "What type(s) of carbon credits or offsets does the company hold (e.g., forestry, renewable energy, avoided deforestation)?", "type": "text" },
-        { "question": "What is the total volume of carbon credits (in tons CO₂ equivalent)?", "type": "number" },
+        { "question": "What is the total volume of carbon credits (in tons CO₂ equivalent)?", "type": "text" },
         { "question": "What projects or initiatives are the credits associated with?", "type": "text" },
         { "question": "Which certification bodies or standards verify these credits?", "type": "text" },
         { "question": "What is the validity period or expiration date of these credits?", "type": "text" },
@@ -327,12 +327,44 @@
         { "question": "How frequently is performance data collected and verified (internally or by third parties)?", "type": "text" },
         { "question": "What are the key risks associated with the asset (e.g., climate variability, technological obsolescence)?", "type": "text" },
         { "question": "What contingency or risk mitigation measures are in place?", "type": "text" },
-        { "question": "What is the capital investment for the asset?", "type": "number" },
+        { "question": "What is the capital investment for the asset?", "type": "text" },
         { "question": "What are the operational costs and expected financial returns (if any) related to carbon absorption?", "type": "text" },
         { "question": "How is the asset’s performance reported (e.g., annual sustainability report, ESG dashboard)?", "type": "text" },
         { "question": "Who are the stakeholders or partners involved in the project?", "type": "text" }
       ]
       
+    },
+    "Renewable Project": {
+      "General Project Details": [
+        { "question": "Project Name", "type": "text" },
+        { "question": "Project Location", "type": "text" },
+        { "question": "Type of Renewable Energy", "type": "text" },
+        { "question": "Installed Capacity (MW)", "type": "text" },
+        { "question": "Annual Energy Generation (MWh/year)", "type": "text" },
+        { "question": "Operational Status", "type": "text" },
+        { "question": "Commissioning Year", "type": "text" }
+      ],
+      "Environmental & Carbon Impact": [
+        { "question": "Total Carbon Savings (tCO₂e/year)", "type": "text" },
+        { "question": "Grid-Connected or Off-Grid?", "type": "text" },
+        { "question": "Does the project have Renewable Energy Certificates (RECs)?", "type": "boolean" },
+        { "question": "Emission Factor Used (kgCO₂e/kWh)", "type": "text" }
+      ],
+      "Financial & Ownership": [
+        { "question": "Investment Cost (INR or USD)", "type": "text" },
+        { "question": "Funding Type", "type": "text" },
+        { "question": "Ownership Model", "type": "text" },
+        { "question": "Expected ROI Period (Years)", "type": "text" }
+      ],
+      "Compliance & Certifications": [
+        { "question": "Is the project certified under any standards?", "type": "text" },
+        { "question": "Does the project contribute to the company's RE100 target?", "type": "boolean" }
+      ],
+      "Additional Information": [
+        { "question": "Challenges Faced in Implementation", "type": "text" },
+        { "question": "Future Expansion Plans?", "type": "boolean" },
+        { "question": "Any Government Subsidy or Incentives Received?", "type": "text" }
+      ]
     }
    
 

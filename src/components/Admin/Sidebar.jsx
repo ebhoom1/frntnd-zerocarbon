@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -15,6 +14,10 @@ import ExitToAppIcon from "@mui/icons-material/ExitToApp";
 import MenuIcon from "@mui/icons-material/Menu";
 import ForestOutlinedIcon from "@mui/icons-material/ForestOutlined";
 import DescriptionOutlinedIcon from "@mui/icons-material/DescriptionOutlined";
+import PublicIcon from "@mui/icons-material/Public";
+import Diversity3Icon from "@mui/icons-material/Diversity3";
+import GavelIcon from "@mui/icons-material/Gavel";
+import BatteryChargingFullIcon from "@mui/icons-material/BatteryChargingFull";
 import { setSelectedItem } from "../../redux/features/sidebar/SidebarSlice";
 import { logout } from "../../redux/features/auth/authSlice";
 import {
@@ -29,8 +32,8 @@ import {
 import logo from "../../assets/images/logo1.svg";
 import useMediaQuery from "@mui/material/useMediaQuery";
 
-const Sidebar = ({ mobileOpen,setMobileOpen, toggleSidebar }) => {
-const isLargeScreen = useMediaQuery("(min-width: 1024px)"); // Adjust breakpoint as needed
+const Sidebar = ({ mobileOpen, setMobileOpen, toggleSidebar }) => {
+  const isLargeScreen = useMediaQuery("(min-width: 1024px)"); // Adjust breakpoint as needed
   const [collapsed, setCollapsed] = useState(false);
   const userType = useSelector((state) => state.auth.userType);
   const dispatch = useDispatch();
@@ -45,7 +48,7 @@ const isLargeScreen = useMediaQuery("(min-width: 1024px)"); // Adjust breakpoint
             icon: <DashboardOutlinedIcon />,
           },
           { id: "leads", label: "Clients", icon: <GroupOutlinedIcon /> },
-          
+
           {
             id: "hierarchychart",
             label: "Boundaries and Scopes",
@@ -56,8 +59,17 @@ const isLargeScreen = useMediaQuery("(min-width: 1024px)"); // Adjust breakpoint
             label: "Emission Factors",
             icon: <TableViewIcon />,
           },
-          { id: "team", label: "Team", icon: <GroupOutlinedIcon /> ,path:"/team"},
-          { id: "settings", label: "Settings", icon: <SettingsOutlinedIcon /> },
+          {
+            id: "team",
+            label: "Team",
+            icon: <GroupOutlinedIcon />,
+            path: "/team",
+          },
+          {
+            id: "decarbonisation",
+            label: "Decarbonisation",
+            icon: <ForestOutlinedIcon />,
+          },
           { id: "alerts", label: "Alerts", icon: <AnnouncementOutlinedIcon /> },
           { id: "reports", label: "Reports", icon: <SummarizeIcon /> },
         ]
@@ -77,29 +89,45 @@ const isLargeScreen = useMediaQuery("(min-width: 1024px)"); // Adjust breakpoint
             label: "Data Submissions",
             icon: <GroupOutlinedIcon />,
           },
-          {
-            id: "submissions",
-            label: "Submissions",
-            icon: <DescriptionOutlinedIcon />,
-          },
+          // {
+          //   id: "submissions",
+          //   label: "Submissions",
+          //   icon: <DescriptionOutlinedIcon />,
+          // },
           {
             id: "decarbonization",
             label: "Decarbonization",
-            icon: <ForestOutlinedIcon/>,
-            path:'/decarbonization'
+            icon: <ForestOutlinedIcon />,
+            path: "/decarbonization",
+          },
+          {
+            id: "environment",
+            label: "Environment",
+            icon: <PublicIcon />,
+          },
+          {
+            id: "social",
+            label: "Social Matrics",
+            icon: <Diversity3Icon />,
+          },
+          {
+            id: "governance",
+            label: "Governance",
+            icon: <GavelIcon />,
+          },
+          {
+            id: "assetsrenewableproject",
+            label: "Assets & RenewableProject",
+            icon: <BatteryChargingFullIcon />,
           },
           { id: "report", label: "Report", icon: <SummarizeIcon /> },
           {
             id: "team",
             label: "Team",
             icon: <GroupOutlinedIcon />,
-            path:"/team"
+            path: "/team",
           },
-          {
-            id: "alerts",
-            label: "Alerts & Notifications",
-            icon: <NotificationsIcon />,
-          },
+         
         ];
 
   const handleLogout = () => {
@@ -107,35 +135,25 @@ const isLargeScreen = useMediaQuery("(min-width: 1024px)"); // Adjust breakpoint
     navigate("/login");
   };
 
-
-
   return (
-    // <Box
-    //   sx={{
-    //     width: collapsed ? 60 : 280,
-    //     transition: "width 0.3s ease",
-    //     background: "#fff",
-    //     boxShadow: "2px 0 5px rgba(0, 0, 0, 0.1)",
-    //     color: "#272727",
-    //     display: "flex",
-    //     flexDirection: "column",
-    //     overflow: "hidden",
-    //     height: "100vh",
-    //   }}
-    // >
     <Box
-  sx={{
-    width: collapsed ? 60 : 280, // Keep collapse feature for large screens
-    position: isLargeScreen ? "static" : "fixed",
-    left: isLargeScreen ? "unset" : mobileOpen ? 0 : "-280px",
-    transition: "left 0.3s ease",
-    transition: "width 0.3s ease",
-    height: "100vh",
-    zIndex: isLargeScreen ? "auto" : 1200, // Ensure overlay for small screens
-    background: "#fff",
-    boxShadow: isLargeScreen ? "2px 0 5px rgba(0, 0, 0, 0.1)" : "0px 4px 10px rgba(0, 0, 0, 0.2)",
-  }}
-> 
+      sx={{
+        width: collapsed ? 60 : 280, // Keep collapse feature for large screens
+        position: isLargeScreen ? "static" : "fixed",
+        left: isLargeScreen ? "unset" : mobileOpen ? 0 : "-280px",
+        transition: "left 0.3s ease",
+        transition: "width 0.3s ease",
+        maxHeight: "100vh", // Constrain height
+        overflowY: "auto", // Enable vertical scrolling
+        "&::-webkit-scrollbar": { width: 6 }, // Customize scrollbar
+        "&::-webkit-scrollbar-thumb": { backgroundColor: "#aaa", borderRadius: 3 },
+        zIndex: isLargeScreen ? "auto" : 1200, // Ensure overlay for small screens
+        background: "#fff",
+        boxShadow: isLargeScreen
+          ? "2px 0 5px rgba(0, 0, 0, 0.1)"
+          : "0px 4px 10px rgba(0, 0, 0, 0.2)",
+      }}
+    >
       {/* Logo and Collapse Button */}
       <Box
         sx={{
@@ -158,9 +176,11 @@ const isLargeScreen = useMediaQuery("(min-width: 1024px)"); // Adjust breakpoint
             </Typography>
           </Box>
         )}
-       <IconButton onClick={mobileOpen ? toggleSidebar : () => setCollapsed(!collapsed)}>
-  <MenuIcon />
-</IconButton>
+        <IconButton
+          onClick={mobileOpen ? toggleSidebar : () => setCollapsed(!collapsed)}
+        >
+          <MenuIcon />
+        </IconButton>
       </Box>
 
       {/* Sidebar Items */}
@@ -170,12 +190,11 @@ const isLargeScreen = useMediaQuery("(min-width: 1024px)"); // Adjust breakpoint
             <Tooltip title={collapsed ? item.label : ""} placement="right">
               <Button
                 onClick={() => {
-                  if (item.path){
-
+                  if (item.path) {
                     navigate(item.path);
                   }
                   dispatch(setSelectedItem({ id: item.id, label: item.label }));
-                  setMobileOpen(!mobileOpen)
+                  setMobileOpen(!mobileOpen);
                 }}
                 sx={{
                   width: "100%",
@@ -202,6 +221,7 @@ const isLargeScreen = useMediaQuery("(min-width: 1024px)"); // Adjust breakpoint
                     alignItems: "center",
                     justifyContent: "center",
                     color: "#4CAF50", // Default icon color
+                    textAlign:"left"
                   }}
                 >
                   {item.icon}
@@ -209,7 +229,7 @@ const isLargeScreen = useMediaQuery("(min-width: 1024px)"); // Adjust breakpoint
                     <Typography
                       variant="body1"
                       className="sidebar-label"
-                      sx={{ marginLeft: 2,  }}
+                      sx={{ marginLeft: 2 }}
                     >
                       {item.label}
                     </Typography>
@@ -259,7 +279,7 @@ const isLargeScreen = useMediaQuery("(min-width: 1024px)"); // Adjust breakpoint
               <Typography
                 variant="body1"
                 className="sidebar-label"
-                sx={{ marginLeft: 2, }}
+                sx={{ marginLeft: 2 }}
               >
                 Logout
               </Typography>
@@ -272,4 +292,3 @@ const isLargeScreen = useMediaQuery("(min-width: 1024px)"); // Adjust breakpoint
 };
 
 export default Sidebar;
-

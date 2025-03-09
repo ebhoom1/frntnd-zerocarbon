@@ -239,7 +239,6 @@ function App() {
           <TextField
             name="CO2"
             label="CO2 (kg/unit)"
-            type="number"
             fullWidth
             margin='normal'
             value={formData.CO2}
@@ -248,7 +247,6 @@ function App() {
           <TextField
             name="CH4"
             label="CH4 (kg/unit)"
-            type="number"
             fullWidth
             margin='normal'
             value={formData.CH4}
@@ -257,7 +255,6 @@ function App() {
           <TextField
             name="N2O"
             label="N2O (kg/unit)"
-            type="number"
             fullWidth
             margin='normal'
             value={formData.N2O}
@@ -266,7 +263,6 @@ function App() {
           <TextField
             name="CO2e"
             label="CO2e (kg/unit)"
-            type="number"
             fullWidth
             margin='normal'
             value={formData.CO2e}

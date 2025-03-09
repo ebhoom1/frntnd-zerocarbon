@@ -246,7 +246,6 @@ function FugitiveEmissions() {
             margin="normal"
             name="CO2"
             label="CO2 (kg/unit)"
-            type="number"
             fullWidth
             value={formData.CO2}
             onChange={handleChange}
@@ -255,7 +254,6 @@ function FugitiveEmissions() {
             margin="normal"
             name="CH4"
             label="CH4 (kg/unit)"
-            type="number"
             fullWidth
             value={formData.CH4}
             onChange={handleChange}
@@ -264,7 +262,6 @@ function FugitiveEmissions() {
             margin="normal"
             name="N2O"
             label="N2O (kg/unit)"
-            type="number"
             fullWidth
             value={formData.N2O}
             onChange={handleChange}
@@ -273,7 +270,6 @@ function FugitiveEmissions() {
             margin="normal"
             name="SF6"
             label="SF6 (kg/unit)"
-            type="number"
             fullWidth
             value={formData.SF6}
             onChange={handleChange}
@@ -282,7 +278,6 @@ function FugitiveEmissions() {
             margin="normal"
             name="GWP_CO2e"
             label="GWP CO2e"
-            type="number"
             fullWidth
             value={formData.GWP_CO2e}
             onChange={handleChange}

@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import axios from "../../../api/axios";
 import { Container, Typography, Button } from "@mui/material";
-import Section from "../../../components/User/DataSubmission/Section";
+import Section from "../../../components/User/DataSubmission/EnvironmentSec";
 import CustomAlert from "../../../components/Alert/Sweetalert";
-import questionsData from "../../../assets/data/DataSubmission/questions.json";
+import questionsData from "../../../assets/data/DataSubmission/assets&renewable.json";
 import { useSelector } from "react-redux";
 import RenewableProject from "../../../components/User/DataSubmission/RenewableProjectForm";
 
-const DataSubmission = () => {
+const AssetsRenewablePage = () => {
   const userId = useSelector((state) => state.auth.user?.id);
   const [responses, setResponses] = useState({});
   const [loading, setLoading] = useState(false);
@@ -83,7 +83,7 @@ const DataSubmission = () => {
           </div>
         ))}
       </div>
-      <RenewableProject />
+      {/* <RenewableProject /> */}
       <Button
         variant="contained"
         color="primary"
@@ -98,4 +98,4 @@ const DataSubmission = () => {
   );
 };
 
-export default DataSubmission;
+export default AssetsRenewablePage;

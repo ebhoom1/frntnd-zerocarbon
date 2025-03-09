@@ -291,7 +291,6 @@ function MobileCombustion() {
           <TextField
             label="NCV"
             name="NCV"
-            type="number"
             fullWidth
             margin="normal"
             value={formData.NCV}
@@ -300,7 +299,6 @@ function MobileCombustion() {
           <TextField
             label="CO2"
             name="CO2"
-            type="number"
             fullWidth
             margin="normal"
             value={formData.CO2}
@@ -309,7 +307,6 @@ function MobileCombustion() {
           <TextField
             label="CH4"
             name="CH4"
-            type="number"
             fullWidth
             margin="normal"
             value={formData.CH4}
@@ -318,7 +315,6 @@ function MobileCombustion() {
           <TextField
             label="N2O"
             name="N2O"
-            type="number"
             fullWidth
             margin="normal"
             value={formData.N2O}
@@ -327,7 +323,6 @@ function MobileCombustion() {
           <TextField
             label="CO2e"
             name="CO2e"
-            type="number"
             fullWidth
             margin="normal"
             value={formData.CO2e}

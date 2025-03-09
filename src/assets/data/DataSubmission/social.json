@@ -1,0 +1,96 @@
+{
+
+    "Social": {
+        "Workforce Composition & Diversity(Management & HR Data)": [
+          
+            { "question": "Total number of employees?", "type": "number" },
+            { "question": "Breakdown of employees by gender?", "type": "text" },
+            { "question": "Breakdown of employees by employment type?", "type": "text" },
+            { "question": "Diversity ratio in leadership positions?", "type": "text" },
+            { "question": "Does the company have a diversity & inclusion policy?", "type": "boolean" },
+            { "question": "Percentage of employees from minority or underrepresented communities?", "type": "text" },
+            { "question": "Does the company have equal opportunity hiring practices?", "type": "boolean" },
+            { "question": "Is there an anti-discrimination and harassment policy?", "type": "boolean" },
+            { "question": "Have there been any reported cases of workplace discrimination or harassment in the last year?", "type": "boolean" }
+          ],
+        
+        "Employee Well-being & Benefits(Employee Survey via GoodFoot)": [
+          
+            { "question": "How satisfied are you with your work-life balance?", "type": "text" },
+            { "question": "Do you receive paid leave, maternity/paternity leave, and sick leave?", "type": "boolean" },
+            { "question": "Does the company offer health insurance benefits?", "type": "boolean" },
+            { "question": "Do you feel that your workplace provides mental health support?", "type": "boolean" },
+            { "question": "Does your company offer employee assistance programs (EAPs)?", "type": "boolean" },
+            { "question": "Does your workplace support flexible work arrangements (remote/hybrid)?", "type": "boolean" },
+            {"question": "Does your company have safety policies and training in place?", "type": "boolean" }
+          ],
+        
+        "Training & Career Development(HR & Employee Survey via GoodFoot)": [
+         
+            { "question": "How many hours of training does each employee receive annually?", "type": "text" },
+            { "question": "Does the company have a structured career development plan?", "type": "boolean" },
+            { "question": "Does the company offer mentorship programs?", "type": "boolean" },
+            { "question": "How often do employees receive performance evaluations?", "type": "text" },
+            { "question": "Do employees receive support for further education/certifications?", "type": "boolean" }
+          ],
+    
+       
+          "Employee Health & Safety (Management & Compliance Data)": [
+            { "question": "Has the company reported any workplace injuries or fatalities in the last year?", "type": "boolean" },
+            { "question": "Does the company conduct regular health and safety audits?", "type": "boolean" },
+            { "question": "Are there first-aid facilities available on-site?", "type": "boolean" },
+            { "question": "Does the company have a disaster preparedness plan?", "type": "boolean" },
+            { "question": "What is the frequency of fire and emergency drills?", "type": "text" },
+            { "question": "Does the company provide Personal Protective Equipment (PPE) to employees?", "type": "boolean" }
+          ],
+    
+      
+          "Human Rights & Fair Wages (Management & HR Data)": [
+            { "question": "Does the company ensure no child labor or forced labor in operations?", "type": "boolean" },
+            { "question": "What is the minimum wage for employees?", "type": "text" },
+            { "question": "Does the company ensure gender pay equity?", "type": "boolean" },
+            { "question": "Are third-party suppliers audited for ethical labor practices?", "type": "boolean" },
+            { "question": "Does the company support freedom of association and unionization?", "type": "boolean" }
+          ],
+        
+    
+          "Community Development & CSR (Management Data)": [
+            { "question": "Does the company have a Corporate Social Responsibility (CSR) policy?", "type": "boolean" },
+            { "question": "How much did the company spend on CSR initiatives in the last financial year?", "type": "text" },
+            { "question": "What are the key focus areas of CSR?", "type": "text" },
+            { "question": "How many people were directly impacted by CSR programs?", "type": "text" }
+          ],
+        
+      
+          "Ethical Supply Chain & Procurement (Management & Vendor Data)": [
+            { "question": "Does the company have a sustainable procurement policy?", "type": "boolean" },
+            { "question": "What percentage of suppliers comply with ethical labor and environmental standards?", "type": "text" },
+            { "question": "Are suppliers audited for human rights compliance?", "type": "boolean" },
+            { "question": "Are procurement decisions influenced by social and environmental considerations?", "type": "boolean" }
+          ],
+     
+       
+          "Customer Responsibility & Data Privacy (Management & IT Data)": [
+            { "question": "Does the company have a data protection and privacy policy?", "type": "boolean" },
+            { "question": "Has there been any data breach incident in the last year?", "type": "boolean" },
+            { "question": "Does the company provide clear product labeling and ethical advertising?", "type": "boolean" },
+            { "question": "Does the company have customer grievance redressal mechanisms?", "type": "boolean" },
+            { "question": "What is the company’s Net Promoter Score (NPS) for customer satisfaction?", "type": "text" }
+          ],
+    
+       
+          "Employee Engagement & Workplace Culture (Employee Survey via GoodFoot)": [
+            { "question": "Do you feel valued at work?", "type": "boolean" },
+            { "question": "Does your company encourage employee volunteering?", "type": "boolean" },
+            { "question": "How often does the company conduct employee engagement activities?", "type": "text" },
+            { "question": "Would you recommend your company as a great place to work?", "type": "boolean" }
+          ],
+    
+    
+          "ESG & Climate Awareness (Employee Survey via GoodFoot & Management)": [
+            { "question": "Does the company provide training on sustainability and ESG goals?", "type": "boolean" },
+            { "question": "Are employees aware of their role in reducing the company’s carbon footprint?", "type": "boolean" },
+            { "question": "Does the company encourage green commuting (carpooling, EVs, biking)?", "type": "boolean" }
+          ]
+        }
+}

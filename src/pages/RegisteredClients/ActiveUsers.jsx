@@ -69,9 +69,9 @@ console.log(rows);
         const response = await axios.get('/api/admin/completed'); 
         const formattedData = response.data.map((form, index) => ({
           id: index + 1,
-          name: form.primaryContact.name,
-          email: form.primaryContact.email,
-          phone: form.primaryContact.phone,
+          name: form.userName,
+          email: form.email,
+          phone: form.contactNumber,
           companyName: form.companyName,
           consultant: '', // Default value for the consultant column
         }));

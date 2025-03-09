@@ -26,7 +26,7 @@ const UserDashboard = () => {
     setMobileOpen((prev) => !prev);
   };
   return (
-    <Box sx={{ height: "100vh", display: "flex", backgroundColor: "#F5F5F5" }}>
+    <Box sx={{ height: "100vh", display: "flex", backgroundColor: "#F5F5F5"}}>
       {alert && <Alert message={alert.message} severity={alert.type} />}
       <Sidebar mobileOpen={mobileOpen} setMobileOpen={setMobileOpen} toggleSidebar={toggleSidebar}/>
       <ContentArea toggleSidebar={toggleSidebar}/>

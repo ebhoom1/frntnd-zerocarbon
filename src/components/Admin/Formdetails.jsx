@@ -7,21 +7,21 @@ import html2pdf from 'html2pdf.js'
 import './formmDetails.css';
 
 const Formdetails = () => {
-  const { formId } = useParams(); // Get the form ID from the route
+  const { userId } = useParams(); // Get the userID from the route
   const [formDetails, setFormDetails] = useState(null);
   const formRef = useRef(); // Reference for the form content
 
   useEffect(() => {
     const fetchFormDetails = async () => {
       try {
-        const response = await axios.get(`/api/admin/formDetails/${formId}`);
+        const response = await axios.get(`/api/admin/formDetails/${userId}`);
         setFormDetails(response.data.form); // Ensure `form` matches backend response
       } catch (error) {
         console.error("Error fetching form details:", error);
       }
     };
     fetchFormDetails();
-  }, [formId]);
+  }, [userId]);
 
   const downloadPDF = () => {
     const formElement = formRef.current;
@@ -29,7 +29,7 @@ const Formdetails = () => {
     // Configure the options for html2pdf
     const options = {
       margin: 10, // Add margin to each page
-      filename: `Form_${formId}.pdf`, // File name for the PDF
+      filename: `Form_${userId}.pdf`, // File name for the PDF
       image: { type: 'png', quality: 1 }, // Set the image type and quality
       html2canvas: { scale: 2 }, // Render the form at a higher scale for better quality
       jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }, // Set the paper size and orientation
@@ -41,7 +41,7 @@ const Formdetails = () => {
   
 
   if (!formDetails) {
-    return <Typography>Loading...</Typography>;
+    return <Typography>No Data found</Typography>;
   }
 
 

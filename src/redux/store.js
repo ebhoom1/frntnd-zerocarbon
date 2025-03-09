@@ -5,6 +5,7 @@ import sidebarReducer from "./features/sidebar/SidebarSlice";
 import dashboardReducer from './features/dashboard/DashboardSlice';
 import flowchartReducer from "./features/flowchart/flowchartSlice";
 import userGetReducer from './features/user/userGetReducer';
+import userRoadmapReducer from './features/roadmap/UserRoadmapSlice';
 
 export const store = configureStore({
   reducer: {
@@ -13,7 +14,8 @@ export const store = configureStore({
     sidebar: sidebarReducer,
     dashboard: dashboardReducer,
     flowchart: flowchartReducer,
-    userFetch: userGetReducer
+    userFetch: userGetReducer,
+    userRoadmap:userRoadmapReducer,
 
   },
 });

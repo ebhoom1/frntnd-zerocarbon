@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "../../api/axios";
+
 import industryOptions from "../../assets/data/industryOptions.json"; // Adjust this path based on your project structure
 import {
   Button,
@@ -33,7 +34,7 @@ const Dashboard = () => {
   useEffect(() => {
     const fetchForms = async () => {
       try {
-        const response = await axios.get("/api/admin/forms");
+        const response = await axios.get("/api/admin/registeredusers");
         setAllForms(response.data); // Store all forms
         setForms(response.data); // Initialize display with all forms
       } catch (error) {
@@ -64,7 +65,7 @@ const Dashboard = () => {
   // Handle status update
   const handleStatusChange = async (id, newStatus) => {
     try {
-      const response = await axios.patch(`/api/admin/forms/status/${id}`, {
+      const response = await axios.patch(`/api/admin/registeredusers/status/${id}`, {
         status: newStatus,
       });
       setForms((prevForms) =>
@@ -79,8 +80,8 @@ const Dashboard = () => {
   };
 
   // Handle table row click
-  const handleRowClick = (formId) => {
-    navigate(`/formdetails/${formId}`);
+  const handleRowClick = (userId) => {
+    navigate(`/formdetails/${userId}`);
   };
 
   return (
@@ -141,12 +142,13 @@ const Dashboard = () => {
                   onClick={() => handleRowClick(form._id)}
                   style={{
                     cursor: "pointer",
-                    backgroundColor: form.isRead ? "white" : "#FFF9C4",
+                    // backgroundColor: form.isRead ? "white" : "#FFF9C4",
+                    backgroundColor:  "white",
                   }}
                 >
-                  <TableCell>{form.primaryContact.name}</TableCell>
-                  <TableCell>{form.primaryContact.email}</TableCell>
-                  <TableCell>{form.primaryContact.phone}</TableCell>
+                  <TableCell>{form.userName}</TableCell>
+                  <TableCell>{form.email}</TableCell>
+                  <TableCell>{form.contactNumber}</TableCell>
                   <TableCell onClick={(e) => e.stopPropagation()}>
                     <FormControl fullWidth>
                       <Select

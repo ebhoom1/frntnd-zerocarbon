@@ -1,0 +1,105 @@
+{
+    "Scope 1: Direct Emissions": {
+      "Mobile Combustion": [
+        { "question": "Number of company-owned vehicles?", "type": "number" },
+        { "question": "Type of vehicle? (Passenger cars, trucks, buses, motorcycles, etc.)", "type": "text" },
+        { "question": "Vehicle Name?", "type": "text" },
+        { "question": "Fuel type per vehicle? (Petrol, Diesel, LPG, CNG, Electric)", "type": "text" },
+        { "question": "Fuel consumption per vehicle? (Liters/gallons or kWh per year)", "type": "text" },
+        { "question": "Distance traveled per vehicle annually? (km/miles)", "type": "text" }
+      ],
+      "Stationary Combustion": [
+        { "question": "Does your company use fossil fuels for heating or electricity generation?", "type": "boolean" },
+        { "question": "Type of fuel used? (Coal, Natural Gas, Diesel, LPG, Biomass, etc.)", "type": "text" },
+        { "question": "Annual fuel consumption? (Liters/tons/cubic meters)", "type": "text" }
+      ],
+      "Industrial Processes": [
+        { "question": "Does your company have industrial processes that emit greenhouse gases?", "type": "boolean" },
+        {  "question": "Type of industrial process? (Cement, Steel, Lime, Aluminum, Glass, Nitric Acid, etc.)", "type": "text" },
+        {  "question": "Annual production quantity? (Tons, units, etc.)", "type": "text" },
+        {  "question": "Associated emissions? (CO₂, CH₄, N₂O, PFCs)", "type": "text" }
+      ],
+      "Fugitive Emissions": [
+        { "question": "Does your company use refrigerants, air conditioning, or fire suppression systems?", "type": "boolean" },
+        { "question": "Type and quantity of refrigerants used? (HFC-134a, SF₆, etc.)", "type": "text" },
+        { "question": "Any fugitive emissions from gas pipelines or equipment?", "type": "boolean" }
+      ]
+    },
+    "Scope 2: Indirect Emissions": {
+      "Purchased Electricity": [
+        { "question": "Total annual electricity consumption? (kWh)", "type": "text" },
+        { "question": "Grid electricity or renewable sources?", "type": "text" }
+        
+      ],
+      "Purchased Steam, Heat, or Cooling": [
+        { "question": "Total purchased steam/heat consumption? (GJ or MWh)", "type": "text" },
+        { "question": "Emission factor used? (kg CO₂e/GJ or MWh)", "type": "text" },
+        { "question": "Transmission and distribution losses considered?", "type": "boolean" }
+      ]
+    },
+    "Scope 3: Value Chain Emissions": {
+      "Purchased Goods & Services": [
+        { "question": "What are the major materials or goods purchased annually?", "type": "text" },
+        { "question": "Total quantity purchased? (Tons or units)", "type": "text" },
+        { "question": "Emission factors used for purchased goods? (kg CO₂e/unit)", "type": "text" }
+      ],
+      "Fuel & Energy-Related Emissions (Upstream)": [
+        { "question": "Any upstream fuel emissions considered? (Fuel extraction, refining, transportation)", "type": "boolean" },
+        { "question": "Transmission losses for purchased electricity accounted for?", "type": "boolean" }
+      ],
+      "Transportation & Distribution": [
+        { "question": "Does your company transport raw materials, products, or employees?", "type": "boolean" },
+        { "question": "Total distance covered by company transport annually? (km/miles)", "type": "text" },
+        { "question": "Transport mode? (Truck, Rail, Ship, Air)", "type": "text" },
+        { "question": "Fuel type and consumption per transport mode?", "type": "text" },
+        { "question": "Emissions from third-party logistics?", "type": "boolean" }
+      ],
+      "Waste Generation": [
+        { "question": "Annual waste generated? (Tons)", "type": "text" },
+        { "question": "Emission factors for waste disposal used?", "type": "text" }
+      ],
+      "Business Travel": [
+        { "question": "How many business trips occurred in the reporting year?", "type": "text" },
+        { "question": "Transport mode used for business travel? (Air, Train, Car, Bus)", "type": "text" },
+        { "question": "Total distance traveled by employees for business purposes? (km/miles)", "type": "text" },
+        { "question": "Accommodation nights stayed?", "type": "text" }
+      ],
+      "Employee Commuting": [
+        { "question": "Number of employees commuting daily?", "type": "number" },
+        { "question": "Primary transport modes used by employees?", "type": "text" },
+        { "question": "Average commuting distance per employee? (km/miles per day)", "type": "text" },
+        { "question": "Fuel consumption or emission factor used per commute mode?", "type": "text" }
+      ],
+      "Use of Sold Products": [
+         {"question":"Product Name (or Product Category)","type":"text"},
+        { "question": "Do your products require energy consumption in their lifetime?", "type": "boolean" },
+        { "question": "Estimated energy use per product sold? (kWh/year)", "type": "text" },
+        { "question": "Expected lifetime of the product? (Years)", "type": "text" }
+      ],
+      "End-of-Life Treatment of Sold Products": [
+        { "question": "How are your products disposed of at the end of their life? (Landfill, Recycling, Incineration)", "type": "text" },
+        { "question": "Estimated quantity of products disposed annually? (Tons or units)", "type": "text" },
+        { "question": "Emission factors used for end-of-life treatment?", "type": "text" }
+      ],
+      "Leased Assets, Franchises, and Investments": [
+        { "question": "Do you lease assets or facilities?", "type": "boolean" },
+        { "question": "Do you have franchises that contribute to emissions?", "type": "boolean" },
+        { "question": "Do you invest in projects with carbon emissions?", "type": "boolean" }
+      ]
+    },
+    "Additional Data for Carbon Accounting": {
+      "Water Use & Wastewater Treatment": [
+        { "question": "Total water consumption annually? (Liters/m³)", "type": "text" },
+        { "question": "How is wastewater treated? (Aerobic, Anaerobic, Untreated)", "type": "text" },
+        { "question": "What is the BOD and COD of wastewater?", "type": "text" },
+        { "question": "Methane Correction Factor (MCF) for wastewater treatment used?", "type": "text" },
+        { "question": "Nitrogen content in wastewater? (mg/L)", "type": "text" }
+      ],
+      "Carbon Offset & Renewable Energy Purchases": [
+        { "question": "Do you purchase carbon credits or offsets?", "type": "boolean" },
+        { "question": "Amount of CO₂ offset annually? (Tons)", "type": "text" },
+        { "question": "Do you have on-site renewable energy installations?", "type": "boolean" },
+        { "question": "Capacity of installed renewable energy? (MW/kWh)", "type": "text" }
+      ]
+    }
+}

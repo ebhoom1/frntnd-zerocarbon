@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import axios from "../../../api/axios";
 import { Container, Typography, Button } from "@mui/material";
-import Section from "../../../components/User/DataSubmission/Section";
+import Section from "../../../components/User/DataSubmission/EnvironmentSec";
 import CustomAlert from "../../../components/Alert/Sweetalert";
-import questionsData from "../../../assets/data/DataSubmission/questions.json";
+import questionsData from "../../../assets/data/DataSubmission/environment.json";
 import { useSelector } from "react-redux";
-import RenewableProject from "../../../components/User/DataSubmission/RenewableProjectForm";
+// import RenewableProject from "../../../components/User/DataSubmission/RenewableProjectForm";
 
-const DataSubmission = () => {
+const EnvironmentPage = () => {
   const userId = useSelector((state) => state.auth.user?.id);
   const [responses, setResponses] = useState({});
   const [loading, setLoading] = useState(false);
@@ -32,6 +32,7 @@ const DataSubmission = () => {
     setAlert(null);
 
     try {
+      console.log("responses:",responses);
       const response = await axios.post("/api/submissions/submit", {
         userId,
         responses,
@@ -60,6 +61,9 @@ const DataSubmission = () => {
     }
   };
 
+  
+  
+  
   return (
     <Container maxWidth="md" style={{ padding: "20px" }}>
       <CustomAlert alert={alert} setAlert={setAlert} />
@@ -83,7 +87,6 @@ const DataSubmission = () => {
           </div>
         ))}
       </div>
-      <RenewableProject />
       <Button
         variant="contained"
         color="primary"
@@ -98,4 +101,4 @@ const DataSubmission = () => {
   );
 };
 
-export default DataSubmission;
+export default EnvironmentPage;

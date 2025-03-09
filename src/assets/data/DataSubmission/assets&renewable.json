@@ -1,0 +1,102 @@
+{
+    "Assets": {
+        "Biological Carbon Sinks": [
+          {"question": "What is the name or unique identifier of the project?", "type": "text" },
+          {"question": "What is the project location (country, region, GPS coordinates)?", "type": "text" },
+          {"question": "What is the total area (in hectares or acres) allocated for the project?", "type": "text" },
+          {"question": "Is the project focused on afforestation (new tree planting) or reforestation (restoring existing forests)?", "type": "text" },
+          {"question": "Which tree species or mix of species are being planted?", "type": "text" },
+          {"question": "What is the planting density (trees per hectare/acre)?", "type": "text" },
+          {"question": "What is the estimated annual carbon absorption (in tons CO₂/year)?", "type": "text" },
+          {"question": "What are the underlying assumptions (growth rate, survival rate, etc.) used in the carbon calculation?", "type": "text" },
+          {"question": "What is the project start date and expected time to maturity or full carbon sequestration potential?", "type": "text" },
+          { "question": "Is the project certified by any recognized carbon standard (e.g., Verified Carbon Standard, Gold Standard)?", "type": "boolean" }
+        ],
+        "Agricultural & Soil Carbon Sequestration Initiatives": [
+          {"question": "Which agricultural practices are being implemented (e.g., no-till farming, cover cropping, agroforestry, biochar application)?", "type": "text" },
+          {"question": "What is the total area (hectares/acres) under these practices?", "type": "number" },
+          {"question": "What are the baseline soil carbon levels, and what are the targeted increases over time?", "type": "text" },
+          {"question": "What monitoring methods or technologies are used to measure changes in soil carbon content?", "type": "text" },
+          {"question": "What is the estimated annual increase in soil carbon sequestration (tons CO₂/year)?", "type": "text" }
+        ],
+        "Blue Carbon Assets": [
+          {"question": "What type of blue carbon asset is being managed (e.g., mangroves, salt marshes, seagrass beds)?", "type": "text" },
+          {"question": "What is the geographic location and total area (hectares/acres) of the ecosystem?", "type": "text" },
+          {"question": "Is the asset under a restoration, conservation, or management program?", "type": "boolean" },
+          {"question": "What specific actions are being taken (e.g., replanting, hydrological restoration, invasive species control)?", "type": "text" },
+          {"question": "What is the estimated carbon absorption rate (tons CO₂/year)?", "type": "text" }
+        ],
+        "Technological Carbon Capture Assets": [
+          {"question": "What is the technology type or model of the Direct Air Capture (DAC) system?", "type": "text" },
+          {"question": "Who is the manufacturer or technology provider?", "type": "text" },
+          {"question": "What is the current CO₂ capture capacity (tons CO₂/year)?", "type": "text" },
+          {"question": "What energy source(s) does the system use (renewable, grid, hybrid)?", "type": "text" },
+          {"question": "What are the key performance indicators and monitoring procedures?", "type": "text" },
+          {"question": "What type of Carbon Capture and Storage (CCS) / Carbon Capture, Utilization, and Storage (CCUS) technology is implemented?", "type": "text" },
+          {"question": "What is the source of CO₂ being captured (industrial point source, power plant, etc.)?", "type": "text" },
+          {"question": "What are the storage or utilization plans for the captured CO₂?", "type": "text" },
+          {"question": "Is the project audited or certified by any standards?", "type": "boolean" }
+        ],
+        "Carbon Credit Portfolios & Offsets": [
+          { "question": "What type(s) of carbon credits or offsets does the company hold (e.g., forestry, renewable energy, avoided deforestation)?", "type": "text" },
+          { "question": "What is the total volume of carbon credits (in tons CO₂ equivalent)?", "type": "text" },
+          { "question": "What projects or initiatives are the credits associated with?", "type": "text" },
+          { "question": "Which certification bodies or standards verify these credits?", "type": "text" },
+          { "question": "What is the validity period or expiration date of these credits?", "type": "text" },
+          { "question": "How are these credits integrated into the company’s overall carbon accounting?", "type": "text" }
+        ],
+        "Emerging Carbon Mineralization and Other Innovative Assets": [
+          { "question": "What type of carbon mineralization or innovative CO₂ absorption technology is being used?", "type": "text" },
+          { "question": "What is the underlying mechanism for CO₂ conversion or storage?", "type": "text" },
+          { "question": "What is the estimated CO₂ capture or sequestration capacity (tons CO₂/year)?", "type": "text" },
+          { "question": "What are the energy/resource requirements and associated efficiencies?", "type": "text" },
+          { "question": "What methods are used to monitor performance and ensure permanence of carbon storage?", "type": "text" },
+          { "question": "Are there any certifications, partnerships, or academic validations supporting the technology?", "type": "boolean" }
+        ],
+        "Additional General Questions (Applicable Across Asset Types)": [
+          { "question": "What is the baseline measurement for carbon absorption or sequestration?", "type": "text" },
+          { "question": "How frequently is performance data collected and verified (internally or by third parties)?", "type": "text" },
+          { "question": "What are the key risks associated with the asset (e.g., climate variability, technological obsolescence)?", "type": "text" },
+          { "question": "What contingency or risk mitigation measures are in place?", "type": "text" },
+          { "question": "What is the capital investment for the asset?", "type": "text" },
+          { "question": "What are the operational costs and expected financial returns (if any) related to carbon absorption?", "type": "text" },
+          { "question": "How is the asset’s performance reported (e.g., annual sustainability report, ESG dashboard)?", "type": "text" },
+          { "question": "Who are the stakeholders or partners involved in the project?", "type": "text" }
+        ]
+        
+      },
+      "Renewable Project": {
+        "General Project Details": [
+          { "question": "Project Name", "type": "text" },
+          { "question": "Project Location", "type": "text" },
+          { "question": "Type of Renewable Energy", "type": "text" },
+          { "question": "Installed Capacity (MW)", "type": "text" },
+          { "question": "Annual Energy Generation (MWh/year)", "type": "text" },
+          { "question": "Operational Status", "type": "text" },
+          { "question": "Commissioning Year", "type": "text" }
+        ],
+        "Environmental & Carbon Impact": [
+          { "question": "Total Carbon Savings (tCO₂e/year)", "type": "text" },
+          { "question": "Grid-Connected or Off-Grid?", "type": "text" },
+          { "question": "Does the project have Renewable Energy Certificates (RECs)?", "type": "boolean" },
+          { "question": "Emission Factor Used (kgCO₂e/kWh)", "type": "text" }
+        ],
+        "Financial & Ownership": [
+          { "question": "Investment Cost (INR or USD)", "type": "text" },
+          { "question": "Funding Type", "type": "text" },
+          { "question": "Ownership Model", "type": "text" },
+          { "question": "Expected ROI Period (Years)", "type": "text" }
+        ],
+        "Compliance & Certifications": [
+          { "question": "Is the project certified under any standards?", "type": "text" },
+          { "question": "Does the project contribute to the company's RE100 target?", "type": "boolean" }
+        ],
+        "Additional Information": [
+          { "question": "Challenges Faced in Implementation", "type": "text" },
+          { "question": "Future Expansion Plans?", "type": "boolean" },
+          { "question": "Any Government Subsidy or Incentives Received?", "type": "text" }
+        ]
+      }
+     
+      
+}
