@@ -87,49 +87,14 @@ console.log(rows);
     fetchCompletedForms();
   }, []);
 
-  const handleConsultantChange = (id, value) => {
-    setRows((prevRows) =>
-      prevRows.map((row) =>
-        row.id === id ? { ...row, consultant: value } : row
-      )
-    );
-  };
+  
 
   const columns = [
     { field: 'name', headerName: 'Name', width: 200 },
     { field: 'email', headerName: 'Email', width: 250 },
     { field: 'phone', headerName: 'Phone', width: 200 },
     { field: 'companyName', headerName: 'Company Name', width: 250 },
-    {
-      field: 'consultant',
-      headerName: 'Consultant',
-      width: 200,
-      renderCell: (params) => (
-        <Box
-        sx={{
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          width:"100%",
-          height:"100%", 
-        }}
-      >
-        <TextField
-          select
-          fullWidth
-          size="small"
-          label="Consultant"
-          value={params.row.consultant || ''}
-          onChange={(e) => handleConsultantChange(params.row.id, e.target.value)}
-          variant="outlined"
-        >
-          <MenuItem value="">None</MenuItem>
-          <MenuItem value="Consultant A">Consultant A</MenuItem>
-          <MenuItem value="Consultant B">Consultant B</MenuItem>
-        </TextField>
-        </Box>
-      ),
-    },
+   
   ];
 
   return (

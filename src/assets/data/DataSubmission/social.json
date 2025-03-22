@@ -91,6 +91,30 @@
             { "question": "Does the company provide training on sustainability and ESG goals?", "type": "boolean" },
             { "question": "Are employees aware of their role in reducing the company’s carbon footprint?", "type": "boolean" },
             { "question": "Does the company encourage green commuting (carpooling, EVs, biking)?", "type": "boolean" }
+          ],
+          "Grievance Redressal Mechanism for Stakeholders":[
+            {"question":"What structured mechanisms are in place to address grievances from various stakeholder groups (including employees, communities, suppliers, and customers)?   – Describe the process, accessibility, channels, and any quantitative data on grievances received and resolved.","type":"text"}
+          ],
+          "Product Safety & Recalls":[
+            {"question":"Have there been any instances of product recalls on account of safety issues? – If yes, please provide details on the number of recalls, reasons for the recall, remedial actions taken, and any customer compensation measures.","type":"text"}
+          ],
+          "Channels for Accessing Product Information":[
+            {"question":"Through which channels or platforms can stakeholders access detailed and updated information about your goods and services? – List your official website, mobile apps, social media pages, e‑commerce portals, or customer helplines. Include details on language availability or accessibility features if applicable.","type":"text"}
+          ],
+          "Director’s Statement on ESG (Social Focus)":[
+            {"question":"Please provide the statement from the director responsible for the ESG report. – The statement should outline your company’s social vision, key priorities, challenges, and performance highlights for the reporting period.","type":"text"}
+          ],
+          "Details of Fines, Penalties, Awards, & Settlements":[
+            {"question":"Has your company incurred any fines, penalties, received awards, or entered into settlements related to social or ethical issues during the reporting period?  – Provide amounts, reasons, and any corrective actions taken.","type":"text"}
+          ],
+          "Overview of Material Responsible Business Conduct Issues":[
+            {"question":"What are the major social risks and opportunities related to responsible business conduct?   – Explain the nature of these issues, their potential impact on your business, and any mitigation strategies in place.","type":"text"}
+          ],
+          "Social Impact Assessments (SIA)":[
+            {"question":"Have you conducted Social Impact Assessments for any projects or operational changes?  – Describe the methodologies, key findings, and how the insights have informed your policies or practices.","type":"text"}
+          ],
+          "Public Policy Positions on ESG Matters":[
+            {"question":"Does your company advocate specific public policy positions related to social or sustainability issues?  – If yes, detail the positions, the rationale behind them, and any active engagement with policymakers.","type":"text"}
           ]
         }
 }

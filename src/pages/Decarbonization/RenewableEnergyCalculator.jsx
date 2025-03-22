@@ -10,8 +10,12 @@ import {
   CircularProgress,
 } from "@mui/material";
 import axios from "../../api/axios";
+import { useSelector } from "react-redux";
+
 
 const RenewableEnergyCalculator = () => {
+  const userId = useSelector((state) => state.auth.user?.id);
+
   const [energyConsumption, setEnergyConsumption] = useState("");
   const [renewablePercentage, setRenewablePercentage] = useState("");
   const [solarFeasibility, setSolarFeasibility] = useState("");
@@ -67,6 +71,30 @@ const RenewableEnergyCalculator = () => {
     } finally {
       setLoading(false);
     }
+  };
+
+  const handleSaveResult = async () => {
+    
+    try {
+      const payload = {
+        userId,
+        energyConsumption,
+        renewablePercentage,
+        solarFeasibility,
+        gridMix,
+        investmentBudget,
+        govIncentives,
+        batteryStorage,
+        siteConstraints,
+        analysedData: results.analysedData,
+      };
+
+      await axios.post("/api/renewable-energy/save", payload);
+      alert("Calculation saved successfully.");
+    } catch (err) {
+      console.error("Error saving renewable calculation:", err);
+      alert("Failed to save data.");
+    } 
   };
 
   return (
@@ -189,6 +217,7 @@ const RenewableEnergyCalculator = () => {
 
               <Button
                 variant="contained"
+                fullWidth
                 sx={{
                   backgroundColor: "#2E7D32",
                   fontSize: "1rem",
@@ -209,6 +238,16 @@ const RenewableEnergyCalculator = () => {
                   "Calculate Impact"
                 )}
               </Button>
+              <Button
+      variant="outlined"
+      fullWidth
+      color="success"
+      sx={{ mt: 2 }}
+      onClick={handleSaveResult}
+      disabled={!results}
+    >
+    Save Calculation
+    </Button>
             </Paper>
           </Grid>
 

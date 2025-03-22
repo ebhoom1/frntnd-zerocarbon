@@ -22,8 +22,12 @@ import {
   ResponsiveContainer,
 } from "recharts";
 import axios from "../../api/axios";
+import { useSelector } from "react-redux";
+
 
 const EmissionsReductionSimulator = () => {
+  const userId = useSelector((state) => state.auth.user?.id);
+
   // State for input fields
   const [strategyAdjustments, setStrategyAdjustments] = useState("");
   const [energyConsumption, setEnergyConsumption] = useState("");
@@ -89,6 +93,28 @@ const EmissionsReductionSimulator = () => {
     }
   };
 
+  const handleSaveSimulation = async () => {
+    try {
+      const payload = {
+        userId,
+        strategyAdjustments,
+        energyConsumption,
+        fuelUsage,
+        buildingEfficiency,
+        vehicleFleet,
+        wasteManagement,
+        carbonCapture,
+        financialConstraints,
+        policyChanges,
+        aiResponse,
+      };
+      await axios.post("/api/emissions-reduction/save", payload);
+      alert("Simulation saved successfully.");
+    } catch (err) {
+      console.error("Error saving simulation:", err);
+      alert("Error saving simulation.");
+    }
+  };
   return (
     <ThemeProvider theme={lightDecarbonizationTheme}>
       <Box sx={{ p: 4 }}>
@@ -211,6 +237,8 @@ const EmissionsReductionSimulator = () => {
                     "Simulate Impact"
                   )}
                 </Button>
+                <Button sx={{mt:3}} variant="outlined" color="success" fullWidth onClick={handleSaveSimulation} disabled={!aiResponse}>Save Simulation</Button>
+
               </Paper>
             </Grid>
 

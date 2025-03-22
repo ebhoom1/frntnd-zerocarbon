@@ -88,6 +88,33 @@ const DecarbonisationRoadmap = () => {
     }
   };
 
+  // const saveRoadmap = async () => {
+  //   if (roadmapData.length === 0) {
+  //     alert("Generate the roadmap before saving.");
+  //     return;
+  //   }
+  //   setSaving(true);
+  //   try {
+  //     await axios.post("/api/analyse-roadmap/save", {
+  //       userId:userId,
+  //       industry,
+  //       targetYear,
+  //       totalEmissions: emissions,
+  //       annualReduction,
+  //       energyMix,
+  //       technologyAdoption,
+  //       operationalChanges,
+  //       budgetConstraints,
+  //       roadmapData,
+  //     });
+  //     alert("Roadmap saved successfully!");
+  //   } catch (error) {
+  //     console.error("Error saving roadmap:", error);
+  //   } finally {
+  //     setSaving(false);
+  //   }
+  // };
+
   const saveRoadmap = async () => {
     if (roadmapData.length === 0) {
       alert("Generate the roadmap before saving.");
@@ -96,7 +123,7 @@ const DecarbonisationRoadmap = () => {
     setSaving(true);
     try {
       await axios.post("/api/analyse-roadmap/save", {
-        userId:userId,
+        userId,
         industry,
         targetYear,
         totalEmissions: emissions,
@@ -110,10 +137,18 @@ const DecarbonisationRoadmap = () => {
       alert("Roadmap saved successfully!");
     } catch (error) {
       console.error("Error saving roadmap:", error);
+      
+      // Check if the error response contains a message
+      if (error.response && error.response.data && error.response.data.message) {
+        alert(error.response.data.message);
+      } else {
+        alert("An error occurred while saving the roadmap. Please try again.");
+      }
     } finally {
       setSaving(false);
     }
   };
+  
 
   const fetchSavedRoadmaps = async () => {
     if (!showSavedRoadmaps) {

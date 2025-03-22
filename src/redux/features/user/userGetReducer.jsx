@@ -7,7 +7,6 @@ export const fetchUsersWithUserTypeUser = createAsyncThunk(
   async (_, { rejectWithValue }) => {
     try {
       const response = await axios.get('/api/user/getuser'); // Adjust the endpoint if necessary
-      console.log(response.data.data);
       return response.data.data; // Assuming response contains a `data` property with users
     } catch (error) {
       console.log("error:",error);

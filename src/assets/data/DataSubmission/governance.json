@@ -69,6 +69,18 @@
           { "question": "Does the company align its business strategy with United Nations Sustainable Development Goals (SDGs)?", "type": "boolean" },
           { "question": "Which SDGs are actively tracked by the company?", "type": "text" },
           { "question": "Are SDG commitments reflected in executive KPIs and incentives?", "type": "boolean" }
-        ]
+        ],
+        "Details of Holding/ Subsidiary/ Associate Companies/ Joint Ventures":[
+          {"question":"Provide a complete list of all companies within your ESG reporting boundary, including holding, subsidiary, associate companies, and joint ventures.  – Include names, the nature of the relationship, and any relevant ESG data or risk exposures.","type":"text"}
+              ],
+              "Conflict of Interest Management for Board and KMPs":[
+          {"question":"What processes or policies does your company have to avoid or manage conflicts of interest among Board members and Key Management Personnel?  – Describe formal guidelines, disclosure practices, and oversight mechanisms.","type":"text"}
+              ],
+              "Highest Authority & Oversight of ESG Policies":[
+          {"question":"Who is the highest authority responsible for implementing and overseeing your ESG policies?  – Provide details such as the name, designation, and structure (e.g., Board committee composition) responsible for ESG governance.","type":"text"}
+              ],
+              "Director’s Statement on ESG (Governance Perspective)":[
+          {"question":"In addition to the overall ESG statement, is there a governance-specific statement that addresses Board-level oversight and accountability for ESG performance?  – If yes, please include it.","type":"text"}
+              ]
       }
 }

@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "../../api/axios";
 
-import industryOptions from "../../assets/data/industryOptions.json"; // Adjust this path based on your project structure
 import {
   Button,
   TextField,
@@ -13,30 +12,27 @@ import {
   TableHead,
   TableRow,
   Paper,
-  Typography,
-  ListSubheader,
-  MenuItem,
   Select,
-  InputLabel,
+  MenuItem,
   FormControl,
 } from "@mui/material";
 
 const Dashboard = () => {
   const navigate = useNavigate();
-  const [allForms, setAllForms] = useState([]); // Stores all forms
-  const [forms, setForms] = useState([]); // Stores forms to display (filtered or all)
+  const [allForms, setAllForms] = useState([]);
+  const [forms, setForms] = useState([]);
   const [filters, setFilters] = useState({
     companyName: "",
-    status:"",
+    status: "",
   });
 
-  // Fetch all forms on component mount
   useEffect(() => {
     const fetchForms = async () => {
       try {
         const response = await axios.get("/api/admin/registeredusers");
-        setAllForms(response.data); // Store all forms
-        setForms(response.data); // Initialize display with all forms
+        setAllForms(response.data);
+        setForms(response.data);
+        console.log("forms:",forms);
       } catch (error) {
         console.error("Error fetching forms:", error);
       }
@@ -44,25 +40,21 @@ const Dashboard = () => {
     fetchForms();
   }, []);
 
-  // Handle filter input changes
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFilters({ ...filters, [name]: value });
   };
 
-  // Apply filters when the "Filter" button is clicked
   const fetchFilteredForms = async () => {
     try {
       const params = new URLSearchParams(filters).toString();
       const response = await axios.get(`/api/admin/forms/filter?${params}`);
-      setForms(response.data); // Update table with filtered results
-      console.log("Filtered Forms:", response.data);
+      setForms(response.data);
     } catch (error) {
       console.error("Error fetching filtered forms:", error);
     }
   };
 
-  // Handle status update
   const handleStatusChange = async (id, newStatus) => {
     try {
       const response = await axios.patch(`/api/admin/registeredusers/status/${id}`, {
@@ -73,22 +65,34 @@ const Dashboard = () => {
           form._id === id ? { ...form, status: response.data.status } : form
         )
       );
-      console.log("status submitted");
     } catch (error) {
       console.error("Error updating status:", error);
     }
   };
 
-  // Handle table row click
+  const handleSubscriptionChange = async (id, newSubscription) => {
+    try {
+      const response = await axios.patch(`/api/admin/registeredusers/subscription/${id}`, {
+        subscription: newSubscription,
+      });
+  
+      setForms((prevForms) =>
+        prevForms.map((form) =>
+          form._id === id ? { ...form, subscription: response.data.subscription } : form
+        )
+      );
+    } catch (error) {
+      console.error("Error updating subscription:", error);
+    }
+  };
+  
+
   const handleRowClick = (userId) => {
     navigate(`/formdetails/${userId}`);
   };
 
   return (
     <div>
-     
-
-      {/* Filters Section */}
       <div style={{ marginBottom: "16px" }}>
         <TextField
           label="Company Name"
@@ -97,17 +101,14 @@ const Dashboard = () => {
           onChange={handleInputChange}
           style={{ marginRight: "8px" }}
         />
-        {/* Industry Sector Dropdown */}
         <FormControl style={{ marginRight: "8px", minWidth: "200px" }}>
           <Select
             name="status"
             value={filters.status}
             onChange={handleInputChange}
             displayEmpty
-            renderValue={(selected) => {
-              return selected ? selected : "Status"; // Show "Status" as a placeholder
-            }}
-          >            
+            renderValue={(selected) => (selected ? selected : "Status")}
+          >
             <MenuItem value="">
               <em>None</em>
             </MenuItem>
@@ -123,7 +124,6 @@ const Dashboard = () => {
         </Button>
       </div>
 
-      {/* Table Section */}
       <TableContainer component={Paper}>
         <Table>
           <TableHead>
@@ -132,6 +132,7 @@ const Dashboard = () => {
               <TableCell>Email</TableCell>
               <TableCell>Phone</TableCell>
               <TableCell>Status</TableCell>
+              <TableCell>Subscription</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -142,8 +143,7 @@ const Dashboard = () => {
                   onClick={() => handleRowClick(form._id)}
                   style={{
                     cursor: "pointer",
-                    // backgroundColor: form.isRead ? "white" : "#FFF9C4",
-                    backgroundColor:  "white",
+                    backgroundColor: "white",
                   }}
                 >
                   <TableCell>{form.userName}</TableCell>
@@ -164,12 +164,30 @@ const Dashboard = () => {
                         <MenuItem value="Canceled">Canceled</MenuItem>
                       </Select>
                     </FormControl>
-                  </TableCell>{" "}
+                  </TableCell>
+                  <TableCell onClick={(e) => e.stopPropagation()}>
+                    <FormControl fullWidth>
+                      <Select
+                        value={form.subscription || "Basic"}
+                        onChange={(e) =>{
+
+                          e.stopPropagation();
+                          handleSubscriptionChange(form._id, e.target.value);
+                        }
+                        }
+                      >
+                        <MenuItem value="Basic">Basic</MenuItem>
+                        <MenuItem value="Standard">Standard</MenuItem>
+                        <MenuItem value="Premium">Premium</MenuItem>
+                        <MenuItem value="Enterprise">Enterprise</MenuItem>
+                      </Select>
+                    </FormControl>
+                  </TableCell>
                 </TableRow>
               ))
             ) : (
               <TableRow>
-                <TableCell colSpan={3} align="center">
+                <TableCell colSpan={5} align="center">
                   No Form Data Available
                 </TableCell>
               </TableRow>

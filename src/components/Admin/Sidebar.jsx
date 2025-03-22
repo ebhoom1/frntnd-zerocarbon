@@ -59,16 +59,16 @@ const Sidebar = ({ mobileOpen, setMobileOpen, toggleSidebar }) => {
             label: "Emission Factors",
             icon: <TableViewIcon />,
           },
-          {
-            id: "team",
-            label: "Team",
-            icon: <GroupOutlinedIcon />,
-            path: "/team",
-          },
+          
           {
             id: "decarbonisation",
             label: "Decarbonisation",
             icon: <ForestOutlinedIcon />,
+          },
+          {
+            id: "environment",
+            label: "Environment",
+            icon: <PublicIcon />,
           },
           { id: "alerts", label: "Alerts", icon: <AnnouncementOutlinedIcon /> },
           { id: "reports", label: "Reports", icon: <SummarizeIcon /> },
@@ -107,7 +107,7 @@ const Sidebar = ({ mobileOpen, setMobileOpen, toggleSidebar }) => {
           },
           {
             id: "social",
-            label: "Social Matrics",
+            label: "Social Metrics",
             icon: <Diversity3Icon />,
           },
           {

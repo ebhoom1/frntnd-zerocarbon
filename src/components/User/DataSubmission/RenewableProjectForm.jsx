@@ -57,7 +57,7 @@ const RenewableProjectForm = () => {
   }, [userId]);
   
   const handleChange = (question, value) => {
-    setFormData({ ...formData, [question]: value });
+    setFormData({ ...formData, [question]: value }); 
   };
 
   const handleSubmit = async () => {

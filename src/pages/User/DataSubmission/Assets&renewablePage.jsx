@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "../../../api/axios";
 import { Container, Typography, Button } from "@mui/material";
-import Section from "../../../components/User/DataSubmission/EnvironmentSec";
+import Section from "../../../components/User/DataSubmission/DataSubmissionSec";
 import CustomAlert from "../../../components/Alert/Sweetalert";
 import questionsData from "../../../assets/data/DataSubmission/assets&renewable.json";
 import { useSelector } from "react-redux";

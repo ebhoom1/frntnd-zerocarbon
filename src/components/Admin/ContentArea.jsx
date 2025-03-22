@@ -18,12 +18,12 @@ import ActiveUsers from "../../pages/RegisteredClients/ActiveUsers.jsx";
 import RegisteredClients from "../../pages/RegisteredClients/RegisteredClientsTable.jsx";
 import UserList from "../../pages/Decarbonization/AdminPage/UserList.jsx";
 import AlertSection from "../../pages/Admin/Alert/AlertSection.jsx";
-import DataSubmissions from '../../pages/User/DataSubmission/DataSubmission.jsx'
 import Environment from '../../pages/User/DataSubmission/EnvironmentPage.jsx'
 import Social from '../../pages/User/DataSubmission/SocialPage.jsx'
 import Governance from '../../pages/User/DataSubmission/GovernancePage.jsx';
 import AssetsRenewableProject from '../../pages/User/DataSubmission/Assets&renewablePage.jsx';
 import DownloadReportButton from "../../pages/Report/BRSRreport/DownloadReportButton.jsx";
+import EnvironmentSecEmission from '../../pages/User/DataSubmission/AdminPage/EnvironmentSecEmission.jsx'
 import { setSelectedItem } from "../../redux/features/sidebar/SidebarSlice";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import MenuIcon from "@mui/icons-material/Menu";
@@ -101,6 +101,8 @@ const ContentArea = ({ toggleSidebar }) => {
           return <AlertSection/>;
         case "decarbonisation": 
           return <UserList/>;
+        case "environment": 
+          return <EnvironmentSecEmission/>;
         default:
           return <Dashboard />; 
       }
@@ -112,10 +114,9 @@ const ContentArea = ({ toggleSidebar }) => {
           return <FlowchartUser />;
         case "form":
           return <UserForm />;
-        case "submissions":
-          return <DataSubmissions/>;
+      
         case "report":
-          return ;  
+          return <DownloadReportButton/>;  
         case "environment":
           return <Environment/>;
         case "social":
@@ -124,6 +125,7 @@ const ContentArea = ({ toggleSidebar }) => {
           return <Governance/>;
         case "assetsrenewableproject":
           return <AssetsRenewableProject/>;
+        
         default:
           return <UserDashboard />;
       }

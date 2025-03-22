@@ -135,7 +135,11 @@ function MobileCombustion() {
           title: "Added",
           text: "New record added successfully!",
         });
+
+      
       }
+      
+      
       fetchData();
       handleCloseDialog();
     } catch (error) {
