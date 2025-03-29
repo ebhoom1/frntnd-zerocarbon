@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import axios from "../../../api/axios";
 import { Container, Typography, Button } from "@mui/material";
-import Section from "../../../components/User/DataSubmission/DataSubmissionSec";
+import GovernanceSec from "../../../components/User/DataSubmission/GovernanceSec";
 import CustomAlert from "../../../components/Alert/Sweetalert";
-import questionsData from "../../../assets/data/DataSubmission/governance.json";
+import governanceData from "../../../assets/data/DataSubmission/governance.json";
 import { useSelector } from "react-redux";
 // import RenewableProject from "../../../components/User/DataSubmission/RenewableProjectForm";
 
@@ -37,7 +37,7 @@ const GovernancePage = () => {
         responses,
       });
 
-      if (response.status === 201) {
+      if (response.status === 200) {
         console.log("Submission Successful:", response.data);
         setAlert({
           type: "success",
@@ -65,14 +65,14 @@ const GovernancePage = () => {
       <CustomAlert alert={alert} setAlert={setAlert} />
       {/* Force re-render after submission by changing formKey */}
       <div key={formKey}>
-        {Object.entries(questionsData).map(([sectionName, subcategories]) => (
+        {Object.entries(governanceData).map(([sectionName, subcategories]) => (
           <div key={sectionName} style={{ marginBottom: "30px" }}>
             <Typography variant="h5" style={{ marginBottom: "10px" }}>
               {sectionName}
             </Typography>
 
             {Object.entries(subcategories).map(([subcategory, questions]) => (
-              <Section
+              <GovernanceSec
                 key={subcategory}
                 sectionName={sectionName}
                 subcategory={subcategory}

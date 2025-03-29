@@ -36,14 +36,17 @@
           ]
         },
         {
-          "question": "Select unit of measurement for fuel consumption:",
-          "type": "dropdown",
-          "options": ["Tonnes", "Kilograms", "Litres", "Cubic Meters"]
+          "question": "Enter annual fuel consumption:",
+          "type": "text",
+          "align":"row"
         },
         {
-          "question": "Enter annual fuel consumption (in selected unit):",
-          "type": "text"
+          "question": "Select unit of measurement for fuel consumption:",
+          "type": "dropdown",
+          "align":"row",
+          "options": ["Tonnes", "Kilograms", "Litres", "Cubic Meters"]
         },
+        
         {
           "question": "Enter Emission Factor for CO2 (kg/unit):",
           "type": "text"
@@ -190,12 +193,14 @@
             "Electric Vehicles"
           ]
         },
-        { "question": "Select unit of quantity", "type": "dropdown", "options": ["Kg", "units"] },
 
         {
           "question": "Total quantity purchased(in selected unit)?",
-          "type": "number"
-        }
+          "type": "number",
+          "align":"row"
+        },
+   { "question": "Select unit of quantity", "type": "dropdown",  "align":"row","options": ["Kg", "units"] }
+
       ],
       "Fuel & Energy-Related Emissions (Upstream)": [
         { "question": "Any upstream fuel emissions considered? (Fuel extraction, refining, transportation)", "type": "boolean" },
@@ -281,10 +286,14 @@
           "Wind Turbines",
           "Wood (Timber)"]
         },
-        { "question": "Number of units sold", "type": "number" },
+        { "question": "Number of units sold", "type": "number" ,"align":"row"},
+        { "question": "select Unit", "type": "dropdown","align":"row","options":["Tonnes", "Kilograms", "Litres", "Cubic Meters","Units"]},
+        { "question": "Annual Revenue from each product", "type": "number" },
+        { "question": " What is the NIC Code for your products?", "type": "text" },
+        
+        { "question": "Expected lifetime of the product (in years)", "type": "text" },
         { "question": "Do the products require energy consumption in their lifetime?", "type": "boolean" },
-        { "question": "If Yes, enter average energy use per product (in kWh/year)", "type": "text" },
-        { "question": "Expected lifetime of the product (in years)", "type": "text" }
+        { "question": "If Yes, enter average energy use per product (in kWh/year)", "type": "text" }
       ],
       "End-of-Life Treatment of Sold Products": [
         {
@@ -302,12 +311,14 @@
         },
         {
           "question": "Enter Estimated Quantity Disposed",
-          "type": "number"
+          "type": "number",
+          "align":"row"
         },
         {
           "question": "Select Unit for Quantity",
           "type": "dropdown",
-          "options": ["kg", "units"]
+          "options": ["kg", "units"],
+          "align":"row"
         },
         {
           "question": "Add Treatment Methods & Percentages",
@@ -324,6 +335,27 @@
         { "question": "Do you invest in projects with carbon emissions?", "type": "boolean" }
       ]
     },
+    "Environment": {
+      "Sustainability Risks & Opportunities": [ 
+        { "question": "Has the company identified any environmental risks that could affect its business?", "type": "boolean" },
+        { "question": "List the key environmental risks identified", "type": "text" },
+        
+        { "question": "Has the company identified any social risks that could affect its business?", "type": "boolean" },
+        { "question": "List the key social risks identified", "type": "text" },
+    
+        { "question": "Has the company identified any governance-related risks?", "type": "boolean" },
+        { "question": "List the key governance risks identified", "type": "text" },
+    
+        { "question": "Has the company identified any ESG-related opportunities?", "type": "boolean" },
+        { "question": "List the key ESG-related business opportunities identified", "type": "text" },
+    
+        { "question": "Does the company have a documented process to assess ESG risks and opportunities?", "type": "boolean" },
+        { "question": "Are ESG risks integrated into the overall business risk management strategy?", "type": "boolean" },
+    
+        { "question": "Who in the company is responsible for managing ESG risks?", "type": "text" }
+      ]
+    },
+    
     "EPR":{
       "Extended Producer Responsibility (EPR) Plan":[
         {"question":"Does your company have an Extended Producer Responsibility plan in place? – If yes, please describe the collection system, processing practices, and measures taken to ensure compliance.","type":"text"}

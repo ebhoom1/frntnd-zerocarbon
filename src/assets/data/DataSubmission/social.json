@@ -3,9 +3,14 @@
     "Social": {
         "Workforce Composition & Diversity(Management & HR Data)": [
           
-            { "question": "Total number of employees?", "type": "number" },
-            { "question": "Breakdown of employees by gender?", "type": "text" },
-            { "question": "Breakdown of employees by employment type?", "type": "text" },
+            { "question": "Total number of employees?", "type": "number"},
+            { "question": "Breakdown of employees by gender", "type": "array","align":"row","fields":[{"question":"Female","type":"number"},{"question":"Male","type":"number"},{"question":"other","type":"number"}]},
+            { "question": "Breakdown of employees by employment type?(permanent, contractual,interns, etc.)", "type": "array","nature":"dynamic" },
+            { "question": "Number of differently abled employees", "type": "number" },
+            { "question": "Total number of workers?", "type": "number" },
+            { "question": "Breakdown of workers by gender?", "type": "array","align":"row","fields":[{"question":"Female","type":"number"},{"question":"Male","type":"number"},{"question":"other","type":"number"}]},
+            { "question": "Breakdown of workers by employment type?(permanent, contractual,interns, etc.)", "type": "array","nature":"dynamic"},
+            { "question": "Number of differently abled workers", "type": "number" },
             { "question": "Diversity ratio in leadership positions?", "type": "text" },
             { "question": "Does the company have a diversity & inclusion policy?", "type": "boolean" },
             { "question": "Percentage of employees from minority or underrepresented communities?", "type": "text" },
@@ -13,7 +18,23 @@
             { "question": "Is there an anti-discrimination and harassment policy?", "type": "boolean" },
             { "question": "Have there been any reported cases of workplace discrimination or harassment in the last year?", "type": "boolean" }
           ],
+          "Turnover Data": [
+            { "question": "How many employees left the organization during the reporting year?", "type": "number" },
+            { "question": "How many male employees left?", "type": "number" },
+            { "question": "How many female employees left?", "type": "number" },
+            { "question": "How many employees of other gender identities left?", "type": "number" },
         
+            { "question": "How many workers (contractual, etc.) left the organization?", "type": "number" },
+            { "question": "How many male workers left?", "type": "number" },
+            { "question": "How many female workers left?", "type": "number" },
+            { "question": "How many workers of other gender identities left?", "type": "number" },
+        
+            { "question": "What is the overall employee turnover rate (%)?", "type": "text" },
+            { "question": "What is the worker turnover rate (%)?", "type": "text" },
+        
+            { "question": "Please list the top reasons for employee turnover (optional)", "type": "text" },
+            { "question": "Does the company conduct exit interviews?", "type": "boolean" }
+          ],
         "Employee Well-being & Benefits(Employee Survey via GoodFoot)": [
           
             { "question": "How satisfied are you with your work-life balance?", "type": "text" },
@@ -92,8 +113,20 @@
             { "question": "Are employees aware of their role in reducing the company’s carbon footprint?", "type": "boolean" },
             { "question": "Does the company encourage green commuting (carpooling, EVs, biking)?", "type": "boolean" }
           ],
-          "Grievance Redressal Mechanism for Stakeholders":[
-            {"question":"What structured mechanisms are in place to address grievances from various stakeholder groups (including employees, communities, suppliers, and customers)?   – Describe the process, accessibility, channels, and any quantitative data on grievances received and resolved.","type":"text"}
+          "Grievance Redressal": [
+            { "question": "Does the company have a grievance redressal mechanism for employees?", "type": "boolean" },
+            { "question": "Does the company have a grievance redressal mechanism for workers?", "type": "boolean" },
+        
+            { "question": "List the grievance channels available (e.g., email, portal, helpline)", "type": "text" },
+        
+            { "question": "Total number of grievances reported by employees during the year?", "type": "number" },
+            { "question": "Total number of grievances resolved for employees?", "type": "number" },
+        
+            { "question": "Total number of grievances reported by workers during the year?", "type": "number" },
+            { "question": "Total number of grievances resolved for workers?", "type": "number" },
+        
+            { "question": "What is the average grievance resolution time (in days)?", "type": "text" },
+            { "question": "Does the company track grievance redressal effectiveness or satisfaction?", "type": "boolean" }
           ],
           "Product Safety & Recalls":[
             {"question":"Have there been any instances of product recalls on account of safety issues? – If yes, please provide details on the number of recalls, reasons for the recall, remedial actions taken, and any customer compensation measures.","type":"text"}

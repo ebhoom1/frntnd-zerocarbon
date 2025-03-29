@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import axios from "../../../api/axios";
 import { Container, Typography, Button } from "@mui/material";
-import Section from "../../../components/User/DataSubmission/DataSubmissionSec";
+import SocialSec from "../../../components/User/DataSubmission/SocialSec";
 import CustomAlert from "../../../components/Alert/Sweetalert";
-import questionsData from "../../../assets/data/DataSubmission/social.json";
+import socialData from "../../../assets/data/DataSubmission/social.json";
 import { useSelector } from "react-redux";
 // import RenewableProject from "../../../components/User/DataSubmission/RenewableProjectForm";
 
@@ -19,6 +19,7 @@ const SocialPage = () => {
   };
 
   const handleSubmit = async () => {
+    console.log("response:",responses); 
     if (!userId) {
       setAlert({
         type: "error",
@@ -37,7 +38,7 @@ const SocialPage = () => {
         responses,
       });
 
-      if (response.status === 201) {
+      if (response.status === 200) {
         console.log("Submission Successful:", response.data);
         setAlert({
           type: "success",
@@ -65,14 +66,14 @@ const SocialPage = () => {
       <CustomAlert alert={alert} setAlert={setAlert} />
       {/* Force re-render after submission by changing formKey */}
       <div key={formKey}>
-        {Object.entries(questionsData).map(([sectionName, subcategories]) => (
+        {Object.entries(socialData).map(([sectionName, subcategories]) => (
           <div key={sectionName} style={{ marginBottom: "30px" }}>
             <Typography variant="h5" style={{ marginBottom: "10px" }}>
               {sectionName}
             </Typography>
 
             {Object.entries(subcategories).map(([subcategory, questions]) => (
-              <Section
+              <SocialSec
                 key={subcategory}
                 sectionName={sectionName}
                 subcategory={subcategory}

@@ -33,8 +33,9 @@
 
 import React, { useState } from "react";
 import axios from "../../../api/axios";
+import questionsData from "../../../assets/data/DataSubmission/questions.json"; // Import questions
+
 import { useSelector } from "react-redux";
-import questionsData from "../../../assets/data/DataSubmission/questions.json";
 import {
   Box,
   Card,
@@ -44,37 +45,39 @@ import {
   Grid,
   CircularProgress
 } from "@mui/material";
-import FileDownloadIcon from "@mui/icons-material/FileDownload";
 
 const DownloadReportsPage = () => {
   const userId = useSelector((state) => state.auth.user?.id);
   const [loading, setLoading] = useState(false);
+console.log("userid:",userId);
+const handleDownloadBRSR = async () => {
+  try {
+    setLoading(true);
 
-  const handleDownloadBRSR = async () => {
-    try {
-      setLoading(true);
-      const response = await axios.post(
-        "/api/reports/generate",
-        {
-          userId,
-          questions: questionsData,
-        },
-        { responseType: "blob" }
-      );
+    const response = await axios.post(
+      `/api/reports/generate/${userId}`,
+      { questionsMap: questionsData }, // send it in body
+      { responseType: "blob" } // Important to handle binary PDF data
+    );
+console.log("response:",response.data);
+    const url = window.URL.createObjectURL(new Blob([response.data]));
+    const link = document.createElement("a");
+    link.href = url;
+    link.setAttribute("download", `BRSR_Report_${userId}.pdf`);
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
 
-      const url = window.URL.createObjectURL(new Blob([response.data]));
-      const link = document.createElement("a");
-      link.href = url;
-      link.setAttribute("download", `BRSR_Report_${userId}.pdf`);
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-    } catch (error) {
-      console.error("Error downloading BRSR report:", error);
-    } finally {
-      setLoading(false);
-    }
-  };
+  } catch (error) {
+    console.error("Error downloading BRSR report:", error);
+
+    // Optional: show alert
+    alert("Failed to download BRSR report. Please try again.");
+  } finally {
+    setLoading(false);
+  }
+};
+
 
   return (
     <Box

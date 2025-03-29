@@ -70,8 +70,23 @@ const Sidebar = ({ mobileOpen, setMobileOpen, toggleSidebar }) => {
             label: "Environment",
             icon: <PublicIcon />,
           },
+          {
+            id: "social",
+            label: "Social Metrics",
+            icon: <Diversity3Icon />,
+          },
+          {
+            id: "governance",
+            label: "Governance",
+            icon: <GavelIcon />,
+          },
+          {
+            id: "assetsrenewableproject",
+            label: "Assets & RenewableProject",
+            icon: <BatteryChargingFullIcon />,
+          },
           { id: "alerts", label: "Alerts", icon: <AnnouncementOutlinedIcon /> },
-          { id: "reports", label: "Reports", icon: <SummarizeIcon /> },
+          // { id: "reports", label: "Reports", icon: <SummarizeIcon /> },
         ]
       : [
           {
@@ -89,11 +104,7 @@ const Sidebar = ({ mobileOpen, setMobileOpen, toggleSidebar }) => {
             label: "Data Submissions",
             icon: <GroupOutlinedIcon />,
           },
-          // {
-          //   id: "submissions",
-          //   label: "Submissions",
-          //   icon: <DescriptionOutlinedIcon />,
-          // },
+          
           {
             id: "decarbonization",
             label: "Decarbonization",
@@ -143,7 +154,7 @@ const Sidebar = ({ mobileOpen, setMobileOpen, toggleSidebar }) => {
         left: isLargeScreen ? "unset" : mobileOpen ? 0 : "-280px",
         transition: "left 0.3s ease",
         transition: "width 0.3s ease",
-        maxHeight: "100vh", // Constrain height
+        minHeight: "100vh", // Constrain height
         overflowY: "auto", // Enable vertical scrolling
         "&::-webkit-scrollbar": { width: 6 }, // Customize scrollbar
         "&::-webkit-scrollbar-thumb": { backgroundColor: "#aaa", borderRadius: 3 },

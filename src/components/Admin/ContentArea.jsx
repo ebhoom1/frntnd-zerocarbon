@@ -24,6 +24,9 @@ import Governance from '../../pages/User/DataSubmission/GovernancePage.jsx';
 import AssetsRenewableProject from '../../pages/User/DataSubmission/Assets&renewablePage.jsx';
 import DownloadReportButton from "../../pages/Report/BRSRreport/DownloadReportButton.jsx";
 import EnvironmentSecEmission from '../../pages/User/DataSubmission/AdminPage/EnvironmentSecEmission.jsx'
+import SocialPage from '../../pages/User/DataSubmission/AdminPage/SocialPage.jsx'
+import GovernancePage from '../../pages/User/DataSubmission/AdminPage/GovernancePage.jsx'
+import AssetsAndRenewable from '../../pages/User/DataSubmission/AdminPage/AssetsAndRenewable.jsx'
 import { setSelectedItem } from "../../redux/features/sidebar/SidebarSlice";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import MenuIcon from "@mui/icons-material/Menu";
@@ -103,6 +106,12 @@ const ContentArea = ({ toggleSidebar }) => {
           return <UserList/>;
         case "environment": 
           return <EnvironmentSecEmission/>;
+          case "social":
+          return <SocialPage/>;
+          case "governance":
+          return <GovernancePage/>;
+          case "assetsrenewableproject":
+          return <AssetsAndRenewable/>;
         default:
           return <Dashboard />; 
       }

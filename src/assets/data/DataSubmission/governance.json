@@ -1,13 +1,21 @@
 {
     "Governance": {
         "Board Structure & Leadership": [
-          {"question": "Total number of board members?", "type": "text" },
-          {"question": "Number of Independent Directors?", "type": "text" },
-          {"question": "Number of Women Directors on the board?", "type": "text" },
+          {"question": "How many directors are on the Board?", "type": "text" },
+          {"question": "How many women are on the Board of Directors?", "type": "text" },
+          { "question": "How many directors (of any gender) are differently abled?", "type": "number" },
+          { "question": "How many women directors are differently abled?", "type": "number" },
+          { "question": "How many women are in Key Managerial Personnel (KMP) roles?", "type": "number" },
+          { "question": "Please specify KMP designations held by women (e.g., CFO, CS, MD,etc)", "type": "text" },
+          { "question": "How many differently abled persons (any gender) are in KMP?", "type": "number" },
+          { "question": "How many women in KMP roles are differently abled?", "type": "number" },
+
+
           {"question": "Average age of board members?", "type": "text" },
-          {"question": "Does the board include members from diverse backgrounds (industry expertise, gender, ethnicity, etc.)?", "type": "boolean" },
-          {"question": "Does the company have a Board Diversity Policy?", "type": "boolean" },
           {"question": "How often does the board meet annually?", "type": "text" },
+          {"question": "Does the company have a Board Diversity Policy?", "type": "boolean" },
+          { "question": "Does the company have a woman Chairperson?", "type": "boolean" },
+          { "question": "Does the company have affirmative hiring for women or differently abled persons?", "type": "boolean" },
           {"question": "Is the board remuneration linked to ESG performance?", "type": "boolean" }
         ],
         "Board Committees & Responsibilities": [
@@ -25,6 +33,7 @@
           { "question": "Are there whistleblower mechanisms in place?", "type": "boolean" },
           { "question": "How many whistleblower complaints were received in the last year?", "type": "text" }
         ],
+       
         "Ris& Compliance": [
           { "question": "Does the company have a formal Enterprise Risk Management (ERM) framework?", "type": "boolean" },
           { "question": "Does the company conduct regular risk assessments?", "type": "boolean" },
@@ -71,8 +80,14 @@
           { "question": "Are SDG commitments reflected in executive KPIs and incentives?", "type": "boolean" }
         ],
         "Details of Holding/ Subsidiary/ Associate Companies/ Joint Ventures":[
-          {"question":"Provide a complete list of all companies within your ESG reporting boundary, including holding, subsidiary, associate companies, and joint ventures.  – Include names, the nature of the relationship, and any relevant ESG data or risk exposures.","type":"text"}
-              ],
+          { "question": "Name of the holding company (if applicable)", "type": "text" ,"align":"row"},
+          { "question": "provide the percentage of ownership/control", "type": "text" ,"align":"row"},
+          { "question": "subsidiary companies and percentage of ownership/control", "type": "array" ,"align":"row","nature":"dynamic","fields":[{"question":"subsidiary company under your control","type":"text"},{"question":"provide the percentage of ownership/control","type":"number"}]},
+          { "question": "Associate companies and percentage of ownership/control", "type": "array","align":"row","nature":"dynamic","fields":[{"question":"Associate company","type":"text"},{"question":"provide the percentage of ownership/control","type":"number"}] },
+          { "question": "Joint venture (JV) entities and percentage of ownership/control", "type": "array","align":"row","nature":"dynamic" ,"fields":[{"question":"Joint venture (JV) entities","type":"text"},{"question":"provide the percentage of ownership/control","type":"number"}] },
+          { "question": "Are these entities included in your Business Responsibility and Sustainability Report?", "type": "boolean" },
+          { "question": "If not, please provide reasons for exclusion", "type": "text" }
+          ],
               "Conflict of Interest Management for Board and KMPs":[
           {"question":"What processes or policies does your company have to avoid or manage conflicts of interest among Board members and Key Management Personnel?  – Describe formal guidelines, disclosure practices, and oversight mechanisms.","type":"text"}
               ],
