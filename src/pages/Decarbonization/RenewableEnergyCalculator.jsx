@@ -9,9 +9,9 @@ import {
   Grid,
   CircularProgress,
 } from "@mui/material";
+import RenewableEnergyDisplay from "./AdminPage/RenewableEnergyDisplay";
 import axios from "../../api/axios";
 import { useSelector } from "react-redux";
-
 
 const RenewableEnergyCalculator = () => {
   const userId = useSelector((state) => state.auth.user?.id);
@@ -26,6 +26,21 @@ const RenewableEnergyCalculator = () => {
   const [siteConstraints, setSiteConstraints] = useState("");
   const [results, setResults] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [isSaved, setIsSaved] = useState(false);
+  const [showSaved, setShowSaved] = useState(false);
+
+  const resetForm = () => {
+    setEnergyConsumption("");
+    setRenewablePercentage("");
+    setSolarFeasibility("");
+    setGridMix("");
+    setInvestmentBudget("");
+    setGovIncentives("");
+    setBatteryStorage("");
+    setSiteConstraints("");
+    setResults(null);
+    setIsSaved(false);
+  };
 
   console.log("response:", results);
   const calculateImpact = async () => {
@@ -74,7 +89,6 @@ const RenewableEnergyCalculator = () => {
   };
 
   const handleSaveResult = async () => {
-    
     try {
       const payload = {
         userId,
@@ -91,10 +105,12 @@ const RenewableEnergyCalculator = () => {
 
       await axios.post("/api/renewable-energy/save", payload);
       alert("Calculation saved successfully.");
+      setIsSaved(true);
+      resetForm(); // reset input after save
     } catch (err) {
       console.error("Error saving renewable calculation:", err);
       alert("Failed to save data.");
-    } 
+    }
   };
 
   return (
@@ -238,32 +254,43 @@ const RenewableEnergyCalculator = () => {
                   "Calculate Impact"
                 )}
               </Button>
-              <Button
-      variant="outlined"
-      fullWidth
-      color="success"
-      sx={{ mt: 2 }}
-      onClick={handleSaveResult}
-      disabled={!results}
-    >
-    Save Calculation
-    </Button>
+              {results && (
+  <Button
+    variant="outlined"
+    fullWidth
+    color="success"
+    sx={{ mt: 2 }}
+    onClick={handleSaveResult}
+    disabled={isSaved}
+  >
+    {isSaved ? "Already Saved" : "Save Calculation"}
+  </Button>
+)}
+
+<Button
+  variant="contained"
+  color="secondary"
+  fullWidth
+  sx={{ mt: 2 }}
+  onClick={() => setShowSaved(prev => !prev)}
+>
+  {showSaved ? "Hide Saved Results" : "View Saved Results"}
+</Button>
             </Paper>
           </Grid>
 
           {/* Right Side - Results */}
           <Grid item xs={12} md={6}>
-          {results && results.analysedData ? (
-            <Paper
-              elevation={6}
-              sx={{
-                p: 4,
-                borderRadius: "16px",
-                boxShadow: "0px 4px 16px rgba(0, 0, 0, 0.1)",
-                textAlign: "center",
-              }}
-            >
-             
+            {results && results.analysedData ? (
+              <Paper
+                elevation={6}
+                sx={{
+                  p: 4,
+                  borderRadius: "16px",
+                  boxShadow: "0px 4px 16px rgba(0, 0, 0, 0.1)",
+                  textAlign: "center",
+                }}
+              >
                 <>
                   <Typography
                     sx={{
@@ -291,17 +318,16 @@ const RenewableEnergyCalculator = () => {
                     {results.analysedData.paybackPeriod}
                   </Typography>
                 </>
-              
-            </Paper>
+              </Paper>
             ) : (
               // Default message when no results
               <Typography
-              sx={{
-                fontSize: "1rem",
-                fontWeight: "bold",
-                color: "#777",
-                mt: 3,
-              }}
+                sx={{
+                  fontSize: "1rem",
+                  fontWeight: "bold",
+                  color: "#777",
+                  mt: 3,
+                }}
               >
                 ⚡ Calculate your renewable energy potential and make
                 data-driven decisions.{" "}
@@ -309,7 +335,9 @@ const RenewableEnergyCalculator = () => {
             )}
           </Grid>
         </Grid>
+      {showSaved && <RenewableEnergyDisplay userId={userId} />}
       </Container>
+
     </Box>
   );
 };

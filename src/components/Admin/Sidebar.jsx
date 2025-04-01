@@ -6,6 +6,7 @@ import GroupOutlinedIcon from "@mui/icons-material/GroupOutlined";
 import MultilineChartIcon from "@mui/icons-material/MultilineChart";
 import TableViewIcon from "@mui/icons-material/TableView";
 import AnnouncementOutlinedIcon from "@mui/icons-material/AnnouncementOutlined";
+import SubscriptionsIcon from "@mui/icons-material/Subscriptions"; 
 import SummarizeIcon from "@mui/icons-material/Summarize";
 import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
 import Groups2Icon from "@mui/icons-material/Groups2";
@@ -29,7 +30,8 @@ import {
   IconButton,
   Tooltip,
 } from "@mui/material";
-import logo from "../../assets/images/logo1.svg";
+// import logo from "../../assets/images/logo1.svg";
+import logo from "../../assets/images/logo.png";
 import useMediaQuery from "@mui/material/useMediaQuery";
 
 const Sidebar = ({ mobileOpen, setMobileOpen, toggleSidebar }) => {
@@ -85,7 +87,7 @@ const Sidebar = ({ mobileOpen, setMobileOpen, toggleSidebar }) => {
             label: "Assets & RenewableProject",
             icon: <BatteryChargingFullIcon />,
           },
-          { id: "alerts", label: "Alerts", icon: <AnnouncementOutlinedIcon /> },
+          { id: "subscription", label: "Subscription", icon: <SubscriptionsIcon /> },
           // { id: "reports", label: "Reports", icon: <SummarizeIcon /> },
         ]
       : [
@@ -176,15 +178,15 @@ const Sidebar = ({ mobileOpen, setMobileOpen, toggleSidebar }) => {
         }}
       >
         {!collapsed && (
-          <Box sx={{ display: "flex", alignItems: "center" }}>
+          <Box sx={{ display: "flex", alignItems: "center",ml: 2  }}>
             <img
               src={logo}
               alt="Logo"
-              style={{ width: 50, height: 50, borderRadius: "50%" }}
+              style={{ width: 120, height: 40}}
             />
-            <Typography variant="h6" fontWeight="bold" sx={{ ml: 1 }}>
+            {/* <Typography variant="h6" fontWeight="bold" sx={{ ml: 1 }}>
               Zero Carbon
-            </Typography>
+            </Typography> */}
           </Box>
         )}
         <IconButton

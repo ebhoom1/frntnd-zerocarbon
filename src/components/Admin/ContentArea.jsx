@@ -1,9 +1,10 @@
-
-
 //make header responsive when scroll horizontally
 import React, { useEffect, useState, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useLocation } from "react-router-dom";
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import ProfileDialog from "../../pages/User/Profile/ProfileDialog.jsx";
+
 import { Box, Typography, IconButton, InputBase, Paper } from "@mui/material";
 import NotificationsNoneOutlinedIcon from "@mui/icons-material/NotificationsNoneOutlined";
 import SearchIcon from "@mui/icons-material/Search";
@@ -18,19 +19,19 @@ import ActiveUsers from "../../pages/RegisteredClients/ActiveUsers.jsx";
 import RegisteredClients from "../../pages/RegisteredClients/RegisteredClientsTable.jsx";
 import UserList from "../../pages/Decarbonization/AdminPage/UserList.jsx";
 import AlertSection from "../../pages/Admin/Alert/AlertSection.jsx";
-import Environment from '../../pages/User/DataSubmission/EnvironmentPage.jsx'
-import Social from '../../pages/User/DataSubmission/SocialPage.jsx'
-import Governance from '../../pages/User/DataSubmission/GovernancePage.jsx';
-import AssetsRenewableProject from '../../pages/User/DataSubmission/Assets&renewablePage.jsx';
+import SubscriptionPage from "../../pages/Admin/SubscriptionPage/SubscriptionPage.jsx"
+import Environment from "../../pages/User/DataSubmission/EnvironmentPage.jsx";
+import Social from "../../pages/User/DataSubmission/SocialPage.jsx";
+import Governance from "../../pages/User/DataSubmission/GovernancePage.jsx";
+import AssetsRenewableProject from "../../pages/User/DataSubmission/Assets&renewablePage.jsx";
 import DownloadReportButton from "../../pages/Report/BRSRreport/DownloadReportButton.jsx";
-import EnvironmentSecEmission from '../../pages/User/DataSubmission/AdminPage/EnvironmentSecEmission.jsx'
-import SocialPage from '../../pages/User/DataSubmission/AdminPage/SocialPage.jsx'
-import GovernancePage from '../../pages/User/DataSubmission/AdminPage/GovernancePage.jsx'
-import AssetsAndRenewable from '../../pages/User/DataSubmission/AdminPage/AssetsAndRenewable.jsx'
+import EnvironmentSecEmission from "../../pages/User/DataSubmission/AdminPage/EnvironmentSecEmission.jsx";
+import SocialPage from "../../pages/User/DataSubmission/AdminPage/SocialPage.jsx";
+import GovernancePage from "../../pages/User/DataSubmission/AdminPage/GovernancePage.jsx";
+import AssetsAndRenewable from "../../pages/User/DataSubmission/AdminPage/AssetsAndRenewable.jsx";
 import { setSelectedItem } from "../../redux/features/sidebar/SidebarSlice";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import MenuIcon from "@mui/icons-material/Menu";
-
 
 const ContentArea = ({ toggleSidebar }) => {
   const isLargeScreen = useMediaQuery("(min-width: 1024px)");
@@ -43,7 +44,7 @@ const ContentArea = ({ toggleSidebar }) => {
 
   // useEffect(() => {
   //   const handleScroll = () => {
-  //     setScrollOffset(contentRef.current?.scrollLeft || 0); 
+  //     setScrollOffset(contentRef.current?.scrollLeft || 0);
   //   };
 
   //   const container = contentRef.current;
@@ -51,6 +52,8 @@ const ContentArea = ({ toggleSidebar }) => {
 
   //   return () => container?.removeEventListener("scroll", handleScroll);
   // }, []);
+
+  const [openProfile, setOpenProfile] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -70,14 +73,14 @@ const ContentArea = ({ toggleSidebar }) => {
   }, [isLargeScreen]); // Modified: added isLargeScreen dependency to conditionally update scroll
 
   useEffect(() => {
-    if (!selectedItem && location.pathname !== "/emissionfactor-table" ) {
+    if (!selectedItem && location.pathname !== "/emissionfactor-table") {
       dispatch(setSelectedItem({ id: "dashboard", label: "Dashboard" }));
     }
   }, [selectedItem, location.pathname, dispatch]);
 
   // Clear selectedItem when navigating to /emissionfactor-table
   useEffect(() => {
-    if (location.pathname === "/emissionfactor-table" ) {
+    if (location.pathname === "/emissionfactor-table") {
       dispatch(setSelectedItem(null));
     }
   }, [location.pathname, dispatch]);
@@ -98,22 +101,22 @@ const ContentArea = ({ toggleSidebar }) => {
           return <EmissionFactorHomePage />;
         case "registeredClients":
           return <RegisteredClients />;
-        case "activeClients": 
+        case "activeClients":
           return <ActiveUsers />;
-        case "alerts": 
-          return <AlertSection/>;
-        case "decarbonisation": 
-          return <UserList/>;
-        case "environment": 
-          return <EnvironmentSecEmission/>;
-          case "social":
-          return <SocialPage/>;
-          case "governance":
-          return <GovernancePage/>;
-          case "assetsrenewableproject":
-          return <AssetsAndRenewable/>;
+        case "subscription":
+          return <SubscriptionPage />;
+        case "decarbonisation":
+          return <UserList />;
+        case "environment":
+          return <EnvironmentSecEmission />;
+        case "social":
+          return <SocialPage />;
+        case "governance":
+          return <GovernancePage />;
+        case "assetsrenewableproject":
+          return <AssetsAndRenewable />;
         default:
-          return <Dashboard />; 
+          return <Dashboard />;
       }
     } else {
       switch (selectedItem.id) {
@@ -123,18 +126,18 @@ const ContentArea = ({ toggleSidebar }) => {
           return <FlowchartUser />;
         case "form":
           return <UserForm />;
-      
+
         case "report":
-          return <DownloadReportButton/>;  
+          return <DownloadReportButton />;
         case "environment":
-          return <Environment/>;
+          return <Environment />;
         case "social":
-          return <Social/>;
+          return <Social />;
         case "governance":
-          return <Governance/>;
+          return <Governance />;
         case "assetsrenewableproject":
-          return <AssetsRenewableProject/>;
-        
+          return <AssetsRenewableProject />;
+
         default:
           return <UserDashboard />;
       }
@@ -144,8 +147,11 @@ const ContentArea = ({ toggleSidebar }) => {
   return (
     <div
       ref={contentRef}
-      style={{ flex: 1, // Modified: Disable horizontal scrolling for non-large screens
-      overflowX: isLargeScreen ? "auto" : "hidden", backgroundColor: "#f4f6f9" }}
+      style={{
+        flex: 1, // Modified: Disable horizontal scrolling for non-large screens
+        overflowX: isLargeScreen ? "auto" : "hidden",
+        backgroundColor: "#f4f6f9",
+      }}
     >
       <Box
         sx={{
@@ -162,53 +168,64 @@ const ContentArea = ({ toggleSidebar }) => {
           borderBottomLeftRadius: 16,
           borderBottomRightRadius: 16,
           // width: `calc(100% + ${scrollOffset}px)`, // Dynamic width
-           // Modified: Conditionally set width based on screen size
-           width: isLargeScreen ? `calc(100% + ${scrollOffset}px)` : "100%",
+          // Modified: Conditionally set width based on screen size
+          width: isLargeScreen ? `calc(100% + ${scrollOffset}px)` : "100%",
           transition: "height 0.3s ease", // Smooth transition for height changes
         }}
       >
-          {!isLargeScreen && (
+        {!isLargeScreen && (
           <IconButton onClick={toggleSidebar} sx={{ marginRight: 1 }}>
             <MenuIcon style={{ color: "#fff" }} />
           </IconButton>
         )}
         <Typography variant="h5" fontWeight="bold">
           {/* {selectedItem?.label || "Dashboard"} */}
-          {selectedItem?.id === "team" || selectedItem?.id === "decarbonization" ? "Dashboard" : selectedItem?.label || "Dashboard"}
+          {selectedItem?.id === "team" || selectedItem?.id === "decarbonization"
+            ? "Dashboard"
+            : selectedItem?.label || "Dashboard"}
         </Typography>
-        <Box display="flex" alignItems="flex-start" gap={2}>
-          <IconButton>
-            <NotificationsNoneOutlinedIcon style={{ color: "#fff" }} />
-          </IconButton>
-          {selectedItem?.id === "dashboard" && (
-            <Paper
-              component="form"
-              sx={{
-                display: "flex",
-                alignItems: "center",
-                width: 200,
-                border: "1px solid #D8DBBD",
-                borderRadius: 20,
-                padding: "1px 5px",
-                boxShadow: "none",
-              }}
-            >
-              <IconButton sx={{ p: "5px" }}>
-                <SearchIcon style={{ color: "#5A6C57" }} />
-              </IconButton>
-              <InputBase
-                placeholder="Search here..."
-                inputProps={{ "aria-label": "search" }}
-                sx={{
-                  flex: 1,
-                  fontSize: "16px",
-                  color: "#66785F",
-                  fontWeight: 500,
-                }}
-              />
-            </Paper>
-          )}
-        </Box>
+        <Box display="flex" alignItems="center" gap={2}> 
+  {/* Notification Icon */}
+  {/* <IconButton>
+    <NotificationsNoneOutlinedIcon style={{ color: "#fff" }} />
+  </IconButton> */}
+
+  {/* Customer Support - always visible */}
+  <Box
+    sx={{
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center",
+      ml:4
+    }}
+  >
+    <Typography
+      variant="body2"
+      sx={{ color: "#fff", fontWeight: 600, lineHeight: 1 }}
+    >
+      Customer Support
+    </Typography>
+    <Typography variant="body2" sx={{ color: "#fff", lineHeight: 1 }}>
+      Call{" "}
+      <a
+        href="tel:6282386462"
+        style={{
+          color: "#fff",
+          textDecoration: "underline",
+          fontWeight: "bold",
+        }}
+      >
+        6282386462
+      </a>
+    </Typography>
+  </Box>
+
+
+    <IconButton onClick={() => setOpenProfile(true)}>
+      <AccountCircleIcon style={{ color: "#fff" }} fontSize="large" />
+    </IconButton>
+</Box>
+
       </Box>
       <div
         style={{
@@ -222,10 +239,9 @@ const ContentArea = ({ toggleSidebar }) => {
       >
         {renderContent()}
       </div>
+      <ProfileDialog open={openProfile} onClose={() => setOpenProfile(false)} />
     </div>
   );
 };
 
 export default ContentArea;
-
-

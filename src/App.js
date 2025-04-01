@@ -1,6 +1,9 @@
 import React from "react";
 import "./App.css";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { useSelector } from "react-redux";
+import dayjs from "dayjs";
+
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import AdminDashboard from "./pages/Admin/AdminDashboard";
@@ -19,16 +22,31 @@ import EndofLifeTreatment from './pages/EndofLifeTreatment/EndofLifeTreatment';
 import UseSoldProducts from "./pages/UseSoldProducts/UseSoldProducts";
 import TeamPage from './pages/Admin/TeamPage/TeamPage';
 import DecarbonizationPage from './pages/Decarbonization/DecarbonisationPage';
+import Payment from './pages/Payment/Payment'
+import SubscriptionModal from "./components/GlobalSubscriptionModal/SubscriptionModal"
 const App = () => {
-  const user = JSON.parse(localStorage.getItem("user"));
-  const token = localStorage.getItem("token");
+  // const user = JSON.parse(localStorage.getItem("user"));
+  // const token = localStorage.getItem("token");
+  const token = useSelector((state) => state.auth.token);
+  const user = useSelector((state) => state.auth.user);
+
+  // Check if subscription has expired
+  const hasSubscriptionExpired = () => {
+    if (!user || !user.subscription || !user.subscription.endDate) return false;
+    const today = dayjs();
+    const expiry = dayjs(user.subscription.endDate);
+    return today.isAfter(expiry);
+  };
 
   return (
     <BrowserRouter>
+     {/* Display Modal Globally if any subscription has expired */}
+     {hasSubscriptionExpired() && <SubscriptionModal open={true} />}
       <Routes>
         {/* Public Routes */}
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/payment" element={<Payment />} />
 
         {/* Default Route: Redirect based on user type */}
         <Route
