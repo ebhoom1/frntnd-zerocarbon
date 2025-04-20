@@ -1,4 +1,6 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import axios from "../../../api/axios";
 import { Card, CardContent, Typography, Grid, Box } from "@mui/material";
 import {
   People,
@@ -13,33 +15,52 @@ import {
 
 } from "@mui/icons-material";
 
-const metrics = [
-  { icon: <People />, title: "Total Employees", value: "XX", color: "#27667B" },
-  {
-    icon: <Equalizer />,
-    title: "Diversity Ratio",
-    value: (
-        <Typography variant="body2" sx={{ whiteSpace: "wrap" }}>
-          <Typography component="span" sx={{ fontSize: "0.875rem" }}>Male </Typography>
-          <Typography component="span" sx={{ fontSize: "0.875rem", fontWeight: "bold" }}>X% </Typography> |  
-          <Typography component="span" sx={{ fontSize: "0.875rem" }}>Female </Typography>
-          <Typography component="span" sx={{ fontSize: "0.875rem", fontWeight: "bold" }}>X% </Typography> |  
-          <Typography component="span" sx={{ fontSize: "0.875rem" }}>Non-Binary </Typography>
-          <Typography component="span" sx={{ fontSize: "0.875rem", fontWeight: "bold" }}>X%</Typography>
-        </Typography>
-      ),
-    color: "#FBA518",
-  },
-    { icon: <EmojiNature />, title: "Total Completed Eco-Challenges", value: "XXXX", color: "#4CAF50" },
-  { icon: <Score />, title: "Total Earned Carbon Credits", value: "XXXXX", color: "#FFC107" },
-  { icon: <AccessTime />, title: "Avg. Training Hours Per Employee", value: "XX hours", color: "#03A9F4" },
-  { icon: <HealthAndSafety />, title: "Health & Safety Compliance Rate", value: "XX%", color: "#E53935" },
-  { icon: <Groups />, title: "Community Engagement Score", value: "X/10", color: "#FF8383" },
-  { icon: <SentimentSatisfiedAlt />, title: "Workplace Satisfaction Score", value: "X/10", color: "#640D5F" },
-  { icon: <EventAvailable />, title: "Avg. Eco-Challenge Participation", value: "XX", color: "#4CAF50" },
-];
+
 
 const TeamOverview = () => {
+  const userId = useSelector((state) => state.auth.user.id);
+  const [totalEmployees, setTotalEmployees] = useState(0); 
+
+  useEffect(()=>{
+   const fetchData=async()=>{
+    try{
+// 👥 Employees
+const empRes = await axios.get(`/api/employees-stats/${userId}`);
+setTotalEmployees(empRes.data?.data || 0); 
+    }catch(err){
+      console.error("Error fetching data:", err);
+
+    }
+   }
+  },[userId])
+
+
+  const metrics = [
+    { icon: <People />, title: "Total Employees", value: `${totalEmployees}`, color: "#27667B" },
+    {
+      icon: <Equalizer />,
+      title: "Diversity Ratio",
+      value: (
+          <Typography variant="body2" sx={{ whiteSpace: "wrap" }}>
+            <Typography component="span" sx={{ fontSize: "0.875rem" }}>Male </Typography>
+            <Typography component="span" sx={{ fontSize: "0.875rem", fontWeight: "bold" }}>{totalEmployees?.male || "0"} </Typography> |  
+            <Typography component="span" sx={{ fontSize: "0.875rem" }}>Female </Typography>
+            <Typography component="span" sx={{ fontSize: "0.875rem", fontWeight: "bold" }}>{totalEmployees?.female || "0"}  </Typography> |  
+            <Typography component="span" sx={{ fontSize: "0.875rem" }}>Non-Binary </Typography>
+            <Typography component="span" sx={{ fontSize: "0.875rem", fontWeight: "bold" }}>{totalEmployees?.other || "0"} </Typography>
+          </Typography>
+        ),
+      color: "#FBA518",
+    },
+      { icon: <EmojiNature />, title: "Total Completed Eco-Challenges", value: "XXXX", color: "#4CAF50" },
+    { icon: <Score />, title: "Total Earned Carbon Credits", value: "XXXXX", color: "#FFC107" },
+    { icon: <AccessTime />, title: "Avg. Training Hours Per Employee", value: "XX hours", color: "#03A9F4" },
+    { icon: <HealthAndSafety />, title: "Health & Safety Compliance Rate", value: "XX%", color: "#E53935" },
+    { icon: <Groups />, title: "Community Engagement Score", value: "X/10", color: "#FF8383" },
+    { icon: <SentimentSatisfiedAlt />, title: "Workplace Satisfaction Score", value: "X/10", color: "#640D5F" },
+    { icon: <EventAvailable />, title: "Avg. Eco-Challenge Participation", value: "XX", color: "#4CAF50" },
+  ]; 
+
   return (
     <Card
       sx={{

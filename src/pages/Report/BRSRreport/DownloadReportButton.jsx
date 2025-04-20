@@ -72,7 +72,7 @@ console.log("response:",response.data);
     console.error("Error downloading BRSR report:", error);
 
     // Optional: show alert
-    alert("Failed to download BRSR report. Please try again.");
+    // alert("Failed to download BRSR report. Please try again.");
   } finally {
     setLoading(false);
   }

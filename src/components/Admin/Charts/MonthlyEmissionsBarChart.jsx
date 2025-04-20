@@ -53,9 +53,10 @@ const MonthlyEmissionsBarChart = ({ data, companyName }) => {
           />
           <YAxis />
           <Tooltip />
-          <Bar dataKey="scope3" stackId="a" fill={COLORS[2]} />
-          <Bar dataKey="scope2" stackId="a" fill={COLORS[1]} />
-          <Bar dataKey="scope1" stackId="a" fill={COLORS[0]} />
+          <Bar dataKey="Scope 3" stackId="a" fill={COLORS[2]} />
+<Bar dataKey="Scope 2" stackId="a" fill={COLORS[1]} />
+<Bar dataKey="Scope 1" stackId="a" fill={COLORS[0]} />
+
         </BarChart>
       </ResponsiveContainer>
     </Paper>

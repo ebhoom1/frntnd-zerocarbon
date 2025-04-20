@@ -19,6 +19,7 @@ import PublicIcon from "@mui/icons-material/Public";
 import Diversity3Icon from "@mui/icons-material/Diversity3";
 import GavelIcon from "@mui/icons-material/Gavel";
 import BatteryChargingFullIcon from "@mui/icons-material/BatteryChargingFull";
+import CorporateFareIcon from '@mui/icons-material/CorporateFare';
 import { setSelectedItem } from "../../redux/features/sidebar/SidebarSlice";
 import { logout } from "../../redux/features/auth/authSlice";
 import {
@@ -42,7 +43,7 @@ const Sidebar = ({ mobileOpen, setMobileOpen, toggleSidebar }) => {
   const navigate = useNavigate();
 
   const sidebarItems =
-    userType === "admin" || userType === "superAdmin"
+    userType === "admin" || userType === "superAdmin" ||  userType === "consultantadmin"
       ? [
           {
             id: "dashboard",
@@ -133,6 +134,11 @@ const Sidebar = ({ mobileOpen, setMobileOpen, toggleSidebar }) => {
             label: "Assets & RenewableProject",
             icon: <BatteryChargingFullIcon />,
           },
+          {
+            id: "brsr",
+            label: "BRSR Disclosures",
+            icon: <CorporateFareIcon />,
+          },
           { id: "report", label: "Report", icon: <SummarizeIcon /> },
           {
             id: "team",
@@ -151,7 +157,7 @@ const Sidebar = ({ mobileOpen, setMobileOpen, toggleSidebar }) => {
   return (
     <Box
       sx={{
-        width: collapsed ? 60 : 280, // Keep collapse feature for large screens
+        width: collapsed ? 60 : 260, // Keep collapse feature for large screens
         position: isLargeScreen ? "static" : "fixed",
         left: isLargeScreen ? "unset" : mobileOpen ? 0 : "-280px",
         transition: "left 0.3s ease",
@@ -182,7 +188,7 @@ const Sidebar = ({ mobileOpen, setMobileOpen, toggleSidebar }) => {
             <img
               src={logo}
               alt="Logo"
-              style={{ width: 120, height: 40}}
+              style={{ width: 120, height: 26}}
             />
             {/* <Typography variant="h6" fontWeight="bold" sx={{ ml: 1 }}>
               Zero Carbon

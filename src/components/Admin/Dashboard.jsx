@@ -90,22 +90,22 @@ const Dashboard = () => {
               />
             ),
           },
-          {
-            title: "Threshold Breaches",
-            value: keyMetrics?.thresholdBreaches || 0,
-            color: "#81C784",
+          // {
+          //   title: "Threshold Breaches",
+          //   value: keyMetrics?.thresholdBreaches || 0,
+          //   color: "#81C784",
 
-            // icon: <WorkIcon sx={{ fontSize: "20px" }} />, // Red
-            icon: (
-              <img
-                src={threshold}
-                alt="Active Clients"
-                style={{ width: "100%" }}
-              />
-            ),
-          },
+          //   // icon: <WorkIcon sx={{ fontSize: "20px" }} />, // Red
+          //   icon: (
+          //     <img
+          //       src={threshold}
+          //       alt="Active Clients"
+          //       style={{ width: "100%" }}
+          //     />
+          //   ),
+          // },
         ].map((stat, index) => (
-          <Grid item xs={12} sm={1.83} key={index}>
+          <Grid item xs={12} sm={1.89} key={index}>
             <Paper
               elevation={0}
               sx={{
@@ -116,7 +116,7 @@ const Dashboard = () => {
                 backgroundImage: stat.gradient || "none",
                 transition: "0.3s",
                 height: 105,
-                width: 200,
+                width: 210,
                 display: "flex",
                 flexDirection: "column",
                 justifyContent: "center",
@@ -154,7 +154,7 @@ const Dashboard = () => {
           </Grid>
         ))}
 
-        <Grid item xs={12} sm={2}>
+        <Grid item xs={12} sm={1.8}>
           <Paper
             elevation={0}
             sx={{
@@ -163,7 +163,7 @@ const Dashboard = () => {
               background: "linear-gradient(to right, #66BB6A, #A5D6A7)",
               transition: "0.3s",
               height: 100,
-              width: 220,
+              width: 200,
               display: "flex",
               flexDirection: "column",
               justifyContent: "center",
@@ -210,7 +210,7 @@ const Dashboard = () => {
           </Paper>
         </Grid>
 
-        <Grid item xs={12} sm={2}>
+        <Grid item xs={12}  sm={1.8}>
           <Paper
             elevation={0}
             sx={{
@@ -219,7 +219,7 @@ const Dashboard = () => {
               background: "linear-gradient(to right, #66BB6A, #A5D6A7)",
               transition: "0.3s",
               height: 100,
-              width: 220,
+              width: 200,
               display: "flex",
               flexDirection: "column",
               justifyContent: "center",
@@ -282,7 +282,7 @@ const Dashboard = () => {
           </Grid>
 
           {/* Latest Notifications Section */}
-          <Grid item xs={12} md={2.2}>
+          {/* <Grid item xs={12} md={2.2}>
             <Box
               sx={{
                 height: "100%",
@@ -293,25 +293,24 @@ const Dashboard = () => {
             >
               <LatestNotifications notifications={notifications} />
             </Box>
-          </Grid>
+          </Grid> */}
         </Grid>
 
         {/* Reduction Pie Chart Section */}
         <Grid container item xs={12} spacing={1.5}>
-          <Grid item xs={12} md={9.3}>
+          {/* <Grid item xs={12} md={9.3}>
             <ReductionPieChart />
+          </Grid> */}
+           {/* Latest Submissions Table Section */}
+           <Grid item xs={12} md={6}> 
+            <TableComponent />
           </Grid>
           {/* Map Component */}
-          <Grid item xs={12} md={2.5}>
+          <Grid item xs={12} md={3.2}>
             <MapComponent />
           </Grid>
         </Grid>
-        {/* Latest Submissions Table Section */}
-        <Grid container item xs={12} spacing={2}>
-          <Grid item xs={12} md={11.8}> 
-            <TableComponent />
-          </Grid>
-        </Grid>
+        
       </Grid>
     </Box>
   );

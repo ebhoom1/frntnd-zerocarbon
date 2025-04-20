@@ -32,6 +32,7 @@ import AssetsAndRenewable from "../../pages/User/DataSubmission/AdminPage/Assets
 import { setSelectedItem } from "../../redux/features/sidebar/SidebarSlice";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import MenuIcon from "@mui/icons-material/Menu";
+import SectionBCsubmission from '../../pages/sectionBCbrsr/MainComponentFromSectionBC.jsx';
 
 const ContentArea = ({ toggleSidebar }) => {
   const isLargeScreen = useMediaQuery("(min-width: 1024px)");
@@ -87,7 +88,7 @@ const ContentArea = ({ toggleSidebar }) => {
 
   const renderContent = () => {
     if (!selectedItem) return <Dashboard />; // Render Dashboard by default
-    if (userType === "admin" || userType === "superAdmin") {
+    if (userType === "admin" || userType === "superAdmin" || userType === "consultantadmin") {
       switch (selectedItem.id) {
         case "dashboard":
           return <Dashboard />;
@@ -137,7 +138,8 @@ const ContentArea = ({ toggleSidebar }) => {
           return <Governance />;
         case "assetsrenewableproject":
           return <AssetsRenewableProject />;
-
+        case "brsr":
+          return <SectionBCsubmission/>;
         default:
           return <UserDashboard />;
       }
@@ -149,7 +151,8 @@ const ContentArea = ({ toggleSidebar }) => {
       ref={contentRef}
       style={{
         flex: 1, // Modified: Disable horizontal scrolling for non-large screens
-        overflowX: isLargeScreen ? "auto" : "hidden",
+        // overflowX: isLargeScreen ? "auto" : "hidden",
+        overflowX:"hidden",
         backgroundColor: "#f4f6f9",
       }}
     >

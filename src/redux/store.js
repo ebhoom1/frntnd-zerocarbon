@@ -20,6 +20,9 @@ import endOfLifeTreatmentReducer from './features/emissionCalculation/endOfLifeT
 import totalEmissionScope3Reducer from './features/emissionCalculation/totalEmissionScope3Slice';
 import simulationReducer from './features/roadmap/EmissionsSimulation';
 import renewableReducer from './features/roadmap/renewableEnergySlice';
+import waterReducer from './features/emsData/waterConsumptionAdditionalData';
+import energyReducer from './features/emsData/energyConsumptionData';
+import companyScopeReducer from './features/dashboard/adminDashboardSlice';
 
 export const store = configureStore({
   reducer: {
@@ -43,7 +46,10 @@ export const store = configureStore({
     endOfLifeTreatment:endOfLifeTreatmentReducer,
     totalEmissionScope3:totalEmissionScope3Reducer,
     simulation:simulationReducer,
-    renewable:renewableReducer
+    renewable:renewableReducer,
+    water:waterReducer,
+    energy:energyReducer,
+    companyScope:companyScopeReducer
   },
 });
 

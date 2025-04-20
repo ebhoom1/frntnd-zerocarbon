@@ -9,8 +9,11 @@ import { useSelector } from "react-redux";
 import TotalEmissionDialogScope1 from "./TotalEmissionDialogScope1";
 import TotalEmissionDialogScope2 from "./TotalEmissionDialogScope2";
 import TotalEmissionDialogScope3 from "./TotalEmissionDialogScope3";
+import MonthlyenvSubmission from './MonthlyenvSubmission';
+
 const EnvironmentPage = () => {
   const userId = useSelector((state) => state.auth.user?.id);
+
   const [responses, setResponses] = useState({});
   const [loading, setLoading] = useState(false);
   const [alert, setAlert] = useState(null);
@@ -75,6 +78,7 @@ const EnvironmentPage = () => {
   return (
     <Container maxWidth="md" style={{ padding: "20px" }}>
       <CustomAlert alert={alert} setAlert={setAlert} />
+  <MonthlyenvSubmission/>
       {/* Force re-render after submission by changing formKey */}
       <div key={formKey}>
         {Object.entries(questionsData).map(([sectionName, subcategories]) => (

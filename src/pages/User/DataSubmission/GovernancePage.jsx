@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "../../../api/axios";
 import { Container, Typography, Button } from "@mui/material";
+import UploadSec from "./UploadSecGovernance";
 import GovernanceSec from "../../../components/User/DataSubmission/GovernanceSec";
 import CustomAlert from "../../../components/Alert/Sweetalert";
 import governanceData from "../../../assets/data/DataSubmission/governance.json";
@@ -83,6 +84,9 @@ const GovernancePage = () => {
           </div>
         ))}
       </div>
+      <UploadSec
+      userId={userId}
+      />
       <Button
         variant="contained"
         color="primary"
@@ -91,7 +95,7 @@ const GovernancePage = () => {
         disabled={loading}
         style={{ marginTop: "20px" }}
       >
-        {loading ? "Submitting..." : "Submit Data"}
+        {loading ? "Submitting..." : "Submit All Data"}
       </Button>
     </Container>
   );

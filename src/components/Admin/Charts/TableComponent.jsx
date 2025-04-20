@@ -46,13 +46,13 @@ const TableComponent = () => {
        
         sx={{ marginBottom: 2 }}
       >
-        Latest Submissions
+        Latest Reports
       </Typography>
       <TableContainer>
         <Table>
           <TableHead>
             <TableRow>
-              <TableCell><strong>Submission ID</strong></TableCell>
+              <TableCell><strong>Report ID</strong></TableCell>
               <TableCell><strong>Client Name</strong></TableCell>
               <TableCell><strong>Description</strong></TableCell>
               <TableCell><strong>Date</strong></TableCell>

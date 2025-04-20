@@ -16,7 +16,7 @@ const ESGProgressCard = ({ scores }) => {
     <Box sx={{ Width: "100%",height:"280px", textAlign:"left"}}>
       
         <Typography variant="h6" color="green" gutterBottom>
-          ESG Score Overview
+          ESG  Overview
         </Typography>
         {/* Overall Score */}
         <Box display="flex" alignItems="center" justifyContent="center" mb={2}>

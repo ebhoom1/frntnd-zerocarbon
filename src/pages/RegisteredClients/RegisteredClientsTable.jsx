@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 import axios from "../../api/axios";
+import RegisterConsultantUserDialog from "./consultantuserRegister/RegisterConsultantUserDialog";
 
 import {
   Button,
@@ -15,27 +17,42 @@ import {
   FormControl,
   Select,
   MenuItem,
+  Chip,
 } from "@mui/material";
 
 const Dashboard = () => {
   const navigate = useNavigate();
+  const user = useSelector((state) => state.auth.user);
+
   const [allForms, setAllForms] = useState([]);
   const [forms, setForms] = useState([]);
   const [filters, setFilters] = useState({
     companyName: "",
     status: "",
   });
+  const [openDialog, setOpenDialog] = useState(false);
+  const [selectedConsultantId, setSelectedConsultantId] = useState(null);
 
   useEffect(() => {
     const fetchForms = async () => {
       try {
         const response = await axios.get("/api/admin/registeredusers");
-        setAllForms(response.data);
-        setForms(response.data);
+
+        const allUsers = response.data;
+
+        // If consultantadmin is logged in, filter users registered under them
+        const visibleUsers =
+          user?.userType === "consultantadmin"
+            ? allUsers.filter((u) => u.consultantAdminId === user.id)
+            : allUsers;
+
+        setAllForms(visibleUsers);
+        setForms(visibleUsers);
       } catch (error) {
         console.error("Error fetching forms:", error);
       }
     };
+
     fetchForms();
   }, []);
 
@@ -56,6 +73,16 @@ const Dashboard = () => {
 
   const handleRowClick = (userId) => {
     navigate(`/formdetails/${userId}`);
+  };
+
+  const handleOpenDialog = (consultantId) => {
+    setSelectedConsultantId(consultantId);
+    setOpenDialog(true);
+  };
+
+  const handleCloseDialog = () => {
+    setOpenDialog(false);
+    setSelectedConsultantId(null);
   };
 
   return (
@@ -100,6 +127,7 @@ const Dashboard = () => {
               <TableCell>Email</TableCell>
               <TableCell>Phone</TableCell>
               <TableCell>Subscription</TableCell>
+              <TableCell>Action</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -110,25 +138,60 @@ const Dashboard = () => {
                   onClick={() => handleRowClick(form._id)}
                   style={{ cursor: "pointer", backgroundColor: "white" }}
                 >
-                  <TableCell>{form.userName}</TableCell>
+                  <TableCell>
+                    {form.userName}
+                    {form.userType === "consultantadmin" && (
+                      <span style={{ marginLeft: 8 }}>
+                        <Chip label="Consultant" size="small" color="primary" />
+                      </span>
+                    )}
+                  </TableCell>
                   <TableCell>{form.companyName}</TableCell>
                   <TableCell>{form.email}</TableCell>
                   <TableCell>{form.contactNumber}</TableCell>
                   <TableCell onClick={(e) => e.stopPropagation()}>
                     {form.subscription?.plan || "Not Subscribed"}
                   </TableCell>
+                  <TableCell onClick={(e) => e.stopPropagation()}>
+                    {form.userType === "consultantadmin" && (
+                      <Button
+                        variant="outlined"
+                        size="small"
+                        onClick={() => handleOpenDialog(form._id)}
+                      >
+                        Add User
+                      </Button>
+                    )}
+                  </TableCell>
                 </TableRow>
               ))
             ) : (
               <TableRow>
                 <TableCell colSpan={4} align="center">
-                  No Form Data Available
+                  No Data Available
                 </TableCell>
               </TableRow>
             )}
           </TableBody>
         </Table>
       </TableContainer>
+      <RegisterConsultantUserDialog
+        open={openDialog}
+        onClose={handleCloseDialog}
+        consultantId={selectedConsultantId}
+        refreshUsers={() => {
+          axios.get("/api/admin/registeredusers").then((res) => {
+            const allUsers = res.data;
+            const visibleUsers =
+              user?.userType === "consultantadmin"
+                ? allUsers.filter((u) => u.consultantAdminId === user.id)
+                : allUsers;
+
+            setAllForms(visibleUsers);
+            setForms(visibleUsers);
+          });
+        }}
+      />
     </div>
   );
 };

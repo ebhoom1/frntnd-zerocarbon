@@ -50,7 +50,7 @@ const Login = () => {
 
         if (userType === "user") {
           navigate("/user", { state: alertState }); // Redirect to user form
-        } else if (userType === "admin" || userType === "superAdmin") {
+        } else if (userType === "admin" || userType === "superAdmin" || userType==="consultantadmin") {
           navigate("/admin", { state: alertState }); // Redirect to admin dashboard
         }
       }
@@ -245,6 +245,36 @@ const Login = () => {
           </Box>
         </form>
       </Box>
+     
+      <Box
+  sx={{
+    position: "absolute",
+    bottom: 20,
+    left: "50%",
+    transform: "translateX(-50%)",
+    backgroundColor: "#fff",
+    px: 3,
+    py: 1.5,
+    borderRadius: 2,
+    boxShadow: "0 4px 12px rgba(0,0,0,0.1)",
+    maxWidth: 600,
+    width: "90%",
+  }}
+>
+  <Typography
+    variant="body2"
+    align="center"
+    sx={{
+      color: "#6c757d", // light gray
+      fontSize: "0.9rem",
+      fontWeight: 400,
+    }}
+  >
+    Our platform is designed to support SEBI’s BRSR framework and aligns with MCA’s NGRBC principles,
+    helping listed companies generate accurate, compliant sustainability reports.
+  </Typography>
+</Box>
+
     </Box>
   );
 };

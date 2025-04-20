@@ -14,16 +14,16 @@ import SampleFlowchart from "./pages/Admin/sampleFlowchart/sampleFlowchart";
 import LeadsTable from "./components/Admin/LeadsTable";
 import ActiveUsers from "./pages/RegisteredClients/ActiveUsers";
 import CountryEmissionFactor from "./pages/CountryEmissionFactor/CountryEmissionFactor";
-import MobileCombustion from './pages/MobileCombustion/MobileCombustion';
-import IndustralProcesses from './pages/IndustryProcess/IndustrialProcesses';
-import FugitiveEmissions from './pages/FugitiveEmissions/FugitiveEmissions';
-import PurchasedGoodsServices from './pages/purchasedGoogsServices/PurchasedGoodsServices';
-import EndofLifeTreatment from './pages/EndofLifeTreatment/EndofLifeTreatment';
+import MobileCombustion from "./pages/MobileCombustion/MobileCombustion";
+import IndustralProcesses from "./pages/IndustryProcess/IndustrialProcesses";
+import FugitiveEmissions from "./pages/FugitiveEmissions/FugitiveEmissions";
+import PurchasedGoodsServices from "./pages/purchasedGoogsServices/PurchasedGoodsServices";
+import EndofLifeTreatment from "./pages/EndofLifeTreatment/EndofLifeTreatment";
 import UseSoldProducts from "./pages/UseSoldProducts/UseSoldProducts";
-import TeamPage from './pages/Admin/TeamPage/TeamPage';
-import DecarbonizationPage from './pages/Decarbonization/DecarbonisationPage';
-import Payment from './pages/Payment/Payment'
-import SubscriptionModal from "./components/GlobalSubscriptionModal/SubscriptionModal"
+import TeamPage from "./pages/Admin/TeamPage/TeamPage";
+import DecarbonizationPage from "./pages/Decarbonization/DecarbonisationPage";
+import Payment from "./pages/Payment/Payment";
+import SubscriptionModal from "./components/GlobalSubscriptionModal/SubscriptionModal";
 const App = () => {
   // const user = JSON.parse(localStorage.getItem("user"));
   // const token = localStorage.getItem("token");
@@ -40,8 +40,8 @@ const App = () => {
 
   return (
     <BrowserRouter>
-     {/* Display Modal Globally if any subscription has expired */}
-     {hasSubscriptionExpired() && <SubscriptionModal open={true} />}
+      {/* Display Modal Globally if any subscription has expired */}
+      {hasSubscriptionExpired() && <SubscriptionModal open={true} />}
       <Routes>
         {/* Public Routes */}
         <Route path="/login" element={<Login />} />
@@ -53,7 +53,9 @@ const App = () => {
           path="/"
           element={
             token ? (
-              user?.userType === "admin" || user?.userType === "superAdmin" ? (
+              user?.userType === "admin" ||
+              user?.userType === "superAdmin" ||
+              user?.userType === "consultantadmin" ? (
                 <Navigate to="/admin" />
               ) : (
                 <Navigate to="/user" />
@@ -67,32 +69,30 @@ const App = () => {
         {/* Protected Routes */}
         <Route element={<ProtectedRoute allowedRoles={["user"]} />}>
           <Route path="/user" element={<UserDashboard />} />
-          
-          <Route 
-            path="/decarbonization"
-            element={<DecarbonizationPage />}
-          />
-      <Route path="/team" element={<TeamPage />} />
 
+          <Route path="/decarbonization" element={<DecarbonizationPage />} />
+          <Route path="/team" element={<TeamPage />} />
         </Route>
         <Route
-          element={<ProtectedRoute allowedRoles={["admin", "superAdmin"]} />}
+          element={<ProtectedRoute allowedRoles={["admin", "superAdmin","consultantadmin"]} />}
         >
           <Route path="/admin" element={<AdminDashboard />} />
           <Route path="flowchart/:userId" element={<SampleFlowchart />} />
           <Route path="/formdetails/:userId" element={<Formdetails />} />
-         
-        
+
           <Route
             path="/electricityemissionfactor"
             element={<CountryEmissionFactor />}
           />
-          <Route path='/mobilecombustion' element={<MobileCombustion/>} />
-          <Route path="/industrialprocesses" element={<IndustralProcesses/>} />
-          <Route path="/fugitiveemissions" element={<FugitiveEmissions/>}/>
-          <Route path="/purchasedgoods-services" element={<PurchasedGoodsServices/>}/>
-          <Route path="/endoflifetreatment" element={<EndofLifeTreatment/>}/> 
-          <Route path="/usesoldproducts" element={<UseSoldProducts/>}/> 
+          <Route path="/mobilecombustion" element={<MobileCombustion />} />
+          <Route path="/industrialprocesses" element={<IndustralProcesses />} />
+          <Route path="/fugitiveemissions" element={<FugitiveEmissions />} />
+          <Route
+            path="/purchasedgoods-services"
+            element={<PurchasedGoodsServices />}
+          />
+          <Route path="/endoflifetreatment" element={<EndofLifeTreatment />} />
+          <Route path="/usesoldproducts" element={<UseSoldProducts />} />
           <Route path="/registeredusers" element={<LeadsTable />} />
           <Route path="/activeusers" element={<ActiveUsers />} />
         </Route>

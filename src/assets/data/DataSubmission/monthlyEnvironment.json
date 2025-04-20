@@ -1,0 +1,353 @@
+{
+    "Scope 1: Direct Emissions": {
+      "Mobile Combustion": [
+        { "question": "Number of company-owned vehicles?", "type": "number" },
+        { "question": "Type of vehicle?", "type": "dropdown",
+        "options": ["Passenger Cars", "Heavy Trucks", "Buses", "Motorcycles","other"] },
+        { "question": "Vehicle Name?", "type": "text" },
+        { "question": "Fuel type per vehicle?", "type": "dropdown",
+        "options": ["Petrol", "Diesel", "LPG", "CNG"]  },
+        { "question": "Fuel consumption per vehicle? (Liters)", "type": "number" },
+        { "question": "Distance traveled per vehicle annually? (km/miles)", "type": "text" }
+      ],
+      "Stationary Combustion": [
+        {
+          "question": "Does your company use fossil fuels for heating or electricity generation?",
+          "type": "boolean"
+        },
+        {
+          "question": "What type of fuel is used?",
+          "type": "dropdown",
+          "options": [
+            "Coal",
+            "Lignite",
+            "Fuel Oil (Furnace Oil)",
+            "Natural Gas",
+            "LPG",
+            "Diesel",
+            "Petrol",
+            "Kerosene",
+            "Biomass (Wood, Bagasse, etc.)",
+            "CNG",
+            "Refinery Gas",
+            "Town Gas",
+            "Biogas",
+            "Methane"
+          ]
+        },
+        {
+          "question": "Enter annual fuel consumption:",
+          "type": "text",
+          "align":"row"
+        },
+        {
+          "question": "Select unit of measurement for fuel consumption:",
+          "type": "dropdown",
+          "align":"row",
+          "options": ["Tonnes", "Kilograms", "Litres", "Cubic Meters"]
+        },
+        
+        {
+          "question": "Enter Emission Factor for CO2 (kg/unit):",
+          "type": "text"
+        },
+        {
+          "question": "Enter Emission Factor for CH4 (kg/unit):",
+          "type": "text"
+        },
+        {
+          "question": "Enter Emission Factor for N2O (kg/unit):",
+          "type": "text"
+        },
+        {
+          "question": "Enter Emission Factor for SF6 (kg/unit):",
+          "type": "text"
+        },
+        {
+          "question": "Enter Emission Factor for CO2e (kg/unit):",
+          "type": "text"
+        }
+      ],
+      
+      "Industrial Processes": [
+        {
+          "question": "Does your company have industrial processes that emit greenhouse gases?",
+          "type": "boolean"
+        },
+        {
+          "question": "Select type of industrial process?",
+          "type": "dropdown",
+          "options": [
+            "Cement Manufacturing",
+            "Steel Production",
+            "Lime Manufacturing",
+            "Aluminum Production",
+            "Glass Manufacturing",
+            "Nitric Acid Production",
+            "other"
+          ]
+        },
+        {
+          "question": "Select emission source:",
+          "type": "dropdown",
+         "options":["Clinker Production","Coke Combustion","CaCO₃ Decomposition","Electrolysis (PFCs)","Carbonate Use","Nitric Acid Reaction"]
+        },
+        {
+          "question": "Annual production quantity (in kilograms)?",
+          "type": "number",
+          "unit": "kg"
+        }      
+      ],
+      
+      "Fugitive Emissions": [
+        {
+          "question": "Does your company use refrigerants, air conditioning, or fire suppression systems?",
+          "type": "boolean"
+        },
+        {
+          "question": "Select type of refrigerant used:",
+          "type": "dropdown",
+          "options": ["HFC-134a", "HFC-32", "SF₆"]
+        },
+        {
+          "question": "Select emission source:",
+          "type": "dropdown",
+          "options": 
+             ["Refrigeration Systems","Electrical Switchgear"]
+           
+           
+          
+        },
+        {
+          "question": "Quantity of refrigerants used or leaked (in kilograms)?",
+          "type": "number",
+          "unit": "kg"
+        },
+        {
+          "question": "Any fugitive emissions from gas pipelines or methane leakage?",
+          "type": "boolean"
+        },
+        {
+          "question": "Select gas type (for pipeline leakage):",
+          "type": "dropdown",
+          "options": ["Methane Leak"]
+        },
+        {
+          "question": "Quantity of emission from gas pipelines or methane leakage (in kilograms)?",
+          "type": "number",
+          "unit": "kg"
+        }
+      ]
+      
+    },
+    "Scope 2: Indirect Emissions": {
+      "Purchased Electricity": [
+        { "question": "Total annual electricity consumption? (kWh)", "type": "number","value":"default" },
+        { "question": "Grid electricity or renewable sources?", "type": "text" }
+        
+      ],
+      "Purchased Steam, Heat, or Cooling": [
+        { "question": "Total annual steam/heat/cooling consumption? (in GJ or MWh)", "type": "number" },
+        { "question": "Select consumption unit", "type": "dropdown","options":["GJ","MWh"] },
+        { "question": "Emission factor used for steam/heat/cooling? (kg CO₂e per selected unit)", "type": "number" },
+        { "question": "Are transmission and distribution losses considered? (Yes/No)", "type": "boolean" },
+        { "question": "If yes, what is the % loss factor?", "type": "number"}
+      ]
+    },
+    "Scope 3: Value Chain Emissions": {
+      "Purchased Goods Services": [
+        {
+          "question": "Select the product or material purchased",
+          "type": "dropdown",
+          "options": [
+            "Steel",
+            "Concrete",
+            "Batteries",
+            "Pharmaceuticals",
+            "Plastics",
+            "Textiles (Cotton)",
+            "Aluminum",
+            "Wood (Timber)",
+            "Fertilizers",
+            "Glass",
+            "Paints",
+            "Asphalt",
+            "Leather",
+            "Paper",
+            "Cardboard Packaging",
+            "Electronics (Laptops)",
+            "Smartphones",
+            "Agricultural Machinery",
+            "Food Packaging",
+            "Detergents",
+            "Cleaning Agents",
+            "Tires",
+            "Solar Panels",
+            "Meat Products (Beef)",
+            "Meat Products (Pork)",
+            "Fish",
+            "Dairy Products",
+            "Wine",
+            "Beer",
+            "Renewable Energy Systems",
+            "Electric Vehicles"
+          ]
+        },
+
+        {
+          "question": "Total quantity purchased(in selected unit)?",
+          "type": "number",
+          "align":"row"
+        },
+   { "question": "Select unit of quantity", "type": "dropdown",  "align":"row","options": ["Kg", "units","Litres"] }
+
+      ],
+      "Fuel & Energy-Related Emissions (Upstream)": [
+        { "question": "Any upstream fuel emissions considered? (Fuel extraction, refining, transportation)", "type": "boolean" },
+        { "question": "Transmission losses for purchased electricity accounted for?", "type": "boolean" }
+      ],
+      "Transportation & Distribution": [
+        { "question": "Does your company transport raw materials, products, or employees?", "type": "boolean" },
+        { "question": "Total distance covered by company transport annually? (km/miles)", "type": "text" },
+        { "question": "Transport mode? (Truck, Rail, Ship, Air)", "type": "text" },
+        { "question": "Fuel type and consumption per transport mode?", "type": "text" },
+        { "question": "Emissions from third-party logistics?", "type": "boolean" }
+      ],
+      "Waste Generation": [
+        { "question": "Annual waste generated? (Tons)", "type": "text" },
+        { "question": "Emission factors for waste disposal used?", "type": "text" }
+      ],
+      "Business Travel": [
+        { "question": "How many business trips occurred in the reporting year?", "type": "text" },
+        { "question": "Transport mode used for business travel? (Air, Train, Car, Bus)", "type": "text" },
+        { "question": "Total distance traveled by employees for business purposes? (km/miles)", "type": "text" },
+        { "question": "Accommodation nights stayed?", "type": "text" }
+      ],
+      "Employee Commuting": [
+        { "question": "Number of employees commuting daily?", "type": "number" },
+        { "question": "Primary transport modes used by employees?", "type": "text" },
+        { "question": "Average commuting distance per employee? (km/miles per day)", "type": "text" },
+        { "question": "Fuel consumption or emission factor used per commute mode?", "type": "text" }
+      ],
+      "Use of Sold Products": [
+        {
+          "question": "Select Product/Service",
+          "type": "dropdown",
+          "options": [ "Agricultural Machinery",
+          "Air Conditioners",
+          "Aluminum",
+          "Asphalt",
+          "Automobiles",
+          "Batteries",
+          "Bicycles",
+          "Building Insulation",
+          "Cardboard",
+          "Cement",
+          "Clothing",
+          "Concrete",
+          "Cooking Stoves",
+          "Copper",
+          "Diesel Generators",
+          "Electric Fans",
+          "Electric Heating Systems",
+          "Electric Vehicles",
+          "Electronics",
+          "Fertilizers",
+          "Fertilizers, Chemicals",
+          "Fluorescent Tubes",
+          "Furniture",
+          "Glass",
+          "Glass Bottles",
+          "Household Cleaners",
+          "LED Bulbs",
+          "Laptops",
+          "Lithium",
+          "Medical Equipment",
+          "Mobile Phones",
+          "Natural Gas Heaters",
+          "Office Supplies",
+          "Packaged Beverages",
+          "Packaged Foods",
+          "Paint",
+          "Paper",
+          "Paper Bags",
+          "Pharmaceuticals",
+          "Plastics",
+          "Plastic Bottles",
+          "Refrigerators",
+          "Rubber Products",
+          "Shoes",
+          "Solar Panels",
+          "Steel",
+          "Tablets",
+          "Textiles",
+          "TVs",
+          "Water Heaters",
+          "Wind Turbines",
+          "Wood (Timber)"]
+        },
+        { "question": "Number of units sold", "type": "number" ,"align":"row"},
+        { "question": "select Unit", "type": "dropdown","align":"row","options":["Tonnes", "Kilograms", "Litres", "Cubic Meters","Units"]},
+        { "question": "Annual Revenue from each product", "type": "number" },
+        { "question": " What is the NIC Code for your products?", "type": "text" },
+        
+        { "question": "Expected lifetime of the product (in years)", "type": "text" },
+        { "question": "Do the products require energy consumption in their lifetime?", "type": "boolean" },
+        { "question": "If Yes, enter average energy use per product (in kWh/year)", "type": "text" }
+      ],
+      "End-of-Life Treatment of Sold Products": [
+        {
+          "question": "Select Product/Service",
+          "type": "dropdown",
+          "options": [ "Wood (Timber)", "Fertilizers", "Batteries", "Concrete", "Copper", "Lithium", "Pharmaceuticals",
+          "Packaged Foods", "Steel", "Aluminum", "Plastics", "Textiles (Cotton)", "Leather", "Solar Panels",
+          "Tires", "Glass", "Cardboard", "Paper", "Rubber", "Cement Bags (Plastic)", "Agricultural Waste",
+          "PVC Pipes", "Detergents", "Soaps", "Electronics (TV)", "Laptops", "Mobile Phones", "Ink Cartridges",
+          "Paints", "Medical Waste", "Biodegradable Plastics", "Nylon", "Cementitious Materials",
+          "Biomass Pellets", "Synthetic Textiles", "Cooking Oil Waste", "Aluminum Cans", "Styrofoam",
+          "Water Filters", "Solar Batteries", "HVAC Filters", "Cardboard Packaging", "PET Bottles",
+          "Crude Oil Drums", "Mixed Industrial Waste", "Office Chairs", "LED Lights", "Composite Wood Products",
+          "Bioethanol Waste"]
+        },
+        {
+          "question": "Enter Estimated Quantity Disposed",
+          "type": "number",
+          "align":"row"
+        },
+        {
+          "question": "Select Unit for Quantity",
+          "type": "dropdown",
+          "options": ["kg", "units"],
+          "align":"row"
+        },
+        {
+          "question": "Add Treatment Methods & Percentages",
+          "type": "array",
+          "fields": [
+            { "question": "Treatment Method", "type": "dropdown", "options": ["Landfill", "Recycling", "Incineration", "Composting"] },
+            { "question": "Percentage of Total Quantity", "type": "number" }
+          ]
+        }
+      ],
+      "Leased Assets, Franchises, and Investments": [
+        { "question": "Do you lease assets or facilities?", "type": "boolean" },
+        { "question": "Do you have franchises that contribute to emissions?", "type": "boolean" },
+        { "question": "Do you invest in projects with carbon emissions?", "type": "boolean" }
+      ]
+    },
+    "Additional Data for Carbon Accounting": {
+        "Water Use & Wastewater Treatment": [
+          { "question": "Total water consumption annually? (Liters/m³)", "type": "text","value":"default" },
+          { "question": "How is wastewater treated? (Aerobic, Anaerobic, Untreated)", "type": "text" },
+          { "question": "What is the BOD and COD of wastewater?", "type": "bod_cod" },
+          { "question": "Methane Correction Factor (MCF) for wastewater treatment used?", "type": "text" },
+          { "question": "Nitrogen content in wastewater? (mg/L)", "type": "text" }
+        ],
+        "Carbon Offset & Renewable Energy Purchases": [
+          { "question": "Do you purchase carbon credits or offsets?", "type": "boolean" },
+          { "question": "Amount of CO₂ offset annually? (Tons)", "type": "text" },
+          { "question": "Do you have on-site renewable energy installations?", "type": "boolean" },
+          { "question": "Capacity of installed renewable energy? (MW/kWh)", "type": "text" }
+        ]
+      }
+  }
