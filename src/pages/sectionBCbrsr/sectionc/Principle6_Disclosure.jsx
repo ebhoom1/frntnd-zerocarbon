@@ -8,8 +8,11 @@ import {
   Button,
   Divider,
 } from '@mui/material';
+import axios from '../../../api/axios';
+import { useSelector } from 'react-redux';
 
 const Principle6_Disclosure = ({ onSave }) => {
+  const userId = useSelector((state) => state.auth.user.id);
   const [formData, setFormData] = useState({
     totalEnergyConsumption: '',
     patSchemeParticipation: '',
@@ -25,30 +28,48 @@ const Principle6_Disclosure = ({ onSave }) => {
     wasteManagementPractices: '',
     eiaDetails: '',
     biodiversityImpact: '',
+    otherEnergyIntensityMetrics: ''
   });
 
   const handleChange = (field, value) => {
     setFormData(prev => ({ ...prev, [field]: value }));
   };
 
-  const handleSubmit = () => {
-    if (onSave) onSave({ principle6: formData });
-    setFormData({
-      totalEnergyConsumption: '',
-      patSchemeParticipation: '',
-      renewableVsNonRenewable: '',
-      scope1And2Emissions: '',
-      scope3Emissions: '',
-      airEmissions: '',
-      totalWaterUse: '',
-      waterStressAreas: '',
-      waterDischarge: '',
-      zeroLiquidDischargePolicy: '',
-      wasteGenerated: '',
-      wasteManagementPractices: '',
-      eiaDetails: '',
-      biodiversityImpact: '',
-    });
+  const handleSubmit = async () => {
+    try {
+      await axios.post("/api/sectionc", {
+        userId,
+        year: new Date().getFullYear(),
+        data: {
+          disclosures: [
+            {
+              principleNumber: 6,
+              answers: formData,
+            },
+          ],
+        },
+      });
+      alert("Saved Principle 6 successfully");
+      setFormData({
+        totalEnergyConsumption: '',
+        patSchemeParticipation: '',
+        renewableVsNonRenewable: '',
+        scope1And2Emissions: '',
+        scope3Emissions: '',
+        airEmissions: '',
+        totalWaterUse: '',
+        waterStressAreas: '',
+        waterDischarge: '',
+        zeroLiquidDischargePolicy: '',
+        wasteGenerated: '',
+        wasteManagementPractices: '',
+        eiaDetails: '',
+        biodiversityImpact: '',
+        otherEnergyIntensityMetrics: ''
+      });
+    } catch (err) {
+      console.error("Failed to save Principle 6:", err);
+    }
   };
 
   return (
@@ -63,6 +84,10 @@ const Principle6_Disclosure = ({ onSave }) => {
         <Grid item xs={12}>
           <Typography>1. Report total electricity, fuel, and other energy consumption. What is your energy intensity per turnover?</Typography>
           <TextField fullWidth multiline value={formData.totalEnergyConsumption} onChange={(e) => handleChange('totalEnergyConsumption', e.target.value)} />
+        </Grid>
+        <Grid item xs={12}>
+          <Typography>1L. Mention energy intensity by optional metrics such as units of product, size, full-time employees, etc.</Typography>
+          <TextField fullWidth multiline value={formData.otherEnergyIntensityMetrics} onChange={(e) => handleChange('otherEnergyIntensityMetrics', e.target.value)} />
         </Grid>
         <Grid item xs={12}>
           <Typography>2. Is your entity covered under the PAT scheme? If yes, mention designated sites, targets, and performance.</Typography>

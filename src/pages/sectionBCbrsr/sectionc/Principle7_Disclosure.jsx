@@ -1,4 +1,3 @@
-// Principle7_Disclosure.jsx
 import React, { useState } from 'react';
 import {
   Typography,
@@ -7,8 +6,11 @@ import {
   Grid,
   Button,
 } from '@mui/material';
+import axios from '../../../api/axios';
+import { useSelector } from 'react-redux';
 
 const Principle7_Disclosure = ({ onSave }) => {
+  const userId = useSelector((state) => state.auth.user.id);
   const [formData, setFormData] = useState({
     policyIssuesAdvocated: '',
     advocacyMethods: '',
@@ -21,16 +23,31 @@ const Principle7_Disclosure = ({ onSave }) => {
     setFormData(prev => ({ ...prev, [field]: value }));
   };
 
-  const handleSubmit = () => {
-    if (onSave) onSave({ principle7: formData });
-
-    setFormData({
-      policyIssuesAdvocated: '',
-      advocacyMethods: '',
-      isDisclosurePublic: '',
-      boardReviewFrequency: '',
-      disclosureLink: '',
-    });
+  const handleSubmit = async () => {
+    try {
+      await axios.post("/api/sectionc", {
+        userId,
+        year: new Date().getFullYear(),
+        data: {
+          disclosures: [
+            {
+              principleNumber: 7,
+              answers: formData,
+            },
+          ],
+        },
+      });
+      alert("Saved Principle 7 successfully");
+      setFormData({
+        policyIssuesAdvocated: '',
+        advocacyMethods: '',
+        isDisclosurePublic: '',
+        boardReviewFrequency: '',
+        disclosureLink: '',
+      });
+    } catch (err) {
+      console.error("Failed to save Principle 7:", err);
+    }
   };
 
   return (

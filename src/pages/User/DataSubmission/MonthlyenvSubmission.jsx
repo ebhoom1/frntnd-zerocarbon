@@ -252,7 +252,7 @@ const EnvironmentPage = () => {
         disabled={loading}
         style={{ marginTop: "20px" }}
       >
-        {loading ? "Submitting..." : "Submit Data"}
+        {loading ? "Submitting..." : "Submit Monthly Data"}
       </Button>
       <TotalEmissionDialogScope1
         open={openScope1Dialog}

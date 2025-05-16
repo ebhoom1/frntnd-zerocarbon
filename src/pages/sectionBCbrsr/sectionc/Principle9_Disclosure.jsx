@@ -1,4 +1,3 @@
-// Principle9_Disclosure.jsx
 import React, { useState } from 'react';
 import {
   Typography,
@@ -7,23 +6,48 @@ import {
   Grid,
   Button,
 } from '@mui/material';
+import axios from '../../../api/axios';
+import { useSelector } from 'react-redux';
 
 const Principle9_Disclosure = ({ onSave }) => {
+  const userId = useSelector((state) => state.auth.user.id);
   const [formData, setFormData] = useState({
     productRecalls: '',
     consumerInfoChannels: '',
+    consumerComplaintMechanism: '',
+    consumerAwarenessEfforts: '',
+    dataPrivacyPolicy: '',
   });
 
   const handleChange = (field, value) => {
     setFormData((prev) => ({ ...prev, [field]: value }));
   };
 
-  const handleSubmit = () => {
-    if (onSave) onSave({ principle9: formData });
-    setFormData({
-      productRecalls: '',
-      consumerInfoChannels: '',
-    });
+  const handleSubmit = async () => {
+    try {
+      await axios.post('/api/sectionc', {
+        userId,
+        year: new Date().getFullYear(),
+        data: {
+          disclosures: [
+            {
+              principleNumber: 9,
+              answers: formData,
+            },
+          ],
+        },
+      });
+      alert('Saved Principle 9 successfully');
+      setFormData({
+        productRecalls: '',
+        consumerInfoChannels: '',
+        consumerComplaintMechanism: '',
+        consumerAwarenessEfforts: '',
+        dataPrivacyPolicy: '',
+      });
+    } catch (err) {
+      console.error('Failed to save Principle 9:', err);
+    }
   };
 
   return (
@@ -54,6 +78,42 @@ const Principle9_Disclosure = ({ onSave }) => {
             multiline
             value={formData.consumerInfoChannels}
             onChange={(e) => handleChange('consumerInfoChannels', e.target.value)}
+          />
+        </Grid>
+
+        <Grid item xs={12}>
+          <Typography gutterBottom>
+            3. What mechanisms are in place to handle customer complaints and ensure redressal?
+          </Typography>
+          <TextField
+            fullWidth
+            multiline
+            value={formData.consumerComplaintMechanism}
+            onChange={(e) => handleChange('consumerComplaintMechanism', e.target.value)}
+          />
+        </Grid>
+
+        <Grid item xs={12}>
+          <Typography gutterBottom>
+            4. Describe initiatives undertaken to educate or create awareness among consumers about your products/services.
+          </Typography>
+          <TextField
+            fullWidth
+            multiline
+            value={formData.consumerAwarenessEfforts}
+            onChange={(e) => handleChange('consumerAwarenessEfforts', e.target.value)}
+          />
+        </Grid>
+
+        <Grid item xs={12}>
+          <Typography gutterBottom>
+            5. What are your policies and practices related to the privacy and protection of consumer data?
+          </Typography>
+          <TextField
+            fullWidth
+            multiline
+            value={formData.dataPrivacyPolicy}
+            onChange={(e) => handleChange('dataPrivacyPolicy', e.target.value)}
           />
         </Grid>
 

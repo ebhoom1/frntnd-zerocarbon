@@ -17,39 +17,46 @@ const Principle2_Disclosure = ({ onSave }) => {
     lifecycleRiskAssessment: '',
     percentSustainableDesign: '',
     circularEconomyPractices: '',
-    innovationForSustainability: '',
-    consumerFeedbackMechanism: '',
+    eprPlan: '',
+    reclaimedProductData: '',
   });
 
   const handleChange = (field, value) => {
     setFormData(prev => ({ ...prev, [field]: value }));
   };
 
-  
   const handleSubmit = async () => {
     try {
       await axios.post("/api/sectionc", {
         userId,
+        year: new Date().getFullYear(),
         data: {
           disclosures: [
             {
-              principleNumber: 2, // for P1; change accordingly for P2–P9
-              answers: formData, // your state
+              principleNumber: 2,
+              answers: {
+                sustainablePolicy: formData.sustainablePolicy,
+                lifecycleRiskAssessment: formData.lifecycleRiskAssessment,
+                percentSustainableDesign: formData.percentSustainableDesign,
+                circularEconomyPractices: formData.circularEconomyPractices,
+                eprPlan: formData.eprPlan,
+                reclaimedProductData: formData.reclaimedProductData,
+              },
             },
           ],
         },
       });
-      alert("Saved Principle 1 successfully");
+      alert("Saved Principle 2 successfully");
       setFormData({
         sustainablePolicy: '',
         lifecycleRiskAssessment: '',
         percentSustainableDesign: '',
         circularEconomyPractices: '',
-        innovationForSustainability: '',
-        consumerFeedbackMechanism: '',
+        eprPlan: '',
+        reclaimedProductData: '',
       });
     } catch (err) {
-      console.error("Failed to save Principle 1:", err);
+      console.error("Failed to save Principle 2:", err);
     }
   };
 
@@ -114,27 +121,27 @@ const Principle2_Disclosure = ({ onSave }) => {
 
         <Grid item xs={12}>
           <Typography gutterBottom>
-            5. Mention any innovation, collaboration, or investment in sustainable product development:
+            5. Mention your Extended Producer Responsibility (EPR) plan if applicable:
           </Typography>
           <TextField
             fullWidth
             multiline
             minRows={3}
-            value={formData.innovationForSustainability}
-            onChange={(e) => handleChange('innovationForSustainability', e.target.value)}
+            value={formData.eprPlan}
+            onChange={(e) => handleChange('eprPlan', e.target.value)}
           />
         </Grid>
 
         <Grid item xs={12}>
           <Typography gutterBottom>
-            6. What feedback or grievance mechanisms exist for consumers regarding product responsibility?
+            6. What percentage of reclaimed products and packaging materials (as a percentage of products sold) do you track per product category?
           </Typography>
           <TextField
             fullWidth
             multiline
             minRows={3}
-            value={formData.consumerFeedbackMechanism}
-            onChange={(e) => handleChange('consumerFeedbackMechanism', e.target.value)}
+            value={formData.reclaimedProductData}
+            onChange={(e) => handleChange('reclaimedProductData', e.target.value)}
           />
         </Grid>
 

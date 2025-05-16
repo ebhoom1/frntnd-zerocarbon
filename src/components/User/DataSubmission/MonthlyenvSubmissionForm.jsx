@@ -21,9 +21,9 @@ import {
 } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import axios from "../../../api/axios";
-import { useDispatch, useSelector } from 'react-redux';
-import { fetchEnergyConsumption } from '../../../redux/features/emsData/energyConsumptionData';
-import { fetchWaterConsumption } from '../../../redux/features/emsData/waterConsumptionAdditionalData';
+import { useDispatch, useSelector } from "react-redux";
+import { fetchEnergyConsumption } from "../../../redux/features/emsData/energyConsumptionData";
+import { fetchWaterConsumption } from "../../../redux/features/emsData/waterConsumptionAdditionalData";
 import MobileCombustionEmissionDialog from "./MobileCombustionEmissionDialog";
 import StationaryCombustionEmissionDialog from "./StationaryCombustionEmissionDialog";
 import IndustrialProcessEmissionDialog from "./IndustrialProcessEmissionDialog";
@@ -35,6 +35,8 @@ import UseSoldProductEmissionDialog from "./UseSoldProductEmissionDialog";
 import EndOfLifeTreatmentDialog from "./EndOfLifeTreatmentDialog";
 import UserCustomEmissionFactorDialog from "./CustomMobileCombustionEmissionFactorDialog";
 import WaterUseWaterTreatmentDialog from "./WaterUseWaterTreatmentDialog";
+import AddIndustrialProcessDialog from "./AddIndustrialProcessDialog";
+import AddRefrigerantDialog from "./AddRefrigerantDialog";
 
 const EnvironmentSec = ({
   sectionName,
@@ -43,8 +45,8 @@ const EnvironmentSec = ({
   handleInputChange,
   resetTrigger,
   reportingMonth,
-  bod={bod},
-  cod={cod}
+  bod = { bod },
+  cod = { cod },
 }) => {
   const userId = useSelector((state) => state.auth.user?.id);
   const userName = useSelector((state) => state.auth.user?.userName);
@@ -61,19 +63,19 @@ const EnvironmentSec = ({
   }, [dispatch, userName]);
 
   useEffect(() => {
-    if (
-      subcategory === "Purchased Electricity" &&
-      lastEnergy !== null
-    ) {
+    if (subcategory === "Purchased Electricity" && lastEnergy !== null) {
       const defaultData = {
-        [`${subcategory.replace(/\s+/g, "")}_Q1`]: lastEnergy
+        [`${subcategory.replace(/\s+/g, "")}_Q1`]: lastEnergy,
       };
-  
+
       setBasicEntry((prev) => {
         const updated = { ...prev, ...defaultData };
         const arrayEntries = [{ ...updated }];
         handleInputChange(
-          `${sectionName.replace(/\s+/g, "")}_${subcategory.replace(/\s+/g, "")}`,
+          `${sectionName.replace(/\s+/g, "")}_${subcategory.replace(
+            /\s+/g,
+            ""
+          )}`,
           arrayEntries,
           reportingMonth
         );
@@ -81,7 +83,6 @@ const EnvironmentSec = ({
       });
     }
   }, [lastEnergy, reportingMonth, subcategory, sectionName]);
-  
 
   useEffect(() => {
     if (
@@ -89,7 +90,7 @@ const EnvironmentSec = ({
       (bod !== null || cod !== null || totalConsumption !== null)
     ) {
       const defaultData = {};
-  
+
       if (bod !== null) {
         defaultData["WaterUse&WastewaterTreatment_BOD"] = bod;
       }
@@ -99,13 +100,16 @@ const EnvironmentSec = ({
       if (totalConsumption !== null) {
         defaultData["WaterUse&WastewaterTreatment_Q1"] = totalConsumption;
       }
-  
+
       // ✅ Merge new data without clearing existing fields
       setBasicEntry((prev) => {
         const updated = { ...prev, ...defaultData };
         const arrayEntries = [{ ...updated }];
         handleInputChange(
-          `${sectionName.replace(/\s+/g, "")}_${subcategory.replace(/\s+/g, "")}`,
+          `${sectionName.replace(/\s+/g, "")}_${subcategory.replace(
+            /\s+/g,
+            ""
+          )}`,
           arrayEntries,
           reportingMonth
         );
@@ -113,13 +117,10 @@ const EnvironmentSec = ({
       });
     }
   }, [bod, cod, totalConsumption, reportingMonth, subcategory, sectionName]);
-  
-  
-  
-  
-useEffect(() => {
-  dispatch(fetchWaterConsumption(userName)); // or dynamic userName
-}, [dispatch]);
+
+  useEffect(() => {
+    dispatch(fetchWaterConsumption(userName)); // or dynamic userName
+  }, [dispatch]);
 
   const isMultiEntry = [
     "Purchased Goods Services",
@@ -136,7 +137,6 @@ useEffect(() => {
     "Additional Information",
   ].includes(subcategory);
 
-  
   const [entries, setEntries] = useState([]);
   const [currentEntry, setCurrentEntry] = useState({});
   const [basicEntry, setBasicEntry] = useState({});
@@ -157,14 +157,19 @@ useEffect(() => {
   const [openEndofLifeTreatmentDialog, setOpenEndofLifeTreatmentDialog] =
     useState(false);
   const [openCustomFactorDialog, setOpenCustomFactorDialog] = useState(false);
-  const [openWaterUseWaterTreatmentDialog, setOpenWaterUseWaterTreatmentDialog] = useState(false);
-  const [vehicleTypeOptions, setVehicleTypeOptions] = useState([
-    "Passenger Cars",
-    "Heavy Trucks",
-    "Buses",
-    "Motorcycles",
-    "other",
-  ]);
+  const [
+    openWaterUseWaterTreatmentDialog,
+    setOpenWaterUseWaterTreatmentDialog,
+  ] = useState(false);
+  const [vehicleTypeOptions, setVehicleTypeOptions] = useState([]);
+  const [fuelTypeOptions, setFuelTypeOptions] = useState([]);
+  const [industryTypeOptions, setIndustryTypeOptions] = useState([]);
+  const [emissionSourceOptions, setEmissionSourceOptions] = useState([]);
+  const [fugitiveEmissionSourceOptions, setFugitiveEmissionSourceOptions] = useState([]);
+  const [openAddIndustrialDialog, setOpenAddIndustrialDialog] = useState(false);
+  const [refrigerantTypeOptions, setRefrigerantTypeOptions] = useState([]);
+  const [openAddRefrigerantDialog, setOpenAddRefrigerantDialog] =
+    useState(false);
 
   useEffect(() => {
     const fetchPreviousData = async () => {
@@ -204,12 +209,12 @@ useEffect(() => {
         ...prev,
         [id]: value,
       };
-  
+
       // ⛔️ Always reinforce the default values if present
       if (subcategory === "Purchased Electricity" && lastEnergy !== null) {
         updatedEntry[`${subcategory.replace(/\s+/g, "")}_Q1`] = lastEnergy;
       }
-  
+
       if (subcategory === "Water Use & Wastewater Treatment") {
         if (bod !== null) {
           updatedEntry["WaterUse&WastewaterTreatment_BOD"] = bod;
@@ -221,18 +226,17 @@ useEffect(() => {
           updatedEntry["WaterUse&WastewaterTreatment_Q1"] = totalConsumption;
         }
       }
-  
+
       const arrayEntries = [updatedEntry];
       handleInputChange(
         `${sectionName.replace(/\s+/g, "")}_${subcategory.replace(/\s+/g, "")}`,
         arrayEntries,
         reportingMonth
       );
-  
+
       return updatedEntry;
     });
   };
-  
 
   const handleAddEntry = () => {
     if (
@@ -246,7 +250,6 @@ useEffect(() => {
         `${sectionName.replace(/\s+/g, "")}_${subcategory.replace(/\s+/g, "")}`,
         updatedEntries,
         reportingMonth
-        
       );
       setCurrentEntry({});
       setBasicEntry({});
@@ -254,22 +257,81 @@ useEffect(() => {
   };
 
   useEffect(() => {
-    const fetchVehicleTypes = async () => {
+    const fetchVehicleAndFuelTypes = async () => {
       try {
         const res = await axios.get("/api/mobile-combustion/get");
         const records = res.data.records || [];
-        const types = [
+
+        const vehicleTypes = [
           ...new Set(records.map((r) => r.vehicleType).filter(Boolean)),
         ];
-        setVehicleTypeOptions([...types, "other"]);
+        const fuelTypes = [
+          ...new Set(records.map((r) => r.fuelType).filter(Boolean)),
+        ];
+
+        setVehicleTypeOptions([...vehicleTypes, "other"]);
+        setFuelTypeOptions([...fuelTypes]);
       } catch (error) {
-        console.error("Error fetching vehicle types:", error);
+        console.error("Error fetching mobile combustion types:", error);
       }
     };
 
-    fetchVehicleTypes();
-  }, [openCustomFactorDialog]);
+    fetchVehicleAndFuelTypes();
+  }, [openCustomFactorDialog]); // trigger on dialog open
 
+  useEffect(() => {
+    const fetchIndustrialProcesses = async () => {
+      try {
+        const res = await axios.get("/api/industrial-processes/get");
+        const records = res.data || [];
+
+        const industryTypes = [
+          ...new Set(records.map((r) => r.industryType).filter(Boolean)),
+        ];
+        const emissionSources = [
+          ...new Set(records.map((r) => r.emissionSource).filter(Boolean)),
+        ];
+
+        setIndustryTypeOptions([...industryTypes, "other"]);
+        setEmissionSourceOptions(emissionSources);
+      } catch (error) {
+        console.error("Error fetching industrial processes:", error);
+      }
+    };
+
+    fetchIndustrialProcesses();
+  }, [openAddIndustrialDialog]); // refetch after dialog closes
+
+  useEffect(() => {
+    const fetchRefrigerants = async () => {
+      try {
+        const res = await axios.get("/api/fugitive-emissions/get");
+  
+        const records = Array.isArray(res.data) ? res.data : res.data.records || [];
+  
+        const refrigerants = [
+          ...new Set(records.map((r) => r.gasType).filter(Boolean)),
+        ];
+  
+        const emissionSources = [
+          ...new Set(records.map((r) => r.source).filter(Boolean)),
+        ];
+  
+        setRefrigerantTypeOptions([...refrigerants, "other"]);
+        setFugitiveEmissionSourceOptions(emissionSources); // ✅ new line
+  
+        console.log("records fugitive:", records);
+        console.log("refrigerant:", refrigerants);
+        console.log("emission sources:", emissionSources);
+      } catch (error) {
+        console.error("Error fetching refrigerants:", error);
+      }
+    };
+  
+    fetchRefrigerants();
+  }, [openAddRefrigerantDialog]);
+  
+  
   useEffect(() => {
     setEntries([]);
     setCurrentEntry({});
@@ -278,7 +340,6 @@ useEffect(() => {
 
   return (
     <div style={{ marginBottom: "10px" }}>
-        
       <Accordion>
         <AccordionSummary expandIcon={<ExpandMoreIcon />}>
           <div
@@ -416,26 +477,66 @@ useEffect(() => {
           {questions.length > 0 && (
             <>
               {(() => {
-                
                 let renderedIndex = -1; // track last rendered index
                 let shouldRenderNext = true;
-                
+
                 return questions.map((q, index) => {
                   // ⛔ Skip if already handled in a grouped row
                   if (index <= renderedIndex) return null;
-                
-                  const fieldId = `${subcategory.replace(/\s+/g, "")}_Q${index + 1}`;
+
+                  const fieldId = `${subcategory.replace(/\s+/g, "")}_Q${
+                    index + 1
+                  }`;
                   const isMulti = isMultiEntry;
-                  const optionsToRender =
-                    q.question === "Type of vehicle?" && subcategory === "Mobile Combustion"
-                      ? vehicleTypeOptions
-                      : q.options;
-                
+                  let optionsToRender = q.options;
+
+                  if (
+                    q.question === "Type of vehicle?" &&
+                    subcategory === "Mobile Combustion"
+                  ) {
+                    optionsToRender = vehicleTypeOptions;
+                  }
+                  if (
+                    q.question === "Fuel type per vehicle?" &&
+                    subcategory === "Mobile Combustion"
+                  ) {
+                    optionsToRender = fuelTypeOptions;
+                  }
+                  if (
+                    q.question === "Select type of industrial process?" &&
+                    subcategory === "Industrial Processes"
+                  ) {
+                    optionsToRender = industryTypeOptions;
+                  }
+
+                  if (
+                    q.question === "Select emission source:" &&
+                    subcategory === "Industrial Processes"
+                  ) {
+                    optionsToRender = emissionSourceOptions;
+                  }
+                  if (
+                    q.question === "Select type of refrigerant used:" &&
+                    subcategory === "Fugitive Emissions"
+                  ) {
+                    optionsToRender = refrigerantTypeOptions;
+                  }
+                  if (
+                    q.question === "Select emission source:" &&
+                    subcategory === "Fugitive Emissions"
+                  ) {
+                    optionsToRender = fugitiveEmissionSourceOptions;
+                  }
+
                   // ✅ Handle conditional skip after boolean
                   const prevQuestion = questions[index - 1];
-                  const prevFieldId = `${subcategory.replace(/\s+/g, "")}_Q${index}`;
-                  const prevAnswer = currentEntry[prevFieldId] || basicEntry[prevFieldId];
-                
+                  const prevFieldId = `${subcategory.replace(
+                    /\s+/g,
+                    ""
+                  )}_Q${index}`;
+                  const prevAnswer =
+                    currentEntry[prevFieldId] || basicEntry[prevFieldId];
+
                   if (
                     index > 0 &&
                     prevQuestion?.type === "boolean" &&
@@ -444,12 +545,12 @@ useEffect(() => {
                     shouldRenderNext = false;
                   }
                   if (!shouldRenderNext) return null;
-                
+
                   // ✅ Handle "align: row" fields group
                   if (q.align === "row") {
                     const group = [q];
                     let i = index + 1;
-                
+
                     while (
                       i < questions.length &&
                       questions[i].align === "row"
@@ -457,9 +558,9 @@ useEffect(() => {
                       group.push(questions[i]);
                       i++;
                     }
-                
+
                     renderedIndex = i - 1;
-                
+
                     return (
                       <div
                         key={`row-group-${index}`}
@@ -471,29 +572,40 @@ useEffect(() => {
                         }}
                       >
                         {group.map((field, groupIdx) => {
-                          const groupedFieldId = `${subcategory.replace(/\s+/g, "")}_Q${
-                            index + groupIdx + 1
-                          }`;
+                          const groupedFieldId = `${subcategory.replace(
+                            /\s+/g,
+                            ""
+                          )}_Q${index + groupIdx + 1}`;
                           const value = isMulti
                             ? currentEntry[groupedFieldId] || ""
                             : basicEntry[groupedFieldId] || "";
-                
+
                           return (
                             <div
                               key={groupedFieldId}
                               style={{ flex: "1 1 300px", minWidth: "200px" }}
                             >
-                              <Typography variant="subtitle1">{field.question}</Typography>
+                              <Typography variant="subtitle1">
+                                {field.question}
+                              </Typography>
                               <TextField
                                 select={field.type === "dropdown"}
                                 fullWidth
                                 variant="outlined"
-                                type={field.type === "number" ? "number" : "text"}
+                                type={
+                                  field.type === "number" ? "number" : "text"
+                                }
                                 value={value}
                                 onChange={(e) =>
                                   isMulti
-                                    ? handleFieldChange(groupedFieldId, e.target.value)
-                                    : handleBasicFieldChange(groupedFieldId, e.target.value)
+                                    ? handleFieldChange(
+                                        groupedFieldId,
+                                        e.target.value
+                                      )
+                                    : handleBasicFieldChange(
+                                        groupedFieldId,
+                                        e.target.value
+                                      )
                                 }
                               >
                                 {field.type === "dropdown" &&
@@ -509,56 +621,75 @@ useEffect(() => {
                       </div>
                     );
                   }
-              {/**BOD ,COD */}
-              if (q.type === "bod_cod") {
-                const bodFieldId = `${subcategory.replace(/\s+/g, "")}_BOD`;
-                const codFieldId = `${subcategory.replace(/\s+/g, "")}_COD`;
-              
-                const bodValue =
-                  isMulti
-                    ? currentEntry[bodFieldId] ?? bod ?? ""
-                    : basicEntry[bodFieldId] ?? bod ?? "";
-              
-                const codValue =
-                  isMulti
-                    ? currentEntry[codFieldId] ?? cod ?? ""
-                    : basicEntry[codFieldId] ?? cod ?? "";
-              
-                return (
-                  <div key={bodFieldId + codFieldId} style={{ display: "flex", gap: "16px", marginBottom: "16px" }}>
-                    <div style={{ flex: 1 }}>
-                      <Typography variant="subtitle1">BOD of wastewater (mg/L)</Typography>
-                      <TextField
-                        fullWidth
-                        variant="outlined"
-                        type="number"
-                        value={bodValue}
-                        onChange={(e) =>
-                          isMulti
-                            ? handleFieldChange(bodFieldId, e.target.value)
-                            : handleBasicFieldChange(bodFieldId, e.target.value)
-                        }
-                      />
-                    </div>
-                    <div style={{ flex: 1 }}>
-                      <Typography variant="subtitle1">COD of wastewater (mg/L)</Typography>
-                      <TextField
-                        fullWidth
-                        variant="outlined"
-                        type="number"
-                        value={codValue}
-                        onChange={(e) =>
-                          isMulti
-                            ? handleFieldChange(codFieldId, e.target.value)
-                            : handleBasicFieldChange(codFieldId, e.target.value)
-                        }
-                      />
-                    </div>
-                  </div>
-                );
-              }
-              
-  {/**BOD ,COD */}
+                  {
+                    /**BOD ,COD */
+                  }
+                  if (q.type === "bod_cod") {
+                    const bodFieldId = `${subcategory.replace(/\s+/g, "")}_BOD`;
+                    const codFieldId = `${subcategory.replace(/\s+/g, "")}_COD`;
+
+                    const bodValue = isMulti
+                      ? currentEntry[bodFieldId] ?? bod ?? ""
+                      : basicEntry[bodFieldId] ?? bod ?? "";
+
+                    const codValue = isMulti
+                      ? currentEntry[codFieldId] ?? cod ?? ""
+                      : basicEntry[codFieldId] ?? cod ?? "";
+
+                    return (
+                      <div
+                        key={bodFieldId + codFieldId}
+                        style={{
+                          display: "flex",
+                          gap: "16px",
+                          marginBottom: "16px",
+                        }}
+                      >
+                        <div style={{ flex: 1 }}>
+                          <Typography variant="subtitle1">
+                            BOD of wastewater (mg/L)
+                          </Typography>
+                          <TextField
+                            fullWidth
+                            variant="outlined"
+                            type="number"
+                            value={bodValue}
+                            onChange={(e) =>
+                              isMulti
+                                ? handleFieldChange(bodFieldId, e.target.value)
+                                : handleBasicFieldChange(
+                                    bodFieldId,
+                                    e.target.value
+                                  )
+                            }
+                          />
+                        </div>
+                        <div style={{ flex: 1 }}>
+                          <Typography variant="subtitle1">
+                            COD of wastewater (mg/L)
+                          </Typography>
+                          <TextField
+                            fullWidth
+                            variant="outlined"
+                            type="number"
+                            value={codValue}
+                            onChange={(e) =>
+                              isMulti
+                                ? handleFieldChange(codFieldId, e.target.value)
+                                : handleBasicFieldChange(
+                                    codFieldId,
+                                    e.target.value
+                                  )
+                            }
+                          />
+                        </div>
+                      </div>
+                    );
+                  }
+
+                  {
+                    /**BOD ,COD */
+                  }
 
                   return (
                     <div key={fieldId} style={{ marginBottom: "16px" }}>
@@ -618,7 +749,6 @@ useEffect(() => {
                                 {option}
                               </MenuItem>
                             ))}
-                            
                           </TextField>
                           {q.question === "Type of vehicle?" &&
                             (isMulti
@@ -634,6 +764,41 @@ useEffect(() => {
                                   }
                                 >
                                   Add Other Vehicle Details
+                                </Button>
+                              </div>
+                            )}
+                          {q.question ===
+                            "Select type of industrial process?" &&
+                            (isMulti
+                              ? currentEntry[fieldId]
+                              : basicEntry[fieldId]) === "other" && (
+                              <div style={{ marginTop: "10px" }}>
+                                <Button
+                                  variant="outlined"
+                                  size="small"
+                                  color="primary"
+                                  onClick={() =>
+                                    setOpenAddIndustrialDialog(true)
+                                  }
+                                >
+                                  Add New Process
+                                </Button>
+                              </div>
+                            )}
+                          {q.question === "Select type of refrigerant used:" &&
+                            (isMulti
+                              ? currentEntry[fieldId]
+                              : basicEntry[fieldId]) === "other" && (
+                              <div style={{ marginTop: "10px" }}>
+                                <Button
+                                  variant="outlined"
+                                  size="small"
+                                  color="primary"
+                                  onClick={() =>
+                                    setOpenAddRefrigerantDialog(true)
+                                  }
+                                >
+                                  Add New Refrigerant
                                 </Button>
                               </div>
                             )}
@@ -774,16 +939,22 @@ useEffect(() => {
                         //   }
                         // />
                         (() => {
-                         
-
                           // const defaultValue = q.value === "default" ? totalConsumption ?? "" : "";
-const defaultValue = q.value === "default"  ? (subcategory === "Purchased Electricity" ? lastEnergy ?? "" : totalConsumption ?? "") : "";
+                          const defaultValue =
+                            q.value === "default"
+                              ? subcategory === "Purchased Electricity"
+                                ? lastEnergy ?? ""
+                                : totalConsumption ?? ""
+                              : "";
 
-  const fieldId = `${subcategory.replace(/\s+/g, "")}_Q${index + 1}`;
-  const currentValue = isMulti
-    ? currentEntry[fieldId] ?? defaultValue
-    : basicEntry[fieldId] ?? defaultValue;
-                      
+                          const fieldId = `${subcategory.replace(
+                            /\s+/g,
+                            ""
+                          )}_Q${index + 1}`;
+                          const currentValue = isMulti
+                            ? currentEntry[fieldId] ?? defaultValue
+                            : basicEntry[fieldId] ?? defaultValue;
+
                           return (
                             <TextField
                               type={q.type === "number" ? "number" : "text"}
@@ -793,7 +964,10 @@ const defaultValue = q.value === "default"  ? (subcategory === "Purchased Electr
                               onChange={(e) =>
                                 isMulti
                                   ? handleFieldChange(fieldId, e.target.value)
-                                  : handleBasicFieldChange(fieldId, e.target.value)
+                                  : handleBasicFieldChange(
+                                      fieldId,
+                                      e.target.value
+                                    )
                               }
                             />
                           );
@@ -826,7 +1000,7 @@ const defaultValue = q.value === "default"  ? (subcategory === "Purchased Electr
                             ))}
                           </TableRow>
                         </TableHead>
-                        
+
                         <TableBody>
                           {entries.map((entry, index) => (
                             <TableRow key={index}>
@@ -939,6 +1113,14 @@ const defaultValue = q.value === "default"  ? (subcategory === "Purchased Electr
           open={openWaterUseWaterTreatmentDialog}
           handleClose={() => setOpenWaterUseWaterTreatmentDialog(false)}
           userName={userName}
+        />
+        <AddIndustrialProcessDialog
+          open={openAddIndustrialDialog}
+          onClose={() => setOpenAddIndustrialDialog(false)}
+        />
+        <AddRefrigerantDialog
+          open={openAddRefrigerantDialog}
+          onClose={() => setOpenAddRefrigerantDialog(false)}
         />
       </Accordion>
     </div>

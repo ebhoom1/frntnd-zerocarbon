@@ -19,31 +19,30 @@ const Principle1_Disclosure = ({ onSave }) => {
     setFormData((prev) => ({ ...prev, [field]: value }));
   };
 
-  // const handleSubmit = () => {
-  //   if (onSave) onSave({ principle1: formData });
-
-  //   setFormData({
-  //     finesPenaltiesDetails: '',
-  //     antiCorruptionRiskAssessment: '',
-  //     antiCorruptionInternalControls: '',
-  //     antiCorruptionComplaintMechanism: '',
-  //     antiCorruptionTrainingCoverage: '',
-  //     conflictOfInterestProcesses: '',
-  //   });
-  // };
   const handleSubmit = async () => {
     try {
-      await axios.post("/api/sectionc", {
+      const payload = {
         userId,
+        year: new Date().getFullYear(),
         data: {
           disclosures: [
             {
-              principleNumber: 1, // for P1; change accordingly for P2–P9
-              answers: formData, // your state
+              principleNumber: 1,
+              answers: {
+                finesPenaltiesDetails: formData.finesPenaltiesDetails,
+                antiCorruptionRiskAssessment: formData.antiCorruptionRiskAssessment,
+                antiCorruptionInternalControls: formData.antiCorruptionInternalControls,
+                antiCorruptionComplaintMechanism: formData.antiCorruptionComplaintMechanism,
+                antiCorruptionTrainingCoverage: formData.antiCorruptionTrainingCoverage,
+                conflictOfInterestProcesses: formData.conflictOfInterestProcesses,
+              },
             },
           ],
         },
-      });
+      };
+
+      const response=await axios.post("/api/sectionc", payload);
+      console.log("response:",response.data);
       alert("Saved Principle 1 successfully");
       setFormData({
         finesPenaltiesDetails: "",

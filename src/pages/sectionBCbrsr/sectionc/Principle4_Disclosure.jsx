@@ -7,8 +7,11 @@ import {
   Grid,
   Button,
 } from '@mui/material';
+import axios from "../../../api/axios";
+import { useSelector } from "react-redux";
 
 const Principle4_Disclosure = ({ onSave }) => {
+  const userId = useSelector((state) => state.auth.user.id);
   const [formData, setFormData] = useState({
     stakeholderIdentificationProcess: '',
     keyStakeholderGroupsInfo: '',
@@ -20,15 +23,30 @@ const Principle4_Disclosure = ({ onSave }) => {
     setFormData(prev => ({ ...prev, [field]: value }));
   };
 
-  const handleSubmit = () => {
-    if (onSave) onSave({ principle4: formData });
-
-    setFormData({
-      stakeholderIdentificationProcess: '',
-      keyStakeholderGroupsInfo: '',
-      stakeholderConsultationImpact: '',
-      vulnerableGroupConcerns: '',
-    });
+  const handleSubmit = async () => {
+    try {
+      await axios.post("/api/sectionc", {
+        userId,
+        year: new Date().getFullYear(),
+        data: {
+          disclosures: [
+            {
+              principleNumber: 4,
+              answers: formData,
+            },
+          ],
+        },
+      });
+      alert("Saved Principle 4 successfully");
+      setFormData({
+        stakeholderIdentificationProcess: '',
+        keyStakeholderGroupsInfo: '',
+        stakeholderConsultationImpact: '',
+        vulnerableGroupConcerns: '',
+      });
+    } catch (err) {
+      console.error("Failed to save Principle 4:", err);
+    }
   };
 
   return (
@@ -40,7 +58,7 @@ const Principle4_Disclosure = ({ onSave }) => {
       <Grid container spacing={3}>
         <Grid item xs={12}>
           <Typography gutterBottom>
-            1. What process does the entity follow to identify and prioritize stakeholders (including vulnerable/marginalized)?
+            1. Process for identification of key stakeholders
           </Typography>
           <TextField
             fullWidth
@@ -52,7 +70,7 @@ const Principle4_Disclosure = ({ onSave }) => {
 
         <Grid item xs={12}>
           <Typography gutterBottom>
-            2. How do key stakeholder groups access relevant information about the entity? Is it localized or available in accessible formats? List identified vulnerable/marginalized groups.
+            2. Key stakeholder groups: channels for access, localization of info, and identification of vulnerable/marginalized groups
           </Typography>
           <TextField
             fullWidth
@@ -64,7 +82,7 @@ const Principle4_Disclosure = ({ onSave }) => {
 
         <Grid item xs={12}>
           <Typography gutterBottom>
-            3. How has stakeholder consultation been used to identify and manage environmental and social topics? What were the key topics raised and your response?
+            3. Using stakeholder consultation to support the identification and management of environmental and social topics
           </Typography>
           <TextField
             fullWidth
@@ -76,7 +94,7 @@ const Principle4_Disclosure = ({ onSave }) => {
 
         <Grid item xs={12}>
           <Typography gutterBottom>
-            4. What were the key concerns raised by vulnerable/marginalized stakeholders and what actions did the entity take in response?
+            4. Details of instances of engagement with and actions taken to address the concerns of vulnerable/marginalized groups
           </Typography>
           <TextField
             fullWidth
