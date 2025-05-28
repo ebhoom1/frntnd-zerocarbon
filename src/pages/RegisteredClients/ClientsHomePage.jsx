@@ -149,11 +149,11 @@ const ClientsHomePage = () => {
                 transform: 'scale(1.05)',
               },
             }}
-            onClick={() => handleSelection('activeClients', 'Active Clients')}
+            onClick={() => handleSelection('activeClients', 'Clients')}
           >
             <img src={activeclients} alt="activeclients" style={{ width:"50px",height:"50px"}}/>
             <Typography variant="h7" mt={2}>
-              Active Clients
+              Add Clients
             </Typography>
           </Box>
         </Box>

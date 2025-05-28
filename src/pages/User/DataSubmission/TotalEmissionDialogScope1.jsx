@@ -18,7 +18,6 @@ import { fetchTotalEmissions } from "../../../redux/features/emissionCalculation
 
 const TotalEmissionDialog = ({ open, handleClose, userId }) => {
   const dispatch = useDispatch();
-
   const { emissions, loading, error } = useSelector((state) => state.totalEmission);
 
   useEffect(() => {
@@ -27,11 +26,11 @@ const TotalEmissionDialog = ({ open, handleClose, userId }) => {
     }
   }, [dispatch, userId, open]);
 
-  const emissionKeys = ["CO2", "CH4", "N2O", "SF6", "CO2e", "NCV"];
+  const monthlyEmissions = emissions || {};
 
   return (
     <Dialog open={open} onClose={handleClose} fullWidth maxWidth="md">
-      <DialogTitle>Total Emission Details</DialogTitle>
+      <DialogTitle>Monthly CO2e Emissions</DialogTitle>
       <DialogContent>
         {loading ? (
           <div style={{ textAlign: "center", padding: "20px" }}>
@@ -39,23 +38,19 @@ const TotalEmissionDialog = ({ open, handleClose, userId }) => {
           </div>
         ) : error ? (
           <Typography color="error">{error}</Typography>
-        ) : emissions ? (
+        ) : Object.keys(monthlyEmissions).length ? (
           <Table>
             <TableHead>
               <TableRow>
-                <TableCell><strong>Emission</strong></TableCell>
-                <TableCell align="right"><strong>Value</strong></TableCell>
-                <TableCell align="right"><strong>Unit</strong></TableCell>
+                <TableCell><strong>Month</strong></TableCell>
+                <TableCell align="right"><strong>Total CO2e (kg)</strong></TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
-              {emissionKeys.map((key) => (
-                <TableRow key={key}>
-                  <TableCell>{key}</TableCell>
-                  <TableCell align="right">{emissions[key]}</TableCell>
-                  <TableCell align="right">
-                    {key === "NCV" ? "MJ" : "kg"}
-                  </TableCell>
+              {Object.entries(monthlyEmissions).map(([month, value]) => (
+                <TableRow key={month}>
+                  <TableCell>{month}</TableCell>
+                  <TableCell align="right">{value}</TableCell>
                 </TableRow>
               ))}
             </TableBody>

@@ -13,7 +13,7 @@ import MonthlyenvSubmission from './MonthlyenvSubmission';
 
 const EnvironmentPage = () => {
   const userId = useSelector((state) => state.auth.user?.id);
-
+  const [missingKeys, setMissingKeys] = useState([]);
   const [responses, setResponses] = useState({});
   const [loading, setLoading] = useState(false);
   const [alert, setAlert] = useState(null);
@@ -75,17 +75,16 @@ const EnvironmentPage = () => {
     }
   };
 
+  
   return (
     <Container maxWidth="md" style={{ padding: "20px" }}>
       <CustomAlert alert={alert} setAlert={setAlert} />
-  <MonthlyenvSubmission/>
+    <MonthlyenvSubmission/>
       {/* Force re-render after submission by changing formKey */}
       <div key={formKey}>
         {Object.entries(questionsData).map(([sectionName, subcategories]) => (
           <div key={sectionName} style={{ marginBottom: "30px" }}>
-            {/* <Typography variant="h5" style={{ marginBottom: "10px" }}>
-              {sectionName}
-            </Typography> */}
+           
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "10px" }}>
               <Typography variant="h5">{sectionName}</Typography>
               {sectionName === "Scope 1: Direct Emissions" && (
@@ -104,7 +103,6 @@ const EnvironmentPage = () => {
                 </Button>
               )}
             </div>
-
 
             {Object.entries(subcategories).map(([subcategory, questions]) => (
               <Section
@@ -133,7 +131,6 @@ const EnvironmentPage = () => {
         open={openScope1Dialog}
         handleClose={() => setOpenScope1Dialog(false)}
         userId={userId}
-
       />
       <TotalEmissionDialogScope2
         open={openScope2Dialog}
@@ -144,7 +141,6 @@ const EnvironmentPage = () => {
         open={openScope3Dialog}
         handleClose={() => setOpenScope3Dialog(false)}
         userId={userId}
-
       />
     </Container>
   );

@@ -64,7 +64,7 @@ const ProfileDialog = ({ open, onClose }) => {
               {userName}
             </Typography>
             <Typography variant="body2" color="text.secondary">
-            {userType === "admin"  ? "Administrator" : userType === "consultantadmin" ? "Consultant" : "ESG User"}
+            {userType === "superAdmin"  ? "Super Admin" : userType === "admin" ? "User Admin" : "ESG User"}
 
             </Typography>
           </Box>

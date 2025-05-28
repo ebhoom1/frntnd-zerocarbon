@@ -20,7 +20,6 @@ import { fetchMobileCombustionEmissions } from "../../../redux/features/emission
 const MobileCombustionEmissionDialog = ({ open, handleClose ,userId}) => {
   const dispatch = useDispatch();
   const { emissions, loading, error } = useSelector((state) => state.mobileCombustionEmissions);
-
   useEffect(() => {
     if (open && userId) {
       dispatch(fetchMobileCombustionEmissions(userId));
@@ -39,6 +38,7 @@ const MobileCombustionEmissionDialog = ({ open, handleClose ,userId}) => {
           <Table>
             <TableHead>
               <TableRow>
+              <TableCell>Month</TableCell>
                 <TableCell>Vehicle Type</TableCell>
                 <TableCell>Vehicle Name</TableCell>
                 <TableCell>Fuel Type</TableCell>
@@ -53,7 +53,8 @@ const MobileCombustionEmissionDialog = ({ open, handleClose ,userId}) => {
             </TableHead>
             <TableBody>
               {emissions.map((item, index) => (
-                <TableRow key={index}>
+                <TableRow key={index}>                 
+                  <TableCell>{item.month}</TableCell>
                   <TableCell>{item.vehicletype}</TableCell>
                   <TableCell>{item.vehiclename}</TableCell>
                   <TableCell>{item.fueltype}</TableCell>

@@ -12,7 +12,7 @@ import Formdetails from "./components/Admin/Formdetails";
 import UserDashboard from "./pages/User/UserDashboard";
 import SampleFlowchart from "./pages/Admin/sampleFlowchart/sampleFlowchart";
 import LeadsTable from "./components/Admin/LeadsTable";
-import ActiveUsers from "./pages/RegisteredClients/ActiveUsers";
+import ActiveUsers from "./pages/RegisteredClients/AddUsers";
 import CountryEmissionFactor from "./pages/CountryEmissionFactor/CountryEmissionFactor";
 import MobileCombustion from "./pages/MobileCombustion/MobileCombustion";
 import IndustralProcesses from "./pages/IndustryProcess/IndustrialProcesses";
@@ -24,6 +24,7 @@ import TeamPage from "./pages/Admin/TeamPage/TeamPage";
 import DecarbonizationPage from "./pages/Decarbonization/DecarbonisationPage";
 import Payment from "./pages/Payment/Payment";
 import SubscriptionModal from "./components/GlobalSubscriptionModal/SubscriptionModal";
+import UserForm from "./pages/User/UserForm";
 const App = () => {
   // const user = JSON.parse(localStorage.getItem("user"));
   // const token = localStorage.getItem("token");
@@ -72,6 +73,7 @@ const App = () => {
 
           <Route path="/decarbonization" element={<DecarbonizationPage />} />
           <Route path="/team" element={<TeamPage />} />
+          <Route path="/form" element={<UserForm />} />
         </Route>
         <Route
           element={<ProtectedRoute allowedRoles={["admin", "superAdmin","consultantadmin"]} />}

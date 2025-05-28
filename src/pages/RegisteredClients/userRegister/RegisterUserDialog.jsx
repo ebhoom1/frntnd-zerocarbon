@@ -1,4 +1,6 @@
 import React, { useState, useRef } from "react";
+import { useDispatch } from "react-redux";
+import { registerUser } from "../../../redux/features/auth/authSlice";
 import {
   Dialog,
   DialogTitle,
@@ -14,6 +16,7 @@ import {
 } from "@mui/material";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import axios from "../../../api/axios";
+import { useSelector } from "react-redux";
 
 const subscriptionPlans = [
   {
@@ -46,7 +49,8 @@ const subscriptionPlans = [
   },
 ];
 
-const RegisterConsultantUserDialog = ({ open, onClose, consultantId, refreshUsers }) => {
+const RegisterConsultantUserDialog = ({ open, onClose, refreshUsers }) => {
+  const user = useSelector((state) => state.auth.user);
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -58,7 +62,12 @@ const RegisterConsultantUserDialog = ({ open, onClose, consultantId, refreshUser
   const [selectedPlan, setSelectedPlan] = useState(null);
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
+  const [fieldErrors, setFieldErrors] = useState({
+    email: "",
+    contactNumber: "",
+    subscription: "",
+    general: "",
+  });
   const emailRef = useRef();
   const contactRef = useRef();
 
@@ -71,51 +80,66 @@ const RegisterConsultantUserDialog = ({ open, onClose, consultantId, refreshUser
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     const phoneRegex = /^[0-9]{10}$/;
 
+    const newErrors = {
+      email: "",
+      contactNumber: "",
+      subscription: "",
+      general: "",
+    };
+
     if (!emailRegex.test(formData.email)) {
-      setError("Invalid email address");
-      emailRef.current.focus();
-      return false;
+      newErrors.email = "Invalid email address";
     }
 
     if (!phoneRegex.test(formData.contactNumber)) {
-      setError("Enter a valid 10-digit phone number");
-      contactRef.current.focus();
-      return false;
+      newErrors.contactNumber = "Enter a valid 10-digit phone number";
     }
 
     if (!selectedPlan) {
-      setError("Please select a subscription plan");
-      return false;
+      newErrors.subscription = "Please select a subscription plan";
     }
 
-    setError(null);
-    return true;
+    setFieldErrors(newErrors);
+
+    // focus on the first invalid field
+    if (newErrors.email) emailRef.current?.focus();
+    else if (newErrors.contactNumber) contactRef.current?.focus();
+
+    return (
+      !newErrors.email && !newErrors.contactNumber && !newErrors.subscription
+    );
   };
+
+  const dispatch = useDispatch();
 
   const handleRegister = async () => {
     if (!validateFields()) return;
     setLoading(true);
+
     try {
       const payload = {
         ...formData,
-        userType: "user",
-        consultantAdminId: consultantId,
-        subscriptionPlan: selectedPlan,
-        paymentStatus: selectedPlan === "Free Trial" ? "Free" : "Pending",
-        subscriptionStartDate: new Date(),
-        subscriptionEndDate:
-          selectedPlan === "Free Trial"
-            ? new Date(Date.now() + 30 * 24 * 60 * 60 * 1000)
-            : null,
+        userType: user?.userType === "superAdmin" ? "admin" : "user",
+        adminId: user?.id, // Only applies if logged-in user is admin
+        subscription: {
+          plan: selectedPlan,
+          status: selectedPlan === "Free Trial" ? "Free" : "Pending",
+          startDate: new Date(),
+          endDate:
+            selectedPlan === "Free Trial"
+              ? new Date(Date.now() + 30 * 24 * 60 * 60 * 1000)
+              : null,
+        },
       };
 
-      const response=await axios.post("/api/auth/consultant/registeruser", payload);
-      console.log("response:",response.data);
-      refreshUsers();
+      const result = await dispatch(registerUser(payload)).unwrap();
+      console.log("User registered:", result);
       onClose();
     } catch (err) {
-        console.log("error:",err.message);
-      setError(err.response?.data?.message || "Registration failed");
+      setFieldErrors((prev) => ({
+        ...prev,
+        general: err?.message || "Registration failed",
+      }));
     } finally {
       setLoading(false);
     }
@@ -123,7 +147,11 @@ const RegisterConsultantUserDialog = ({ open, onClose, consultantId, refreshUser
 
   return (
     <Dialog open={open} onClose={onClose} fullWidth>
-      <DialogTitle>Register New User under Consultant</DialogTitle>
+      <DialogTitle>
+        {user?.userType === "superAdmin"
+          ? "Register New Admin"
+          : "Register New User"}
+      </DialogTitle>
       <DialogContent>
         <TextField
           label="Email"
@@ -133,6 +161,8 @@ const RegisterConsultantUserDialog = ({ open, onClose, consultantId, refreshUser
           value={formData.email}
           onChange={handleChange}
           margin="normal"
+          error={!!fieldErrors.email}
+          helperText={fieldErrors.email}
         />
         <TextField
           label="Contact Number"
@@ -142,6 +172,8 @@ const RegisterConsultantUserDialog = ({ open, onClose, consultantId, refreshUser
           value={formData.contactNumber}
           onChange={handleChange}
           margin="normal"
+          error={!!fieldErrors.contactNumber}
+          helperText={fieldErrors.contactNumber}
         />
         <TextField
           label="Username"
@@ -162,7 +194,10 @@ const RegisterConsultantUserDialog = ({ open, onClose, consultantId, refreshUser
           InputProps={{
             endAdornment: (
               <InputAdornment position="end">
-                <IconButton onClick={() => setShowPassword((prev) => !prev)} edge="end">
+                <IconButton
+                  onClick={() => setShowPassword((prev) => !prev)}
+                  edge="end"
+                >
                   {showPassword ? <VisibilityOff /> : <Visibility />}
                 </IconButton>
               </InputAdornment>
@@ -186,7 +221,10 @@ const RegisterConsultantUserDialog = ({ open, onClose, consultantId, refreshUser
           margin="normal"
         />
 
-        <Typography variant="h6" sx={{ mt: 3, mb: 1, fontWeight: "bold", color: "#2E3B55" }}>
+        <Typography
+          variant="h6"
+          sx={{ mt: 3, mb: 1, fontWeight: "bold", color: "#2E3B55" }}
+        >
           Choose Subscription Plan
         </Typography>
 
@@ -199,7 +237,10 @@ const RegisterConsultantUserDialog = ({ open, onClose, consultantId, refreshUser
                 flex: "1 1 calc(50% - 10px)",
                 p: 2,
                 backgroundColor: plan.bg,
-                border: selectedPlan === plan.name ? "3px solid #4caf50" : "1px solid #ccc",
+                border:
+                  selectedPlan === plan.name
+                    ? "3px solid #4caf50"
+                    : "1px solid #ccc",
                 borderRadius: 2,
                 cursor: plan.disabled ? "not-allowed" : "pointer",
                 transition: "0.3s",
@@ -215,18 +256,48 @@ const RegisterConsultantUserDialog = ({ open, onClose, consultantId, refreshUser
               </Typography>
               <ul style={{ paddingLeft: 20 }}>
                 {plan.features.map((f, i) => (
-                  <li key={i} style={{ fontSize: 12 }}>{f}</li>
+                  <li key={i} style={{ fontSize: 12 }}>
+                    {f}
+                  </li>
                 ))}
               </ul>
             </Box>
           ))}
         </Box>
 
-        {error && <Typography color="error" sx={{ mt: 2 }}>{error}</Typography>}
+        {fieldErrors.subscription && (
+          <Typography color="red" sx={{ mt: 1 }}>
+            {fieldErrors.subscription}
+          </Typography>
+        )}
+
+        {fieldErrors.general && (
+          <Box sx={{ mt: 2 }}>
+            <Typography
+              variant="body2"
+              sx={{
+                color: "error.main",
+                backgroundColor: "#fff0f0",
+                p: 1,
+                border: "1px solid red",
+                borderRadius: 1,
+              }}
+            >
+              {fieldErrors.general}
+            </Typography>
+          </Box>
+        )}
       </DialogContent>
       <DialogActions>
-        <Button onClick={onClose} color="primary">Cancel</Button>
-        <Button onClick={handleRegister} variant="contained" color="primary" disabled={loading}>
+        <Button onClick={onClose} color="primary">
+          Cancel
+        </Button>
+        <Button
+          onClick={handleRegister}
+          variant="contained"
+          color="primary"
+          disabled={loading}
+        >
           {loading ? <CircularProgress size={24} /> : "Register"}
         </Button>
       </DialogActions>

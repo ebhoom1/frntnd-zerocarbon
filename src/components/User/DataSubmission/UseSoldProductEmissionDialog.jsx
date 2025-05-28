@@ -38,6 +38,7 @@ const UseSoldProductEmissionDialog = ({ open, handleClose,userId }) => {
           <Table>
             <TableHead>
               <TableRow>
+                <TableCell>Month</TableCell>
                 <TableCell>Product Name</TableCell>
                 <TableCell>Units Sold</TableCell>
                 <TableCell>Requires Energy</TableCell>
@@ -52,6 +53,7 @@ const UseSoldProductEmissionDialog = ({ open, handleClose,userId }) => {
             <TableBody>
               {emissionData.map((item, index) => (
                 <TableRow key={index}>
+                  <TableCell>{item.month}</TableCell>
                   <TableCell>{item.productName}</TableCell>
                   <TableCell>{item.unitsSold}</TableCell>
                   <TableCell>{item.requiresEnergy ? "Yes" : "No"}</TableCell>

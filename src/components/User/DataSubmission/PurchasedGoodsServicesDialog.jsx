@@ -16,7 +16,7 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import { fetchPurchasedGoodsServices } from "../../../redux/features/emissionCalculation/purchasedGoodsServicesSlice";
 
-const PurchasedGoodsServicesDialog = ({ open, handleClose ,userId}) => {
+const PurchasedGoodsServicesDialog = ({ open, handleClose, userId }) => {
   const dispatch = useDispatch();
   const { emissionData, loading, error } = useSelector(
     (state) => state.purchasedGoodsServices
@@ -40,18 +40,20 @@ const PurchasedGoodsServicesDialog = ({ open, handleClose ,userId}) => {
           <Table>
             <TableHead>
               <TableRow>
+                <TableCell>Month</TableCell>
                 <TableCell>Material</TableCell>
                 <TableCell>Quantity</TableCell>
-                <TableCell> CO₂(kg) </TableCell>
-                <TableCell> CH₄(kg) </TableCell>
-                <TableCell> N₂O(kg) </TableCell>
-                <TableCell> CO₂e(kg) </TableCell>
+                <TableCell>CO₂(kg) </TableCell>
+                <TableCell>CH₄(kg) </TableCell>
+                <TableCell>N₂O(kg) </TableCell>
+                <TableCell>CO₂e(kg) </TableCell>
                 <TableCell>Calculated At</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
               {emissionData.map((item, index) => (
                 <TableRow key={index}>
+                  <TableCell>{item.month}</TableCell>
                   <TableCell>{item.material}</TableCell>
                   <TableCell>{item.quantity}</TableCell>
                   <TableCell>{item.emissionCO2}</TableCell>

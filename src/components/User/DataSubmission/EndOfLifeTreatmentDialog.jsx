@@ -40,6 +40,7 @@ const EndOfLifeTreatmentDialog = ({ open, handleClose ,userId}) => {
           <Table>
             <TableHead>
               <TableRow>
+                <TableCell>Month</TableCell>
                 <TableCell>Product</TableCell>
                 <TableCell>Treatment Method</TableCell>
                 <TableCell>Percentage</TableCell>
@@ -54,6 +55,7 @@ const EndOfLifeTreatmentDialog = ({ open, handleClose ,userId}) => {
             <TableBody>
               {emissionData.map((item, index) => (
                 <TableRow key={index}>
+                  <TableCell>{item.month}</TableCell>
                   <TableCell>{item.product}</TableCell>
                   <TableCell>{item.method}</TableCell>
                   <TableCell>{item.percentage}</TableCell>

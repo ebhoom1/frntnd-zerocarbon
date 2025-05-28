@@ -165,7 +165,8 @@ const EnvironmentSec = ({
   const [fuelTypeOptions, setFuelTypeOptions] = useState([]);
   const [industryTypeOptions, setIndustryTypeOptions] = useState([]);
   const [emissionSourceOptions, setEmissionSourceOptions] = useState([]);
-  const [fugitiveEmissionSourceOptions, setFugitiveEmissionSourceOptions] = useState([]);
+  const [fugitiveEmissionSourceOptions, setFugitiveEmissionSourceOptions] =
+    useState([]);
   const [openAddIndustrialDialog, setOpenAddIndustrialDialog] = useState(false);
   const [refrigerantTypeOptions, setRefrigerantTypeOptions] = useState([]);
   const [openAddRefrigerantDialog, setOpenAddRefrigerantDialog] =
@@ -306,20 +307,22 @@ const EnvironmentSec = ({
     const fetchRefrigerants = async () => {
       try {
         const res = await axios.get("/api/fugitive-emissions/get");
-  
-        const records = Array.isArray(res.data) ? res.data : res.data.records || [];
-  
+
+        const records = Array.isArray(res.data)
+          ? res.data
+          : res.data.records || [];
+
         const refrigerants = [
           ...new Set(records.map((r) => r.gasType).filter(Boolean)),
         ];
-  
+
         const emissionSources = [
           ...new Set(records.map((r) => r.source).filter(Boolean)),
         ];
-  
+
         setRefrigerantTypeOptions([...refrigerants, "other"]);
         setFugitiveEmissionSourceOptions(emissionSources); // ✅ new line
-  
+
         console.log("records fugitive:", records);
         console.log("refrigerant:", refrigerants);
         console.log("emission sources:", emissionSources);
@@ -327,11 +330,10 @@ const EnvironmentSec = ({
         console.error("Error fetching refrigerants:", error);
       }
     };
-  
+
     fetchRefrigerants();
   }, [openAddRefrigerantDialog]);
-  
-  
+
   useEffect(() => {
     setEntries([]);
     setCurrentEntry({});

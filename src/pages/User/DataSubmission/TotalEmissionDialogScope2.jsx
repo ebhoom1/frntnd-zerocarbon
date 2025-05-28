@@ -1,4 +1,3 @@
-// components/TotalEmissionScope2Dialog.js
 import React, { useEffect } from "react";
 import {
   Dialog,
@@ -12,14 +11,16 @@ import {
   TableCell,
   TableBody,
   CircularProgress,
-  Typography
+  Typography,
 } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchTotalScope2Emission } from "../../../redux/features/emissionCalculation/totalEmissionScope2Slice";
 
-const TotalEmissionScope2Dialog = ({ open, handleClose,userId }) => {
+const TotalEmissionScope2Dialog = ({ open, handleClose, userId }) => {
   const dispatch = useDispatch();
-  const { totalEmissionData, loading, error } = useSelector((state) => state.totalScope2Emission);
+  const { totalEmissionData, loading, error } = useSelector(
+    (state) => state.totalScope2Emission
+  );
 
   useEffect(() => {
     if (open && userId) {
@@ -27,42 +28,33 @@ const TotalEmissionScope2Dialog = ({ open, handleClose,userId }) => {
     }
   }, [open, userId, dispatch]);
 
+  const monthlyEmissions = totalEmissionData || {};
+
   return (
     <Dialog open={open} onClose={handleClose} fullWidth maxWidth="md">
-      <DialogTitle>Total Scope 2 Emission Summary</DialogTitle>
+      <DialogTitle>Monthly Scope 2 Emissions (kg CO₂e)</DialogTitle>
       <DialogContent>
         {loading ? (
-          <CircularProgress />
+          <div style={{ textAlign: "center", padding: "20px" }}>
+            <CircularProgress />
+          </div>
         ) : error ? (
           <Typography color="error">{error}</Typography>
-        ) : totalEmissionData ? (
+        ) : Object.keys(monthlyEmissions).length > 0 ? (
           <Table>
             <TableHead>
               <TableRow>
-                <TableCell>S.No</TableCell>
-                <TableCell>Emission Category</TableCell>
-                <TableCell>Emission Value (kg CO₂e)</TableCell>
+                <TableCell><strong>Month</strong></TableCell>
+                <TableCell align="right"><strong>Total CO₂e (kg)</strong></TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
-              <TableRow>
-                <TableCell>1</TableCell>
-                <TableCell>Purchased Electricity Emission</TableCell>
-                <TableCell>{totalEmissionData.totalElectricityEmission}</TableCell>
-              </TableRow>
-              <TableRow>
-                <TableCell>2</TableCell>
-                <TableCell>Purchased Steam/Heat/Cooling Emission</TableCell>
-                <TableCell>{totalEmissionData.totalSteamEmission}</TableCell>
-              </TableRow>
-              <TableRow>
-                <TableCell colSpan={2} style={{ fontWeight: "bold" }}>
-                  Total Scope 2 Emission
-                </TableCell>
-                <TableCell style={{ fontWeight: "bold" }}>
-                  {totalEmissionData.totalScope2Emission}
-                </TableCell>
-              </TableRow>
+              {Object.entries(monthlyEmissions).map(([month, value]) => (
+                <TableRow key={month}>
+                  <TableCell>{month}</TableCell>
+                  <TableCell align="right">{value}</TableCell>
+                </TableRow>
+              ))}
             </TableBody>
           </Table>
         ) : (

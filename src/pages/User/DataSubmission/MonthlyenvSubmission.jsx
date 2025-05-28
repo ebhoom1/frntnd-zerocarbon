@@ -11,7 +11,6 @@ import Section from "../../../components/User/DataSubmission/MonthlyenvSubmissio
 import CustomAlert from "../../../components/Alert/Sweetalert";
 import questionsData from "../../../assets/data/DataSubmission/monthlyEnvironment.json";
 import { useSelector } from "react-redux";
-// import RenewableProject from "../../../components/User/DataSubmission/RenewableProjectForm";
 import TotalEmissionDialogScope1 from "./TotalEmissionDialogScope1";
 import TotalEmissionDialogScope2 from "./TotalEmissionDialogScope2";
 import TotalEmissionDialogScope3 from "./TotalEmissionDialogScope3";
@@ -63,7 +62,7 @@ const EnvironmentPage = () => {
     const year = now.getFullYear();
     return `${month}-${year}`;
   });
-
+  const [missingKeys, setMissingKeys] = useState([]);
   const [responses, setResponses] = useState({});
   const [loading, setLoading] = useState(false);
   const [alert, setAlert] = useState(null);

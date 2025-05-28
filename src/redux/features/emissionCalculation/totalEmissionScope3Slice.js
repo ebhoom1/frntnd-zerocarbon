@@ -8,7 +8,7 @@ export const fetchTotalScope3Emissions = createAsyncThunk(
   async (userId, { rejectWithValue }) => {
     try {
       const response = await axios.get(`/api/totalemission-scope3/${userId}`);
-      return response.data.totalScope3Emissions;
+      return response.data.monthlyScope3Emissions;
     } catch (err) {
       return rejectWithValue(err.response?.data?.message || "Failed to fetch total Scope 3 emissions");
     }

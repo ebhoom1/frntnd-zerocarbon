@@ -18,8 +18,9 @@ import { fetchTotalScope3Emissions } from "../../../redux/features/emissionCalcu
 
 const TotalScope3EmissionDialog = ({ open, handleClose, userId }) => {
   const dispatch = useDispatch();
-
-  const { emissions, loading, error } = useSelector((state) => state.totalEmissionScope3);
+  const { emissions, loading, error } = useSelector(
+    (state) => state.totalEmissionScope3
+  );
 
   useEffect(() => {
     if (open && userId) {
@@ -27,11 +28,11 @@ const TotalScope3EmissionDialog = ({ open, handleClose, userId }) => {
     }
   }, [dispatch, userId, open]);
 
-  const emissionKeys = ["CO2", "CH4", "N2O", "CO2e"];
+  const monthlyData = emissions|| {};
 
   return (
     <Dialog open={open} onClose={handleClose} fullWidth maxWidth="md">
-      <DialogTitle>Total Scope 3 Emission Details</DialogTitle>
+      <DialogTitle>Monthly Scope 3 CO₂e Emissions</DialogTitle>
       <DialogContent>
         {loading ? (
           <div style={{ textAlign: "center", padding: "20px" }}>
@@ -39,21 +40,19 @@ const TotalScope3EmissionDialog = ({ open, handleClose, userId }) => {
           </div>
         ) : error ? (
           <Typography color="error">{error}</Typography>
-        ) : emissions ? (
+        ) : Object.keys(monthlyData).length ? (
           <Table>
             <TableHead>
               <TableRow>
-                <TableCell><strong>Emission</strong></TableCell>
-                <TableCell align="right"><strong>Value</strong></TableCell>
-                <TableCell align="right"><strong>Unit</strong></TableCell>
+                <TableCell><strong>Month</strong></TableCell>
+                <TableCell align="right"><strong>Total CO₂e (kg)</strong></TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
-              {emissionKeys.map((key) => (
-                <TableRow key={key}>
-                  <TableCell>{key}</TableCell>
-                  <TableCell align="right">{emissions[key]}</TableCell>
-                  <TableCell align="right">kg</TableCell>
+              {Object.entries(monthlyData).map(([month, value]) => (
+                <TableRow key={month}>
+                  <TableCell>{month}</TableCell>
+                  <TableCell align="right">{value}</TableCell>
                 </TableRow>
               ))}
             </TableBody>

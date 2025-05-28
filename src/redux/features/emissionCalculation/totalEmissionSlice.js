@@ -8,7 +8,7 @@ export const fetchTotalEmissions = createAsyncThunk(
     try {
       const response = await axios.get(`/api/total-emissions/${userId}`);
       console.log("response:",response.data);
-      return response.data.totalEmissions;
+      return response.data.monthlyEmissions;
     } catch (err) {
       return rejectWithValue(err.response?.data?.message || "Failed to fetch total emissions");
     }

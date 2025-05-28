@@ -49,7 +49,7 @@ const Login = () => {
         };
 
         if (userType === "user") {
-          navigate("/user", { state: alertState }); // Redirect to user form
+          navigate("/form", { state: alertState }); // Redirect to user form
         } else if (userType === "admin" || userType === "superAdmin" || userType==="consultantadmin") {
           navigate("/admin", { state: alertState }); // Redirect to admin dashboard
         }

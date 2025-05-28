@@ -15,7 +15,7 @@ import UserTable from "../../pages/Admin/userTableForflowchartView/UserTable";
 import FlowchartUser from "../../components/User/flowchart/FlowchartUser.jsx";
 import EmissionFactorHomePage from "../../pages/Emissionfactor/EmissionFactorHomePage.jsx";
 import UserForm from "../../pages/User/UserForm";
-import ActiveUsers from "../../pages/RegisteredClients/ActiveUsers.jsx";
+import ActiveUsers from "../../pages/RegisteredClients/AddUsers.jsx";
 import RegisteredClients from "../../pages/RegisteredClients/RegisteredClientsTable.jsx";
 import UserList from "../../pages/Decarbonization/AdminPage/UserList.jsx";
 import AlertSection from "../../pages/Admin/Alert/AlertSection.jsx";
@@ -127,7 +127,6 @@ const ContentArea = ({ toggleSidebar }) => {
           return <FlowchartUser />;
         case "form":
           return <UserForm />;
-
         case "report":
           return <DownloadReportButton />;
         case "environment":

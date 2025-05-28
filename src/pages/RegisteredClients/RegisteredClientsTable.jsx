@@ -2,8 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import axios from "../../api/axios";
-import RegisterConsultantUserDialog from "./consultantuserRegister/RegisterConsultantUserDialog";
-
+import EditUserDialog from "./EditUserDialog";
 import {
   Button,
   TextField,
@@ -23,37 +22,51 @@ import {
 const Dashboard = () => {
   const navigate = useNavigate();
   const user = useSelector((state) => state.auth.user);
-
+  const [openEditDialog, setOpenEditDialog] = useState(false);
+  const [selectedUser, setSelectedUser] = useState(null);
   const [allForms, setAllForms] = useState([]);
   const [forms, setForms] = useState([]);
   const [filters, setFilters] = useState({
     companyName: "",
     status: "",
   });
-  const [openDialog, setOpenDialog] = useState(false);
-  const [selectedConsultantId, setSelectedConsultantId] = useState(null);
+
+  const handleEditClick = (user) => {
+    setSelectedUser(user);
+    setOpenEditDialog(true);
+  };
+
+  const handleCloseDialog = () => {
+    setOpenEditDialog(false);
+    setSelectedUser(null);
+  };
+
+  const handleDeleteClick = async (userId) => {
+    const confirmDelete = window.confirm(
+      "Are you sure you want to delete this user?"
+    );
+    if (!confirmDelete) return;
+
+    try {
+      await axios.delete(`/api/admin/delete-user/${userId}`);
+      await fetchRegisteredUsers(); 
+    } catch (error) {
+      console.error("Error deleting user:", error);
+    }
+  };
+
+  const fetchRegisteredUsers = async () => {
+    try {
+      const response = await axios.get("/api/admin/registeredusers");
+      setAllForms(response.data);
+      setForms(response.data);
+    } catch (error) {
+      console.error("Error fetching users:", error);
+    }
+  };
 
   useEffect(() => {
-    const fetchForms = async () => {
-      try {
-        const response = await axios.get("/api/admin/registeredusers");
-
-        const allUsers = response.data;
-
-        // If consultantadmin is logged in, filter users registered under them
-        const visibleUsers =
-          user?.userType === "consultantadmin"
-            ? allUsers.filter((u) => u.consultantAdminId === user.id)
-            : allUsers;
-
-        setAllForms(visibleUsers);
-        setForms(visibleUsers);
-      } catch (error) {
-        console.error("Error fetching forms:", error);
-      }
-    };
-
-    fetchForms();
+    fetchRegisteredUsers();
   }, []);
 
   const handleInputChange = (e) => {
@@ -73,16 +86,6 @@ const Dashboard = () => {
 
   const handleRowClick = (userId) => {
     navigate(`/formdetails/${userId}`);
-  };
-
-  const handleOpenDialog = (consultantId) => {
-    setSelectedConsultantId(consultantId);
-    setOpenDialog(true);
-  };
-
-  const handleCloseDialog = () => {
-    setOpenDialog(false);
-    setSelectedConsultantId(null);
   };
 
   return (
@@ -138,14 +141,7 @@ const Dashboard = () => {
                   onClick={() => handleRowClick(form._id)}
                   style={{ cursor: "pointer", backgroundColor: "white" }}
                 >
-                  <TableCell>
-                    {form.userName}
-                    {form.userType === "consultantadmin" && (
-                      <span style={{ marginLeft: 8 }}>
-                        <Chip label="Consultant" size="small" color="primary" />
-                      </span>
-                    )}
-                  </TableCell>
+                  <TableCell>{form.userName}</TableCell>
                   <TableCell>{form.companyName}</TableCell>
                   <TableCell>{form.email}</TableCell>
                   <TableCell>{form.contactNumber}</TableCell>
@@ -153,13 +149,22 @@ const Dashboard = () => {
                     {form.subscription?.plan || "Not Subscribed"}
                   </TableCell>
                   <TableCell onClick={(e) => e.stopPropagation()}>
-                    {form.userType === "consultantadmin" && (
+                    <Button
+                      variant="outlined"
+                      size="small"
+                      sx={{ mr: 1 }}
+                      onClick={() => handleEditClick(form)}
+                    >
+                      Edit
+                    </Button>
+                    {user?.userType === "superAdmin" && (
                       <Button
                         variant="outlined"
+                        color="red"
                         size="small"
-                        onClick={() => handleOpenDialog(form._id)}
+                        onClick={() => handleDeleteClick(form._id)}
                       >
-                        Add User
+                        Delete
                       </Button>
                     )}
                   </TableCell>
@@ -175,22 +180,11 @@ const Dashboard = () => {
           </TableBody>
         </Table>
       </TableContainer>
-      <RegisterConsultantUserDialog
-        open={openDialog}
+      <EditUserDialog
+        open={openEditDialog}
+        user={selectedUser}
         onClose={handleCloseDialog}
-        consultantId={selectedConsultantId}
-        refreshUsers={() => {
-          axios.get("/api/admin/registeredusers").then((res) => {
-            const allUsers = res.data;
-            const visibleUsers =
-              user?.userType === "consultantadmin"
-                ? allUsers.filter((u) => u.consultantAdminId === user.id)
-                : allUsers;
-
-            setAllForms(visibleUsers);
-            setForms(visibleUsers);
-          });
-        }}
+        refreshUsers={fetchRegisteredUsers}
       />
     </div>
   );

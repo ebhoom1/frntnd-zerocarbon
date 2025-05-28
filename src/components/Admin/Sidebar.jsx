@@ -102,11 +102,11 @@ const Sidebar = ({ mobileOpen, setMobileOpen, toggleSidebar }) => {
             label: "Boundaries and Scopes",
             icon: <MultilineChartIcon />,
           },
-          {
-            id: "form",
-            label: "Data Submissions",
-            icon: <GroupOutlinedIcon />,
-          },
+          // {
+          //   id: "form",
+          //   label: "Data Submissions",
+          //   icon: <GroupOutlinedIcon />,
+          // },
           
           {
             id: "decarbonization",

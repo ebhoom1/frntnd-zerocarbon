@@ -2,13 +2,13 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "../../../api/axios";
 
-// Thunk
+//Thunk
 export const fetchTotalScope2Emission = createAsyncThunk(
   "totalScope2Emission/fetch",
   async (userId, { rejectWithValue }) => {
     try {
       const response = await axios.get(`api/totalemission-scope2/${userId}`);
-      return response.data?.data || {};
+      return response.data?.monthlyScope2Emissions || {};
     } catch (error) {
       return rejectWithValue(error.response?.data?.message || "Failed to fetch total Scope 2 emission");
     }
