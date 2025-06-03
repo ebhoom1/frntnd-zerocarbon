@@ -47,6 +47,7 @@ const EnvironmentSec = ({
   reportingMonth,
   bod = { bod },
   cod = { cod },
+  missingKeys = [],
 }) => {
   const userId = useSelector((state) => state.auth.user?.id);
   const userName = useSelector((state) => state.auth.user?.userName);
@@ -342,7 +343,13 @@ const EnvironmentSec = ({
 
   return (
     <div style={{ marginBottom: "10px" }}>
-      <Accordion>
+      <Accordion
+      sx={{
+        border: missingKeys.some((item) => item.subcategory === subcategory)
+          ? "1px solid red"
+          : "none",
+      }}
+      >
         <AccordionSummary expandIcon={<ExpandMoreIcon />}>
           <div
             style={{

@@ -1,0 +1,51 @@
+[
+    {
+      "section": "General Disclosures",
+      "questions": [
+        { "id": "102-4", "text": "Location of operations" },
+        { "id": "102-5", "text": "Ownership and legal form" },
+        { "id": "102-9", "text": "Supply chain details" },
+        { "id": "102-10", "text": "Significant changes to the organization and its supply chain" },
+        { "id": "102-11", "text": "Precautionary Principle or approach" },
+        { "id": "102-12", "text": "External initiatives supported" },
+        { "id": "102-13", "text": "Membership of associations" }
+      ]
+    },
+    
+    {
+      "section": "Environmental",
+      "questions": [
+        { "id": "301-1", "text": "Materials used by weight or volume" },
+        { "id": "302-3", "text": "Energy intensity ratio" },
+        { "id": "303-3", "text": "Total water withdrawal by source" },
+        { "id": "304-1", "text": "Sites near protected areas and areas of high biodiversity value" },
+        { "id": "305-6", "text": "Emissions of ozone-depleting substances (ODS)" },
+        { "id": "306-3", "text": "Significant spills" }
+      ]
+    },
+    {
+      "section": "Social",
+      "questions": [
+        { "id": "401-1", "text": "New employee hires and turnover by age, gender, region" },
+        { "id": "403-4", "text": "Worker participation in occupational health and safety" },
+        { "id": "404-1", "text": "Average hours of training per year per employee" },
+        { "id": "405-2", "text": "Ratio of basic salary and remuneration of women to men" },
+        { "id": "406-1", "text": "Incidents of discrimination and corrective actions taken" },
+        { "id": "413-1", "text": "Operations with local community engagement" },
+        { "id": "418-1", "text": "Data privacy breaches and complaints" }
+      ]
+    },
+    {
+        "section": "Governance",
+        "questions": [
+          { "id": "102-18", "text": "Governance structure" },
+          { "id": "102-19", "text": "Delegating authority" },
+          { "id": "102-22", "text": "Composition of the highest governance body" },
+          { "id": "102-24", "text": "Nominating and selecting the highest governance body" },
+          { "id": "102-25", "text": "Conflicts of interest" },
+          { "id": "102-35", "text": "Remuneration policies" },
+          { "id": "102-36", "text": "Process for determining remuneration" }
+        ]
+      }
+  ]
+  

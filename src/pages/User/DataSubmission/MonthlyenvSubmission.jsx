@@ -20,6 +20,8 @@ const EnvironmentPage = () => {
   const userName = useSelector((state) => state.auth.user?.userName);
   const [bod, setBod] = useState(null);
   const [cod, setCod] = useState(null);
+  const [missingKeys, setMissingKeys] = useState([]);
+  
 
   const getDateRangeFromMonthYear = (monthYear) => {
     const [monthStr, yearStr] = monthYear.split("-");
@@ -62,7 +64,7 @@ const EnvironmentPage = () => {
     const year = now.getFullYear();
     return `${month}-${year}`;
   });
-  const [missingKeys, setMissingKeys] = useState([]);
+  
   const [responses, setResponses] = useState({});
   const [loading, setLoading] = useState(false);
   const [alert, setAlert] = useState(null);
@@ -87,6 +89,23 @@ const EnvironmentPage = () => {
     });
   };
 
+
+  const findMissingFields = () => {
+    const missing = [];
+  
+    Object.entries(questionsData).forEach(([section, subcategories]) => {
+      Object.entries(subcategories).forEach(([subcategory]) => {
+        const key = `${section.replace(/\s+/g, "")}_${subcategory.replace(/\s+/g, "")}`;
+        if (!responses[key] || responses[key].length === 0) {
+          missing.push({ section, subcategory });
+        }
+      });
+    });
+  
+    return missing;
+  };
+    
+  
   const handleSubmit = async () => {
     if (!userId) {
       setAlert({
@@ -167,7 +186,7 @@ const EnvironmentPage = () => {
         select
         label="Reporting Month"
         value={reportingMonth}
-        onChange={(e) => setReportingMonth(e.target.value)}
+        onChange={(e) =>{ setReportingMonth(e.target.value)}}
         fullWidth
         sx={{ mb: 3 }}
       >
@@ -238,7 +257,8 @@ const EnvironmentPage = () => {
                 reportingMonth={reportingMonth}
                 bod={bod}
                 cod={cod}
-              />
+                missingKeys={missingKeys}
+                />
             ))}
           </div>
         ))}

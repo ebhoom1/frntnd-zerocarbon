@@ -135,6 +135,11 @@ const Sidebar = ({ mobileOpen, setMobileOpen, toggleSidebar }) => {
             icon: <BatteryChargingFullIcon />,
           },
           {
+            id: "gri",
+            label: "GRI",
+            icon: <BatteryChargingFullIcon />,
+          },
+          {
             id: "brsr",
             label: "BRSR Disclosures",
             icon: <CorporateFareIcon />,

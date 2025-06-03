@@ -15,6 +15,7 @@ import LeadsTable from "./components/Admin/LeadsTable";
 import ActiveUsers from "./pages/RegisteredClients/AddUsers";
 import CountryEmissionFactor from "./pages/CountryEmissionFactor/CountryEmissionFactor";
 import MobileCombustion from "./pages/MobileCombustion/MobileCombustion";
+import StationaryCombustion from "./pages/StationaryCombustion/StationaryCombustion"
 import IndustralProcesses from "./pages/IndustryProcess/IndustrialProcesses";
 import FugitiveEmissions from "./pages/FugitiveEmissions/FugitiveEmissions";
 import PurchasedGoodsServices from "./pages/purchasedGoogsServices/PurchasedGoodsServices";
@@ -25,6 +26,7 @@ import DecarbonizationPage from "./pages/Decarbonization/DecarbonisationPage";
 import Payment from "./pages/Payment/Payment";
 import SubscriptionModal from "./components/GlobalSubscriptionModal/SubscriptionModal";
 import UserForm from "./pages/User/UserForm";
+
 const App = () => {
   // const user = JSON.parse(localStorage.getItem("user"));
   // const token = localStorage.getItem("token");
@@ -87,6 +89,7 @@ const App = () => {
             element={<CountryEmissionFactor />}
           />
           <Route path="/mobilecombustion" element={<MobileCombustion />} />
+          <Route path="/stationarycombustion" element={<StationaryCombustion />} />
           <Route path="/industrialprocesses" element={<IndustralProcesses />} />
           <Route path="/fugitiveemissions" element={<FugitiveEmissions />} />
           <Route

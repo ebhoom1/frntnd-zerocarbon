@@ -33,6 +33,7 @@ import { setSelectedItem } from "../../redux/features/sidebar/SidebarSlice";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import MenuIcon from "@mui/icons-material/Menu";
 import SectionBCsubmission from '../../pages/sectionBCbrsr/MainComponentFromSectionBC.jsx';
+import GRI from "../../pages/User/GRI/GRIForm.jsx"
 
 const ContentArea = ({ toggleSidebar }) => {
   const isLargeScreen = useMediaQuery("(min-width: 1024px)");
@@ -137,6 +138,8 @@ const ContentArea = ({ toggleSidebar }) => {
           return <Governance />;
         case "assetsrenewableproject":
           return <AssetsRenewableProject />;
+        case "gri":
+          return < GRI/>;
         case "brsr":
           return <SectionBCsubmission/>;
         default:

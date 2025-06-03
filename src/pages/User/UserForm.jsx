@@ -56,6 +56,7 @@ const UserForm = () => {
       phone: "",
     },
     industrySector: "",
+    ownershipForm: "",
     description: "",
     operationalSites: "",
     totalEmployees: "",
@@ -331,6 +332,21 @@ const UserForm = () => {
                 )),
               ])}
             </Select>
+            <InputLabel>Ownership and Legal Form</InputLabel>
+<Select
+  name="ownershipForm"
+  value={formData.ownershipForm}
+  onChange={handleChange}
+  fullWidth
+  sx={{ mb: 2 }}
+>
+  <MenuItem value="Private Limited">Private Limited</MenuItem>
+  <MenuItem value="Public Listed">Public Listed</MenuItem>
+  <MenuItem value="Sole Proprietorship">Sole Proprietorship</MenuItem>
+  <MenuItem value="Partnership">Partnership</MenuItem>
+  <MenuItem value="Government Entity">Government Entity</MenuItem>
+  <MenuItem value="Other">Other</MenuItem>
+</Select>
 
             <TextField
               fullWidth

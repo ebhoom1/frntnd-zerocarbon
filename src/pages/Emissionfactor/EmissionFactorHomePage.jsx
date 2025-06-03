@@ -8,6 +8,7 @@ import ElectricBoltIcon from "@mui/icons-material/ElectricBolt";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import DeleteSweepIcon from "@mui/icons-material/DeleteSweep";
 import RecyclingIcon from "@mui/icons-material/Recycling";
+import WhatshotIcon from "@mui/icons-material/Whatshot";
 
 const EmissionFactorHomePage = () => {
   const navigate = useNavigate();
@@ -63,6 +64,31 @@ const EmissionFactorHomePage = () => {
             <LocalFireDepartmentIcon sx={{ fontSize: 50, color: "#d32f2f" }} />{" "}
             <Typography variant="h7" mt={2}>
               Mobile Combustion
+            </Typography>
+          </Box>
+
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              justifyContent: "center",
+              width: 200,
+              height: 200,
+              padding: 3,
+              backgroundColor: "#ede7f6",
+              borderRadius: 2,
+              cursor: "pointer",
+              transition: "transform 0.2s",
+              "&:hover": {
+                transform: "scale(1.05)",
+              },
+            }}
+            onClick={() => navigate("/stationarycombustion")}
+          >
+            <WhatshotIcon sx={{ fontSize: 50, color: "#7e57c2" }} />
+            <Typography variant="h7" mt={2} textAlign={"center"}>
+              Stationary Combustion
             </Typography>
           </Box>
 
