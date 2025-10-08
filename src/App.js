@@ -44,7 +44,7 @@ const App = () => {
   return (
     <BrowserRouter>
       {/* Display Modal Globally if any subscription has expired */}
-      {hasSubscriptionExpired() && <SubscriptionModal open={true} />}
+      {/* {hasSubscriptionExpired() && <SubscriptionModal open={true} />} */}
       <Routes>
         {/* Public Routes */}
         <Route path="/login" element={<Login />} />

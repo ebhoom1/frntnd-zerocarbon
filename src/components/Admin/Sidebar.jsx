@@ -20,6 +20,7 @@ import Diversity3Icon from "@mui/icons-material/Diversity3";
 import GavelIcon from "@mui/icons-material/Gavel";
 import BatteryChargingFullIcon from "@mui/icons-material/BatteryChargingFull";
 import CorporateFareIcon from '@mui/icons-material/CorporateFare';
+import AssignmentTurnedInIcon from "@mui/icons-material/AssignmentTurnedIn";
 import { setSelectedItem } from "../../redux/features/sidebar/SidebarSlice";
 import { logout } from "../../redux/features/auth/authSlice";
 import {
@@ -132,17 +133,17 @@ const Sidebar = ({ mobileOpen, setMobileOpen, toggleSidebar }) => {
           {
             id: "assetsrenewableproject",
             label: "Assets & RenewableProject",
-            icon: <BatteryChargingFullIcon />,
+            icon: <BatteryChargingFullIcon/>,
           },
           {
             id: "gri",
             label: "GRI",
-            icon: <BatteryChargingFullIcon />,
+            icon: <AssignmentTurnedInIcon/>,
           },
           {
             id: "brsr",
             label: "BRSR Disclosures",
-            icon: <CorporateFareIcon />,
+            icon: <CorporateFareIcon/>,
           },
           { id: "report", label: "Report", icon: <SummarizeIcon /> },
           {

@@ -369,3 +369,265 @@ function MobileCombustion() {
 }
 
 export default MobileCombustion;
+
+
+// import React, { useEffect, useState } from "react";
+// import axios from "../../api/axios";
+// import CustomAlert from "../../components/Alert/Sweetalert";
+// import {
+//   AppBar,
+//   Toolbar,
+//   Typography,
+//   Container,
+//   Paper,
+//   Table,
+//   TableBody,
+//   TableCell,
+//   TableContainer,
+//   TableHead,
+//   TableRow,
+//   Button,
+//   Dialog,
+//   DialogActions,
+//   DialogContent,
+//   DialogTitle,
+//   TextField,
+// } from "@mui/material";
+
+// function MobileCombustion() {
+//   const [records, setRecords] = useState([]);
+//   const [openDialog, setOpenDialog] = useState(false);
+//   const [editMode, setEditMode] = useState(false);
+//   const [selectedRecordId, setSelectedRecordId] = useState(null);
+//   const [alert, setAlert] = useState(null);
+
+//   const [formData, setFormData] = useState({
+//     sourceOfEmission: "",
+//     ghgActivity: "",
+//     units: "",
+//     emissionFactor: "",
+//   });
+
+//   useEffect(() => {
+//     fetchData();
+//   }, []);
+
+//   const fetchData = async () => {
+//     try {
+//       const res = await axios.get("/api/mobile-combustion/get");
+//       setRecords(res.data.records);
+//     } catch (error) {
+//       console.error("Error fetching records:", error);
+//     }
+//   };
+
+//   const handleOpenDialog = (record = null) => {
+//     if (record) {
+//       setEditMode(true);
+//       setSelectedRecordId(record._id);
+//       setFormData({
+//         sourceOfEmission: record.sourceOfEmission || "",
+//         ghgActivity: record.ghgActivity || "",
+//         units: record.units || "",
+//         emissionFactor: record.emissionFactor || "",
+//       });
+//     } else {
+//       setEditMode(false);
+//       setSelectedRecordId(null);
+//       setFormData({
+//         sourceOfEmission: "",
+//         ghgActivity: "",
+//         units: "",
+//         emissionFactor: "",
+//       });
+//     }
+//     setOpenDialog(true);
+//   };
+
+//   const handleCloseDialog = () => {
+//     setOpenDialog(false);
+//   };
+
+//   const handleChange = (e) => {
+//     const { name, value } = e.target;
+//     setFormData((prev) => ({ ...prev, [name]: value }));
+//   };
+
+//   const handleSave = async () => {
+//     try {
+//       if (editMode) {
+//         await axios.put(
+//           `/api/mobile-combustion/update/${selectedRecordId}`,
+//           formData
+//         );
+//         setAlert({
+//           type: "success",
+//           title: "Updated",
+//           text: "Record updated successfully!",
+//         });
+//       } else {
+//         await axios.post("/api/mobile-combustion/add", formData);
+//         setAlert({
+//           type: "success",
+//           title: "Added",
+//           text: "New record added successfully!",
+//         });
+//         console.log("formdata:",formData);      
+//       }
+
+//       fetchData();
+//       handleCloseDialog();
+//     } catch (error) {
+//       console.error("Error saving record:", error);
+//       setAlert({
+//         type: "error",
+//         title: "Save Error",
+//         text: "Failed to save the record.",
+//       });
+//     }
+//   };
+
+//   const handleDelete = async (id) => {
+//     setAlert({
+//       type: "warning",
+//       title: "Are you sure?",
+//       text: "This action cannot be undone.",
+//       showCancel: true,
+//       confirmButtonText: "Yes, delete it!",
+//       onConfirm: async () => {
+//         try {
+//           await axios.delete(`/api/mobile-combustion/delete/${id}`);
+//           setAlert({
+//             type: "success",
+//             title: "Deleted",
+//             text: "Record deleted successfully!",
+//           });
+//           fetchData();
+//         } catch (error) {
+//           console.error("Error deleting record:", error);
+//           setAlert({
+//             type: "error",
+//             title: "Delete Error",
+//             text: "Failed to delete the record.",
+//           });
+//         }
+//       },
+//     });
+//   };
+
+//   return (
+//     <>
+//       <CustomAlert alert={alert} setAlert={setAlert} />
+
+//       <AppBar position="static">
+//         <Toolbar>
+//           <Typography variant="h6">Mobile Combustion – KIMS Format</Typography>
+//         </Toolbar>
+//       </AppBar>
+
+//       <Container sx={{ marginTop: 4 }}>
+//         <Button variant="contained" onClick={() => handleOpenDialog(null)}>
+//           Add New Record
+//         </Button>
+
+//         <TableContainer component={Paper} sx={{ marginTop: 2 }}>
+//           <Table>
+//             <TableHead>
+//               <TableRow>
+//                 <TableCell>Source of Emission</TableCell>
+//                 <TableCell>GHG Activity</TableCell>
+//                 <TableCell>Unit</TableCell>
+//                 <TableCell>Emission Factor (kg CO₂e/unit)</TableCell>
+//                 <TableCell align="center">Actions</TableCell>
+//               </TableRow>
+//             </TableHead>
+
+//             <TableBody>
+//               {records.map((record) => (
+//                 <TableRow key={record._id}>
+//                   <TableCell>{record.sourceOfEmission}</TableCell>
+//                   <TableCell>{record.ghgActivity}</TableCell>
+//                   <TableCell>{record.units}</TableCell>
+//                   <TableCell>{record.emissionFactor}</TableCell>
+//                   <TableCell align="center">
+//                     <Button
+//                       variant="outlined"
+//                       size="small"
+//                       onClick={() => handleOpenDialog(record)}
+//                       sx={{ mb: 1 }}
+//                     >
+//                       Edit
+//                     </Button>
+//                     <Button
+//                       variant="outlined"
+//                       color="error"
+//                       size="small"
+//                       onClick={() => handleDelete(record._id)}
+//                     >
+//                       Delete
+//                     </Button>
+//                   </TableCell>
+//                 </TableRow>
+//               ))}
+
+//               {records.length === 0 && (
+//                 <TableRow>
+//                   <TableCell colSpan={5} align="center">
+//                     No data found
+//                   </TableCell>
+//                 </TableRow>
+//               )}
+//             </TableBody>
+//           </Table>
+//         </TableContainer>
+//       </Container>
+
+//       {/* Dialog */}
+//       <Dialog open={openDialog} onClose={handleCloseDialog} fullWidth maxWidth="sm">
+//         <DialogTitle>{editMode ? "Edit Record" : "Add New Record"}</DialogTitle>
+//         <DialogContent>
+//           <TextField
+//             label="Source of Emission"
+//             name="sourceOfEmission"
+//             fullWidth
+//             margin="normal"
+//             value={formData.sourceOfEmission}
+//             onChange={handleChange}
+//           />
+//           <TextField
+//             label="GHG Activity"
+//             name="ghgActivity"
+//             fullWidth
+//             margin="normal"
+//             value={formData.ghgActivity}
+//             onChange={handleChange}
+//           />
+//           <TextField
+//             label="Unit"
+//             name="units"
+//             fullWidth
+//             margin="normal"
+//             value={formData.units}
+//             onChange={handleChange}
+//           />
+//           <TextField
+//             label="Emission Factor (kg CO₂e/unit)"
+//             name="emissionFactor"
+//             fullWidth
+//             margin="normal"
+//             value={formData.emissionFactor}
+//             onChange={handleChange}
+//           />
+//         </DialogContent>
+//         <DialogActions>
+//           <Button onClick={handleCloseDialog}>Cancel</Button>
+//           <Button variant="contained" onClick={handleSave}>
+//             {editMode ? "Update" : "Save"}
+//           </Button>
+//         </DialogActions>
+//       </Dialog>
+//     </>
+//   );
+// }
+
+// export default MobileCombustion;

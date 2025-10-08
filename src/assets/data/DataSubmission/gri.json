@@ -1,199 +1,193 @@
 {
-    "GRI 2: General Disclosures 2021": [
-      "Organizational details",
-      "Entities included in the organization’s sustainability reporting",
-      "Reporting period, frequency and contact point",
-      "Restatements of information",
-      "External assurance",
-      "Activities, value chain and other business relationships",
-      "Employees",
-      "Workers who are not employees",
-      "Governance structure and composition",
-      "Nomination and selection of the highest governance body",
-      "Chair of the highest governance body",
-      "Role of the highest governance body in overseeing the management of impacts",
-      "Delegation of responsibility for managing impacts",
-      "Role of the highest governance body in sustainability reporting",
-      "Conflicts of interest",
-      "Communication of critical concerns",
-      "Nature and total number of critical concerns",
-      "Remuneration policies",
-      "Process to determine remuneration",
-      "Annual total compensation ratio",
-      "Ratio of the percentage increase in annual total compensation",
-      "Statement on sustainable development strategy",
-      "Policy commitments",
-      "Embedding policy commitments",
-      "Processes to remediate negative impacts",
-      "Mechanisms for seeking advice and raising concerns",
-      "Compliance with laws and regulations",
-      "Membership associations",
-      "Approach to stakeholder engagement",
-      "Collective bargaining agreements"
-    ],
-      "GRI 3: Material Topics 2021": [
-      "Process to determine material topics",
-      "List of material topics",
-      "Management of material topics"
-    ],
-       "GRI 101: Biodiversity 2024": [
-        "Policies to halt and reverse biodiversity loss",
-        "Management of biodiversity impacts",
-        "Access and benefit-sharing",
-        "Identification of biodiversity impacts",
-        "Locations with biodiversity impacts",
-        "Direct drivers of biodiversity loss",
-        "Changes to the state of biodiversity",
-        "Ecosystem services"
-      ],
-      "GRI 304: Biodiversity 2016": [
-        "Operational sites owned, leased, managed in or adjacent to protected areas and areas of high biodiversity value outside protected areas",
-        "Significant impacts of activities, products, and services on biodiversity",
-        "Habitats protected or restored",
-        "IUCN Red List species and national conservation list species with habitats in areas affected by operations"
-      ],
-      "GRI 201: Economic Performance 2016": [
-        "Direct economic value generated and distributed",
-        "Financial implications and other risks and opportunities due to climate change",
-        "Defined benefit plan obligations and other retirement plans",
-        "Financial assistance received from government"
-      ],
-      "GRI 202: Market Presence 2016": [
-        "Ratios of standard entry level wage by gender compared to local minimum wage",
-        "Proportion of senior management hired from the local community"
-      ],
-      "GRI 203: Indirect Economic Impacts 2016": [
-        "Infrastructure investments and services supported",
-        "Significant indirect economic impacts"
-      ],
-      "GRI 204: Procurement Practices 2016": [
-        "Proportion of spending on local suppliers"
-      ],
-         
-     "GRI 205: Anti-corruption 2016": [
-      "Operations assessed for risks related to corruption",
-      "Communication and training about anti-corruption policies and procedures",
-      "Confirmed incidents of corruption and actions taken"
-    ],
-    "GRI 206: Anti-competitive Behavior": [
-        "Legal actions for anti-competitive behavior, anti-trust, and monopoly practices"
-      ],
-      "GRI 207: Tax 2019": [
-        "Approach to tax",
-        "Tax governance, control, and risk management",
-        "Stakeholder engagement and management of concerns related to tax",
-        "Country-by-country reporting"
-      ],
-      "GRI 301: Materials 2016": [
-        "Materials used by weight or volume",
-        "Recycled input materials used",
-        "Reclaimed products and their packaging materials"
-      ],
-           
-      "GRI 302: Energy 2016": [
-        "Energy consumption within the organization",
-        "Energy consumption outside of the organization",
-        "Energy intensity",
-        "Reduction of energy consumption",
-        "Reductions in energy requirements of products and services"
-      ],
-      "GRI 303: Water and Effluents 2018": [
-        "Interactions with water as a shared resource",
-        "Management of water discharge-related impacts",
-        "Water withdrawal",
-        "Water discharge",
-        "Water consumption"
-      ],
-      
-      "GRI 305: Emissions 2016": [
-        "Direct (Scope 1) GHG emissions",
-        "Energy indirect (Scope 2) GHG emissions",
-        "Other indirect (Scope 3) GHG emissions",
-        "GHG emissions intensity",
-        "Reduction of GHG emissions",
-        "Emissions of ozone-depleting substances (ODS)",
-        "Nitrogen oxides (NOx), sulfur oxides (SOx), and other significant air emissions"
-      ],
-      "GRI 306: Effluents and Waste 2016": [
-        "Significant spills"
-      ],
-      "GRI 306: Waste 2020": [
-        "Waste generation and significant waste-related impacts",
-        "Management of significant waste-related impacts",
-        "Waste generated",
-        "Waste diverted from disposal",
-        "Waste directed to disposal"
-      ],
-      "GRI 401: Employment 2016": [
-        "New employee hires and employee turnover",
-        "Benefits provided to full-time employees that are not provided to temporary or part-time employees",
-        "Parental leave"
-      ],
-      "GRI 402: Labor/Management Relations": [
-        "Minimum notice periods regarding operational changes"
-      ],
-      "GRI 403: Occupational Health and Safety 2018": [
-        "Occupational health and safety management system",
-        "Hazard identification, risk assessment, and incident investigation",
-        "Occupational health services",
-        "Worker participation, consultation, and communication on occupational health and safety",
-        "Worker training on occupational health and safety",
-        "Promotion of worker health",
-        "Prevention and mitigation of occupational health and safety impacts directly linked by business relationships",
-        "Workers covered by an occupational health and safety management system",
-        "Work-related injuries",
-        "Work-related ill health"
-      ],
-      "GRI 404: Training and Education 2016": [
-        "Average hours of training per year per employee",
-        "Programs for upgrading employee skills and transition assistance programs",
-        "Percentage of employees receiving regular performance and career development reviews"
-      ],
-      "GRI 405: Diversity and Equal Opportunity 2016": [
-        "Diversity of governance bodies and employees",
-        "Ratio of basic salary and remuneration of women to men"
-      ],
-      "GRI 406: Non-discrimination 2016": [
-        "Incidents of discrimination and corrective actions taken"
-      ],
-      "GRI 407: Freedom of Association and Collective Bargaining 2016": [
-        "Operations and suppliers in which the right to freedom of association and collective bargaining may be at risk"
-      ],
-      "GRI 408: Child Labor 2016": [
-        "Operations and suppliers at significant risk for incidents of child labor"
-      ],
-      "GRI 409: Forced or Compulsory Labor 2016": [
-        "Operations and suppliers at significant risk for incidents of forced or compulsory labor"
-      ],
-      "GRI 410: Security Practices 2016": [
-        "Security personnel trained in human rights policies or procedures"
-      ],
-      "GRI 411: Rights of Indigenous Peoples": [
-        "Incidents of violations involving rights of indigenous peoples"
-      ],
-      "GRI 413: Local Communities 2016": [
-        "Operations with local community engagement, impact assessments, and development programs",
-        "Operations with significant actual and potential negative impacts on local communities"
-      ],
-      "GRI 414: Supplier Social Assessment 2016": [
-        "New suppliers that were screened using social criteria",
-        "Negative social impacts in the supply chain and actions taken"
-      ],
-      "GRI 415: Public Policy 2016": [
-        "Political contributions"
-      ],
-      "GRI 416: Customer Health and Safety 2016": [
-        "Assessment of the health and safety impacts of product and service categories",
-        "Incidents of non-compliance concerning the health and safety impacts of products and services"
-      ],
-      "GRI 417: Marketing and Labeling 2016": [
-        "Requirements for product and service information and labeling",
-        "Incidents of non-compliance concerning product and service information and labeling",
-        "Incidents of non-compliance concerning marketing communications"
-      ],
-      "GRI 418: Customer Privacy 2016": [
-        "Substantiated complaints concerning breaches of customer privacy and losses of customer data"
-      ]
- 
-  }
-  
+  "GRI 2: General Disclosures 2021": [
+    "Organizational details",
+    "Entities included in the organization’s sustainability reporting",
+    "Reporting period, frequency and contact point",
+    "Restatements of information",
+    "External assurance",
+    "Activities, value chain and other business relationships",
+    "Employees",
+    "Workers who are not employees",
+    "Governance structure and composition",
+    "Nomination and selection of the highest governance body",
+    "Chair of the highest governance body",
+    "Role of the highest governance body in overseeing the management of impacts",
+    "Delegation of responsibility for managing impacts",
+    "Role of the highest governance body in sustainability reporting",
+    "Conflicts of interest",
+    "Communication of critical concerns",
+    "Collective knowledge of the highest governance body",
+    "Evaluation of the performance of the highest governance body",
+    "Remuneration policies",
+    "Process to determine remuneration",
+    "Annual total compensation ratio",
+    "Statement on sustainable development strategy",
+    "Policy commitments",
+    "Embedding policy commitments",
+    "Processes to remediate negative impacts",
+    "Mechanisms for seeking advice and raising concerns",
+    "Compliance with laws and regulations",
+    "Membership associations",
+    "Approach to stakeholder engagement",
+    "Collective bargaining agreements"
+  ],
+  "GRI 3: Material Topics 2021": [
+    "Process to determine material topics",
+    "List of material topics",
+    "Management of material topics"
+  ],
+  "GRI 101: Biodiversity 2024": [
+    "Policies to halt and reverse biodiversity loss",
+    "Management of biodiversity impacts",
+    "Access and benefit-sharing",
+    "Identification of biodiversity impacts",
+    "Locations with biodiversity impacts",
+    "Direct drivers of biodiversity loss",
+    "Changes to the state of biodiversity",
+    "Ecosystem services"
+  ],
+  "GRI 304: Biodiversity 2016": [
+    "Operational sites owned, leased, managed in, or adjacent to, protected areas and areas of high biodiversity value outside protected areas",
+    "Significant impacts of activities, products and services on biodiversity",
+    "Habitats protected or restored",
+    "IUCN Red List species and national conservation list species with habitats in areas affected by operations"
+  ],
+  "GRI 201: Economic Performance 2016": [
+    "Direct economic value generated and distributed",
+    "Financial implications and other risks and opportunities due to climate change",
+    "Defined benefit plan obligations and other retirement plans",
+    "Financial assistance received from government"
+  ],
+  "GRI 202: Market Presence 2016": [
+    "Ratios of standard entry level wage by gender compared to local minimum wage",
+    "Proportion of senior management hired from the local community"
+  ],
+  "GRI 203: Indirect Economic Impacts 2016": [
+    "Infrastructure investments and services supported",
+    "Significant indirect economic impacts"
+  ],
+  "GRI 204: Procurement Practices 2016": [
+    "Proportion of spending on local suppliers"
+  ],
+
+  "GRI 205: Anti-corruption 2016": [
+    "Operations assessed for risks related to corruption",
+    "Communication and training about anti-corruption policies and procedures",
+    "Confirmed incidents of corruption and actions taken"
+  ],
+  "GRI 206: Anti-competitive Behavior": [
+    "Legal actions for anti-competitive behavior, anti-trust, and monopoly practices"
+  ],
+  "GRI 207: Tax 2019": [
+    "Approach to tax",
+    "Tax governance, control, and risk management",
+    "Stakeholder engagement and management of concerns related to tax",
+    "Country-by-country reporting"
+  ],
+  "GRI 301: Materials 2016": [
+    "Materials used by weight or volume",
+    "Recycled input materials used",
+    "Reclaimed products and their packaging materials"
+  ],
+
+  "GRI 302: Energy 2016": [
+    "Energy consumption within the organization",
+    "Energy consumption outside of the organization",
+    "Energy intensity",
+    "Reduction of energy consumption",
+    "Reductions in energy requirements of products and services"
+  ],
+  "GRI 303: Water and Effluents 2018": [
+    "Interactions with water as a shared resource",
+    "Management of water discharge-related impacts",
+    "Water withdrawal",
+    "Water discharge",
+    "Water consumption"
+  ],
+
+  "GRI 305: Emissions 2016": [
+    "Direct (Scope 1) GHG emissions",
+    "Energy indirect (Scope 2) GHG emissions",
+    "Other indirect (Scope 3) GHG emissions",
+    "GHG emissions intensity",
+    "Reduction of GHG emissions",
+    "Emissions of ozone-depleting substances (ODS)",
+    "Nitrogen oxides (NOx), sulfur oxides (SOx), and other significant air emissions"
+  ],
+  "GRI 306: Effluents and Waste 2016": ["Significant spills"],
+  "GRI 306: Waste 2020": [
+    "Waste generation and significant waste-related impacts",
+    "Management of significant waste-related impacts",
+    "Waste generated",
+    "Waste diverted from disposal",
+    "Waste directed to disposal"
+  ],
+  "GRI 401: Employment 2016": [
+    "New employee hires and employee turnover",
+    "Benefits provided to full-time employees that are not provided to temporary or part-time employees",
+    "Parental leave"
+  ],
+  "GRI 402: Labor/Management Relations": [
+    "Minimum notice periods regarding operational changes"
+  ],
+  "GRI 403: Occupational Health and Safety 2018": [
+    "Occupational health and safety management system",
+    "Hazard identification, risk assessment, and incident investigation",
+    "Occupational health services",
+    "Worker participation, consultation, and communication on occupational health and safety",
+    "Worker training on occupational health and safety",
+    "Promotion of worker health",
+    "Prevention and mitigation of occupational health and safety impacts directly linked by business relationships",
+    "Workers covered by an occupational health and safety management system",
+    "Work-related injuries",
+    "Work-related ill health"
+  ],
+  "GRI 404: Training and Education 2016": [
+    "Average hours of training per year per employee",
+    "Programs for upgrading employee skills and transition assistance programs",
+    "Percentage of employees receiving regular performance and career development reviews"
+  ],
+  "GRI 405: Diversity and Equal Opportunity 2016": [
+    "Diversity of governance bodies and employees",
+    "Ratio of basic salary and remuneration of women to men"
+  ],
+  "GRI 406: Non-discrimination 2016": [
+    "Incidents of discrimination and corrective actions taken"
+  ],
+  "GRI 407: Freedom of Association and Collective Bargaining 2016": [
+    "Operations and suppliers in which the right to freedom of association and collective bargaining may be at risk"
+  ],
+  "GRI 408: Child Labor 2016": [
+    "Operations and suppliers at significant risk for incidents of child labor"
+  ],
+  "GRI 409: Forced or Compulsory Labor 2016": [
+    "Operations and suppliers at significant risk for incidents of forced or compulsory labor"
+  ],
+  "GRI 410: Security Practices 2016": [
+    "Security personnel trained in human rights policies or procedures"
+  ],
+  "GRI 411: Rights of Indigenous Peoples": [
+    "Incidents of violations involving rights of indigenous peoples"
+  ],
+  "GRI 413: Local Communities 2016": [
+    "Operations with local community engagement, impact assessments, and development programs",
+    "Operations with significant actual and potential negative impacts on local communities"
+  ],
+  "GRI 414: Supplier Social Assessment 2016": [
+    "New suppliers that were screened using social criteria",
+    "Negative social impacts in the supply chain and actions taken"
+  ],
+  "GRI 415: Public Policy 2016": ["Political contributions"],
+  "GRI 416: Customer Health and Safety 2016": [
+    "Assessment of the health and safety impacts of product and service categories",
+    "Incidents of non-compliance concerning the health and safety impacts of products and services"
+  ],
+  "GRI 417: Marketing and Labeling 2016": [
+    "Requirements for product and service information and labeling",
+    "Incidents of non-compliance concerning product and service information and labeling",
+    "Incidents of non-compliance concerning marketing communications"
+  ],
+  "GRI 418: Customer Privacy 2016": [
+    "Substantiated complaints concerning breaches of customer privacy and losses of customer data"
+  ]
+}
