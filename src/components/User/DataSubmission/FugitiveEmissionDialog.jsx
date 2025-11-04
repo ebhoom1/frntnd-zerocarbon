@@ -39,6 +39,7 @@ const FugitiveEmissionDialog = ({ open, handleClose,userId }) => {
           <Table>
             <TableHead>
               <TableRow>
+                <TableCell>Month</TableCell>
                 <TableCell>Category</TableCell>
                 <TableCell>Gas Type</TableCell>
                 <TableCell>Emission Source</TableCell>
@@ -53,6 +54,7 @@ const FugitiveEmissionDialog = ({ open, handleClose,userId }) => {
             <TableBody>
               {emissionData.map((item, index) => (
                 <TableRow key={index}>
+                  <TableCell>{item.month}</TableCell>
                   <TableCell>{item.category}</TableCell>
                   <TableCell>{item.gasType}</TableCell>
                   <TableCell>{item.emissionSource}</TableCell>

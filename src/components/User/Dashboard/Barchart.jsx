@@ -69,19 +69,26 @@ const monthLabels = [
 const BarChartComponent = ({ userId }) => {
   const [dataByYear, setDataByYear] = useState({});
   const [selectedYear, setSelectedYear] = useState("");
-  const [showNext, setShowNext] = useState(false);
+  // const [showNext, setShowNext] = useState(false);
+  const [showNext, setShowNext] = useState(new Date().getMonth() >= 6);
+
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const res = await axios.get(`/api/monthly-energy-water/${userId}`);
+        console.log("barchart response user:",res)
         const yearData = res.data.data || {};
         setDataByYear(yearData);
 console.log(yearData);
         const years = Object.keys(yearData).sort();
-        if (years.length > 0) {
-          setSelectedYear(years[years.length - 1]);
-        }
+        // if (years.length > 0) {
+        //   setSelectedYear(years[years.length - 1]);
+        // }
+        const currentYear = String(new Date().getFullYear());
+if (years.length > 0) {
+  setSelectedYear(years.includes(currentYear) ? currentYear : years[years.length - 1]);
+}
       } catch (err) {
         console.error("Error fetching chart data:", err);
       }

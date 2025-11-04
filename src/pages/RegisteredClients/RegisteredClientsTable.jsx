@@ -129,6 +129,7 @@ const Dashboard = () => {
               <TableCell>Company Name</TableCell>
               <TableCell>Email</TableCell>
               <TableCell>Phone</TableCell>
+              <TableCell>UserType</TableCell>
               <TableCell>Subscription</TableCell>
               <TableCell>Action</TableCell>
             </TableRow>
@@ -145,6 +146,7 @@ const Dashboard = () => {
                   <TableCell>{form.companyName}</TableCell>
                   <TableCell>{form.email}</TableCell>
                   <TableCell>{form.contactNumber}</TableCell>
+                  <TableCell>{form.userType}</TableCell>
                   <TableCell onClick={(e) => e.stopPropagation()}>
                     {form.subscription?.plan || "Not Subscribed"}
                   </TableCell>

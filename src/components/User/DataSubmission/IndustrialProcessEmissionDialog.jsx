@@ -39,6 +39,7 @@ const IndustrialProcessEmissionDialog = ({ open, handleClose,userId }) => {
           <Table>
             <TableHead>
               <TableRow>
+                <TableCell>Month</TableCell>
                 <TableCell>Industry Type</TableCell>
                 <TableCell>Emission Source</TableCell>
                 <TableCell>Production Quantity (kg)</TableCell>
@@ -51,6 +52,7 @@ const IndustrialProcessEmissionDialog = ({ open, handleClose,userId }) => {
             <TableBody>
               {emissionData.map((item, index) => (
                 <TableRow key={index}>
+                  <TableCell>{item.month}</TableCell>
                   <TableCell>{item.industryType}</TableCell>
                   <TableCell>{item.emissionSource}</TableCell>
                   <TableCell>{item.productionQtyInKg}</TableCell>

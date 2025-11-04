@@ -29,6 +29,7 @@ const industries = [
   "Energy",
   "Retail",
   "Finance",
+  "Healthcare",
 ];
 
 const DecarbonisationRoadmap = () => {

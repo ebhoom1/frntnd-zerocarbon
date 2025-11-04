@@ -39,6 +39,7 @@ const PurchasedSteamHeatCoolingEmissionDialog = ({ open, handleClose,userId }) =
           <Table>
             <TableHead>
               <TableRow>
+                <TableCell>Month</TableCell>
                 <TableCell>Consumption</TableCell>
                 <TableCell>Unit</TableCell>
                 <TableCell>Emission Factor (kg CO₂e/unit)</TableCell>
@@ -51,6 +52,7 @@ const PurchasedSteamHeatCoolingEmissionDialog = ({ open, handleClose,userId }) =
             <TableBody>
               {emissionData.map((item, index) => (
                 <TableRow key={index}>
+                  <TableCell>{item.month}</TableCell>
                   <TableCell>{item.consumption}</TableCell>
                   <TableCell>{item.unit}</TableCell>
                   <TableCell>{item.emissionFactor}</TableCell>

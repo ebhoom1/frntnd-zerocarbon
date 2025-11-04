@@ -39,6 +39,7 @@ const StationaryCombustionEmissionDialog = ({ open, handleClose,userId }) => {
           <Table>
             <TableHead>
               <TableRow>
+                <TableCell>Month</TableCell>
                 <TableCell>Fuel Type</TableCell>
                 <TableCell>Fuel Unit</TableCell>
                 <TableCell>Annual Fuel Consumption</TableCell>
@@ -52,6 +53,7 @@ const StationaryCombustionEmissionDialog = ({ open, handleClose,userId }) => {
             <TableBody>
               {emissionData.map((item, index) => (
                 <TableRow key={index}>
+                  <TableCell>{item.month}</TableCell>
                   <TableCell>{item.fuelType}</TableCell>
                   <TableCell>{item.fuelUnit}</TableCell>
                   <TableCell>{item.annualFuelConsumption}</TableCell>

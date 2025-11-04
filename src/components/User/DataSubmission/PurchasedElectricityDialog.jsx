@@ -39,6 +39,7 @@ const PurchasedElectricityDialog = ({ open, handleClose ,userId}) => {
           <Table>
             <TableHead>
               <TableRow>
+                <TableCell>Month</TableCell>
                 <TableCell>Electricity Consumption (kWh)</TableCell>
                 <TableCell>Emission Factor (kg CO₂e/kWh)</TableCell>
                 <TableCell>Total Emission (kg CO₂e)</TableCell>
@@ -48,6 +49,7 @@ const PurchasedElectricityDialog = ({ open, handleClose ,userId}) => {
             <TableBody>
               {emissionData.map((item, index) => (
                 <TableRow key={index}>
+                  <TableCell>{item.month}</TableCell>
                   <TableCell>{item.electricityConsumptionKWh}</TableCell>
                   <TableCell>{item.emissionFactor}</TableCell>
                   <TableCell>{item.emissionKgCO2e}</TableCell>

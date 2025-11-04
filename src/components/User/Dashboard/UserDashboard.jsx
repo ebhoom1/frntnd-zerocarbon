@@ -214,6 +214,7 @@ useEffect(() => {
 
       // Fetch carbon footprint
       const carbonRes = await axios.get(`/api/monthly-emissions/${userId}`);
+      console.log("carbonRes:",carbonRes);
       const carbonData = carbonRes.data.data?.[currentYear] || [];
       const totalCarbon = carbonData.reduce((sum, entry) => sum + entry.emissions, 0);
       setCarbonFootprint(totalCarbon);
@@ -234,6 +235,7 @@ useEffect(() => {
 
        // 👥 Employees
       const empRes = await axios.get(`/api/employees-stats/${userId}`);
+      console.log("empresponse:",)
       setTotalEmployees(empRes.data?.data?.totalEmployees || 0); // ✅ Set total
     } catch (err) {
       console.error("Error fetching KPI data:", err);
