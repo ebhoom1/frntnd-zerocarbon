@@ -194,7 +194,7 @@ const Sidebar = ({ mobileOpen, setMobileOpen, toggleSidebar }) => {
             <img
               src={logo}
               alt="Logo"
-              style={{ width: 120, height: 26}}
+              style={{ width: 180, height: 80}}
             />
             {/* <Typography variant="h6" fontWeight="bold" sx={{ ml: 1 }}>
               Zero Carbon
