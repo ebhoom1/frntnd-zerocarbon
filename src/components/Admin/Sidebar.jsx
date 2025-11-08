@@ -33,7 +33,7 @@ import {
   Tooltip,
 } from "@mui/material";
 // import logo from "../../assets/images/logo1.svg";
-import logo from "../../assets/images/logo.png";
+import logo from "../../assets/images/logoebhoom.png";
 import useMediaQuery from "@mui/material/useMediaQuery";
 
 const Sidebar = ({ mobileOpen, setMobileOpen, toggleSidebar }) => {
@@ -194,7 +194,7 @@ const Sidebar = ({ mobileOpen, setMobileOpen, toggleSidebar }) => {
             <img
               src={logo}
               alt="Logo"
-              style={{ width: 180, height: 80}}
+              style={{ width: 120, height: 26}}
             />
             {/* <Typography variant="h6" fontWeight="bold" sx={{ ml: 1 }}>
               Zero Carbon
